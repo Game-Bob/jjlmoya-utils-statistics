@@ -1,0 +1,810 @@
+---
+import { Icon } from 'astro-icon/components';
+import type { ABTestUI } from './ui';
+
+interface Props {
+  ui: ABTestUI;
+}
+
+const { ui } = Astro.props;
+---
+
+<div
+  class="ab-card"
+  id="abTestApp"
+  data-sig-text={ui.sigText}
+  data-no-sig-text={ui.noSigText}
+  data-confidence-prefix={ui.labelConfidencePrefix}
+  data-just-intro={ui.justIntro}
+  data-just-samples={ui.justSamples}
+  data-just-respect-to={ui.justRespectTo}
+  data-just-with-confidence={ui.justWithConfidence}
+  data-just-diff={ui.justDiff}
+  data-just-sig={ui.justSig}
+  data-just-no-sig={ui.justNoSig}
+  data-btn-copied={ui.btnCopied}
+>
+  <aside class="ab-sidebar">
+    <div class="ab-sidebar-heading">
+      <Icon name="mdi:tune-vertical" /> {ui.labelParams}
+    </div>
+
+    <div class="ab-toggle" id="testType">
+      <button class="ab-toggle-btn active" data-type="proportions">{ui.btnConversions}</button>
+      <button class="ab-toggle-btn" data-type="means">{ui.btnMeans}</button>
+    </div>
+
+    <div class="ab-group ab-group-a">
+      <div class="ab-group-title">
+        <Icon name="mdi:alpha-a-circle" /> {ui.labelGroupA}
+      </div>
+      <div class="ab-input-row">
+        <label for="nA">{ui.labelTotalCases} <span class="ab-math">n₁</span></label>
+        <input type="number" id="nA" value="1000" min="1" step="1" />
+      </div>
+      <div class="ab-input-row ab-type-prop">
+        <label for="sA">{ui.labelSuccesses} <span class="ab-math">x₁</span></label>
+        <input type="number" id="sA" value="150" min="0" step="1" />
+      </div>
+      <div class="ab-input-row ab-type-mean" style="display: none;">
+        <label for="mA">{ui.labelMean} <span class="ab-math">μ₁</span></label>
+        <input type="number" id="mA" value="50" step="0.1" />
+      </div>
+      <div class="ab-input-row ab-type-mean" style="display: none;">
+        <label for="sdA">{ui.labelStdDev} <span class="ab-math">σ₁</span></label>
+        <input type="number" id="sdA" value="10" min="0" step="0.1" />
+      </div>
+    </div>
+
+    <div class="ab-group ab-group-b">
+      <div class="ab-group-title ab-group-title-b">
+        <Icon name="mdi:alpha-b-circle" /> {ui.labelGroupB}
+      </div>
+      <div class="ab-input-row">
+        <label for="nB">{ui.labelTotalCases} <span class="ab-math">n₂</span></label>
+        <input type="number" id="nB" value="1000" min="1" step="1" />
+      </div>
+      <div class="ab-input-row ab-type-prop">
+        <label for="sB">{ui.labelSuccesses} <span class="ab-math">x₂</span></label>
+        <input type="number" id="sB" value="200" min="0" step="1" />
+      </div>
+      <div class="ab-input-row ab-type-mean" style="display: none;">
+        <label for="mB">{ui.labelMean} <span class="ab-math">μ₂</span></label>
+        <input type="number" id="mB" value="53" step="0.1" />
+      </div>
+      <div class="ab-input-row ab-type-mean" style="display: none;">
+        <label for="sdB">{ui.labelStdDev} <span class="ab-math">σ₂</span></label>
+        <input type="number" id="sdB" value="10" min="0" step="0.1" />
+      </div>
+    </div>
+
+    <div class="ab-group">
+      <div class="ab-input-row">
+        <label for="alpha">{ui.labelAlpha} <span class="ab-math">α</span></label>
+        <select id="alpha" class="ab-select">
+          <option value="0.10">{ui.alpha90}</option>
+          <option value="0.05" selected>{ui.alpha95}</option>
+          <option value="0.01">{ui.alpha99}</option>
+        </select>
+      </div>
+      <div class="ab-input-row ab-direction-row">
+        <label>{ui.labelDirection}</label>
+        <div class="ab-toggle" id="tailsType">
+          <button class="ab-toggle-btn active" data-type="two">{ui.btn2Tails}</button>
+          <button class="ab-toggle-btn" data-type="one">{ui.btn1Tail}</button>
+        </div>
+      </div>
+    </div>
+  </aside>
+
+  <main class="ab-main">
+    <div id="extremeAlert" class="ab-alert" style="display: none;">
+      <div class="ab-alert-title">{ui.alertTitle}</div>
+      <p class="ab-alert-body">
+        {ui.alertBody}
+        <a href={ui.alertLinkUrl} class="ab-alert-link">{ui.alertLinkText}</a>.
+      </p>
+    </div>
+
+    <section class="ab-results-grid">
+      <div class="ab-pvalue-block" id="pvalueBlock">
+        <div class="ab-pval-title">{ui.labelPValue} (<span class="ab-math">p</span>)</div>
+        <div class="ab-pval-value" id="res-pvalue">0.000</div>
+        <div class="ab-pval-desc" id="res-desc">{ui.sigDescInitial}</div>
+      </div>
+
+      <div class="ab-lift-block">
+        <div class="ab-lift-header">
+          <Icon name="mdi:rocket-launch" /> {ui.labelLift}
+        </div>
+        <div class="ab-lift-content">
+          <span class="ab-lift-value" id="res-lift">0%</span>
+          <span class="ab-lift-text">{ui.labelLiftText}</span>
+        </div>
+        <div class="ab-conf-bar-wrap">
+          <div class="ab-conf-bar-fill" id="confBar"></div>
+        </div>
+        <div class="ab-conf-text" id="confText">{ui.labelConfidencePrefix} 0%</div>
+      </div>
+    </section>
+
+    <section class="ab-visual">
+      <div class="ab-block-title">
+        <Icon name="mdi:chart-bell-curve" /> {ui.labelDistributions}
+      </div>
+      <p class="ab-chart-desc">{ui.chartDesc}</p>
+      <canvas id="curvesCanvas"></canvas>
+    </section>
+
+    <section class="ab-copy-block">
+      <div class="ab-copy-header">
+        <Icon name="mdi:text-box-outline" />
+        <span>{ui.labelReport}</span>
+      </div>
+      <p id="justificationText" class="ab-copy-text">{ui.defaultJustification}</p>
+      <button class="ab-copy-btn" id="copyTextBtn">
+        <Icon name="mdi:content-copy" /> {ui.btnCopy}
+      </button>
+    </section>
+
+  </main>
+</div>
+
+<script>
+  const app = document.getElementById('abTestApp')!;
+  const UI = {
+    sigText: app.dataset.sigText ?? '',
+    noSigText: app.dataset.noSigText ?? '',
+    confidencePrefix: app.dataset.confidencePrefix ?? '',
+    justIntro: app.dataset.justIntro ?? '',
+    justSamples: app.dataset.justSamples ?? '',
+    justRespectTo: app.dataset.justRespectTo ?? '',
+    justWithConfidence: app.dataset.justWithConfidence ?? '',
+    justDiff: app.dataset.justDiff ?? '',
+    justSig: app.dataset.justSig ?? '',
+    justNoSig: app.dataset.justNoSig ?? '',
+    btnCopied: app.dataset.btnCopied ?? '',
+  };
+
+  const testTypeEl = document.getElementById('testType')!;
+  const tailsTypeEl = document.getElementById('tailsType')!;
+  const typeProps = document.querySelectorAll<HTMLElement>('.ab-type-prop');
+  const typeMeans = document.querySelectorAll<HTMLElement>('.ab-type-mean');
+
+  const nA = document.getElementById('nA') as HTMLInputElement;
+  const sA = document.getElementById('sA') as HTMLInputElement;
+  const mA = document.getElementById('mA') as HTMLInputElement;
+  const sdA = document.getElementById('sdA') as HTMLInputElement;
+  const nB = document.getElementById('nB') as HTMLInputElement;
+  const sB = document.getElementById('sB') as HTMLInputElement;
+  const mB = document.getElementById('mB') as HTMLInputElement;
+  const sdB = document.getElementById('sdB') as HTMLInputElement;
+  const alphaInput = document.getElementById('alpha') as HTMLSelectElement;
+  const canvas = document.getElementById('curvesCanvas') as HTMLCanvasElement;
+  const ctx = canvas.getContext('2d');
+
+  let currentMode = 'proportions';
+  let currentTails = 'two';
+
+  const normCDF = (x: number): number => {
+    const t = 1 / (1 + 0.2316419 * Math.abs(x));
+    const d = 0.3989422804 * Math.exp((-x * x) / 2);
+    const p =
+      d * t * (0.31938153 + t * (-0.356563782 + t * (1.781477937 + t * (-1.821255978 + t * 1.330274429))));
+    return x > 0 ? 1 - p : p;
+  };
+
+  const calcPValue = (Z: number, tails: string): number => {
+    if (tails === 'two') return 2 * (1 - normCDF(Math.abs(Z)));
+    return Z > 0 ? 1 - normCDF(Z) : 1;
+  };
+
+  const pdf = (x: number, m: number, s: number) =>
+    (1 / (s * Math.sqrt(2 * Math.PI))) * Math.exp(-0.5 * Math.pow((x - m) / s, 2));
+
+  const drawCurves = (meanA: number, seA: number, meanB: number, seB: number) => {
+    if (!ctx) return;
+    const dpr = window.devicePixelRatio || 1;
+    const cw = canvas.offsetWidth;
+    const ch = canvas.offsetHeight;
+    canvas.width = Math.round(cw * dpr);
+    canvas.height = Math.round(ch * dpr);
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    ctx.clearRect(0, 0, cw, ch);
+
+    const pad = 30;
+    const W = cw - pad * 2;
+    const H = ch - pad * 2;
+    const minX = Math.min(meanA - 4 * seA, meanB - 4 * seB);
+    const maxX = Math.max(meanA + 4 * seA, meanB + 4 * seB);
+    const range = maxX - minX || 1;
+    const maxY = Math.max(1 / (seA * Math.sqrt(2 * Math.PI)), 1 / (seB * Math.sqrt(2 * Math.PI))) * 1.1;
+
+    const toX = (x: number) => pad + ((x - minX) / range) * W;
+    const toY = (y: number) => pad + H - (y / maxY) * H;
+
+    const drawCurve = (m: number, s: number, color: string, fill: string) => {
+      ctx.beginPath();
+      ctx.moveTo(toX(minX), toY(0));
+      for (let i = 0; i <= 150; i++) {
+        const x = minX + (i / 150) * range;
+        ctx.lineTo(toX(x), toY(pdf(x, m, s)));
+      }
+      ctx.lineTo(toX(maxX), toY(0));
+      ctx.fillStyle = fill;
+      ctx.fill();
+      ctx.lineWidth = 2;
+      ctx.strokeStyle = color;
+      ctx.stroke();
+      ctx.beginPath();
+      ctx.setLineDash([4, 4]);
+      ctx.moveTo(toX(m), toY(0));
+      ctx.lineTo(toX(m), toY(pdf(m, m, s)));
+      ctx.stroke();
+      ctx.setLineDash([]);
+    };
+
+    ctx.beginPath();
+    ctx.strokeStyle = '#cbd5e1';
+    ctx.lineWidth = 1;
+    ctx.moveTo(pad, pad + H);
+    ctx.lineTo(pad + W, pad + H);
+    ctx.stroke();
+
+    drawCurve(meanA, seA, '#64748b', 'rgba(100,116,139,0.2)');
+    drawCurve(meanB, seB, '#f43f5e', 'rgba(244,63,94,0.2)');
+
+    ctx.fillStyle = '#1e293b';
+    ctx.font = 'bold 12px sans-serif';
+    ctx.textAlign = 'center';
+    const dA = currentMode === 'proportions' ? (meanA * 100).toFixed(1) + '%' : meanA.toFixed(2);
+    const dB = currentMode === 'proportions' ? (meanB * 100).toFixed(1) + '%' : meanB.toFixed(2);
+    ctx.fillText(`A: ${dA}`, toX(meanA), pad + H + 20);
+    ctx.fillStyle = '#e11d48';
+    ctx.fillText(`B: ${dB}`, toX(meanB), pad + H + 20);
+  };
+
+  const calcProportions = (numA: number, numB: number) => {
+    const sucA = parseFloat(sA.value) || 0;
+    const sucB = parseFloat(sB.value) || 0;
+    const pA = sucA / numA;
+    const pB = sucB / numB;
+    const pooledP = (sucA + sucB) / (numA + numB);
+    const se = Math.sqrt(pooledP * (1 - pooledP) * (1 / numA + 1 / numB));
+    const seA = Math.sqrt((pA * (1 - pA)) / numA) || 0.0001;
+    const seB = Math.sqrt((pB * (1 - pB)) / numB) || 0.0001;
+    const Z = se > 0 ? (pB - pA) / se : 0;
+    const pValue = se > 0 ? calcPValue(Z, currentTails) : 1;
+    const lift = pA > 0 ? ((pB - pA) / pA) * 100 : 0;
+    const extreme = sucA === 0 || sucB === 0 || sucA === numA || sucB === numB;
+    return { Z, pValue, lift, statA: pA, statB: pB, seA, seB, extreme };
+  };
+
+  const calcMeans = (numA: number, numB: number) => {
+    const meanAv = parseFloat(mA.value) || 0;
+    const stdA = parseFloat(sdA.value) || 1;
+    const meanBv = parseFloat(mB.value) || 0;
+    const stdB = parseFloat(sdB.value) || 1;
+    const seA = stdA / Math.sqrt(numA);
+    const seB = stdB / Math.sqrt(numB);
+    const se = Math.sqrt((stdA * stdA) / numA + (stdB * stdB) / numB);
+    const Z = se > 0 ? (meanBv - meanAv) / se : 0;
+    const pValue = se > 0 ? calcPValue(Z, currentTails) : 1;
+    const lift = meanAv !== 0 ? ((meanBv - meanAv) / Math.abs(meanAv)) * 100 : 0;
+    return { Z, pValue, lift, statA: meanAv, statB: meanBv, seA, seB, extreme: false };
+  };
+
+  const update = () => {
+    const numA = parseFloat(nA.value) || 1;
+    const numB = parseFloat(nB.value) || 1;
+    const alpha = parseFloat(alphaInput.value) || 0.05;
+
+    const r = currentMode === 'proportions' ? calcProportions(numA, numB) : calcMeans(numA, numB);
+    const isSignificant = r.pValue < alpha;
+
+    const pvalBlock = document.getElementById('pvalueBlock')!;
+    pvalBlock.className = 'ab-pvalue-block ' + (isSignificant ? 'significant' : 'not-significant');
+    document.getElementById('res-pvalue')!.textContent =
+      r.pValue < 0.001 ? '<0.001' : r.pValue.toFixed(3);
+    document.getElementById('res-desc')!.textContent = isSignificant ? UI.sigText : UI.noSigText;
+
+    const alertBox = document.getElementById('extremeAlert')!;
+    alertBox.style.display = numA < 30 || numB < 30 || r.extreme ? 'block' : 'none';
+
+    const liftEl = document.getElementById('res-lift')!;
+    liftEl.textContent = (r.lift > 0 ? '+' : '') + r.lift.toFixed(2) + '%';
+    liftEl.className = 'ab-lift-value ' + (r.lift > 0 ? 'positive' : 'negative');
+
+    const confidence = (1 - r.pValue) * 100;
+    document.getElementById('confBar')!.style.width = Math.min(confidence, 100) + '%';
+    document.getElementById('confText')!.textContent =
+      UI.confidencePrefix + ' ' + confidence.toFixed(2) + '%';
+
+    const total = numA + numB;
+    const liftStr = (r.lift > 0 ? '+' : '') + r.lift.toFixed(2);
+    const sigStr = isSignificant ? UI.justSig : UI.justNoSig;
+    document.getElementById('justificationText')!.textContent =
+      UI.justIntro + ' ' + total + UI.justSamples + liftStr + UI.justRespectTo +
+      UI.justWithConfidence + confidence.toFixed(2) + '% (p=' + r.pValue.toFixed(3) + ')' +
+      UI.justDiff + sigStr + '.';
+
+    drawCurves(r.statA, r.seA, r.statB, r.seB);
+  };
+
+  testTypeEl.addEventListener('click', (e) => {
+    const btn = (e.target as HTMLElement).closest<HTMLElement>('.ab-toggle-btn');
+    if (!btn) return;
+    testTypeEl.querySelectorAll('.ab-toggle-btn').forEach((b) => b.classList.remove('active'));
+    btn.classList.add('active');
+    currentMode = btn.dataset.type!;
+    typeProps.forEach((el) => { el.style.display = currentMode === 'proportions' ? 'flex' : 'none'; });
+    typeMeans.forEach((el) => { el.style.display = currentMode === 'means' ? 'flex' : 'none'; });
+    update();
+  });
+
+  tailsTypeEl.addEventListener('click', (e) => {
+    const btn = (e.target as HTMLElement).closest<HTMLElement>('.ab-toggle-btn');
+    if (!btn) return;
+    tailsTypeEl.querySelectorAll('.ab-toggle-btn').forEach((b) => b.classList.remove('active'));
+    btn.classList.add('active');
+    currentTails = btn.dataset.type!;
+    update();
+  });
+
+  [nA, sA, mA, sdA, nB, sB, mB, sdB, alphaInput].forEach((el) => {
+    el.addEventListener('input', update);
+    el.addEventListener('change', update);
+  });
+
+  window.addEventListener('resize', update);
+
+  const copyBtn = document.getElementById('copyTextBtn')!;
+  copyBtn.addEventListener('click', () => {
+    const text = document.getElementById('justificationText')!.textContent || '';
+    navigator.clipboard.writeText(text);
+    const original = copyBtn.innerHTML;
+    copyBtn.textContent = UI.btnCopied;
+    setTimeout(() => { copyBtn.innerHTML = original; }, 1500);
+  });
+
+  update();
+</script>
+
+<style>
+  :global(.ab-card) {
+    --ab-bg: #ffffff;
+    --ab-border: rgba(244, 63, 94, 0.2);
+    --ab-shadow: rgba(244, 63, 94, 0.08);
+    --ab-sidebar-bg: rgba(255, 241, 242, 0.5);
+    --ab-sidebar-border: rgba(244, 63, 94, 0.15);
+    --ab-primary: #f43f5e;
+    --ab-primary-hover: #e11d48;
+    --ab-primary-soft: rgba(244, 63, 94, 0.05);
+    --ab-primary-soft-border: rgba(244, 63, 94, 0.3);
+    --ab-toggle-bg: #f1f5f9;
+    --ab-toggle-text: #475569;
+    --ab-group-bg: #ffffff;
+    --ab-group-border: #e2e8f0;
+    --ab-text: #0f172a;
+    --ab-text-muted: #475569;
+    --ab-text-secondary: #334155;
+    --ab-text-label: #334155;
+    --ab-input-border: #cbd5e1;
+    --ab-input-bg: #ffffff;
+    --ab-canvas-bg: #f8fafc;
+    --ab-canvas-border: #cbd5e1;
+    --ab-conf-track: #e2e8f0;
+    --ab-sig-bg: linear-gradient(135deg, rgba(16,185,129,0.05), rgba(209,250,229,0.4));
+    --ab-sig-border: rgba(16, 185, 129, 0.3);
+    --ab-sig-value: #059669;
+    --ab-sig-desc: #047857;
+    --ab-nosig-bg: linear-gradient(135deg, rgba(239,68,68,0.05), rgba(254,226,226,0.4));
+    --ab-nosig-border: rgba(239, 68, 68, 0.3);
+    --ab-nosig-value: #dc2626;
+    --ab-nosig-desc: #b91c1c;
+    --ab-alert-bg: #fffbeb;
+    --ab-alert-border: #fde68a;
+    --ab-alert-title: #d97706;
+    --ab-alert-body: #92400e;
+    --ab-alert-link: #b45309;
+    --ab-pval-title: #475569;
+    --ab-pval-value: #0f172a;
+    --ab-lift-header: #334155;
+    --ab-lift-value: #0f172a;
+    --ab-lift-text: #475569;
+    --ab-copy-header: #e11d48;
+    --ab-copy-text: #1e293b;
+
+    display: flex;
+    flex-direction: column;
+    background: var(--ab-bg);
+    border-radius: 1.5rem;
+    border: 1px solid var(--ab-border);
+    box-shadow: 0 10px 40px var(--ab-shadow);
+    overflow: hidden;
+    margin: 2rem 0;
+  }
+
+  :global(.theme-dark .ab-card) {
+    --ab-bg: #18181b;
+    --ab-border: rgba(251, 113, 133, 0.2);
+    --ab-shadow: rgba(244, 63, 94, 0.1);
+    --ab-sidebar-bg: rgba(39, 39, 42, 0.8);
+    --ab-sidebar-border: rgba(251, 113, 133, 0.15);
+    --ab-primary: #fb7185;
+    --ab-primary-hover: #f43f5e;
+    --ab-primary-soft: rgba(251, 113, 133, 0.07);
+    --ab-primary-soft-border: rgba(251, 113, 133, 0.25);
+    --ab-toggle-bg: #27272a;
+    --ab-toggle-text: #a1a1aa;
+    --ab-group-bg: #27272a;
+    --ab-group-border: #3f3f46;
+    --ab-text: #f4f4f5;
+    --ab-text-muted: #a1a1aa;
+    --ab-text-secondary: #d4d4d8;
+    --ab-text-label: #d4d4d8;
+    --ab-input-border: #52525b;
+    --ab-input-bg: #3f3f46;
+    --ab-canvas-bg: #27272a;
+    --ab-canvas-border: #3f3f46;
+    --ab-conf-track: #3f3f46;
+    --ab-sig-bg: linear-gradient(135deg, rgba(16,185,129,0.08), rgba(6,78,59,0.2));
+    --ab-sig-border: rgba(16, 185, 129, 0.25);
+    --ab-sig-value: #34d399;
+    --ab-sig-desc: #6ee7b7;
+    --ab-nosig-bg: linear-gradient(135deg, rgba(239,68,68,0.08), rgba(127,29,29,0.2));
+    --ab-nosig-border: rgba(239, 68, 68, 0.25);
+    --ab-nosig-value: #f87171;
+    --ab-nosig-desc: #fca5a5;
+    --ab-alert-bg: #27272a;
+    --ab-alert-border: #52525b;
+    --ab-alert-title: #fbbf24;
+    --ab-alert-body: #d4d4d8;
+    --ab-alert-link: #fb923c;
+    --ab-pval-title: #a1a1aa;
+    --ab-pval-value: #f4f4f5;
+    --ab-lift-header: #d4d4d8;
+    --ab-lift-value: #f4f4f5;
+    --ab-lift-text: #a1a1aa;
+    --ab-copy-header: #fb7185;
+    --ab-copy-text: #e4e4e7;
+  }
+
+  :global(.ab-sidebar) {
+    background: var(--ab-sidebar-bg);
+    border-bottom: 1px solid var(--ab-sidebar-border);
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+  }
+
+  @media (min-width: 768px) {
+    :global(.ab-card) { flex-direction: row; }
+    :global(.ab-sidebar) {
+      width: 340px;
+      flex-shrink: 0;
+      border-bottom: none;
+      border-right: 1px solid var(--ab-sidebar-border);
+      gap: 1.5rem;
+    }
+  }
+
+  :global(.ab-sidebar-heading) {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--ab-text);
+    margin-bottom: 1.25rem;
+  }
+  :global(.ab-sidebar-heading [data-icon]) { color: var(--ab-primary); font-size: 1.5em; }
+
+  :global(.ab-toggle) {
+    display: flex;
+    background: var(--ab-toggle-bg);
+    border-radius: 0.75rem;
+    padding: 0.25rem;
+    gap: 0.25rem;
+    margin-bottom: 0.5rem;
+  }
+  :global(.ab-toggle-btn) {
+    flex: 1;
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+    border: none;
+    background: transparent;
+    color: var(--ab-toggle-text);
+    font-size: 0.85rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+  :global(.ab-toggle-btn.active) {
+    background: var(--ab-primary);
+    color: #fff;
+    box-shadow: 0 2px 4px rgba(244, 63, 94, 0.2);
+  }
+
+  :global(.ab-group) {
+    background: var(--ab-group-bg);
+    border: 1px solid var(--ab-group-border);
+    border-radius: 1rem;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+  :global(.ab-group-title) {
+    font-weight: 800;
+    font-size: 0.95rem;
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    color: var(--ab-text-muted);
+  }
+  :global(.ab-group-title-b) { color: var(--ab-primary); }
+
+  :global(.ab-input-row) {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+  }
+  :global(.ab-input-row label) {
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: var(--ab-text-label);
+    display: flex;
+    justify-content: space-between;
+  }
+  :global(.ab-math) { font-style: italic; font-weight: 600; color: var(--ab-text-muted); }
+  :global(.ab-input-row input),
+  :global(.ab-select) {
+    width: 100%;
+    padding: 0.6rem 0.75rem;
+    border-radius: 0.5rem;
+    border: 1px solid var(--ab-input-border);
+    background: var(--ab-input-bg);
+    color: var(--ab-text);
+    font-size: 0.95rem;
+    font-weight: 600;
+    transition: all 0.2s;
+  }
+  :global(.ab-input-row input:focus),
+  :global(.ab-select:focus) {
+    outline: none;
+    border-color: var(--ab-primary);
+    box-shadow: 0 0 0 2px rgba(244, 63, 94, 0.15);
+  }
+  :global(.ab-direction-row) { margin-top: 0.75rem; }
+
+  :global(.ab-main) {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    padding: 1.5rem;
+    gap: 2rem;
+  }
+
+  :global(.ab-alert) {
+    background: var(--ab-alert-bg);
+    border: 1px solid var(--ab-alert-border);
+    padding: 1rem;
+    border-radius: 0.75rem;
+  }
+  :global(.ab-alert-title) {
+    color: var(--ab-alert-title);
+    font-weight: 800;
+    font-size: 0.9rem;
+    margin-bottom: 0.25rem;
+  }
+  :global(.ab-alert-body) {
+    color: var(--ab-alert-body);
+    font-size: 0.85rem;
+    margin: 0;
+    font-weight: 500;
+  }
+  :global(.ab-alert-link) {
+    color: var(--ab-alert-link);
+    text-decoration: underline;
+    font-weight: 700;
+  }
+
+  :global(.ab-results-grid) {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+  @media (min-width: 640px) {
+    :global(.ab-results-grid) { grid-template-columns: auto 1fr; }
+  }
+
+  :global(.ab-pvalue-block) {
+    background: var(--ab-canvas-bg);
+    border: 1px solid var(--ab-group-border);
+    border-radius: 1rem;
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    transition: all 0.3s;
+  }
+  :global(.ab-pvalue-block.significant) {
+    background: var(--ab-sig-bg);
+    border-color: var(--ab-sig-border);
+  }
+  :global(.ab-pvalue-block.not-significant) {
+    background: var(--ab-nosig-bg);
+    border-color: var(--ab-nosig-border);
+  }
+  :global(.ab-pval-title) {
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: var(--ab-pval-title);
+    margin-bottom: 0.5rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+  :global(.ab-pval-value) {
+    font-size: 3.5rem;
+    font-weight: 800;
+    line-height: 1;
+    color: var(--ab-pval-value);
+  }
+  :global(.significant .ab-pval-value) { color: var(--ab-sig-value); }
+  :global(.not-significant .ab-pval-value) { color: var(--ab-nosig-value); }
+  :global(.ab-pval-desc) {
+    font-size: 1rem;
+    font-weight: 700;
+    margin-top: 0.75rem;
+    max-width: 200px;
+    color: var(--ab-text-muted);
+  }
+  :global(.significant .ab-pval-desc) { color: var(--ab-sig-desc); }
+  :global(.not-significant .ab-pval-desc) { color: var(--ab-nosig-desc); }
+
+  :global(.ab-lift-block) {
+    background: var(--ab-canvas-bg);
+    border: 1px solid var(--ab-group-border);
+    border-radius: 1rem;
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  :global(.ab-lift-header) {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: var(--ab-lift-header);
+    margin-bottom: 1rem;
+  }
+  :global(.ab-lift-header [data-icon]) { color: var(--ab-primary); }
+  :global(.ab-lift-content) {
+    display: flex;
+    align-items: baseline;
+    gap: 1rem;
+  }
+  :global(.ab-lift-value) {
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: var(--ab-lift-value);
+  }
+  :global(.ab-lift-value.positive) { color: var(--ab-sig-value); }
+  :global(.ab-lift-value.negative) { color: var(--ab-nosig-value); }
+  :global(.ab-lift-text) { font-size: 1rem; font-weight: 500; color: var(--ab-lift-text); }
+  :global(.ab-conf-bar-wrap) {
+    margin-top: 1.5rem;
+    background: var(--ab-conf-track);
+    height: 12px;
+    border-radius: 6px;
+    overflow: hidden;
+  }
+  :global(.ab-conf-bar-fill) {
+    height: 100%;
+    background: var(--ab-primary);
+    width: 0%;
+    transition: width 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  :global(.ab-conf-text) {
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: var(--ab-text-muted);
+    margin-top: 0.5rem;
+    text-align: right;
+  }
+
+  :global(.ab-visual) {
+    background: var(--ab-group-bg);
+    border: 1px solid var(--ab-group-border);
+    border-radius: 1rem;
+    padding: 1.5rem;
+  }
+  :global(.ab-block-title) {
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: var(--ab-text-secondary);
+    margin-bottom: 0.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+  }
+  :global(.ab-block-title [data-icon]) { color: var(--ab-primary); }
+  :global(.ab-chart-desc) {
+    font-size: 0.85rem;
+    color: var(--ab-text-muted);
+    margin-bottom: 1rem;
+    font-weight: 500;
+  }
+  :global(#curvesCanvas) {
+    width: 100%;
+    height: 240px;
+    display: block;
+    background: var(--ab-canvas-bg);
+    border-radius: 0.75rem;
+    border: 1px dashed var(--ab-canvas-border);
+  }
+
+  :global(.ab-copy-block) {
+    background: var(--ab-primary-soft);
+    border: 1px dashed var(--ab-primary-soft-border);
+    border-radius: 1rem;
+    padding: 1.5rem;
+    position: relative;
+  }
+  :global(.ab-copy-header) {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--ab-copy-header);
+    font-weight: 800;
+    font-size: 0.9rem;
+    margin-bottom: 0.5rem;
+  }
+  :global(.ab-copy-text) {
+    font-size: 1.05rem;
+    line-height: 1.6;
+    color: var(--ab-copy-text);
+    margin: 0;
+    font-style: italic;
+    font-weight: 500;
+  }
+  :global(.ab-copy-btn) {
+    position: absolute;
+    bottom: 1.25rem;
+    right: 1.5rem;
+    background: var(--ab-primary);
+    color: #fff;
+    border: none;
+    border-radius: 0.5rem;
+    padding: 0.5rem 0.75rem;
+    font-size: 0.75rem;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+  :global(.ab-copy-btn:hover) { background: var(--ab-primary-hover); }
+
+  @media (max-width: 600px) {
+    :global(.ab-card) { border-radius: 1rem; margin: 0; }
+    :global(.ab-sidebar) { padding: 1.25rem; }
+    :global(.ab-main) { padding: 1.25rem; gap: 1.25rem; }
+    :global(.ab-pval-value) { font-size: 2.5rem; }
+    :global(.ab-pval-desc) { font-size: 0.875rem; max-width: unset; }
+    :global(.ab-lift-value) { font-size: 1.75rem; }
+    :global(.ab-lift-text) { font-size: 0.875rem; }
+    :global(.ab-lift-content) { gap: 0.5rem; flex-wrap: wrap; }
+    :global(.ab-visual) { padding: 1rem; }
+    :global(#curvesCanvas) { height: 180px; }
+    :global(.ab-copy-block) { padding: 1rem; padding-bottom: 4rem; }
+    :global(.ab-copy-text) { font-size: 0.9rem; }
+  }
+</style>

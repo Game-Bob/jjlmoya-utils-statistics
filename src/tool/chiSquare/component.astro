@@ -1,0 +1,994 @@
+---
+import { Icon } from 'astro-icon/components';
+import type { ChiSquareUI } from './ui';
+
+interface Props {
+  ui: ChiSquareUI;
+}
+
+const { ui } = Astro.props;
+---
+
+<div
+  class="chi-card"
+  id="chiApp"
+  data-row={ui.rowLabel}
+  data-col={ui.colLabel}
+  data-total={ui.totalLabel}
+  data-cramer-null={ui.cramerNull}
+  data-cramer-weak={ui.cramerWeak}
+  data-cramer-moderate={ui.cramerModerate}
+  data-cramer-strong={ui.cramerStrong}
+  data-sig-text={ui.sigText}
+  data-no-sig-text={ui.noSigText}
+  data-chart-obs={ui.chartLegendObs}
+  data-chart-exp={ui.chartLegendExp}
+  data-copy-label={ui.btnCopy}
+  data-copied-label={ui.btnCopied}
+  data-just-intro={ui.justificationIntro}
+  data-just-table-of={ui.justificationTableOf}
+  data-just-obtained={ui.justificationObtained}
+  data-just-p-at={ui.justificationPAt}
+  data-just-concluded={ui.justificationConcluded}
+  data-just-sig={ui.justificationSig}
+  data-just-no-sig={ui.justificationNoSig}
+>
+  <aside class="chi-sidebar">
+    <div class="chi-sidebar-heading">
+      <Icon name="mdi:tune-vertical" /> {ui.labelConfig}
+    </div>
+
+    <div class="chi-group-section">
+      <div class="chi-input-row">
+        <label for="tableSize">{ui.labelTableSize}</label>
+        <select id="tableSize">
+          <option value="2x2" selected>{ui.alpha90.includes('90') ? '2 × 2' : '2 × 2'}</option>
+          <option value="2x3">2 × 3</option>
+          <option value="3x2">3 × 2</option>
+          <option value="3x3">3 × 3</option>
+        </select>
+      </div>
+      <div class="chi-input-row" style="margin-top: 0.5rem;">
+        <label for="alpha">{ui.labelAlpha}</label>
+        <select id="alpha">
+          <option value="0.10">{ui.alpha90}</option>
+          <option value="0.05" selected>{ui.alpha95}</option>
+          <option value="0.01">{ui.alpha99}</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="chi-info-box">
+      <Icon name="mdi:information-outline" class="chi-info-icon" />
+      <p class="chi-info-text">
+        {ui.infoText}
+      </p>
+    </div>
+  </aside>
+
+  <main class="chi-main">
+    <div class="chi-table-container">
+      <div class="chi-table-title"><Icon name="mdi:table-edit" /> {ui.labelObserved}</div>
+      <table class="chi-contingency-table" id="obsTable">
+        <tbody></tbody>
+      </table>
+    </div>
+
+    <div class="chi-expected-area">
+      <button class="chi-expected-toggle" id="expectedBtn">
+        <Icon name="mdi:chevron-right" id="expectedIcon" /> {ui.btnShowExpected}
+      </button>
+      <div class="chi-expected-content" id="expectedContent">
+        <p class="chi-expected-desc">{ui.expectedDesc}</p>
+        <div class="chi-table-container" style="background: #ffffff;">
+          <table class="chi-contingency-table" id="expTable">
+            <tbody></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <div id="extremeAlert" class="chi-alert" style="display: none;">
+      <div class="chi-alert-title">{ui.alertTitle}</div>
+      <p class="chi-alert-body">{ui.alertBody}</p>
+    </div>
+
+    <section class="chi-results-grid">
+      <div class="chi-stat-block" id="pvalueBlock">
+        <div class="chi-stat-title">{ui.labelPValue}</div>
+        <div class="chi-stat-value" id="res-pvalue">0.000</div>
+        <div class="chi-stat-desc" id="res-desc">{ui.sigDescInitial}</div>
+      </div>
+
+      <div class="chi-stat-block">
+        <div class="chi-stat-title">{ui.labelGlobalStats}</div>
+        <div class="chi-stat-secondary-row">
+          <div>
+            <div class="chi-secondary-label">{ui.labelChiSquareStat}</div>
+            <div class="chi-secondary-stat" id="res-chi">0.00</div>
+          </div>
+          <div>
+            <div class="chi-secondary-label">{ui.labelDegrees}</div>
+            <div class="chi-secondary-stat" id="res-df">1</div>
+          </div>
+        </div>
+        <div class="chi-cramer-row">
+          <div class="chi-secondary-label">{ui.labelCramer}</div>
+          <div class="chi-cramer-value" id="res-cramer">
+            0.00 <span class="chi-cramer-text" id="cramer-text">({ui.cramerNull})</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="chi-visual-section">
+      <div class="chi-table-title" style="margin-bottom: 1rem;">
+        <Icon name="mdi:chart-bar" /> {ui.labelVisualization}
+      </div>
+      <canvas id="barCanvas"></canvas>
+      <div class="chi-heatmap-info">{ui.heatmapInfo}</div>
+    </section>
+
+    <section class="chi-copy-block">
+      <div class="chi-copy-header">
+        <Icon name="mdi:text-box-outline" /> <span>{ui.labelReport}</span>
+      </div>
+      <p id="justificationText" class="chi-copy-text">{ui.defaultJustification}</p>
+      <button class="chi-copy-btn" id="copyTextBtn">
+        <Icon name="mdi:content-copy" /> {ui.btnCopy}
+      </button>
+    </section>
+  </main>
+</div>
+
+<script>
+  const app = document.getElementById('chiApp') as HTMLDivElement;
+  if (!app) throw new Error('chiApp not found');
+
+  const UI = {
+    row: app.dataset.row ?? 'Row',
+    col: app.dataset.col ?? 'Col',
+    total: app.dataset.total ?? 'TOTAL',
+    cramerNull: app.dataset.cramerNull ?? 'None',
+    cramerWeak: app.dataset.cramerWeak ?? 'Weak',
+    cramerModerate: app.dataset.cramerModerate ?? 'Moderate',
+    cramerStrong: app.dataset.cramerStrong ?? 'Strong',
+    sigText: app.dataset.sigText ?? '',
+    noSigText: app.dataset.noSigText ?? '',
+    chartObs: app.dataset.chartObs ?? 'Observed',
+    chartExp: app.dataset.chartExp ?? 'Expected',
+    copyLabel: app.dataset.copyLabel ?? 'Copy',
+    copiedLabel: app.dataset.copiedLabel ?? 'Copied!',
+    justIntro: app.dataset.justIntro ?? '',
+    justTableOf: app.dataset.justTableOf ?? '',
+    justObtained: app.dataset.justObtained ?? '',
+    justPAt: app.dataset.justPAt ?? '',
+    justConcluded: app.dataset.justConcluded ?? '',
+    justSig: app.dataset.justSig ?? '',
+    justNoSig: app.dataset.justNoSig ?? '',
+  };
+
+  const tableSize = document.getElementById('tableSize') as HTMLSelectElement;
+  const alphaInput = document.getElementById('alpha') as HTMLSelectElement;
+  const obsTable = document.querySelector('#obsTable tbody') as HTMLTableSectionElement;
+  const expTable = document.querySelector('#expTable tbody') as HTMLTableSectionElement;
+  const alertBox = document.getElementById('extremeAlert') as HTMLDivElement;
+
+  const expectedBtn = document.getElementById('expectedBtn');
+  const expectedContent = document.getElementById('expectedContent');
+  const expectedIcon = document.getElementById('expectedIcon');
+
+  expectedBtn?.addEventListener('click', () => {
+    const isOpen = expectedContent?.classList.toggle('open');
+    expectedIcon?.setAttribute('name', isOpen ? 'mdi:chevron-down' : 'mdi:chevron-right');
+  });
+
+  const canvas = document.getElementById('barCanvas') as HTMLCanvasElement;
+  const ctx = canvas.getContext('2d');
+
+  let rows = 2;
+  let cols = 2;
+  let obsData: number[][] = [];
+
+  const normCDF = (x: number): number => {
+    const t = 1 / (1 + 0.2316419 * Math.abs(x));
+    const d = 0.3989422804 * Math.exp((-x * x) / 2);
+    const p =
+      d *
+      t *
+      (0.31938153 + t * (-0.356563782 + t * (1.781477937 + t * (-1.821255978 + t * 1.330274429))));
+    return x > 0 ? 1 - p : p;
+  };
+
+  const chiSquareProb = (chi2: number, df: number): number => {
+    if (chi2 <= 0) return 1;
+    if (df === 1) return 2 * (1 - normCDF(Math.sqrt(chi2)));
+    if (df === 2) return Math.exp(-chi2 / 2);
+    if (df === 3)
+      return (
+        2 * (1 - normCDF(Math.sqrt(chi2))) + Math.sqrt((2 * chi2) / Math.PI) * Math.exp(-chi2 / 2)
+      );
+    if (df === 4) return Math.exp(-chi2 / 2) * (1 + chi2 / 2);
+    return 0;
+  };
+
+  const generateTables = () => {
+    const val = tableSize.value.split('x');
+    rows = parseInt(val[0]);
+    cols = parseInt(val[1]);
+
+    let hHTML = `<tr class="chi-header-row"><th class="chi-header-col">#</th>`;
+    for (let j = 0; j < cols; j++) hHTML += `<th>${UI.col} ${j + 1}</th>`;
+    hHTML += `<th class="chi-total-cell">${UI.total}</th></tr>`;
+
+    let bHTML = hHTML;
+    let eHTML = hHTML;
+
+    for (let i = 0; i < rows; i++) {
+      bHTML += `<tr><th class="chi-header-col">${UI.row} ${i + 1}</th>`;
+      eHTML += `<tr><th class="chi-header-col">${UI.row} ${i + 1}</th>`;
+      for (let j = 0; j < cols; j++) {
+        bHTML += `<td><input type="number" class="chi-cell-input" data-r="${i}" data-c="${j}" value="10" min="0" step="1"/></td>`;
+        eHTML += `<td id="exp-${i}-${j}">0.0</td>`;
+      }
+      bHTML += `<td class="chi-total-cell" id="rTot-${i}">0</td></tr>`;
+      eHTML += `<td class="chi-total-cell" id="eTot-${i}">0</td></tr>`;
+    }
+
+    bHTML += `<tr><th class="chi-total-cell">${UI.total}</th>`;
+    eHTML += `<tr><th class="chi-total-cell">${UI.total}</th>`;
+    for (let j = 0; j < cols; j++) {
+      bHTML += `<td class="chi-total-cell" id="cTot-${j}">0</td>`;
+      eHTML += `<td class="chi-total-cell" id="ecTot-${j}">0</td>`;
+    }
+    bHTML += `<td class="chi-total-cell chi-grand-total" id="gTot">0</td></tr>`;
+    eHTML += `<td class="chi-total-cell chi-grand-total" id="egTot">0</td></tr>`;
+
+    obsTable.innerHTML = bHTML;
+    expTable.innerHTML = eHTML;
+
+    document.querySelectorAll('.chi-cell-input').forEach((inp) => {
+      inp.addEventListener('input', calculate);
+    });
+
+    calculate();
+  };
+
+  const drawChart = (obs: number[][], exp: number[][]) => {
+    if (!ctx || !canvas) return;
+    const dpr = window.devicePixelRatio || 1;
+    const cw = canvas.offsetWidth;
+    const ch = canvas.offsetHeight;
+    canvas.width = Math.round(cw * dpr);
+    canvas.height = Math.round(ch * dpr);
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    ctx.clearRect(0, 0, cw, ch);
+
+    let maxVal = 0;
+    for (let i = 0; i < rows; i++) {
+      for (let j = 0; j < cols; j++) {
+        if (obs[i][j] > maxVal) maxVal = obs[i][j];
+        if (exp[i][j] > maxVal) maxVal = exp[i][j];
+      }
+    }
+    maxVal = maxVal * 1.1 || 10;
+
+    const padL = 30,
+      padR = 20,
+      padT = 20,
+      padB = 40;
+    const pw = cw - padL - padR;
+    const ph = ch - padT - padB;
+
+    ctx.strokeStyle = '#e2e8f0';
+    ctx.lineWidth = 1;
+    ctx.beginPath();
+    for (let i = 0; i <= 4; i++) {
+      const y = padT + (i / 4) * ph;
+      ctx.moveTo(padL, y);
+      ctx.lineTo(padL + pw, y);
+      ctx.fillStyle = '#94a3b8';
+      ctx.font = '10px sans-serif';
+      ctx.textAlign = 'right';
+      ctx.fillText(Math.round(maxVal - (i / 4) * maxVal).toString(), padL - 8, y + 4);
+    }
+    ctx.stroke();
+
+    const groupW = pw / cols;
+    const barPad = groupW * 0.15;
+    const innerW = groupW - barPad * 2;
+    const numBars = rows * 2;
+    const bw = innerW / numBars;
+
+    const colors = ['#f59e0b', '#3b82f6', '#10b981'];
+
+    for (let j = 0; j < cols; j++) {
+      const gx = padL + j * groupW + barPad;
+
+      ctx.fillStyle = '#64748b';
+      ctx.font = 'bold 11px sans-serif';
+      ctx.textAlign = 'center';
+      ctx.fillText(`${UI.col} ${j + 1}`, padL + j * groupW + groupW / 2, ch - 20);
+
+      for (let i = 0; i < rows; i++) {
+        const oH = (obs[i][j] / maxVal) * ph;
+        const eH = (exp[i][j] / maxVal) * ph;
+        const oX = gx + i * 2 * bw;
+        const eX = gx + (i * 2 + 1) * bw;
+
+        ctx.fillStyle = colors[i % colors.length];
+        ctx.beginPath();
+        ctx.roundRect(oX, padT + ph - oH, bw * 0.9, oH, [3, 3, 0, 0]);
+        ctx.fill();
+
+        ctx.fillStyle = '#cbd5e1';
+        ctx.beginPath();
+        ctx.roundRect(eX, padT + ph - eH, bw * 0.9, eH, [3, 3, 0, 0]);
+        ctx.fill();
+      }
+    }
+
+    ctx.fillStyle = colors[0];
+    ctx.fillRect(padL, ch - 10, 8, 8);
+    ctx.fillStyle = '#64748b';
+    ctx.textAlign = 'left';
+    ctx.fillText(UI.chartObs, padL + 12, ch - 2);
+
+    ctx.fillStyle = '#cbd5e1';
+    ctx.fillRect(padL + 100, ch - 10, 8, 8);
+    ctx.fillStyle = '#64748b';
+    ctx.fillText(UI.chartExp, padL + 112, ch - 2);
+  };
+
+  const calculate = () => {
+    obsData = [];
+    const rTot = new Array(rows).fill(0);
+    const cTot = new Array(cols).fill(0);
+    let total = 0;
+
+    for (let i = 0; i < rows; i++) {
+      obsData.push([]);
+      for (let j = 0; j < cols; j++) {
+        const inp = document.querySelector(
+          `input[data-r="${i}"][data-c="${j}"]`,
+        ) as HTMLInputElement;
+        const v = Math.max(0, parseInt(inp.value) || 0);
+        obsData[i].push(v);
+        rTot[i] += v;
+        cTot[j] += v;
+        total += v;
+      }
+      document.getElementById(`rTot-${i}`)!.textContent = rTot[i].toString();
+      document.getElementById(`eTot-${i}`)!.textContent = rTot[i].toString();
+    }
+
+    for (let j = 0; j < cols; j++) {
+      document.getElementById(`cTot-${j}`)!.textContent = cTot[j].toString();
+      document.getElementById(`ecTot-${j}`)!.textContent = cTot[j].toString();
+    }
+    document.getElementById('gTot')!.textContent = total.toString();
+    document.getElementById('egTot')!.textContent = total.toString();
+
+    let chi2 = 0;
+    const expData: number[][] = [];
+    let lowExpCount = 0;
+
+    for (let i = 0; i < rows; i++) {
+      expData.push([]);
+      for (let j = 0; j < cols; j++) {
+        const e = total > 0 ? (rTot[i] * cTot[j]) / total : 0;
+        expData[i].push(e);
+        document.getElementById(`exp-${i}-${j}`)!.textContent = e.toFixed(1);
+
+        if (e > 0) chi2 += Math.pow(obsData[i][j] - e, 2) / e;
+        if (e < 5 && e > 0) lowExpCount++;
+
+        const inp = document.querySelector(
+          `input[data-r="${i}"][data-c="${j}"]`,
+        ) as HTMLInputElement;
+        if (e > 0) {
+          const stdRes = (obsData[i][j] - e) / Math.sqrt(e);
+          if (Math.abs(stdRes) > 2) {
+            inp.style.backgroundColor =
+              stdRes > 0 ? 'rgba(16, 185, 129, 0.15)' : 'rgba(239, 68, 68, 0.15)';
+          } else if (Math.abs(stdRes) > 1) {
+            inp.style.backgroundColor =
+              stdRes > 0 ? 'rgba(16, 185, 129, 0.05)' : 'rgba(239, 68, 68, 0.05)';
+          } else {
+            inp.style.backgroundColor = 'transparent';
+          }
+        } else {
+          inp.style.backgroundColor = 'transparent';
+        }
+      }
+    }
+
+    alertBox.style.display = lowExpCount > 0 ? 'block' : 'none';
+
+    const df = (rows - 1) * (cols - 1);
+    const pValue = chiSquareProb(chi2, df);
+    const alpha = parseFloat(alphaInput.value) || 0.05;
+    const isSignificant = pValue < alpha;
+
+    const maxDim = Math.min(rows, cols);
+    const cramer = total > 0 && maxDim > 1 ? Math.sqrt(chi2 / (total * (maxDim - 1))) : 0;
+
+    let cramerTxt = UI.cramerNull;
+    if (cramer > 0.5) cramerTxt = UI.cramerStrong;
+    else if (cramer > 0.3) cramerTxt = UI.cramerModerate;
+    else if (cramer > 0.1) cramerTxt = UI.cramerWeak;
+
+    document.getElementById('res-chi')!.textContent = chi2.toFixed(3);
+    document.getElementById('res-df')!.textContent = df.toString();
+    document.getElementById(
+      'res-cramer',
+    )!.innerHTML = `${cramer.toFixed(2)} <span class="chi-cramer-text">(${cramerTxt})</span>`;
+
+    const pvalBlock = document.getElementById('pvalueBlock')!;
+    pvalBlock.className = 'chi-stat-block ' + (isSignificant ? 'significant' : 'not-significant');
+    document.getElementById('res-pvalue')!.textContent =
+      pValue < 0.001 ? '<0.001' : pValue.toFixed(4);
+
+    const desc = isSignificant ? UI.sigText : UI.noSigText;
+    document.getElementById('res-desc')!.textContent = desc;
+
+    const conclusion = isSignificant
+      ? `${UI.justSig} ${cramer.toFixed(2)})`
+      : UI.justNoSig;
+    const justText = `${UI.justIntro} ${total} ${UI.justTableOf} ${rows}x${cols}${UI.justObtained} χ²(${df}) = ${chi2.toFixed(2)}, p = ${pValue.toFixed(4)}${UI.justPAt}${alpha}${UI.justConcluded} ${conclusion}.`;
+    document.getElementById('justificationText')!.textContent = justText;
+
+    drawChart(obsData, expData);
+  };
+
+  tableSize.addEventListener('change', generateTables);
+  alphaInput.addEventListener('change', calculate);
+  window.addEventListener('resize', calculate);
+
+  const copyBtn = document.getElementById('copyTextBtn');
+  copyBtn?.addEventListener('click', () => {
+    const text = document.getElementById('justificationText')?.textContent ?? '';
+    navigator.clipboard.writeText(text);
+    const t = copyBtn.innerHTML;
+    copyBtn.innerHTML = UI.copiedLabel;
+    setTimeout(() => (copyBtn.innerHTML = t), 1500);
+  });
+
+  generateTables();
+</script>
+
+<style>
+  :global(.chi-card) {
+    --chi-primary: #f59e0b;
+    --chi-primary-dark: #d97706;
+    --chi-primary-deep: #92400e;
+    --chi-primary-light: rgba(245, 158, 11, 0.08);
+    --chi-primary-border: rgba(245, 158, 11, 0.2);
+    --chi-primary-border-light: rgba(245, 158, 11, 0.15);
+    --chi-sidebar-bg: rgba(254, 252, 232, 0.6);
+    --chi-card-bg: #ffffff;
+    --chi-surface-bg: #f8fafc;
+    --chi-surface-bg-2: #f1f5f9;
+    --chi-border: #e2e8f0;
+    --chi-border-cell: #cbd5e1;
+    --chi-text: #0f172a;
+    --chi-text-muted: #475569;
+    --chi-text-label: #334155;
+    --chi-text-secondary: #64748b;
+    --chi-shadow: rgba(245, 158, 11, 0.08);
+    --chi-info-text: #78350f;
+    --chi-alert-bg: #fffbeb;
+    --chi-alert-border: #fde68a;
+    --chi-alert-title: #d97706;
+    --chi-alert-text: #92400e;
+    display: flex;
+    flex-direction: column;
+    background: var(--chi-card-bg);
+    border-radius: 1.5rem;
+    border: 1px solid var(--chi-primary-border);
+    box-shadow: 0 10px 40px var(--chi-shadow);
+    overflow: hidden;
+    margin: 2rem 0;
+  }
+
+  :global(.theme-dark .chi-card) {
+    --chi-primary: #fbbf24;
+    --chi-primary-dark: #f59e0b;
+    --chi-primary-deep: #fde68a;
+    --chi-primary-light: rgba(251, 191, 36, 0.06);
+    --chi-primary-border: rgba(251, 191, 36, 0.18);
+    --chi-primary-border-light: rgba(251, 191, 36, 0.1);
+    --chi-sidebar-bg: #1c1917;
+    --chi-card-bg: #18181b;
+    --chi-surface-bg: #27272a;
+    --chi-surface-bg-2: #3f3f46;
+    --chi-border: #3f3f46;
+    --chi-border-cell: #52525b;
+    --chi-text: #f4f4f5;
+    --chi-text-muted: #a1a1aa;
+    --chi-text-label: #d4d4d8;
+    --chi-text-secondary: #71717a;
+    --chi-shadow: rgba(0, 0, 0, 0.5);
+    --chi-info-text: #fde68a;
+    --chi-alert-bg: #1c1917;
+    --chi-alert-border: rgba(251, 191, 36, 0.22);
+    --chi-alert-title: #fbbf24;
+    --chi-alert-text: #fde68a;
+  }
+
+  :global(.chi-sidebar) {
+    background: var(--chi-sidebar-bg);
+    border-bottom: 1px solid var(--chi-primary-border-light);
+    padding: 1.5rem;
+  }
+
+  @media (min-width: 768px) {
+    :global(.chi-card) {
+      flex-direction: row;
+    }
+
+    :global(.chi-sidebar) {
+      width: 340px;
+      flex-shrink: 0;
+      border-bottom: none;
+      border-right: 1px solid var(--chi-primary-border-light);
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+  }
+
+  :global(.chi-sidebar-heading) {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--chi-text);
+    margin-bottom: 1.25rem;
+  }
+
+  :global(.chi-sidebar-heading [data-icon]) {
+    color: var(--chi-primary);
+    font-size: 1.5em;
+  }
+
+  :global(.chi-group-section) {
+    background: var(--chi-card-bg);
+    border: 1px solid var(--chi-border);
+    border-radius: 1rem;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  :global(.chi-input-row) {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+  }
+
+  :global(.chi-input-row label) {
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--chi-text-label);
+    display: flex;
+    justify-content: space-between;
+  }
+
+  :global(.chi-input-row select) {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    padding-right: 2.5rem;
+    border-radius: 0.75rem;
+    border: 1px solid var(--chi-border-cell);
+    background: var(--chi-card-bg)
+      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%23475569'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'%3E%3C/path%3E%3C/svg%3E")
+      no-repeat right 0.85rem center / 1.25rem;
+    color: var(--chi-text);
+    font-size: 0.95rem;
+    font-weight: 600;
+    transition: all 0.2s;
+    appearance: none;
+    cursor: pointer;
+  }
+
+  :global(.chi-input-row select:hover) {
+    border-color: #94a3b8;
+  }
+
+  :global(.chi-input-row select:focus) {
+    outline: none;
+    border-color: var(--chi-primary);
+    box-shadow: 0 0 0 3px rgba(245, 158, 11, 0.15);
+  }
+
+  :global(.chi-info-box) {
+    margin-top: auto;
+    padding: 1.25rem;
+    background: var(--chi-primary-light);
+    border-radius: 1rem;
+    border: 1px dashed var(--chi-primary-border);
+    display: flex;
+    gap: 0.75rem;
+  }
+
+  :global(.chi-info-icon) {
+    flex-shrink: 0;
+    color: var(--chi-primary-dark);
+    font-size: 1.25rem;
+  }
+
+  :global(.chi-info-text) {
+    font-size: 0.75rem;
+    color: var(--chi-info-text);
+    line-height: 1.5;
+    margin: 0;
+    font-weight: 500;
+  }
+
+  :global(.chi-main) {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    padding: 1.5rem;
+    gap: 2rem;
+  }
+
+  :global(.chi-table-container) {
+    overflow-x: auto;
+    background: var(--chi-surface-bg);
+    border: 1px solid var(--chi-border);
+    border-radius: 1rem;
+    padding: 1rem;
+  }
+
+  :global(.chi-table-title) {
+    font-weight: 700;
+    color: var(--chi-text-label);
+    margin-bottom: 0.75rem;
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 0.95rem;
+  }
+
+  :global(.chi-table-title [data-icon]) {
+    color: var(--chi-primary);
+  }
+
+  :global(.chi-contingency-table) {
+    width: 100%;
+    border-collapse: collapse;
+    table-layout: fixed;
+  }
+
+  :global(.chi-contingency-table th),
+  :global(.chi-contingency-table td) {
+    padding: 0.5rem;
+    text-align: center;
+    border: 1px solid var(--chi-border-cell);
+  }
+
+  :global(.chi-contingency-table th) {
+    background: var(--chi-surface-bg-2);
+    font-size: 0.85rem;
+    color: var(--chi-text-muted);
+  }
+
+  :global(.chi-header-row th) {
+    color: var(--chi-text);
+    font-weight: 700;
+  }
+
+  :global(.chi-header-col) {
+    background: var(--chi-surface-bg-2) !important;
+    font-size: 0.85rem;
+    color: var(--chi-text) !important;
+    font-weight: 700 !important;
+    width: 50px;
+  }
+
+  :global(.chi-cell-input) {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 0.5rem;
+    text-align: center;
+    border: 1px solid transparent;
+    border-radius: 0.25rem;
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--chi-text);
+    background: transparent;
+    transition: all 0.2s;
+  }
+
+  :global(.chi-cell-input:focus) {
+    background: var(--chi-card-bg);
+    border: 1px solid var(--chi-primary);
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(245, 158, 11, 0.15);
+  }
+
+  :global(.chi-total-cell) {
+    background: var(--chi-border-cell) !important;
+    font-weight: 700;
+    color: var(--chi-text-label);
+  }
+
+  :global(.chi-grand-total) {
+    background: var(--chi-border) !important;
+  }
+
+  :global(.chi-expected-area) {
+    margin-top: 1rem;
+    border-top: 1px solid var(--chi-border);
+    padding-top: 1rem;
+  }
+
+  :global(.chi-expected-toggle) {
+    background: none;
+    border: none;
+    color: var(--chi-primary);
+    font-weight: 700;
+    font-size: 0.9rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+    padding: 0;
+  }
+
+  :global(.chi-expected-toggle:hover) {
+    text-decoration: underline;
+  }
+
+  :global(.chi-expected-content) {
+    display: none;
+    margin-top: 1rem;
+  }
+
+  :global(.chi-expected-content.open) {
+    display: block;
+  }
+
+  :global(.chi-expected-desc) {
+    font-size: 0.8rem;
+    color: var(--chi-text-secondary);
+    margin-bottom: 0.75rem;
+    margin-top: 0;
+  }
+
+  :global(.chi-alert) {
+    background: var(--chi-alert-bg);
+    border: 1px solid var(--chi-alert-border);
+    padding: 1rem;
+    border-radius: 0.75rem;
+  }
+
+  :global(.chi-alert-title) {
+    color: var(--chi-alert-title);
+    font-weight: 800;
+    font-size: 0.9rem;
+    margin-bottom: 0.25rem;
+  }
+
+  :global(.chi-alert-body) {
+    color: var(--chi-alert-text);
+    font-size: 0.85rem;
+    margin: 0;
+    font-weight: 500;
+  }
+
+  :global(.chi-results-grid) {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  @media (min-width: 640px) {
+    :global(.chi-results-grid) {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
+  :global(.chi-stat-block) {
+    background: var(--chi-surface-bg);
+    border: 1px solid var(--chi-border);
+    border-radius: 1rem;
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+  }
+
+  :global(.chi-stat-block.significant) {
+    background: linear-gradient(
+      135deg,
+      rgba(16, 185, 129, 0.05),
+      rgba(209, 250, 229, 0.4)
+    );
+    border-color: rgba(16, 185, 129, 0.3);
+  }
+
+  :global(.chi-stat-block.not-significant) {
+    background: linear-gradient(
+      135deg,
+      rgba(239, 68, 68, 0.05),
+      rgba(254, 226, 226, 0.4)
+    );
+    border-color: rgba(239, 68, 68, 0.3);
+  }
+
+  :global(.theme-dark .chi-stat-block.significant) {
+    background: linear-gradient(
+      135deg,
+      rgba(16, 185, 129, 0.12),
+      rgba(6, 78, 59, 0.3)
+    );
+  }
+
+  :global(.theme-dark .chi-stat-block.not-significant) {
+    background: linear-gradient(
+      135deg,
+      rgba(239, 68, 68, 0.12),
+      rgba(127, 29, 29, 0.3)
+    );
+  }
+
+  :global(.chi-stat-title) {
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--chi-text-muted);
+    margin-bottom: 0.5rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  :global(.chi-stat-value) {
+    font-size: 2.5rem;
+    font-weight: 800;
+    line-height: 1;
+    color: var(--chi-text);
+  }
+
+  :global(.chi-stat-block.significant .chi-stat-value) {
+    color: #059669;
+  }
+
+  :global(.chi-stat-block.not-significant .chi-stat-value) {
+    color: #dc2626;
+  }
+
+  :global(.chi-stat-desc) {
+    font-size: 0.9rem;
+    font-weight: 600;
+    margin-top: 0.75rem;
+    color: var(--chi-text-muted);
+  }
+
+  :global(.chi-stat-secondary-row) {
+    display: flex;
+    gap: 2rem;
+    justify-content: center;
+    align-items: baseline;
+    margin-top: 0.5rem;
+  }
+
+  :global(.chi-secondary-label) {
+    font-size: 0.75rem;
+    color: var(--chi-text-secondary);
+    font-weight: 700;
+  }
+
+  :global(.chi-secondary-stat) {
+    font-size: 2rem;
+    font-weight: 800;
+    color: var(--chi-primary);
+  }
+
+  :global(.chi-cramer-row) {
+    margin-top: 1rem;
+    padding-top: 0.5rem;
+    border-top: 1px dashed var(--chi-border-cell);
+    width: 100%;
+  }
+
+  :global(.chi-cramer-value) {
+    font-size: 1.25rem;
+    font-weight: 800;
+    color: var(--chi-text);
+  }
+
+  :global(.chi-cramer-text) {
+    font-size: 0.8rem;
+    color: var(--chi-text-muted);
+    font-weight: 500;
+  }
+
+  :global(.chi-visual-section) {
+    background: var(--chi-card-bg);
+    border: 1px solid var(--chi-border);
+    border-radius: 1rem;
+    padding: 1.5rem;
+  }
+
+  :global(#barCanvas) {
+    width: 100%;
+    height: 250px;
+    display: block;
+    background: var(--chi-surface-bg);
+    border-radius: 0.75rem;
+  }
+
+  :global(.chi-heatmap-info) {
+    font-size: 0.8rem;
+    color: var(--chi-text-secondary);
+    text-align: right;
+    margin-top: 0.5rem;
+    font-style: italic;
+  }
+
+  :global(.chi-copy-block) {
+    background: var(--chi-primary-light);
+    border: 1px dashed var(--chi-primary-border);
+    border-radius: 1rem;
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  :global(.chi-copy-header) {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--chi-primary-dark);
+    font-weight: 800;
+    font-size: 0.9rem;
+  }
+
+  :global(.chi-copy-text) {
+    font-size: 1.05rem;
+    line-height: 1.6;
+    color: var(--chi-text);
+    margin: 0;
+    font-style: italic;
+    font-weight: 500;
+  }
+
+  :global(.chi-copy-btn) {
+    align-self: flex-end;
+    background: var(--chi-primary);
+    color: white;
+    border: none;
+    border-radius: 0.5rem;
+    padding: 0.6rem 1rem;
+    font-size: 0.8rem;
+    font-weight: 700;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+
+  :global(.chi-copy-btn:hover) {
+    background: var(--chi-primary-dark);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 10px rgba(245, 158, 11, 0.2);
+  }
+
+  :global(.chi-copy-btn:active) {
+    transform: translateY(0);
+    box-shadow: none;
+  }
+
+  :global(.chi-math-sym) {
+    font-style: italic;
+    font-weight: 600;
+  }
+</style>

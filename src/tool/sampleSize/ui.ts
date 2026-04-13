@@ -1,0 +1,35 @@
+export interface SampleSizeUI extends Record<string, string> {
+  labelParams: string;
+  labelPopType: string;
+  btnFinite: string;
+  btnInfinite: string;
+  labelPopSize: string;
+  labelConfLevel: string;
+  conf90: string;
+  conf95: string;
+  conf99: string;
+  confCustom: string;
+  labelConfCustom: string;
+  labelErrorMargin: string;
+  labelProportion: string;
+  hintProportion: string;
+  hintProportionError: string;
+  labelSampleSize: string;
+  labelSampleSub: string;
+  labelZValue: string;
+  labelReport: string;
+  defaultJustification: string;
+  btnCopy: string;
+  btnCopied: string;
+  labelChart: string;
+  chartDesc: string;
+  justForFinite: string;
+  justPersons: string;
+  justForInfinite: string;
+  justConfidence: string;
+  justError: string;
+  justResultIs: string;
+  justUnit: string;
+  faqTitle: string;
+  bibliographyTitle: string;
+}
