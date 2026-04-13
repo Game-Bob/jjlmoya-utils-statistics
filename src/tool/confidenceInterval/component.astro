@@ -1,0 +1,1032 @@
+---
+import { Icon } from 'astro-icon/components';
+import type { ConfidenceIntervalUI } from './ui';
+
+interface Props {
+  ui: ConfidenceIntervalUI;
+}
+
+const { ui } = Astro.props;
+---
+
+<div
+  class="ci-card"
+  id="ci-app"
+  data-btn-copied={ui.btnCopied}
+  data-notice-raw={ui.noticeAutoRaw}
+  data-notice-low={ui.noticeAutoLowN}
+  data-notice-high={ui.noticeAutoHighN}
+>
+  <aside class="ci-sidebar">
+    <div class="ci-heading">
+      <Icon name="mdi:chart-timeline-variant" />{ui.labelTitle}
+    </div>
+
+    <div class="ci-tab-row">
+      <button class="ci-tab active" id="ci-tab-stats" type="button">{ui.tabStats}</button>
+      <button class="ci-tab" id="ci-tab-raw" type="button">{ui.tabRaw}</button>
+    </div>
+
+    <div id="ci-stats-section">
+      <div class="ci-input-group">
+        <label class="ci-label" for="ci-mean">{ui.labelMean}</label>
+        <input type="number" id="ci-mean" class="ci-input" value="0" step="any" />
+      </div>
+      <div class="ci-input-group">
+        <label class="ci-label" for="ci-std">{ui.labelStdDev}</label>
+        <input type="number" id="ci-std" class="ci-input" value="1" step="any" />
+        <p class="ci-hint-error ci-hidden" id="ci-std-error">{ui.hintStdDev}</p>
+      </div>
+      <div class="ci-input-group">
+        <label class="ci-label" for="ci-n">{ui.labelN}</label>
+        <input type="number" id="ci-n" class="ci-input" value="30" min="2" step="1" />
+        <p class="ci-hint-error ci-hidden" id="ci-n-error">{ui.hintN}</p>
+      </div>
+    </div>
+
+    <div id="ci-raw-section" class="ci-hidden">
+      <div class="ci-input-group">
+        <label class="ci-label" for="ci-raw">{ui.labelRaw}</label>
+        <textarea id="ci-raw" class="ci-textarea" rows="5" placeholder={ui.rawPlaceholder}></textarea>
+        <p class="ci-hint-error ci-hidden" id="ci-raw-error">{ui.hintRaw}</p>
+      </div>
+      <div class="ci-computed-row">
+        <div class="ci-computed-item">
+          <span class="ci-computed-key">x&#x0304;</span>
+          <span class="ci-computed-val" id="ci-comp-mean">–</span>
+        </div>
+        <div class="ci-computed-item">
+          <span class="ci-computed-key">s</span>
+          <span class="ci-computed-val" id="ci-comp-std">–</span>
+        </div>
+        <div class="ci-computed-item">
+          <span class="ci-computed-key">n</span>
+          <span class="ci-computed-val" id="ci-comp-n">–</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="ci-input-group">
+      <label class="ci-label">{ui.labelDist}</label>
+      <div class="ci-dist-toggle">
+        <button class="ci-dist-btn active" id="ci-dist-auto" type="button">{ui.distAuto}</button>
+        <button class="ci-dist-btn" id="ci-dist-z" type="button">{ui.btnZ}</button>
+        <button class="ci-dist-btn" id="ci-dist-t" type="button">{ui.btnT}</button>
+      </div>
+      <p class="ci-notice ci-hidden" id="ci-dist-notice"></p>
+    </div>
+
+    <div class="ci-input-group">
+      <label class="ci-label" for="ci-conf">{ui.labelConf}</label>
+      <div class="ci-preset-row">
+        <button class="ci-preset-btn" data-val="90" type="button">90%</button>
+        <button class="ci-preset-btn" data-val="95" type="button">95%</button>
+        <button class="ci-preset-btn" data-val="99" type="button">99%</button>
+      </div>
+      <input type="number" id="ci-conf" class="ci-input" value="95" min="0" max="100" step="0.1" />
+      <p class="ci-hint-error ci-hidden" id="ci-conf-error">{ui.hintConf}</p>
+    </div>
+
+    <div class="ci-calc-toggle">
+      <button class="ci-calc-btn active" id="ci-calc-ci" type="button">{ui.calcCI}</button>
+      <button class="ci-calc-btn" id="ci-calc-inv" type="button">{ui.calcInverse}</button>
+    </div>
+
+    <div class="ci-input-group ci-hidden" id="ci-inv-section">
+      <label class="ci-label" for="ci-target-me">{ui.labelTargetME}</label>
+      <input type="number" id="ci-target-me" class="ci-input" value="1" step="any" min="0" />
+      <p class="ci-hint-error ci-hidden" id="ci-target-error">{ui.hintTargetME}</p>
+    </div>
+  </aside>
+
+  <main class="ci-main">
+    <div id="ci-result-section">
+      <div class="ci-result-hero">
+        <div class="ci-result-label">{ui.labelCI}</div>
+        <div class="ci-result-bounds">
+          <span id="ci-lower">–</span>
+          <span class="ci-sep">,</span>
+          <span id="ci-upper">–</span>
+        </div>
+      </div>
+      <div class="ci-stats-row">
+        <div class="ci-stat">
+          <span class="ci-stat-label">{ui.labelME}</span>
+          <span class="ci-stat-value" id="ci-me">–</span>
+        </div>
+        <div class="ci-stat">
+          <span class="ci-stat-label" id="ci-crit-label">{ui.labelCritical}</span>
+          <span class="ci-stat-value" id="ci-crit">–</span>
+        </div>
+        <div class="ci-stat">
+          <span class="ci-stat-label">{ui.labelSE}</span>
+          <span class="ci-stat-value" id="ci-se">–</span>
+        </div>
+        <div class="ci-stat ci-hidden" id="ci-df-item">
+          <span class="ci-stat-label">{ui.labelDF}</span>
+          <span class="ci-stat-value" id="ci-df">–</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="ci-hidden" id="ci-inv-result">
+      <div class="ci-result-hero">
+        <div class="ci-result-label">{ui.labelReqN}</div>
+        <div class="ci-result-value" id="ci-req-n">–</div>
+      </div>
+      <p class="ci-inv-detail" id="ci-inv-detail"></p>
+    </div>
+
+    <div class="ci-chart-section">
+      <div class="ci-chart-label">{ui.labelChart}</div>
+      <p class="ci-chart-desc">{ui.chartDesc}</p>
+      <canvas id="ci-canvas"></canvas>
+    </div>
+
+    <div class="ci-copy-block">
+      <div class="ci-copy-header">{ui.labelReport}</div>
+      <p class="ci-copy-text" id="ci-report"></p>
+      <button class="ci-copy-btn" id="ci-copy">{ui.btnCopy}</button>
+    </div>
+  </main>
+</div>
+
+<script>
+  const app = document.getElementById('ci-app')!;
+  const ds = app.dataset;
+
+  const meanEl = document.getElementById('ci-mean') as HTMLInputElement;
+  const stdEl = document.getElementById('ci-std') as HTMLInputElement;
+  const nEl = document.getElementById('ci-n') as HTMLInputElement;
+  const confEl = document.getElementById('ci-conf') as HTMLInputElement;
+  const rawEl = document.getElementById('ci-raw') as HTMLTextAreaElement;
+  const targetMEEl = document.getElementById('ci-target-me') as HTMLInputElement;
+  const stdError = document.getElementById('ci-std-error')!;
+  const nError = document.getElementById('ci-n-error')!;
+  const confError = document.getElementById('ci-conf-error')!;
+  const rawError = document.getElementById('ci-raw-error')!;
+  const targetError = document.getElementById('ci-target-error')!;
+  const compMean = document.getElementById('ci-comp-mean')!;
+  const compStd = document.getElementById('ci-comp-std')!;
+  const compN = document.getElementById('ci-comp-n')!;
+  const lowerEl = document.getElementById('ci-lower')!;
+  const upperEl = document.getElementById('ci-upper')!;
+  const meEl = document.getElementById('ci-me')!;
+  const critEl = document.getElementById('ci-crit')!;
+  const critLabel = document.getElementById('ci-crit-label')!;
+  const seEl = document.getElementById('ci-se')!;
+  const dfItem = document.getElementById('ci-df-item')!;
+  const dfEl = document.getElementById('ci-df')!;
+  const reqNEl = document.getElementById('ci-req-n')!;
+  const invDetailEl = document.getElementById('ci-inv-detail')!;
+  const statsSection = document.getElementById('ci-stats-section')!;
+  const rawSection = document.getElementById('ci-raw-section')!;
+  const resultSection = document.getElementById('ci-result-section')!;
+  const invResultEl = document.getElementById('ci-inv-result')!;
+  const invSectionEl = document.getElementById('ci-inv-section')!;
+  const distNotice = document.getElementById('ci-dist-notice')!;
+  const canvas = document.getElementById('ci-canvas') as HTMLCanvasElement;
+  const reportEl = document.getElementById('ci-report')!;
+  const copyBtn = document.getElementById('ci-copy')!;
+
+  type InputMode = 'stats' | 'raw';
+  type DistMode = 'auto' | 'z' | 't';
+  type CalcMode = 'ci' | 'inverse';
+
+  let inputMode: InputMode = 'stats';
+  let distMode: DistMode = 'auto';
+  let calcMode: CalcMode = 'ci';
+
+  const distBtns: Record<DistMode, HTMLElement> = {
+    auto: document.getElementById('ci-dist-auto')!,
+    z: document.getElementById('ci-dist-z')!,
+    t: document.getElementById('ci-dist-t')!,
+  };
+
+  function lnGamma(z: number): number {
+    const g = 7;
+    const c = [
+      0.99999999999980993, 676.5203681218851, -1259.1392167224028,
+      771.32342877765313, -176.61502916214059, 12.507343278686905,
+      -0.13857109526572012, 9.9843695780195716e-6, 1.5056327351493116e-7,
+    ];
+    if (z < 0.5) return Math.log(Math.PI / Math.sin(Math.PI * z)) - lnGamma(1 - z);
+    const zz = z - 1;
+    let x = c[0];
+    for (let i = 1; i < g + 2; i++) x += c[i] / (zz + i);
+    const tt = zz + g + 0.5;
+    return 0.5 * Math.log(2 * Math.PI) + (zz + 0.5) * Math.log(tt) - tt + Math.log(x);
+  }
+
+  function betaCF(x: number, a: number, b: number): number {
+    const FPMIN = 1e-30;
+    const qab = a + b;
+    const qap = a + 1;
+    const qam = a - 1;
+    let c = 1;
+    let d = 1 - qab * x / qap;
+    if (Math.abs(d) < FPMIN) d = FPMIN;
+    d = 1 / d;
+    let h = d;
+    for (let m = 1; m <= 200; m++) {
+      const m2 = 2 * m;
+      let aa = m * (b - m) * x / ((qam + m2) * (a + m2));
+      d = 1 + aa * d;
+      if (Math.abs(d) < FPMIN) d = FPMIN;
+      c = 1 + aa / c;
+      if (Math.abs(c) < FPMIN) c = FPMIN;
+      d = 1 / d;
+      h *= d * c;
+      aa = -(a + m) * (qab + m) * x / ((a + m2) * (qap + m2));
+      d = 1 + aa * d;
+      if (Math.abs(d) < FPMIN) d = FPMIN;
+      c = 1 + aa / c;
+      if (Math.abs(c) < FPMIN) c = FPMIN;
+      d = 1 / d;
+      const del = d * c;
+      h *= del;
+      if (Math.abs(del - 1) < 3e-7) break;
+    }
+    return h;
+  }
+
+  function betaIncReg(x: number, a: number, b: number): number {
+    if (x <= 0) return 0;
+    if (x >= 1) return 1;
+    const lbeta = lnGamma(a) + lnGamma(b) - lnGamma(a + b);
+    const front = Math.exp(a * Math.log(x) + b * Math.log(1 - x) - lbeta) / a;
+    if (x < (a + 1) / (a + b + 2)) return front * betaCF(x, a, b);
+    const frontR = Math.exp(b * Math.log(1 - x) + a * Math.log(x) - lbeta) / b;
+    return 1 - frontR * betaCF(1 - x, b, a);
+  }
+
+  function tCDF(t: number, df: number): number {
+    const x = df / (df + t * t);
+    const p = betaIncReg(x, df / 2, 0.5) / 2;
+    return t >= 0 ? 1 - p : p;
+  }
+
+  function tInv(p: number, df: number): number {
+    let lo = 0;
+    let hi = 500;
+    for (let i = 0; i < 100; i++) {
+      const mid = (lo + hi) / 2;
+      if (tCDF(mid, df) < p) { lo = mid; } else { hi = mid; }
+    }
+    return (lo + hi) / 2;
+  }
+
+  function erf(x: number): number {
+    const sign = x < 0 ? -1 : 1;
+    const tt = 1 / (1 + 0.3275911 * Math.abs(x));
+    const poly =
+      ((((1.061405429 * tt - 1.453152027) * tt + 1.421413741) * tt - 0.284496736) * tt + 0.254829592) * tt;
+    return sign * (1 - poly * Math.exp(-(x * x)));
+  }
+
+  const phi = (z: number) => 0.5 * (1 + erf(z / Math.SQRT2));
+
+  function phiInv(p: number): number {
+    if (p <= 0 || p >= 1) return NaN;
+    const a = [-3.969683028665376e1, 2.209460984245205e2, -2.759285104469687e2,
+      1.383577518672690e2, -3.066479806614716e1, 2.506628277459239];
+    const b = [-5.447609879822406e1, 1.615858368580409e2, -1.556989798598866e2,
+      6.680131188771972e1, -1.328068155288572e1];
+    const cc = [-7.784894002430293e-3, -3.223964580411365e-1, -2.400758277161838,
+      -2.549732539343734, 4.374664141464968, 2.938163982698783];
+    const dd = [7.784695709041462e-3, 3.224671290700398e-1, 2.445134137142996, 3.754408661907416];
+    const pLow = 0.02425;
+    const pHigh = 1 - pLow;
+    let q: number;
+    if (p < pLow) {
+      q = Math.sqrt(-2 * Math.log(p));
+      return (((((cc[0] * q + cc[1]) * q + cc[2]) * q + cc[3]) * q + cc[4]) * q + cc[5]) /
+        ((((dd[0] * q + dd[1]) * q + dd[2]) * q + dd[3]) * q + 1);
+    }
+    if (p <= pHigh) {
+      q = p - 0.5;
+      const r = q * q;
+      return (((((a[0] * r + a[1]) * r + a[2]) * r + a[3]) * r + a[4]) * r + a[5]) * q /
+        (((((b[0] * r + b[1]) * r + b[2]) * r + b[3]) * r + b[4]) * r + 1);
+    }
+    q = Math.sqrt(-2 * Math.log(1 - p));
+    return -(((((cc[0] * q + cc[1]) * q + cc[2]) * q + cc[3]) * q + cc[4]) * q + cc[5]) /
+      ((((dd[0] * q + dd[1]) * q + dd[2]) * q + dd[3]) * q + 1);
+  }
+
+  function getCritical(conf: number, df: number, useT: boolean): number {
+    const p = 1 - (1 - conf / 100) / 2;
+    if (useT) return tInv(p, df);
+    return phiInv(p);
+  }
+
+  function parseRawData(text: string): number[] {
+    return text.split(/[\s,;]+/).filter(s => s.length > 0).map(Number).filter(v => !isNaN(v));
+  }
+
+  function computeStats(nums: number[]): { mean: number; std: number; n: number } | null {
+    if (nums.length < 2) return null;
+    const n = nums.length;
+    const mean = nums.reduce((s, v) => s + v, 0) / n;
+    const variance = nums.reduce((s, v) => s + (v - mean) ** 2, 0) / (n - 1);
+    return { mean, std: Math.sqrt(variance), n };
+  }
+
+  function getRequiredN(conf: number, std: number, targetME: number, useT: boolean): number {
+    if (targetME <= 0 || std <= 0 || conf <= 0 || conf >= 100) return NaN;
+    const p = 1 - (1 - conf / 100) / 2;
+    if (!useT) return Math.ceil((phiInv(p) * std / targetME) ** 2);
+    let n = Math.max(Math.ceil((phiInv(p) * std / targetME) ** 2), 2);
+    for (let i = 0; i < 20; i++) {
+      const nNew = Math.max(Math.ceil((tInv(p, n - 1) * std / targetME) ** 2), 2);
+      if (nNew === n) break;
+      n = nNew;
+    }
+    return n;
+  }
+
+  interface BellShade { lower: number; upper: number; conf: number; }
+
+  function drawBellChart(mean: number, se: number, shade: BellShade): void {
+    const { lower, upper, conf } = shade;
+    const ctx = canvas.getContext('2d')!;
+    const W = canvas.clientWidth || 500;
+    const H = 180;
+    canvas.width = W;
+    canvas.height = H;
+    ctx.clearRect(0, 0, W, H);
+
+    const xMin = mean - 4.5 * se;
+    const xMax = mean + 4.5 * se;
+    const pad = { l: 16, r: 16, t: 22, b: 28 };
+    const peak = 1 / (se * Math.sqrt(2 * Math.PI));
+    const yMax = peak * 1.12;
+    const toX = (v: number) => pad.l + ((v - xMin) / (xMax - xMin)) * (W - pad.l - pad.r);
+    const toY = (v: number) => pad.t + (1 - v / yMax) * (H - pad.t - pad.b);
+    const pdf = (x: number) =>
+      Math.exp(-0.5 * ((x - mean) / se) ** 2) / (se * Math.sqrt(2 * Math.PI));
+    const steps = 200;
+    const dx = (xMax - xMin) / steps;
+
+    // Left tail
+    ctx.fillStyle = 'rgba(245,158,11,0.1)';
+    ctx.beginPath();
+    ctx.moveTo(toX(xMin), toY(0));
+    for (let i = 0; i <= steps; i++) {
+      const x = xMin + i * dx;
+      if (x <= lower) ctx.lineTo(toX(x), toY(pdf(x)));
+    }
+    ctx.lineTo(toX(lower), toY(0));
+    ctx.closePath();
+    ctx.fill();
+
+    // CI region
+    ctx.fillStyle = 'rgba(245,158,11,0.22)';
+    ctx.beginPath();
+    ctx.moveTo(toX(lower), toY(0));
+    for (let i = 0; i <= steps; i++) {
+      const x = xMin + i * dx;
+      if (x >= lower && x <= upper) ctx.lineTo(toX(x), toY(pdf(x)));
+    }
+    ctx.lineTo(toX(upper), toY(0));
+    ctx.closePath();
+    ctx.fill();
+
+    // Right tail
+    ctx.fillStyle = 'rgba(245,158,11,0.1)';
+    ctx.beginPath();
+    ctx.moveTo(toX(upper), toY(0));
+    for (let i = 0; i <= steps; i++) {
+      const x = xMin + i * dx;
+      if (x >= upper) ctx.lineTo(toX(x), toY(pdf(x)));
+    }
+    ctx.lineTo(toX(xMax), toY(0));
+    ctx.closePath();
+    ctx.fill();
+
+    // Bell curve outline
+    ctx.strokeStyle = '#f59e0b';
+    ctx.lineWidth = 2.5;
+    ctx.beginPath();
+    for (let i = 0; i <= steps; i++) {
+      const x = xMin + i * dx;
+      if (i === 0) ctx.moveTo(toX(x), toY(pdf(x)));
+      else ctx.lineTo(toX(x), toY(pdf(x)));
+    }
+    ctx.stroke();
+
+    // CI boundary dashed lines
+    ctx.strokeStyle = '#d97706';
+    ctx.lineWidth = 1.5;
+    ctx.setLineDash([4, 4]);
+    ctx.beginPath();
+    ctx.moveTo(toX(lower), toY(0));
+    ctx.lineTo(toX(lower), toY(pdf(lower)));
+    ctx.moveTo(toX(upper), toY(0));
+    ctx.lineTo(toX(upper), toY(pdf(upper)));
+    ctx.stroke();
+    ctx.setLineDash([]);
+
+    // Mean dashed line
+    ctx.strokeStyle = 'rgba(245,158,11,0.4)';
+    ctx.lineWidth = 1;
+    ctx.setLineDash([3, 3]);
+    ctx.beginPath();
+    ctx.moveTo(toX(mean), toY(0));
+    ctx.lineTo(toX(mean), toY(peak));
+    ctx.stroke();
+    ctx.setLineDash([]);
+
+    // Axis labels
+    ctx.font = '10px system-ui, sans-serif';
+    ctx.textAlign = 'center';
+    ctx.fillStyle = '#6b7280';
+    ctx.fillText(lower.toFixed(3), toX(lower), H - 5);
+    ctx.fillText(upper.toFixed(3), toX(upper), H - 5);
+    ctx.fillStyle = 'rgba(245,158,11,0.9)';
+    ctx.fillText('x\u0304=' + mean.toFixed(3), toX(mean), H - 5);
+
+    // Confidence % in center
+    ctx.fillStyle = '#d97706';
+    ctx.font = 'bold 14px system-ui, sans-serif';
+    ctx.fillText(conf.toFixed(1) + '%', toX(mean), toY(peak * 0.5));
+
+    // α/2 tail labels
+    const alpha2 = ((1 - conf / 100) / 2 * 100).toFixed(1);
+    ctx.fillStyle = '#9ca3af';
+    ctx.font = '10px system-ui, sans-serif';
+    ctx.fillText('\u03b1/2=' + alpha2 + '%', toX((xMin + lower) / 2), toY(peak * 0.1));
+    ctx.fillText('\u03b1/2=' + alpha2 + '%', toX((upper + xMax) / 2), toY(peak * 0.1));
+  }
+
+  function updateDistNotice(n: number, df: number, useT: boolean, isRaw: boolean): void {
+    if (distMode !== 'auto') {
+      distNotice.classList.add('ci-hidden');
+      return;
+    }
+    distNotice.classList.remove('ci-hidden');
+    if (isRaw) {
+      distNotice.textContent = ds.noticeRaw ?? '';
+    } else if (useT) {
+      distNotice.textContent = `n=${n}, df=${df}: ${ds.noticeLow ?? ''}`;
+    } else {
+      distNotice.textContent = `n=${n}: ${ds.noticeHigh ?? ''}`;
+    }
+  }
+
+  function setInputMode(m: InputMode): void {
+    inputMode = m;
+    document.getElementById('ci-tab-stats')!.classList.toggle('active', m === 'stats');
+    document.getElementById('ci-tab-raw')!.classList.toggle('active', m === 'raw');
+    statsSection.classList.toggle('ci-hidden', m === 'raw');
+    rawSection.classList.toggle('ci-hidden', m === 'stats');
+    update();
+  }
+
+  function setDistMode(m: DistMode): void {
+    distMode = m;
+    Object.entries(distBtns).forEach(([k, btn]) => btn.classList.toggle('active', k === m));
+    update();
+  }
+
+  function setCalcMode(m: CalcMode): void {
+    calcMode = m;
+    document.getElementById('ci-calc-ci')!.classList.toggle('active', m === 'ci');
+    document.getElementById('ci-calc-inv')!.classList.toggle('active', m === 'inverse');
+    resultSection.classList.toggle('ci-hidden', m === 'inverse');
+    invResultEl.classList.toggle('ci-hidden', m === 'ci');
+    invSectionEl.classList.toggle('ci-hidden', m === 'ci');
+    update();
+  }
+
+  function update(): void {
+    let mean: number;
+    let std: number;
+    let n: number;
+    const isRaw = inputMode === 'raw';
+
+    if (isRaw) {
+      const nums = parseRawData(rawEl.value);
+      const stats = computeStats(nums);
+      const valid = stats !== null;
+      rawError.classList.toggle('ci-hidden', valid);
+      if (!valid) return;
+      mean = stats!.mean;
+      std = stats!.std;
+      n = stats!.n;
+      compMean.textContent = mean.toFixed(4);
+      compStd.textContent = std.toFixed(4);
+      compN.textContent = n.toString();
+    } else {
+      mean = parseFloat(meanEl.value);
+      std = parseFloat(stdEl.value);
+      n = parseInt(nEl.value, 10);
+      const validStd = !isNaN(std) && std > 0;
+      const validN = !isNaN(n) && Number.isInteger(n) && n >= 2;
+      stdError.classList.toggle('ci-hidden', validStd);
+      nError.classList.toggle('ci-hidden', validN);
+      if (isNaN(mean) || !validStd || !validN) return;
+    }
+
+    const conf = parseFloat(confEl.value);
+    const validConf = !isNaN(conf) && conf > 0 && conf < 100;
+    confError.classList.toggle('ci-hidden', validConf);
+    if (!validConf) return;
+
+    const df = n - 1;
+    let useT: boolean;
+    if (distMode === 'z') {
+      useT = false;
+    } else if (distMode === 't') {
+      useT = true;
+    } else {
+      useT = isRaw || n < 30;
+    }
+
+    updateDistNotice(n, df, useT, isRaw);
+    critLabel.textContent = useT ? 't*' : 'z*';
+    dfItem.classList.toggle('ci-hidden', !useT);
+    dfEl.textContent = df.toString();
+
+    if (calcMode === 'ci') {
+      const crit = getCritical(conf, df, useT);
+      const se = std / Math.sqrt(n);
+      const me = crit * se;
+      const lower = mean - me;
+      const upper = mean + me;
+
+      lowerEl.textContent = lower.toFixed(4);
+      upperEl.textContent = upper.toFixed(4);
+      meEl.textContent = '\u00b1' + me.toFixed(4);
+      critEl.textContent = crit.toFixed(4);
+      seEl.textContent = se.toFixed(4);
+
+      const typeStr = useT ? `t*(${df})` : 'z*';
+      const sdChar = useT ? 's' : '\u03c3';
+      reportEl.textContent =
+        `x\u0304=${mean.toFixed(4)}, ${sdChar}=${std.toFixed(4)}, n=${n}, ${conf}%CI=[${lower.toFixed(4)}, ${upper.toFixed(4)}], ME=${me.toFixed(4)}, ${typeStr}=${crit.toFixed(4)}, SE=${se.toFixed(4)}`;
+
+      drawBellChart(mean, se, { lower, upper, conf });
+    } else {
+      const targetME = parseFloat(targetMEEl.value);
+      const validME = !isNaN(targetME) && targetME > 0;
+      targetError.classList.toggle('ci-hidden', validME);
+      if (!validME) return;
+
+      const reqN = getRequiredN(conf, std, targetME, useT);
+      reqNEl.textContent = isNaN(reqN) ? '–' : reqN.toString();
+
+      const reqDf = reqN - 1;
+      const crit = getCritical(conf, reqDf, useT);
+      const actualME = crit * std / Math.sqrt(reqN);
+      const typeStr = useT ? `t*(${reqDf})` : 'z*';
+      invDetailEl.textContent =
+        `${typeStr}=${crit.toFixed(4)}, \u03c3=${std.toFixed(4)}, E=${targetME.toFixed(4)}, ME_real=${actualME.toFixed(4)}`;
+      reportEl.textContent =
+        `conf=${conf}%, \u03c3=${std.toFixed(4)}, E=${targetME.toFixed(4)}, n_req=${reqN}, ${typeStr}=${crit.toFixed(4)}`;
+
+      const se = std / Math.sqrt(reqN);
+      drawBellChart(mean, se, { lower: mean - actualME, upper: mean + actualME, conf });
+    }
+  }
+
+  document.getElementById('ci-tab-stats')!.addEventListener('click', () => setInputMode('stats'));
+  document.getElementById('ci-tab-raw')!.addEventListener('click', () => setInputMode('raw'));
+
+  Object.entries(distBtns).forEach(([k, btn]) => {
+    btn.addEventListener('click', () => setDistMode(k as DistMode));
+  });
+
+  document.getElementById('ci-calc-ci')!.addEventListener('click', () => setCalcMode('ci'));
+  document.getElementById('ci-calc-inv')!.addEventListener('click', () => setCalcMode('inverse'));
+
+  document.querySelectorAll('.ci-preset-btn').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      confEl.value = (btn as HTMLElement).dataset.val ?? '95';
+      update();
+    });
+  });
+
+  [meanEl, stdEl, nEl, confEl, targetMEEl].forEach((el) => el.addEventListener('input', update));
+  rawEl.addEventListener('input', update);
+  window.addEventListener('resize', update);
+
+  copyBtn.addEventListener('click', () => {
+    navigator.clipboard.writeText(reportEl.textContent || '');
+    const orig = copyBtn.innerHTML;
+    copyBtn.textContent = ds.btnCopied ?? '';
+    setTimeout(() => { copyBtn.innerHTML = orig; }, 1500);
+  });
+
+  update();
+</script>
+
+<style>
+  :global(.ci-card) {
+    --ci-bg: #fff;
+    --ci-primary: #f59e0b;
+    --ci-primary-hover: #d97706;
+    --ci-border: rgba(245, 158, 11, 0.2);
+    --ci-shadow: rgba(245, 158, 11, 0.08);
+    --ci-sidebar-bg: rgba(254, 243, 199, 0.5);
+    --ci-sidebar-border: rgba(245, 158, 11, 0.15);
+    --ci-text: #0f172a;
+    --ci-text-muted: #475569;
+    --ci-surface: #f8fafc;
+    --ci-input-bg: #fff;
+    --ci-input-border: rgba(245, 158, 11, 0.3);
+
+    display: flex;
+    flex-direction: column;
+    background: var(--ci-bg);
+    border: 1px solid var(--ci-border);
+    border-radius: 1.5rem;
+    box-shadow: 0 10px 40px var(--ci-shadow);
+    overflow: hidden;
+    margin: 2rem 0;
+  }
+
+  :global(.theme-dark .ci-card) {
+    --ci-bg: #18181b;
+    --ci-primary: #fbbf24;
+    --ci-primary-hover: #f59e0b;
+    --ci-border: rgba(251, 191, 36, 0.2);
+    --ci-sidebar-bg: rgba(41, 37, 36, 0.8);
+    --ci-sidebar-border: rgba(251, 191, 36, 0.15);
+    --ci-text: #f4f4f5;
+    --ci-text-muted: #a1a1aa;
+    --ci-surface: #27272a;
+    --ci-input-bg: #3f3f46;
+    --ci-input-border: rgba(251, 191, 36, 0.25);
+  }
+
+  :global(.ci-sidebar) {
+    background: var(--ci-sidebar-bg);
+    border-bottom: 1px solid var(--ci-sidebar-border);
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  :global(.ci-heading) {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--ci-text);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  :global(.ci-tab-row) {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.375rem;
+  }
+
+  :global(.ci-tab) {
+    padding: 0.5rem;
+    font-size: 0.8rem;
+    font-weight: 600;
+    background: var(--ci-surface);
+    color: var(--ci-text-muted);
+    border: 1px solid var(--ci-input-border);
+    border-radius: 0.5rem;
+    cursor: pointer;
+    transition: background 0.2s, color 0.2s, border-color 0.2s;
+    text-align: center;
+  }
+
+  :global(.ci-tab.active) {
+    background: var(--ci-primary);
+    color: #fff;
+    border-color: var(--ci-primary);
+  }
+
+  :global(.ci-textarea) {
+    width: 100%;
+    padding: 0.6rem 0.75rem;
+    border-radius: 0.625rem;
+    border: 1px solid var(--ci-input-border);
+    background: var(--ci-input-bg);
+    color: var(--ci-text);
+    font-size: 0.85rem;
+    font-family: monospace, monospace;
+    resize: vertical;
+    min-height: 80px;
+    box-sizing: border-box;
+  }
+
+  :global(.ci-computed-row) {
+    display: flex;
+    gap: 0.75rem;
+    background: var(--ci-surface);
+    border: 1px solid var(--ci-input-border);
+    border-radius: 0.625rem;
+    padding: 0.6rem 0.75rem;
+    flex-wrap: wrap;
+  }
+
+  :global(.ci-computed-item) {
+    display: flex;
+    flex-direction: column;
+    gap: 0.1rem;
+  }
+
+  :global(.ci-computed-key) {
+    font-size: 0.68rem;
+    font-weight: 700;
+    color: var(--ci-text-muted);
+    text-transform: uppercase;
+  }
+
+  :global(.ci-computed-val) {
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: var(--ci-primary);
+  }
+
+  :global(.ci-dist-toggle) {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.3rem;
+  }
+
+  :global(.ci-dist-btn) {
+    padding: 0.4rem 0.2rem;
+    font-size: 0.72rem;
+    font-weight: 600;
+    background: var(--ci-surface);
+    color: var(--ci-text-muted);
+    border: 1px solid var(--ci-input-border);
+    border-radius: 0.5rem;
+    cursor: pointer;
+    transition: background 0.2s, color 0.2s, border-color 0.2s;
+    text-align: center;
+  }
+
+  :global(.ci-dist-btn.active) {
+    background: var(--ci-primary);
+    color: #fff;
+    border-color: var(--ci-primary);
+  }
+
+  :global(.ci-notice) {
+    font-size: 0.75rem;
+    color: var(--ci-primary);
+    background: rgba(245, 158, 11, 0.07);
+    border: 1px solid rgba(245, 158, 11, 0.2);
+    border-radius: 0.4rem;
+    padding: 0.35rem 0.5rem;
+  }
+
+  :global(.ci-input-group) {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+  }
+
+  :global(.ci-label) {
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: var(--ci-text-muted);
+  }
+
+  :global(.ci-preset-row) {
+    display: flex;
+    gap: 0.375rem;
+  }
+
+  :global(.ci-preset-btn) {
+    flex: 1;
+    padding: 0.35rem 0;
+    font-size: 0.75rem;
+    font-weight: 600;
+    background: var(--ci-surface);
+    color: var(--ci-text-muted);
+    border: 1px solid var(--ci-input-border);
+    border-radius: 0.4rem;
+    cursor: pointer;
+    transition: background 0.2s, color 0.2s;
+  }
+
+  :global(.ci-preset-btn:hover) {
+    background: rgba(245, 158, 11, 0.15);
+    color: var(--ci-primary);
+  }
+
+  :global(.ci-input) {
+    width: 100%;
+    padding: 0.6rem 0.75rem;
+    border-radius: 0.625rem;
+    border: 1px solid var(--ci-input-border);
+    background: var(--ci-input-bg);
+    color: var(--ci-text);
+    font-size: 0.95rem;
+    transition: border-color 0.2s;
+  }
+
+  :global(.ci-hint-error) {
+    font-size: 0.75rem;
+    color: #ef4444;
+  }
+
+  :global(.ci-hidden) {
+    display: none;
+  }
+
+  :global(.ci-calc-toggle) {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.375rem;
+  }
+
+  :global(.ci-calc-btn) {
+    padding: 0.5rem 0.4rem;
+    font-size: 0.78rem;
+    font-weight: 600;
+    background: var(--ci-surface);
+    color: var(--ci-text-muted);
+    border: 1px solid var(--ci-input-border);
+    border-radius: 0.5rem;
+    cursor: pointer;
+    transition: background 0.2s, color 0.2s, border-color 0.2s;
+    text-align: center;
+  }
+
+  :global(.ci-calc-btn.active) {
+    background: var(--ci-primary);
+    color: #fff;
+    border-color: var(--ci-primary);
+  }
+
+  :global(.ci-main) {
+    flex: 1;
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  :global(.ci-result-hero) {
+    background: rgba(245, 158, 11, 0.06);
+    border: 1px solid rgba(245, 158, 11, 0.2);
+    border-radius: 1rem;
+    padding: 1.25rem 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+  }
+
+  :global(.ci-result-label) {
+    font-size: 0.7rem;
+    font-weight: 700;
+    color: var(--ci-primary);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+
+  :global(.ci-result-bounds) {
+    display: flex;
+    align-items: baseline;
+    gap: 0.5rem;
+    font-size: 1.75rem;
+    font-weight: 800;
+    color: var(--ci-primary);
+    letter-spacing: -0.02em;
+    flex-wrap: wrap;
+  }
+
+  :global(.ci-result-value) {
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: var(--ci-primary);
+    letter-spacing: -0.03em;
+  }
+
+  :global(.ci-sep) {
+    font-size: 1.4rem;
+    color: var(--ci-text-muted);
+    font-weight: 400;
+  }
+
+  :global(.ci-stats-row) {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  :global(.ci-stat) {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+    min-width: 80px;
+  }
+
+  :global(.ci-stat-label) {
+    font-size: 0.72rem;
+    font-weight: 600;
+    color: var(--ci-text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+
+  :global(.ci-stat-value) {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--ci-text);
+  }
+
+  :global(.ci-inv-detail) {
+    font-size: 0.82rem;
+    color: var(--ci-text-muted);
+    margin: 0;
+  }
+
+  :global(.ci-chart-section) {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  :global(.ci-chart-label) {
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: var(--ci-text);
+  }
+
+  :global(.ci-chart-desc) {
+    font-size: 0.8rem;
+    color: var(--ci-text-muted);
+  }
+
+  :global(#ci-canvas) {
+    width: 100%;
+    height: 180px;
+    display: block;
+    border-radius: 0.75rem;
+    background: var(--ci-surface);
+  }
+
+  :global(.ci-copy-block) {
+    background: rgba(245, 158, 11, 0.06);
+    border: 1px solid rgba(245, 158, 11, 0.25);
+    border-radius: 1rem;
+    padding: 1rem 1.25rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  :global(.ci-copy-header) {
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: var(--ci-primary);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+
+  :global(.ci-copy-text) {
+    font-size: 0.85rem;
+    color: var(--ci-text);
+    line-height: 1.6;
+    background: var(--ci-input-bg);
+    border: 1px solid var(--ci-input-border);
+    border-radius: 0.5rem;
+    padding: 0.625rem 0.75rem;
+    min-height: 2.25rem;
+    margin: 0;
+    word-break: break-all;
+  }
+
+  :global(.ci-copy-btn) {
+    align-self: flex-start;
+    padding: 0.5rem 1.25rem;
+    background: var(--ci-primary);
+    color: #fff;
+    border: none;
+    border-radius: 0.5rem;
+    font-weight: 700;
+    font-size: 0.875rem;
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+
+  :global(.ci-copy-btn:hover) {
+    background: var(--ci-primary-hover);
+  }
+
+  @media (min-width: 768px) {
+    :global(.ci-card) {
+      flex-direction: row;
+    }
+
+    :global(.ci-sidebar) {
+      width: 300px;
+      flex-shrink: 0;
+      border-bottom: none;
+      border-right: 1px solid var(--ci-sidebar-border);
+      overflow-y: auto;
+    }
+  }
+</style>

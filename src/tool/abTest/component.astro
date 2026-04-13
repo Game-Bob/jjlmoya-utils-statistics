@@ -133,7 +133,7 @@ const { ui } = Astro.props;
         <Icon name="mdi:chart-bell-curve" /> {ui.labelDistributions}
       </div>
       <p class="ab-chart-desc">{ui.chartDesc}</p>
-      <canvas id="curvesCanvas"></canvas>
+      <canvas id="curves-canvas"></canvas>
     </section>
 
     <section class="ab-copy-block">
@@ -180,7 +180,7 @@ const { ui } = Astro.props;
   const mB = document.getElementById('mB') as HTMLInputElement;
   const sdB = document.getElementById('sdB') as HTMLInputElement;
   const alphaInput = document.getElementById('alpha') as HTMLSelectElement;
-  const canvas = document.getElementById('curvesCanvas') as HTMLCanvasElement;
+  const canvas = document.getElementById('curves-canvas') as HTMLCanvasElement;
   const ctx = canvas.getContext('2d');
 
   let currentMode = 'proportions';
@@ -202,67 +202,69 @@ const { ui } = Astro.props;
   const pdf = (x: number, m: number, s: number) =>
     (1 / (s * Math.sqrt(2 * Math.PI))) * Math.exp(-0.5 * Math.pow((x - m) / s, 2));
 
+  const drawSingleCurve = (c: CanvasRenderingContext2D, opts: { m: number; s: number; color: string; fill: string; toX: (x: number) => number; toY: (y: number) => number; minX: number; maxX: number; range: number }) => {
+    const { m, s, color, fill, toX, toY, minX, maxX, range } = opts;
+    c.beginPath();
+    c.moveTo(toX(minX), toY(0));
+    for (let i = 0; i <= 150; i++) {
+      const x = minX + (i / 150) * range;
+      c.lineTo(toX(x), toY(pdf(x, m, s)));
+    }
+    c.lineTo(toX(maxX), toY(0));
+    c.fillStyle = fill;
+    c.fill();
+    c.lineWidth = 2;
+    c.strokeStyle = color;
+    c.stroke();
+    c.beginPath();
+    c.setLineDash([4, 4]);
+    c.moveTo(toX(m), toY(0));
+    c.lineTo(toX(m), toY(pdf(m, m, s)));
+    c.stroke();
+    c.setLineDash([]);
+  };
+
+  const drawCurveLabels = (c: CanvasRenderingContext2D, opts: { meanA: number; meanB: number; pad: number; H: number; toX: (x: number) => number }) => {
+    const { meanA, meanB, pad, H, toX } = opts;
+    c.fillStyle = '#1e293b';
+    c.font = 'bold 12px sans-serif';
+    c.textAlign = 'center';
+    const dA = currentMode === 'proportions' ? (meanA * 100).toFixed(1) + '%' : meanA.toFixed(2);
+    const dB = currentMode === 'proportions' ? (meanB * 100).toFixed(1) + '%' : meanB.toFixed(2);
+    c.fillText(`A: ${dA}`, toX(meanA), pad + H + 20);
+    c.fillStyle = '#e11d48';
+    c.fillText(`B: ${dB}`, toX(meanB), pad + H + 20);
+  };
+
   const drawCurves = (meanA: number, seA: number, meanB: number, seB: number) => {
     if (!ctx) return;
     const dpr = window.devicePixelRatio || 1;
-    const cw = canvas.offsetWidth;
-    const ch = canvas.offsetHeight;
+    const cw = canvas.offsetWidth, ch = canvas.offsetHeight;
     canvas.width = Math.round(cw * dpr);
     canvas.height = Math.round(ch * dpr);
     ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
     ctx.clearRect(0, 0, cw, ch);
-
-    const pad = 30;
-    const W = cw - pad * 2;
-    const H = ch - pad * 2;
+    const pad = 30, W = cw - pad * 2, H = ch - pad * 2;
     const minX = Math.min(meanA - 4 * seA, meanB - 4 * seB);
     const maxX = Math.max(meanA + 4 * seA, meanB + 4 * seB);
     const range = maxX - minX || 1;
     const maxY = Math.max(1 / (seA * Math.sqrt(2 * Math.PI)), 1 / (seB * Math.sqrt(2 * Math.PI))) * 1.1;
-
     const toX = (x: number) => pad + ((x - minX) / range) * W;
     const toY = (y: number) => pad + H - (y / maxY) * H;
-
-    const drawCurve = (m: number, s: number, color: string, fill: string) => {
-      ctx.beginPath();
-      ctx.moveTo(toX(minX), toY(0));
-      for (let i = 0; i <= 150; i++) {
-        const x = minX + (i / 150) * range;
-        ctx.lineTo(toX(x), toY(pdf(x, m, s)));
-      }
-      ctx.lineTo(toX(maxX), toY(0));
-      ctx.fillStyle = fill;
-      ctx.fill();
-      ctx.lineWidth = 2;
-      ctx.strokeStyle = color;
-      ctx.stroke();
-      ctx.beginPath();
-      ctx.setLineDash([4, 4]);
-      ctx.moveTo(toX(m), toY(0));
-      ctx.lineTo(toX(m), toY(pdf(m, m, s)));
-      ctx.stroke();
-      ctx.setLineDash([]);
-    };
-
     ctx.beginPath();
     ctx.strokeStyle = '#cbd5e1';
     ctx.lineWidth = 1;
     ctx.moveTo(pad, pad + H);
     ctx.lineTo(pad + W, pad + H);
     ctx.stroke();
-
-    drawCurve(meanA, seA, '#64748b', 'rgba(100,116,139,0.2)');
-    drawCurve(meanB, seB, '#f43f5e', 'rgba(244,63,94,0.2)');
-
-    ctx.fillStyle = '#1e293b';
-    ctx.font = 'bold 12px sans-serif';
-    ctx.textAlign = 'center';
-    const dA = currentMode === 'proportions' ? (meanA * 100).toFixed(1) + '%' : meanA.toFixed(2);
-    const dB = currentMode === 'proportions' ? (meanB * 100).toFixed(1) + '%' : meanB.toFixed(2);
-    ctx.fillText(`A: ${dA}`, toX(meanA), pad + H + 20);
-    ctx.fillStyle = '#e11d48';
-    ctx.fillText(`B: ${dB}`, toX(meanB), pad + H + 20);
+    const base = { toX, toY, minX, maxX, range };
+    drawSingleCurve(ctx, { m: meanA, s: seA, color: '#64748b', fill: 'rgba(100,116,139,0.2)', ...base });
+    drawSingleCurve(ctx, { m: meanB, s: seB, color: '#f43f5e', fill: 'rgba(244,63,94,0.2)', ...base });
+    drawCurveLabels(ctx, { meanA, meanB, pad, H, toX });
   };
+
+  const isExtreme = (sucA: number, numA: number, sucB: number, numB: number) =>
+    sucA === 0 || sucB === 0 || sucA === numA || sucB === numB;
 
   const calcProportions = (numA: number, numB: number) => {
     const sucA = parseFloat(sA.value) || 0;
@@ -276,8 +278,7 @@ const { ui } = Astro.props;
     const Z = se > 0 ? (pB - pA) / se : 0;
     const pValue = se > 0 ? calcPValue(Z, currentTails) : 1;
     const lift = pA > 0 ? ((pB - pA) / pA) * 100 : 0;
-    const extreme = sucA === 0 || sucB === 0 || sucA === numA || sucB === numB;
-    return { Z, pValue, lift, statA: pA, statB: pB, seA, seB, extreme };
+    return { Z, pValue, lift, statA: pA, statB: pB, seA, seB, extreme: isExtreme(sucA, numA, sucB, numB) };
   };
 
   const calcMeans = (numA: number, numB: number) => {
@@ -294,32 +295,33 @@ const { ui } = Astro.props;
     return { Z, pValue, lift, statA: meanAv, statB: meanBv, seA, seB, extreme: false };
   };
 
+  const updateSignificance = (pValue: number, numA: number, numB: number, extreme: boolean) => {
+    const alpha = parseFloat(alphaInput.value) || 0.05;
+    const isSig = pValue < alpha;
+    const pvalBlock = document.getElementById('pvalueBlock')!;
+    pvalBlock.className = 'ab-pvalue-block ' + (isSig ? 'significant' : 'not-significant');
+    document.getElementById('res-pvalue')!.textContent = pValue < 0.001 ? '<0.001' : pValue.toFixed(3);
+    document.getElementById('res-desc')!.textContent = isSig ? UI.sigText : UI.noSigText;
+    const alertBox = document.getElementById('extremeAlert')!;
+    alertBox.style.display = numA < 30 || numB < 30 || extreme ? 'block' : 'none';
+    return isSig;
+  };
+
+  const updateLift = (lift: number) => {
+    const liftEl = document.getElementById('res-lift')!;
+    liftEl.textContent = (lift > 0 ? '+' : '') + lift.toFixed(2) + '%';
+    liftEl.className = 'ab-lift-value ' + (lift > 0 ? 'positive' : 'negative');
+  };
+
   const update = () => {
     const numA = parseFloat(nA.value) || 1;
     const numB = parseFloat(nB.value) || 1;
-    const alpha = parseFloat(alphaInput.value) || 0.05;
-
     const r = currentMode === 'proportions' ? calcProportions(numA, numB) : calcMeans(numA, numB);
-    const isSignificant = r.pValue < alpha;
-
-    const pvalBlock = document.getElementById('pvalueBlock')!;
-    pvalBlock.className = 'ab-pvalue-block ' + (isSignificant ? 'significant' : 'not-significant');
-    document.getElementById('res-pvalue')!.textContent =
-      r.pValue < 0.001 ? '<0.001' : r.pValue.toFixed(3);
-    document.getElementById('res-desc')!.textContent = isSignificant ? UI.sigText : UI.noSigText;
-
-    const alertBox = document.getElementById('extremeAlert')!;
-    alertBox.style.display = numA < 30 || numB < 30 || r.extreme ? 'block' : 'none';
-
-    const liftEl = document.getElementById('res-lift')!;
-    liftEl.textContent = (r.lift > 0 ? '+' : '') + r.lift.toFixed(2) + '%';
-    liftEl.className = 'ab-lift-value ' + (r.lift > 0 ? 'positive' : 'negative');
-
+    const isSignificant = updateSignificance(r.pValue, numA, numB, r.extreme);
+    updateLift(r.lift);
     const confidence = (1 - r.pValue) * 100;
     document.getElementById('confBar')!.style.width = Math.min(confidence, 100) + '%';
-    document.getElementById('confText')!.textContent =
-      UI.confidencePrefix + ' ' + confidence.toFixed(2) + '%';
-
+    document.getElementById('confText')!.textContent = UI.confidencePrefix + ' ' + confidence.toFixed(2) + '%';
     const total = numA + numB;
     const liftStr = (r.lift > 0 ? '+' : '') + r.lift.toFixed(2);
     const sigStr = isSignificant ? UI.justSig : UI.justNoSig;
@@ -327,7 +329,6 @@ const { ui } = Astro.props;
       UI.justIntro + ' ' + total + UI.justSamples + liftStr + UI.justRespectTo +
       UI.justWithConfidence + confidence.toFixed(2) + '% (p=' + r.pValue.toFixed(3) + ')' +
       UI.justDiff + sigStr + '.';
-
     drawCurves(r.statA, r.seA, r.statB, r.seB);
   };
 
@@ -372,7 +373,7 @@ const { ui } = Astro.props;
 
 <style>
   :global(.ab-card) {
-    --ab-bg: #ffffff;
+    --ab-bg: #fff;
     --ab-border: rgba(244, 63, 94, 0.2);
     --ab-shadow: rgba(244, 63, 94, 0.08);
     --ab-sidebar-bg: rgba(255, 241, 242, 0.5);
@@ -383,14 +384,14 @@ const { ui } = Astro.props;
     --ab-primary-soft-border: rgba(244, 63, 94, 0.3);
     --ab-toggle-bg: #f1f5f9;
     --ab-toggle-text: #475569;
-    --ab-group-bg: #ffffff;
+    --ab-group-bg: #fff;
     --ab-group-border: #e2e8f0;
     --ab-text: #0f172a;
     --ab-text-muted: #475569;
     --ab-text-secondary: #334155;
     --ab-text-label: #334155;
     --ab-input-border: #cbd5e1;
-    --ab-input-bg: #ffffff;
+    --ab-input-bg: #fff;
     --ab-canvas-bg: #f8fafc;
     --ab-canvas-border: #cbd5e1;
     --ab-conf-track: #e2e8f0;
@@ -499,7 +500,10 @@ const { ui } = Astro.props;
     color: var(--ab-text);
     margin-bottom: 1.25rem;
   }
-  :global(.ab-sidebar-heading [data-icon]) { color: var(--ab-primary); font-size: 1.5em; }
+  :global(.ab-sidebar-heading [data-icon]) {
+    color: var(--ab-primary);
+    font-size: 1.5em;
+  }
 
   :global(.ab-toggle) {
     display: flex;
@@ -558,7 +562,11 @@ const { ui } = Astro.props;
     display: flex;
     justify-content: space-between;
   }
-  :global(.ab-math) { font-style: italic; font-weight: 600; color: var(--ab-text-muted); }
+  :global(.ab-math) {
+    font-style: italic;
+    font-weight: 600;
+    color: var(--ab-text-muted);
+  }
   :global(.ab-input-row input),
   :global(.ab-select) {
     width: 100%;
@@ -616,6 +624,7 @@ const { ui } = Astro.props;
     grid-template-columns: 1fr;
     gap: 1rem;
   }
+
   @media (min-width: 640px) {
     :global(.ab-results-grid) { grid-template-columns: auto 1fr; }
   }
@@ -697,7 +706,11 @@ const { ui } = Astro.props;
   }
   :global(.ab-lift-value.positive) { color: var(--ab-sig-value); }
   :global(.ab-lift-value.negative) { color: var(--ab-nosig-value); }
-  :global(.ab-lift-text) { font-size: 1rem; font-weight: 500; color: var(--ab-lift-text); }
+  :global(.ab-lift-text) {
+    font-size: 1rem;
+    font-weight: 500;
+    color: var(--ab-lift-text);
+  }
   :global(.ab-conf-bar-wrap) {
     margin-top: 1.5rem;
     background: var(--ab-conf-track);
@@ -741,7 +754,7 @@ const { ui } = Astro.props;
     margin-bottom: 1rem;
     font-weight: 500;
   }
-  :global(#curvesCanvas) {
+  :global(#curves-canvas) {
     width: 100%;
     height: 240px;
     display: block;
@@ -794,17 +807,32 @@ const { ui } = Astro.props;
   :global(.ab-copy-btn:hover) { background: var(--ab-primary-hover); }
 
   @media (max-width: 600px) {
-    :global(.ab-card) { border-radius: 1rem; margin: 0; }
+    :global(.ab-card) {
+      border-radius: 1rem;
+      margin: 0;
+    }
     :global(.ab-sidebar) { padding: 1.25rem; }
-    :global(.ab-main) { padding: 1.25rem; gap: 1.25rem; }
+    :global(.ab-main) {
+      padding: 1.25rem;
+      gap: 1.25rem;
+    }
     :global(.ab-pval-value) { font-size: 2.5rem; }
-    :global(.ab-pval-desc) { font-size: 0.875rem; max-width: unset; }
+    :global(.ab-pval-desc) {
+      font-size: 0.875rem;
+      max-width: unset;
+    }
     :global(.ab-lift-value) { font-size: 1.75rem; }
     :global(.ab-lift-text) { font-size: 0.875rem; }
-    :global(.ab-lift-content) { gap: 0.5rem; flex-wrap: wrap; }
+    :global(.ab-lift-content) {
+      gap: 0.5rem;
+      flex-wrap: wrap;
+    }
     :global(.ab-visual) { padding: 1rem; }
-    :global(#curvesCanvas) { height: 180px; }
-    :global(.ab-copy-block) { padding: 1rem; padding-bottom: 4rem; }
+    :global(#curves-canvas) { height: 180px; }
+    :global(.ab-copy-block) {
+      padding: 1rem;
+      padding-bottom: 4rem;
+    }
     :global(.ab-copy-text) { font-size: 0.9rem; }
   }
 </style>

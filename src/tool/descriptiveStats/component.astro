@@ -1,0 +1,802 @@
+---
+import { Icon } from 'astro-icon/components';
+import type { DescriptiveStatsUI } from './ui';
+
+interface Props {
+  ui: DescriptiveStatsUI;
+}
+
+const { ui } = Astro.props;
+---
+
+<div
+  class="ds-card"
+  id="ds-app"
+  data-hint={ui.hintData}
+  data-hint-error={ui.hintError}
+  data-btn-copied={ui.btnCopied}
+  data-no-mode={ui.noMode}
+  data-insight-homogeneous={ui.insightHomogeneous}
+  data-insight-moderate={ui.insightModerate}
+  data-insight-heterogeneous={ui.insightHeterogeneous}
+  data-insight-symmetric={ui.insightSymmetric}
+  data-insight-right-skewed={ui.insightRightSkewed}
+  data-insight-left-skewed={ui.insightLeftSkewed}
+  data-insight-no-outliers={ui.insightNoOutliers}
+  data-insight-outliers={ui.insightOutliers}
+  data-insight-iqr={ui.insightIQR}
+  data-filter-notice={ui.filterNotice}
+>
+  <aside class="ds-sidebar">
+    <div class="ds-heading">
+      <Icon name="mdi:chart-bar" />{ui.labelTitle}
+    </div>
+    <div class="ds-type-toggle">
+      <button class="ds-type-btn active" id="ds-btn-sample" type="button">{ui.btnSample}</button>
+      <button class="ds-type-btn" id="ds-btn-population" type="button">{ui.btnPopulation}</button>
+    </div>
+    <div class="ds-input-wrap">
+      <label class="ds-label" for="ds-data">{ui.labelData}</label>
+      <textarea id="ds-data" class="ds-textarea" placeholder={ui.placeholderData} rows="10"></textarea>
+    </div>
+    <p class="ds-hint" id="ds-hint">{ui.hintData}</p>
+    <p class="ds-filter-notice" id="ds-filter-notice"></p>
+  </aside>
+
+  <main class="ds-main">
+    <div class="ds-section">
+      <div class="ds-section-title">{ui.groupCentral}</div>
+      <div class="ds-group">
+        <div class="ds-stat ds-stat-hero">
+          <span class="ds-sl">{ui.labelMean}</span>
+          <span class="ds-sv ds-sv-hero" id="ds-mean">–</span>
+        </div>
+        <div class="ds-stat ds-stat-hero">
+          <span class="ds-sl">{ui.labelMedian}</span>
+          <span class="ds-sv ds-sv-hero" id="ds-median">–</span>
+        </div>
+        <div class="ds-stat">
+          <span class="ds-sl">{ui.labelMode}</span>
+          <span class="ds-sv" id="ds-mode">–</span>
+        </div>
+        <div class="ds-stat">
+          <span class="ds-sl">{ui.labelCount}</span>
+          <span class="ds-sv" id="ds-n">–</span>
+        </div>
+        <div class="ds-stat">
+          <span class="ds-sl">{ui.labelSum}</span>
+          <span class="ds-sv" id="ds-sum">–</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="ds-section">
+      <div class="ds-section-title">{ui.groupDispersion}</div>
+      <div class="ds-group">
+        <div class="ds-stat">
+          <span class="ds-sl">{ui.labelStdDev}</span>
+          <span class="ds-sv" id="ds-std">–</span>
+        </div>
+        <div class="ds-stat">
+          <span class="ds-sl">{ui.labelVariance}</span>
+          <span class="ds-sv" id="ds-var">–</span>
+        </div>
+        <div class="ds-stat">
+          <span class="ds-sl">{ui.labelRange}</span>
+          <span class="ds-sv" id="ds-range">–</span>
+        </div>
+        <div class="ds-stat">
+          <span class="ds-sl">{ui.labelCV}</span>
+          <span class="ds-sv" id="ds-cv">–</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="ds-section">
+      <div class="ds-section-title">{ui.groupPosition}</div>
+      <div class="ds-group">
+        <div class="ds-stat">
+          <span class="ds-sl">{ui.labelMin}</span>
+          <span class="ds-sv" id="ds-min">–</span>
+        </div>
+        <div class="ds-stat">
+          <span class="ds-sl">{ui.labelMax}</span>
+          <span class="ds-sv" id="ds-max">–</span>
+        </div>
+        <div class="ds-stat">
+          <span class="ds-sl">{ui.labelQ1}</span>
+          <span class="ds-sv" id="ds-q1">–</span>
+        </div>
+        <div class="ds-stat">
+          <span class="ds-sl">{ui.labelQ3}</span>
+          <span class="ds-sv" id="ds-q3">–</span>
+        </div>
+        <div class="ds-stat">
+          <span class="ds-sl">{ui.labelIQR}</span>
+          <span class="ds-sv" id="ds-iqr">–</span>
+        </div>
+        <div class="ds-stat">
+          <span class="ds-sl">{ui.labelSkewness}</span>
+          <span class="ds-sv" id="ds-skew">–</span>
+        </div>
+        <div class="ds-stat">
+          <span class="ds-sl">{ui.labelKurtosis}</span>
+          <span class="ds-sv" id="ds-kurt">–</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="ds-chart-section">
+      <div class="ds-chart-label">{ui.labelBoxplot}</div>
+      <canvas id="ds-boxplot"></canvas>
+    </div>
+
+    <div class="ds-chart-section">
+      <div class="ds-chart-label">{ui.labelChart}</div>
+      <p class="ds-chart-desc">{ui.chartDesc}</p>
+      <canvas id="ds-chart"></canvas>
+    </div>
+
+    <div class="ds-insight-box" id="ds-insight-box" hidden>
+      <div class="ds-insight-title">{ui.insightTitle}</div>
+      <p class="ds-insight-text" id="ds-insight-text"></p>
+    </div>
+
+    <div class="ds-copy-block">
+      <div class="ds-copy-header">{ui.labelReport}</div>
+      <p class="ds-copy-text" id="ds-report"></p>
+      <button class="ds-copy-btn" id="ds-copy">{ui.btnCopy}</button>
+    </div>
+  </main>
+</div>
+
+<script>
+  const LS_KEY = 'ds_data';
+  const app = document.getElementById('ds-app')!;
+  const d = app.dataset;
+  const UI = {
+    hint: d.hint ?? '',
+    hintError: d.hintError ?? '',
+    btnCopied: d.btnCopied ?? '',
+    noMode: d.noMode ?? '',
+    insightHomogeneous: d.insightHomogeneous ?? '',
+    insightModerate: d.insightModerate ?? '',
+    insightHeterogeneous: d.insightHeterogeneous ?? '',
+    insightSymmetric: d.insightSymmetric ?? '',
+    insightRightSkewed: d.insightRightSkewed ?? '',
+    insightLeftSkewed: d.insightLeftSkewed ?? '',
+    insightNoOutliers: d.insightNoOutliers ?? '',
+    insightOutliers: d.insightOutliers ?? '',
+    insightIQR: d.insightIqr ?? '',
+    filterNotice: d.filterNotice ?? '',
+  };
+
+  const textarea = document.getElementById('ds-data') as HTMLTextAreaElement;
+  const hintEl = document.getElementById('ds-hint')!;
+  const filterNoticeEl = document.getElementById('ds-filter-notice')!;
+  const report = document.getElementById('ds-report')!;
+  const copyBtn = document.getElementById('ds-copy')!;
+  const canvas = document.getElementById('ds-chart') as HTMLCanvasElement;
+  const boxCanvas = document.getElementById('ds-boxplot') as HTMLCanvasElement;
+  const insightBox = document.getElementById('ds-insight-box')!;
+  const insightText = document.getElementById('ds-insight-text')!;
+  const btnSample = document.getElementById('ds-btn-sample')!;
+  const btnPopulation = document.getElementById('ds-btn-population')!;
+
+  let calcType: 'sample' | 'population' = 'sample';
+
+  btnSample.addEventListener('click', () => {
+    calcType = 'sample';
+    btnSample.classList.add('active');
+    btnPopulation.classList.remove('active');
+    update();
+  });
+
+  btnPopulation.addEventListener('click', () => {
+    calcType = 'population';
+    btnPopulation.classList.add('active');
+    btnSample.classList.remove('active');
+    update();
+  });
+
+  function parseData(raw: string): { nums: number[]; filtered: number } {
+    const tokens = raw.split(/[\s,;]+/).filter(s => s.trim() !== '');
+    const nums: number[] = [];
+    let filtered = 0;
+    for (const t of tokens) {
+      const n = parseFloat(t);
+      if (!isNaN(n)) {
+        nums.push(n);
+      } else {
+        filtered++;
+      }
+    }
+    return { nums, filtered };
+  }
+
+  function calcMean(data: number[]): number {
+    return data.reduce((a, b) => a + b, 0) / data.length;
+  }
+
+  function calcMedian(s: number[]): number {
+    const m = Math.floor(s.length / 2);
+    return s.length % 2 === 0 ? (s[m - 1]! + s[m]!) / 2 : s[m]!;
+  }
+
+  function calcMode(data: number[]): string {
+    const freq = new Map<number, number>();
+    for (const v of data) freq.set(v, (freq.get(v) ?? 0) + 1);
+    const mx = Math.max(...freq.values());
+    const modes = [...freq.entries()].filter(([, c]) => c === mx).map(([v]) => v);
+    return modes.length === data.length ? UI.noMode : modes.join(', ');
+  }
+
+  function calcStd(data: number[], m: number): number {
+    if (data.length < 2) return 0;
+    const divisor = calcType === 'sample' ? data.length - 1 : data.length;
+    return Math.sqrt(data.reduce((a, v) => a + (v - m) ** 2, 0) / divisor);
+  }
+
+  function calcQ(sorted: number[], q: number): number {
+    const p = q * (sorted.length - 1);
+    const lo = Math.floor(p);
+    return sorted[lo]! + (p - lo) * ((sorted[Math.ceil(p)] ?? sorted[lo]!) - sorted[lo]!);
+  }
+
+  function calcSkew(data: number[], m: number, s: number): number {
+    if (s === 0 || data.length < 3) return 0;
+    const n = data.length;
+    return (n / ((n - 1) * (n - 2))) * data.reduce((a, v) => a + ((v - m) / s) ** 3, 0);
+  }
+
+  function calcKurt(data: number[], m: number, s: number): number {
+    if (s === 0 || data.length < 4) return 0;
+    const n = data.length;
+    const sm = data.reduce((a, v) => a + ((v - m) / s) ** 4, 0);
+    return (n * (n + 1)) / ((n - 1) * (n - 2) * (n - 3)) * sm - 3 * (n - 1) ** 2 / ((n - 2) * (n - 3));
+  }
+
+  function fmt(n: number): string {
+    return Number.isInteger(n) ? String(n) : n.toFixed(4).replace(/\.?0+$/, '');
+  }
+
+  function setVal(id: string, v: string): void {
+    const el = document.getElementById(id);
+    if (el) el.textContent = v;
+  }
+
+  interface Stats {
+    n: number;
+    sum: number;
+    mean: number;
+    median: number;
+    mode: string;
+    std: number;
+    variance: number;
+    cv: number;
+    min: number;
+    max: number;
+    range: number;
+    q1: number;
+    q3: number;
+    iqr: number;
+    skew: number;
+    kurt: number;
+    loW: number;
+    hiW: number;
+    outliers: number[];
+  }
+
+  function calcFences(sorted: number[], q1: number, q3: number, iqr: number) {
+    const lo = q1 - 1.5 * iqr;
+    const hi = q3 + 1.5 * iqr;
+    const inner = sorted.filter(v => v >= lo && v <= hi);
+    return {
+      loW: inner.length > 0 ? inner[0]! : q1,
+      hiW: inner.length > 0 ? inner[inner.length - 1]! : q3,
+      outliers: sorted.filter(v => v < lo || v > hi),
+    };
+  }
+
+  function computeStats(data: number[]): Stats {
+    const sorted = [...data].sort((a, b) => a - b);
+    const m = calcMean(data);
+    const s = calcStd(data, m);
+    const q1 = calcQ(sorted, 0.25);
+    const q3 = calcQ(sorted, 0.75);
+    const iqr = q3 - q1;
+    const fences = calcFences(sorted, q1, q3, iqr);
+    const cv = m !== 0 ? Math.abs(s / m) * 100 : 0;
+    return {
+      n: data.length, sum: data.reduce((a, b) => a + b, 0),
+      mean: m, median: calcMedian(sorted), mode: calcMode(data),
+      std: s, variance: s * s, cv,
+      min: sorted[0]!, max: sorted[sorted.length - 1]!,
+      range: sorted[sorted.length - 1]! - sorted[0]!,
+      q1, q3, iqr, skew: calcSkew(data, m, s), kurt: calcKurt(data, m, s),
+      ...fences,
+    };
+  }
+
+  function displayStats(st: Stats): void {
+    setVal('ds-mean', fmt(st.mean));
+    setVal('ds-median', fmt(st.median));
+    setVal('ds-mode', st.mode);
+    setVal('ds-n', String(st.n));
+    setVal('ds-sum', fmt(st.sum));
+    setVal('ds-std', fmt(st.std));
+    setVal('ds-var', fmt(st.variance));
+    setVal('ds-range', fmt(st.range));
+    setVal('ds-cv', fmt(st.cv) + '%');
+    setVal('ds-min', fmt(st.min));
+    setVal('ds-max', fmt(st.max));
+    setVal('ds-q1', fmt(st.q1));
+    setVal('ds-q3', fmt(st.q3));
+    setVal('ds-iqr', fmt(st.iqr));
+    setVal('ds-skew', fmt(st.skew));
+    setVal('ds-kurt', fmt(st.kurt));
+  }
+
+  function drawHistogram(data: number[]): void {
+    const c = canvas.getContext('2d')!;
+    const W = canvas.clientWidth || 400;
+    const H = 180;
+    canvas.width = W;
+    canvas.height = H;
+    const sorted = [...data].sort((a, b) => a - b);
+    const mn = sorted[0]!;
+    const mx = sorted[sorted.length - 1]!;
+    const k = Math.max(2, Math.ceil(1 + Math.log2(data.length)));
+    const w = mx === mn ? 1 : (mx - mn) / k;
+    const counts = Array<number>(k).fill(0);
+    for (const v of sorted) counts[Math.min(Math.floor((v - mn) / w), k - 1)]!++;
+    const maxC = Math.max(...counts, 1);
+    const pad = 16;
+    const bw = (W - pad * 2) / k;
+    c.clearRect(0, 0, W, H);
+    for (let i = 0; i < k; i++) {
+      const bh = (counts[i]! / maxC) * (H - pad * 2);
+      c.fillStyle = '#10b981';
+      c.fillRect(pad + i * bw + 1, H - pad - bh, bw - 2, bh);
+    }
+  }
+
+  type ToX = (v: number) => number;
+  interface BoxCtx { c: CanvasRenderingContext2D; toX: ToX; cy: number; boxH: number; }
+
+  function drawBoxWhiskers(ctx: BoxCtx, st: Stats): void {
+    const { c, toX, cy, boxH } = ctx;
+    const { q1, q3, loW, hiW } = st;
+    c.strokeStyle = '#10b981';
+    c.lineWidth = 2;
+    c.beginPath();
+    c.moveTo(toX(loW), cy); c.lineTo(toX(q1), cy);
+    c.moveTo(toX(q3), cy); c.lineTo(toX(hiW), cy);
+    c.moveTo(toX(loW), cy - boxH / 3); c.lineTo(toX(loW), cy + boxH / 3);
+    c.moveTo(toX(hiW), cy - boxH / 3); c.lineTo(toX(hiW), cy + boxH / 3);
+    c.stroke();
+    c.fillStyle = 'rgba(16,185,129,0.15)';
+    c.fillRect(toX(q1), cy - boxH / 2, toX(q3) - toX(q1), boxH);
+    c.strokeRect(toX(q1), cy - boxH / 2, toX(q3) - toX(q1), boxH);
+  }
+
+  function drawBoxMarkers(ctx: BoxCtx, st: Stats): void {
+    const { c, toX, cy, boxH } = ctx;
+    const { median, mean, outliers } = st;
+    c.strokeStyle = '#10b981';
+    c.lineWidth = 3;
+    c.beginPath();
+    c.moveTo(toX(median), cy - boxH / 2);
+    c.lineTo(toX(median), cy + boxH / 2);
+    c.stroke();
+    c.fillStyle = '#f59e0b';
+    c.beginPath();
+    c.arc(toX(mean), cy, 5, 0, Math.PI * 2);
+    c.fill();
+    c.fillStyle = '#ef4444';
+    for (const o of outliers) {
+      c.beginPath();
+      c.arc(toX(o), cy, 4, 0, Math.PI * 2);
+      c.fill();
+    }
+  }
+
+  function drawBoxplot(st: Stats): void {
+    const c = boxCanvas.getContext('2d')!;
+    const W = boxCanvas.clientWidth || 400;
+    const H = 80;
+    boxCanvas.width = W;
+    boxCanvas.height = H;
+    c.clearRect(0, 0, W, H);
+    const pad = 32;
+    const cy = H / 2;
+    const boxH = 28;
+    const allPoints = [st.loW, st.hiW, ...st.outliers];
+    const dMin = Math.min(...allPoints);
+    const dMax = Math.max(...allPoints);
+    const span = dMax - dMin || 1;
+    const toX: ToX = (v) => pad + ((v - dMin) / span) * (W - pad * 2);
+    const ctx: BoxCtx = { c, toX, cy, boxH };
+    drawBoxWhiskers(ctx, st);
+    drawBoxMarkers(ctx, st);
+  }
+
+  function generateInsight(st: Stats): string {
+    const parts: string[] = [];
+    if (st.cv < 15) {
+      parts.push(UI.insightHomogeneous);
+    } else if (st.cv < 35) {
+      parts.push(UI.insightModerate);
+    } else {
+      parts.push(UI.insightHeterogeneous);
+    }
+    if (st.skew > 0.5) {
+      parts.push(UI.insightRightSkewed);
+    } else if (st.skew < -0.5) {
+      parts.push(UI.insightLeftSkewed);
+    } else {
+      parts.push(UI.insightSymmetric);
+    }
+    if (st.outliers.length === 0) {
+      parts.push(UI.insightNoOutliers);
+    } else {
+      parts.push(UI.insightOutliers.replace('{n}', String(st.outliers.length)));
+    }
+    parts.push(
+      UI.insightIQR
+        .replace('{iqr}', fmt(st.iqr))
+        .replace('{q1}', fmt(st.q1))
+        .replace('{q3}', fmt(st.q3)),
+    );
+    return parts.join(' ');
+  }
+
+  function update(): void {
+    const { nums, filtered } = parseData(textarea.value);
+    localStorage.setItem(LS_KEY, textarea.value);
+    filterNoticeEl.textContent =
+      filtered > 0 ? UI.filterNotice.replace('{n}', String(filtered)) : '';
+    if (nums.length < 2) {
+      hintEl.textContent = UI.hintError;
+      hintEl.classList.add('ds-hint-error');
+      insightBox.hidden = true;
+      return;
+    }
+    hintEl.textContent = UI.hint;
+    hintEl.classList.remove('ds-hint-error');
+    const st = computeStats(nums);
+    displayStats(st);
+    report.textContent =
+      `N=${st.n} · x\u0305=${fmt(st.mean)} · Md=${fmt(st.median)} · \u03c3=${fmt(st.std)} · CV=${fmt(st.cv)}%` +
+      ` · Min=${fmt(st.min)} · Max=${fmt(st.max)} · Q1=${fmt(st.q1)} · Q3=${fmt(st.q3)} · IQR=${fmt(st.iqr)}`;
+    drawHistogram(nums);
+    drawBoxplot(st);
+    insightBox.hidden = false;
+    insightText.textContent = generateInsight(st);
+  }
+
+  textarea.addEventListener('input', update);
+
+  window.addEventListener('resize', () => {
+    const { nums } = parseData(textarea.value);
+    if (nums.length >= 2) {
+      const st = computeStats(nums);
+      drawHistogram(nums);
+      drawBoxplot(st);
+    }
+  });
+
+  copyBtn.addEventListener('click', () => {
+    navigator.clipboard.writeText(report.textContent || '');
+    const orig = copyBtn.innerHTML;
+    copyBtn.textContent = UI.btnCopied;
+    setTimeout(() => { copyBtn.innerHTML = orig; }, 1500);
+  });
+
+  const saved = localStorage.getItem(LS_KEY);
+  if (saved) {
+    textarea.value = saved;
+    update();
+  }
+</script>
+
+<style>
+  :global(.ds-card) {
+    --ds-bg: #fff;
+    --ds-primary: #10b981;
+    --ds-primary-hover: #059669;
+    --ds-border: rgba(16, 185, 129, 0.2);
+    --ds-shadow: rgba(16, 185, 129, 0.08);
+    --ds-sidebar-bg: rgba(236, 253, 245, 0.5);
+    --ds-sidebar-border: rgba(16, 185, 129, 0.15);
+    --ds-text: #0f172a;
+    --ds-text-muted: #475569;
+    --ds-surface: #f8fafc;
+    --ds-input-bg: #fff;
+    --ds-input-border: rgba(16, 185, 129, 0.3);
+
+    display: flex;
+    flex-direction: column;
+    background: var(--ds-bg);
+    border: 1px solid var(--ds-border);
+    border-radius: 1.5rem;
+    box-shadow: 0 10px 40px var(--ds-shadow);
+    overflow: hidden;
+    margin: 2rem 0;
+  }
+
+  :global(.theme-dark .ds-card) {
+    --ds-bg: #18181b;
+    --ds-primary: #34d399;
+    --ds-primary-hover: #10b981;
+    --ds-border: rgba(52, 211, 153, 0.2);
+    --ds-sidebar-bg: rgba(39, 39, 42, 0.8);
+    --ds-sidebar-border: rgba(52, 211, 153, 0.15);
+    --ds-text: #f4f4f5;
+    --ds-text-muted: #a1a1aa;
+    --ds-surface: #27272a;
+    --ds-input-bg: #3f3f46;
+    --ds-input-border: rgba(52, 211, 153, 0.25);
+  }
+
+  :global(.ds-sidebar) {
+    background: var(--ds-sidebar-bg);
+    border-bottom: 1px solid var(--ds-sidebar-border);
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  :global(.ds-heading) {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--ds-text);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  :global(.ds-type-toggle) {
+    display: flex;
+    border: 1px solid var(--ds-input-border);
+    border-radius: 0.625rem;
+    overflow: hidden;
+  }
+
+  :global(.ds-type-btn) {
+    flex: 1;
+    padding: 0.5rem 0.75rem;
+    font-size: 0.8rem;
+    font-weight: 600;
+    background: transparent;
+    color: var(--ds-text-muted);
+    border: none;
+    cursor: pointer;
+    transition: background 0.2s, color 0.2s;
+  }
+
+  :global(.ds-type-btn.active) {
+    background: var(--ds-primary);
+    color: #fff;
+  }
+
+  :global(.ds-label) {
+    font-size: 0.875rem;
+    font-weight: 700;
+    color: var(--ds-text-muted);
+  }
+
+  :global(.ds-textarea) {
+    width: 100%;
+    padding: 0.75rem;
+    border-radius: 0.75rem;
+    border: 1px solid var(--ds-input-border);
+    background: var(--ds-input-bg);
+    color: var(--ds-text);
+    font-size: 0.95rem;
+    resize: vertical;
+    transition: border-color 0.2s;
+  }
+
+  :global(.ds-hint) {
+    font-size: 0.8rem;
+    color: var(--ds-text-muted);
+  }
+
+  :global(.ds-hint-error) {
+    color: #ef4444;
+  }
+
+  :global(.ds-filter-notice) {
+    font-size: 0.75rem;
+    color: #f59e0b;
+    min-height: 1rem;
+  }
+
+  :global(.ds-main) {
+    flex: 1;
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  :global(.ds-section) {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  :global(.ds-section-title) {
+    font-size: 0.7rem;
+    font-weight: 700;
+    color: var(--ds-primary);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+
+  :global(.ds-group) {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.75rem;
+  }
+
+  :global(.ds-stat) {
+    background: var(--ds-surface);
+    border-radius: 0.75rem;
+    padding: 0.75rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+
+  :global(.ds-stat-hero) {
+    background: rgba(16, 185, 129, 0.07);
+    border: 1px solid rgba(16, 185, 129, 0.2);
+  }
+
+  :global(.ds-sl) {
+    font-size: 0.72rem;
+    font-weight: 600;
+    color: var(--ds-text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+
+  :global(.ds-sv) {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--ds-text);
+  }
+
+  :global(.ds-sv-hero) {
+    font-size: 1.6rem;
+    color: var(--ds-primary);
+  }
+
+  :global(.ds-chart-section) {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  :global(.ds-chart-label) {
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: var(--ds-text);
+  }
+
+  :global(.ds-chart-desc) {
+    font-size: 0.8rem;
+    color: var(--ds-text-muted);
+  }
+
+  :global(#ds-chart) {
+    width: 100%;
+    height: 180px;
+    display: block;
+    border-radius: 0.75rem;
+    background: var(--ds-surface);
+  }
+
+  :global(#ds-boxplot) {
+    width: 100%;
+    height: 80px;
+    display: block;
+    border-radius: 0.75rem;
+    background: var(--ds-surface);
+  }
+
+  :global(.ds-insight-box) {
+    background: rgba(16, 185, 129, 0.06);
+    border: 1px solid rgba(16, 185, 129, 0.2);
+    border-radius: 1rem;
+    padding: 1rem 1.25rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  :global(.ds-insight-title) {
+    font-size: 0.72rem;
+    font-weight: 700;
+    color: var(--ds-primary);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+
+  :global(.ds-insight-text) {
+    font-size: 0.875rem;
+    color: var(--ds-text);
+    line-height: 1.6;
+    margin: 0;
+  }
+
+  :global(.ds-copy-block) {
+    background: rgba(16, 185, 129, 0.06);
+    border: 1px solid rgba(16, 185, 129, 0.25);
+    border-radius: 1rem;
+    padding: 1rem 1.25rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  :global(.ds-copy-header) {
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: var(--ds-primary);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+
+  :global(.ds-copy-text) {
+    font-size: 0.85rem;
+    color: var(--ds-text);
+    line-height: 1.6;
+    background: var(--ds-input-bg);
+    border: 1px solid var(--ds-input-border);
+    border-radius: 0.5rem;
+    padding: 0.625rem 0.75rem;
+    min-height: 2.25rem;
+    margin: 0;
+    word-break: break-all;
+  }
+
+  :global(.ds-copy-btn) {
+    align-self: flex-start;
+    padding: 0.5rem 1.25rem;
+    background: var(--ds-primary);
+    color: #fff;
+    border: none;
+    border-radius: 0.5rem;
+    font-weight: 700;
+    font-size: 0.875rem;
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+
+  :global(.ds-copy-btn:hover) {
+    background: var(--ds-primary-hover);
+  }
+
+  @media (min-width: 768px) {
+    :global(.ds-card) {
+      flex-direction: row;
+    }
+
+    :global(.ds-sidebar) {
+      width: 280px;
+      flex-shrink: 0;
+      border-bottom: none;
+      border-right: 1px solid var(--ds-sidebar-border);
+    }
+  }
+
+  @media (max-width: 600px) {
+    :global(.ds-group) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+</style>

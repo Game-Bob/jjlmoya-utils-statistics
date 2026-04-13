@@ -21,4 +21,7 @@ export { ChiSquareComponent, ChiSquareSEO, ChiSquareBibliography, CHI_SQUARE_TOO
 export { ABTestComponent, ABTestSEO, ABTestBibliography, AB_TEST_TOOL } from './tool/abTest/index';
 export { SampleSizeComponent, SampleSizeSEO, SampleSizeBibliography, SAMPLE_SIZE_TOOL } from './tool/sampleSize/index';
 export { PearsonCorrelationComponent, PearsonCorrelationSEO, PearsonCorrelationBibliography, PEARSON_CORRELATION_TOOL } from './tool/pearsonCorrelation/index';
+export { DescriptiveStatsComponent, DescriptiveStatsSEO, DescriptiveStatsBibliography, DESCRIPTIVE_STATS_TOOL } from './tool/descriptiveStats/index';
+export { NormalDistributionComponent, NormalDistributionSEO, NormalDistributionBibliography, NORMAL_DISTRIBUTION_TOOL } from './tool/normalDistribution/index';
+export { ConfidenceIntervalComponent, ConfidenceIntervalSEO, ConfidenceIntervalBibliography, CONFIDENCE_INTERVAL_TOOL } from './tool/confidenceInterval/index';
 

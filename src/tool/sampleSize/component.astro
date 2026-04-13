@@ -106,7 +106,7 @@ const { ui } = Astro.props;
         <Icon name="mdi:chart-line" /> {ui.labelChart}
       </div>
       <p class="ss-chart-desc">{ui.chartDesc}</p>
-      <canvas id="sensitivityCanvas"></canvas>
+      <canvas id="sensitivity-canvas"></canvas>
     </section>
   </main>
 </div>
@@ -140,8 +140,8 @@ const { ui } = Astro.props;
   const justText = document.getElementById('justificationText')!;
   const copyBtn = document.getElementById('copyTextBtn')!;
   const hintEl = document.getElementById('proportionHint')!;
-  const canvas = document.getElementById('sensitivityCanvas') as HTMLCanvasElement;
-  const ctx = canvas.getContext('2d');
+  const canvas = document.getElementById('sensitivity-canvas') as HTMLCanvasElement;
+  const ctx = canvas.getContext('2d')!;
 
   let currentType = 'finite';
 
@@ -161,33 +161,18 @@ const { ui } = Astro.props;
 
   const calculateZ = (confidence: number) => pToZ(1 - (1 - confidence / 100) / 2);
 
-  const calcN = (N: number, Z: number, p: number, e: number, finite: boolean) => {
+  const calcN = (Z: number, p: number, e: number, opts: { N: number; finite: boolean }) => {
     const q = 1 - p;
     const num = Z * Z * p * q;
-    if (finite) {
-      const denom = (e * e * (N - 1)) + (Z * Z * p * q);
-      return Math.ceil((N * num) / denom);
+    if (opts.finite) {
+      const denom = (e * e * (opts.N - 1)) + (Z * Z * p * q);
+      return Math.ceil((opts.N * num) / denom);
     }
     return Math.ceil(num / (e * e));
   };
 
-  const drawChart = (N: number, Z: number, pRatio: number, currentE: number, finite: boolean) => {
-    if (!ctx) return;
-    const dpr = window.devicePixelRatio || 1;
-    const cw = canvas.offsetWidth;
-    const ch = canvas.offsetHeight;
-    canvas.width = Math.round(cw * dpr);
-    canvas.height = Math.round(ch * dpr);
-    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-    ctx.clearRect(0, 0, cw, ch);
-
-    const padL = 50, padR = 20, padT = 20, padB = 40;
-    const plotW = cw - padL - padR;
-    const plotH = ch - padT - padB;
-    const errors = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
-    const points = errors.map((e) => ({ x: e, y: calcN(N, Z, pRatio, e / 100, finite) }));
-    const maxY = Math.max(...points.map((p) => p.y));
-
+  const drawGrid = (dims: { padL: number; padT: number; plotW: number; plotH: number }, errors: number[]) => {
+    const { padL, padT, plotW, plotH } = dims;
     ctx.strokeStyle = '#e2e8f0';
     ctx.lineWidth = 1;
     ctx.beginPath();
@@ -202,7 +187,10 @@ const { ui } = Astro.props;
       ctx.lineTo(padL + plotW, y);
     }
     ctx.stroke();
+  };
 
+  const drawLabels = (dims: { padL: number; padT: number; plotW: number; plotH: number }, maxY: number, errors: number[]) => {
+    const { padL, padT, plotW, plotH } = dims;
     ctx.fillStyle = '#64748b';
     ctx.font = '10px sans-serif';
     ctx.textAlign = 'center';
@@ -214,7 +202,10 @@ const { ui } = Astro.props;
       const y = padT + plotH - (i / 4) * plotH;
       ctx.fillText(Math.round((i / 4) * maxY).toLocaleString(), padL - 8, y + 4);
     }
+  };
 
+  const drawLine = (dims: { padL: number; padT: number; plotW: number; plotH: number; maxY: number }, points: { x: number; y: number }[]) => {
+    const { padL, padT, plotW, plotH, maxY } = dims;
     ctx.strokeStyle = '#0ea5e9';
     ctx.lineWidth = 3;
     ctx.lineJoin = 'round';
@@ -226,7 +217,6 @@ const { ui } = Astro.props;
       else ctx.lineTo(x, y);
     });
     ctx.stroke();
-
     const grad = ctx.createLinearGradient(0, padT, 0, padT + plotH);
     grad.addColorStop(0, 'rgba(14,165,233,0.3)');
     grad.addColorStop(1, 'rgba(14,165,233,0.0)');
@@ -234,30 +224,50 @@ const { ui } = Astro.props;
     ctx.lineTo(padL + plotW, padT + plotH);
     ctx.lineTo(padL, padT + plotH);
     ctx.fill();
-
-    if (currentE >= 1 && currentE <= 10) {
-      const curY = calcN(N, Z, pRatio, currentE / 100, finite);
-      const cx2 = padL + ((currentE - 1) / 9) * plotW;
-      const cy2 = padT + plotH - (curY / maxY) * plotH;
-      ctx.fillStyle = '#f43f5e';
-      ctx.beginPath();
-      ctx.arc(cx2, cy2, 5, 0, Math.PI * 2);
-      ctx.fill();
-      ctx.fillStyle = '#0f172a';
-      ctx.font = 'bold 12px sans-serif';
-      ctx.textAlign = 'center';
-      ctx.fillText(curY.toLocaleString(), cx2, cy2 - 10);
-    }
   };
 
-  const update = () => {
-    const N = parseFloat(popSize.value) || 10000;
-    let conf = confLevelSel.value === 'custom' ? parseFloat(confLevel.value) : parseFloat(confLevelSel.value);
-    if (isNaN(conf)) conf = 95;
-    const eUser = parseFloat(errorMargin.value) || 5;
-    let pUser = parseFloat(proportion.value);
-    if (isNaN(pUser)) pUser = 50;
+  const drawDot = (opts: { N: number; Z: number; pRatio: number; currentE: number; finite: boolean; padL: number; padT: number; plotW: number; plotH: number; maxY: number }) => {
+    const { N, Z, pRatio, currentE, finite, padL, padT, plotW, plotH, maxY } = opts;
+    if (currentE < 1 || currentE > 10) return;
+    const curY = calcN(Z, pRatio, currentE / 100, { N, finite });
+    const cx = padL + ((currentE - 1) / 9) * plotW;
+    const cy = padT + plotH - (curY / maxY) * plotH;
+    ctx.fillStyle = '#f43f5e';
+    ctx.beginPath();
+    ctx.arc(cx, cy, 5, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.fillStyle = '#0f172a';
+    ctx.font = 'bold 12px sans-serif';
+    ctx.textAlign = 'center';
+    ctx.fillText(curY.toLocaleString(), cx, cy - 10);
+  };
 
+  const drawChart = (opts: { N: number; Z: number; pRatio: number; currentE: number; finite: boolean }) => {
+    const { N, Z, pRatio, currentE, finite } = opts;
+    const dpr = window.devicePixelRatio || 1;
+    const cw = canvas.offsetWidth, ch = canvas.offsetHeight;
+    canvas.width = Math.round(cw * dpr);
+    canvas.height = Math.round(ch * dpr);
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    ctx.clearRect(0, 0, cw, ch);
+    const padL = 50, padR = 20, padT = 20, padB = 40;
+    const plotW = cw - padL - padR, plotH = ch - padT - padB;
+    const errors = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+    const points = errors.map((e) => ({ x: e, y: calcN(Z, pRatio, e / 100, { N, finite }) }));
+    const maxY = Math.max(...points.map((p) => p.y));
+    const dims = { padL, padT, plotW, plotH };
+    drawGrid(dims, errors);
+    drawLabels(dims, maxY, errors);
+    drawLine({ ...dims, maxY }, points);
+    drawDot({ N, Z, pRatio, currentE, finite, padL, padT, plotW, plotH, maxY });
+  };
+
+  const getConf = () => {
+    if (confLevelSel.value === 'custom') return parseFloat(confLevel.value) || 95;
+    return parseFloat(confLevelSel.value);
+  };
+
+  const updateHint = (pUser: number) => {
     if (pUser <= 0 || pUser >= 100) {
       hintEl.textContent = UI.hintProportionError;
       hintEl.className = 'ss-hint ss-hint-error';
@@ -265,24 +275,27 @@ const { ui } = Astro.props;
       hintEl.textContent = UI.hintProportion;
       hintEl.className = 'ss-hint';
     }
+  };
 
+  const update = () => {
+    const N = parseFloat(popSize.value) || 10000;
+    const conf = getConf();
+    const eUser = parseFloat(errorMargin.value) || 5;
+    const pUser = parseFloat(proportion.value) || 50;
+    updateHint(pUser);
     const finite = currentType === 'finite';
     const Z = calculateZ(conf);
     const pRatio = pUser / 100;
-    const eRatio = eUser / 100;
-    const resultN = calcN(N, Z, pRatio, eRatio, finite);
-
+    const resultN = calcN(Z, pRatio, eUser / 100, { N, finite });
     resSize.textContent = resultN.toLocaleString();
     resZ.textContent = Z.toFixed(3);
-
     const popText = finite
       ? UI.justForFinite + ' ' + N.toLocaleString() + ' ' + UI.justPersons
       : UI.justForInfinite;
     justText.textContent =
       popText + UI.justConfidence + ' ' + conf + UI.justError + ' ' + eUser +
       UI.justResultIs + ' ' + resultN.toLocaleString() + ' ' + UI.justUnit;
-
-    drawChart(N, Z, pRatio, eUser, finite);
+    drawChart({ N, Z, pRatio, currentE: eUser, finite });
   };
 
   popTypeEl.addEventListener('click', (e) => {
@@ -315,7 +328,7 @@ const { ui } = Astro.props;
 
 <style>
   :global(.ss-card) {
-    --ss-bg: #ffffff;
+    --ss-bg: #fff;
     --ss-border: rgba(14, 165, 233, 0.2);
     --ss-shadow: rgba(14, 165, 233, 0.08);
     --ss-sidebar-bg: rgba(240, 249, 255, 0.4);
@@ -327,7 +340,7 @@ const { ui } = Astro.props;
     --ss-toggle-bg: rgba(226, 232, 240, 0.8);
     --ss-toggle-text: #475569;
     --ss-input-border: rgba(14, 165, 233, 0.3);
-    --ss-input-bg: #ffffff;
+    --ss-input-bg: #fff;
     --ss-text: #0f172a;
     --ss-text-muted: #475569;
     --ss-text-secondary: #334155;
@@ -336,7 +349,7 @@ const { ui } = Astro.props;
     --ss-surface-border: #e2e8f0;
     --ss-principal-bg: linear-gradient(135deg, rgba(14,165,233,0.05), rgba(240,249,255,1));
     --ss-principal-border: rgba(14, 165, 233, 0.2);
-    --ss-canvas-bg: #ffffff;
+    --ss-canvas-bg: #fff;
     --ss-canvas-border: rgba(14, 165, 233, 0.15);
     --ss-copy-header: #0284c7;
     --ss-copy-text: #1e293b;
@@ -412,7 +425,10 @@ const { ui } = Astro.props;
     color: var(--ss-text);
     margin-bottom: 1.5rem;
   }
-  :global(.ss-sidebar-heading [data-icon]) { color: var(--ss-primary); font-size: 1.5em; }
+  :global(.ss-sidebar-heading [data-icon]) {
+    color: var(--ss-primary);
+    font-size: 1.5em;
+  }
 
   :global(.ss-input-group) {
     display: flex;
@@ -427,7 +443,11 @@ const { ui } = Astro.props;
     display: flex;
     justify-content: space-between;
   }
-  :global(.ss-math) { font-style: italic; font-weight: 600; color: var(--ss-text-muted); }
+  :global(.ss-math) {
+    font-style: italic;
+    font-weight: 600;
+    color: var(--ss-text-muted);
+  }
   :global(.ss-input-group input),
   :global(.ss-select) {
     width: 100%;
@@ -445,8 +465,15 @@ const { ui } = Astro.props;
     border-color: var(--ss-primary);
     box-shadow: 0 0 0 2px rgba(14, 165, 233, 0.2);
   }
-  :global(.ss-hint) { font-size: 0.75rem; color: var(--ss-hint); line-height: 1.4; }
-  :global(.ss-hint-error) { color: var(--ss-hint-error); font-weight: 700; }
+  :global(.ss-hint) {
+    font-size: 0.75rem;
+    color: var(--ss-hint);
+    line-height: 1.4;
+  }
+  :global(.ss-hint-error) {
+    color: var(--ss-hint-error);
+    font-weight: 700;
+  }
 
   :global(.ss-toggle) {
     display: flex;
@@ -486,6 +513,7 @@ const { ui } = Astro.props;
     grid-template-columns: 1fr;
     gap: 1rem;
   }
+
   @media (min-width: 640px) {
     :global(.ss-results-grid) { grid-template-columns: 2fr 1fr; }
   }
@@ -531,7 +559,11 @@ const { ui } = Astro.props;
     margin-top: 0.5rem;
   }
   :global(.ss-stat-sec) { text-align: center; }
-  :global(.ss-stat-medium) { font-size: 2rem; font-weight: 800; color: var(--ss-text); }
+  :global(.ss-stat-medium) {
+    font-size: 2rem;
+    font-weight: 800;
+    color: var(--ss-text);
+  }
 
   :global(.ss-copy-block) {
     background: var(--ss-primary-soft);
@@ -589,7 +621,7 @@ const { ui } = Astro.props;
     margin-bottom: 1rem;
     font-weight: 500;
   }
-  :global(#sensitivityCanvas) {
+  :global(#sensitivity-canvas) {
     width: 100%;
     height: 250px;
     display: block;

@@ -80,7 +80,7 @@ const { ui } = Astro.props;
       </button>
       <div class="chi-expected-content" id="expectedContent">
         <p class="chi-expected-desc">{ui.expectedDesc}</p>
-        <div class="chi-table-container" style="background: #ffffff;">
+        <div class="chi-table-container" style="background: #fff;">
           <table class="chi-contingency-table" id="expTable">
             <tbody></tbody>
           </table>
@@ -125,7 +125,7 @@ const { ui } = Astro.props;
       <div class="chi-table-title" style="margin-bottom: 1rem;">
         <Icon name="mdi:chart-bar" /> {ui.labelVisualization}
       </div>
-      <canvas id="barCanvas"></canvas>
+      <canvas id="bar-canvas"></canvas>
       <div class="chi-heatmap-info">{ui.heatmapInfo}</div>
     </section>
 
@@ -183,7 +183,7 @@ const { ui } = Astro.props;
     expectedIcon?.setAttribute('name', isOpen ? 'mdi:chevron-down' : 'mdi:chevron-right');
   });
 
-  const canvas = document.getElementById('barCanvas') as HTMLCanvasElement;
+  const canvas = document.getElementById('bar-canvas') as HTMLCanvasElement;
   const ctx = canvas.getContext('2d');
 
   let rows = 2;
@@ -214,35 +214,28 @@ const { ui } = Astro.props;
 
   const generateTables = () => {
     const val = tableSize.value.split('x');
-    rows = parseInt(val[0]);
-    cols = parseInt(val[1]);
+    rows = parseInt(val[0]!);
+    cols = parseInt(val[1]!);
 
     let hHTML = `<tr class="chi-header-row"><th class="chi-header-col">#</th>`;
     for (let j = 0; j < cols; j++) hHTML += `<th>${UI.col} ${j + 1}</th>`;
     hHTML += `<th class="chi-total-cell">${UI.total}</th></tr>`;
 
-    let bHTML = hHTML;
-    let eHTML = hHTML;
+    let bHTML = hHTML, eHTML = hHTML;
 
     for (let i = 0; i < rows; i++) {
-      bHTML += `<tr><th class="chi-header-col">${UI.row} ${i + 1}</th>`;
-      eHTML += `<tr><th class="chi-header-col">${UI.row} ${i + 1}</th>`;
+      bHTML += `<tr><th class="chi-header-col">${UI.row} ${i + 1}</th>`; eHTML += `<tr><th class="chi-header-col">${UI.row} ${i + 1}</th>`;
       for (let j = 0; j < cols; j++) {
-        bHTML += `<td><input type="number" class="chi-cell-input" data-r="${i}" data-c="${j}" value="10" min="0" step="1"/></td>`;
-        eHTML += `<td id="exp-${i}-${j}">0.0</td>`;
+        bHTML += `<td><input type="number" class="chi-cell-input" data-r="${i}" data-c="${j}" value="10" min="0" step="1"/></td>`; eHTML += `<td id="exp-${i}-${j}">0.0</td>`;
       }
-      bHTML += `<td class="chi-total-cell" id="rTot-${i}">0</td></tr>`;
-      eHTML += `<td class="chi-total-cell" id="eTot-${i}">0</td></tr>`;
+      bHTML += `<td class="chi-total-cell" id="rTot-${i}">0</td></tr>`; eHTML += `<td class="chi-total-cell" id="eTot-${i}">0</td></tr>`;
     }
 
-    bHTML += `<tr><th class="chi-total-cell">${UI.total}</th>`;
-    eHTML += `<tr><th class="chi-total-cell">${UI.total}</th>`;
+    bHTML += `<tr><th class="chi-total-cell">${UI.total}</th>`; eHTML += `<tr><th class="chi-total-cell">${UI.total}</th>`;
     for (let j = 0; j < cols; j++) {
-      bHTML += `<td class="chi-total-cell" id="cTot-${j}">0</td>`;
-      eHTML += `<td class="chi-total-cell" id="ecTot-${j}">0</td>`;
+      bHTML += `<td class="chi-total-cell" id="cTot-${j}">0</td>`; eHTML += `<td class="chi-total-cell" id="ecTot-${j}">0</td>`;
     }
-    bHTML += `<td class="chi-total-cell chi-grand-total" id="gTot">0</td></tr>`;
-    eHTML += `<td class="chi-total-cell chi-grand-total" id="egTot">0</td></tr>`;
+    bHTML += `<td class="chi-total-cell chi-grand-total" id="gTot">0</td></tr>`; eHTML += `<td class="chi-total-cell chi-grand-total" id="egTot">0</td></tr>`;
 
     obsTable.innerHTML = bHTML;
     expTable.innerHTML = eHTML;
@@ -254,190 +247,153 @@ const { ui } = Astro.props;
     calculate();
   };
 
+  const getMaxVal = (obs: number[][], exp: number[][]) => {
+    let maxVal = 0;
+    for (let i = 0; i < rows; i++)
+      for (let j = 0; j < cols; j++) {
+        if (obs[i]![j]! > maxVal) maxVal = obs[i]![j]!;
+        if (exp[i]![j]! > maxVal) maxVal = exp[i]![j]!;
+      }
+    return maxVal * 1.1 || 10;
+  };
+
+  const drawChiGrid = (dims: { padL: number; padT: number; pw: number; ph: number }, maxVal: number) => {
+    const { padL, padT, pw, ph } = dims;
+    ctx!.strokeStyle = '#e2e8f0'; ctx!.lineWidth = 1; ctx!.beginPath();
+    for (let i = 0; i <= 4; i++) {
+      const y = padT + (i / 4) * ph;
+      ctx!.moveTo(padL, y); ctx!.lineTo(padL + pw, y);
+      ctx!.fillStyle = '#94a3b8'; ctx!.font = '10px sans-serif'; ctx!.textAlign = 'right';
+      ctx!.fillText(Math.round(maxVal - (i / 4) * maxVal).toString(), padL - 8, y + 4);
+    }
+    ctx!.stroke();
+  };
+
+  const drawChiBarGroup = (j: number, obs: number[][], exp: number[][], opts: { padL: number; padT: number; ph: number; groupW: number; bw: number; ch: number; maxVal: number; colors: string[] }) => {
+    const { padL, padT, ph, groupW, bw, ch, maxVal, colors } = opts;
+    const gx = padL + j * groupW + groupW * 0.15;
+    ctx!.fillStyle = '#64748b'; ctx!.font = 'bold 11px sans-serif'; ctx!.textAlign = 'center';
+    ctx!.fillText(`${UI.col} ${j + 1}`, padL + j * groupW + groupW / 2, ch - 20);
+    for (let i = 0; i < rows; i++) {
+      const oH = (obs[i]![j]! / maxVal) * ph, eH = (exp[i]![j]! / maxVal) * ph;
+      ctx!.fillStyle = colors[i % colors.length]!;
+      ctx!.beginPath();
+      ctx!.roundRect(gx + i * 2 * bw, padT + ph - oH, bw * 0.9, oH, [3, 3, 0, 0]);
+      ctx!.fill();
+      ctx!.fillStyle = '#cbd5e1'; ctx!.beginPath();
+      ctx!.roundRect(gx + (i * 2 + 1) * bw, padT + ph - eH, bw * 0.9, eH, [3, 3, 0, 0]);
+      ctx!.fill();
+    }
+  };
+
+  const drawChiLegend = (padL: number, ch: number, colors: string[]) => {
+    ctx!.fillStyle = colors[0]!; ctx!.fillRect(padL, ch - 10, 8, 8);
+    ctx!.fillStyle = '#64748b'; ctx!.textAlign = 'left'; ctx!.fillText(UI.chartObs, padL + 12, ch - 2);
+    ctx!.fillStyle = '#cbd5e1'; ctx!.fillRect(padL + 100, ch - 10, 8, 8);
+    ctx!.fillStyle = '#64748b'; ctx!.fillText(UI.chartExp, padL + 112, ch - 2);
+  };
+
   const drawChart = (obs: number[][], exp: number[][]) => {
     if (!ctx || !canvas) return;
     const dpr = window.devicePixelRatio || 1;
-    const cw = canvas.offsetWidth;
-    const ch = canvas.offsetHeight;
-    canvas.width = Math.round(cw * dpr);
-    canvas.height = Math.round(ch * dpr);
-    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-    ctx.clearRect(0, 0, cw, ch);
-
-    let maxVal = 0;
-    for (let i = 0; i < rows; i++) {
-      for (let j = 0; j < cols; j++) {
-        if (obs[i][j] > maxVal) maxVal = obs[i][j];
-        if (exp[i][j] > maxVal) maxVal = exp[i][j];
-      }
-    }
-    maxVal = maxVal * 1.1 || 10;
-
-    const padL = 30,
-      padR = 20,
-      padT = 20,
-      padB = 40;
-    const pw = cw - padL - padR;
-    const ph = ch - padT - padB;
-
-    ctx.strokeStyle = '#e2e8f0';
-    ctx.lineWidth = 1;
-    ctx.beginPath();
-    for (let i = 0; i <= 4; i++) {
-      const y = padT + (i / 4) * ph;
-      ctx.moveTo(padL, y);
-      ctx.lineTo(padL + pw, y);
-      ctx.fillStyle = '#94a3b8';
-      ctx.font = '10px sans-serif';
-      ctx.textAlign = 'right';
-      ctx.fillText(Math.round(maxVal - (i / 4) * maxVal).toString(), padL - 8, y + 4);
-    }
-    ctx.stroke();
-
-    const groupW = pw / cols;
-    const barPad = groupW * 0.15;
-    const innerW = groupW - barPad * 2;
-    const numBars = rows * 2;
-    const bw = innerW / numBars;
-
+    const cw = canvas.offsetWidth, ch = canvas.offsetHeight;
+    canvas.width = Math.round(cw * dpr); canvas.height = Math.round(ch * dpr);
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0); ctx.clearRect(0, 0, cw, ch);
+    const maxVal = getMaxVal(obs, exp);
+    const padL = 30, padT = 20, padB = 40;
+    const pw = cw - padL - 20, ph = ch - padT - padB;
+    drawChiGrid({ padL, padT, pw, ph }, maxVal);
+    const groupW = pw / cols, bw = (groupW * 0.7) / (rows * 2);
     const colors = ['#f59e0b', '#3b82f6', '#10b981'];
-
-    for (let j = 0; j < cols; j++) {
-      const gx = padL + j * groupW + barPad;
-
-      ctx.fillStyle = '#64748b';
-      ctx.font = 'bold 11px sans-serif';
-      ctx.textAlign = 'center';
-      ctx.fillText(`${UI.col} ${j + 1}`, padL + j * groupW + groupW / 2, ch - 20);
-
-      for (let i = 0; i < rows; i++) {
-        const oH = (obs[i][j] / maxVal) * ph;
-        const eH = (exp[i][j] / maxVal) * ph;
-        const oX = gx + i * 2 * bw;
-        const eX = gx + (i * 2 + 1) * bw;
-
-        ctx.fillStyle = colors[i % colors.length];
-        ctx.beginPath();
-        ctx.roundRect(oX, padT + ph - oH, bw * 0.9, oH, [3, 3, 0, 0]);
-        ctx.fill();
-
-        ctx.fillStyle = '#cbd5e1';
-        ctx.beginPath();
-        ctx.roundRect(eX, padT + ph - eH, bw * 0.9, eH, [3, 3, 0, 0]);
-        ctx.fill();
-      }
-    }
-
-    ctx.fillStyle = colors[0];
-    ctx.fillRect(padL, ch - 10, 8, 8);
-    ctx.fillStyle = '#64748b';
-    ctx.textAlign = 'left';
-    ctx.fillText(UI.chartObs, padL + 12, ch - 2);
-
-    ctx.fillStyle = '#cbd5e1';
-    ctx.fillRect(padL + 100, ch - 10, 8, 8);
-    ctx.fillStyle = '#64748b';
-    ctx.fillText(UI.chartExp, padL + 112, ch - 2);
+    for (let j = 0; j < cols; j++) drawChiBarGroup(j, obs, exp, { padL, padT, ph, groupW, bw, ch, maxVal, colors });
+    drawChiLegend(padL, ch, colors);
   };
 
-  const calculate = () => {
-    obsData = [];
-    const rTot = new Array(rows).fill(0);
-    const cTot = new Array(cols).fill(0);
-    let total = 0;
+  const applyHeatmap = (inp: HTMLInputElement, e: number, obsVal: number) => {
+    if (e <= 0) { inp.style.backgroundColor = 'transparent'; return; }
+    const stdRes = (obsVal - e) / Math.sqrt(e);
+    if (Math.abs(stdRes) > 2) {
+      inp.style.backgroundColor = stdRes > 0 ? 'rgba(16, 185, 129, 0.15)' : 'rgba(239, 68, 68, 0.15)';
+    } else if (Math.abs(stdRes) > 1) {
+      inp.style.backgroundColor = stdRes > 0 ? 'rgba(16, 185, 129, 0.05)' : 'rgba(239, 68, 68, 0.05)';
+    } else {
+      inp.style.backgroundColor = 'transparent';
+    }
+  };
 
+  const getCramerText = (cramer: number) => {
+    if (cramer > 0.5) return UI.cramerStrong;
+    if (cramer > 0.3) return UI.cramerModerate;
+    if (cramer > 0.1) return UI.cramerWeak;
+    return UI.cramerNull;
+  };
+
+  const computeTotals = () => {
+    obsData = [];
+    const rTot = new Array<number>(rows).fill(0);
+    const cTot = new Array<number>(cols).fill(0);
+    let total = 0;
     for (let i = 0; i < rows; i++) {
       obsData.push([]);
       for (let j = 0; j < cols; j++) {
-        const inp = document.querySelector(
-          `input[data-r="${i}"][data-c="${j}"]`,
-        ) as HTMLInputElement;
+        const inp = document.querySelector(`input[data-r="${i}"][data-c="${j}"]`) as HTMLInputElement;
         const v = Math.max(0, parseInt(inp.value) || 0);
-        obsData[i].push(v);
-        rTot[i] += v;
-        cTot[j] += v;
-        total += v;
+        obsData[i]!.push(v);
+        rTot[i]! += v; cTot[j]! += v; total += v;
       }
-      document.getElementById(`rTot-${i}`)!.textContent = rTot[i].toString();
-      document.getElementById(`eTot-${i}`)!.textContent = rTot[i].toString();
+      document.getElementById(`rTot-${i}`)!.textContent = document.getElementById(`eTot-${i}`)!.textContent = rTot[i]!.toString();
     }
-
     for (let j = 0; j < cols; j++) {
-      document.getElementById(`cTot-${j}`)!.textContent = cTot[j].toString();
-      document.getElementById(`ecTot-${j}`)!.textContent = cTot[j].toString();
+      document.getElementById(`cTot-${j}`)!.textContent = document.getElementById(`ecTot-${j}`)!.textContent = cTot[j]!.toString();
     }
-    document.getElementById('gTot')!.textContent = total.toString();
-    document.getElementById('egTot')!.textContent = total.toString();
+    document.getElementById('gTot')!.textContent = document.getElementById('egTot')!.textContent = total.toString();
+    return { rTot, cTot, total };
+  };
 
+  const computeExpected = (rTot: number[], cTot: number[], total: number) => {
     let chi2 = 0;
     const expData: number[][] = [];
     let lowExpCount = 0;
-
     for (let i = 0; i < rows; i++) {
       expData.push([]);
       for (let j = 0; j < cols; j++) {
-        const e = total > 0 ? (rTot[i] * cTot[j]) / total : 0;
-        expData[i].push(e);
+        const e = total > 0 ? (rTot[i]! * cTot[j]!) / total : 0;
+        expData[i]!.push(e);
         document.getElementById(`exp-${i}-${j}`)!.textContent = e.toFixed(1);
-
-        if (e > 0) chi2 += Math.pow(obsData[i][j] - e, 2) / e;
+        if (e > 0) chi2 += Math.pow(obsData[i]![j]! - e, 2) / e;
         if (e < 5 && e > 0) lowExpCount++;
-
-        const inp = document.querySelector(
-          `input[data-r="${i}"][data-c="${j}"]`,
-        ) as HTMLInputElement;
-        if (e > 0) {
-          const stdRes = (obsData[i][j] - e) / Math.sqrt(e);
-          if (Math.abs(stdRes) > 2) {
-            inp.style.backgroundColor =
-              stdRes > 0 ? 'rgba(16, 185, 129, 0.15)' : 'rgba(239, 68, 68, 0.15)';
-          } else if (Math.abs(stdRes) > 1) {
-            inp.style.backgroundColor =
-              stdRes > 0 ? 'rgba(16, 185, 129, 0.05)' : 'rgba(239, 68, 68, 0.05)';
-          } else {
-            inp.style.backgroundColor = 'transparent';
-          }
-        } else {
-          inp.style.backgroundColor = 'transparent';
-        }
+        const inp = document.querySelector(`input[data-r="${i}"][data-c="${j}"]`) as HTMLInputElement;
+        applyHeatmap(inp, e, obsData[i]![j]!);
       }
     }
-
     alertBox.style.display = lowExpCount > 0 ? 'block' : 'none';
+    return { chi2, expData };
+  };
 
+  const updateCalcDisplay = (opts: { chi2: number; df: number; pValue: number; alpha: number; cramer: number; cramerTxt: string; total: number }) => {
+    const { chi2, df, pValue, alpha, cramer, cramerTxt, total } = opts;
+    const isSignificant = pValue < alpha;
+    document.getElementById('res-chi')!.textContent = chi2.toFixed(3);
+    document.getElementById('res-df')!.textContent = df.toString();
+    document.getElementById('res-cramer')!.innerHTML = `${cramer.toFixed(2)} <span class="chi-cramer-text">(${cramerTxt})</span>`;
+    const pvalBlock = document.getElementById('pvalueBlock')!;
+    pvalBlock.className = 'chi-stat-block ' + (isSignificant ? 'significant' : 'not-significant');
+    document.getElementById('res-pvalue')!.textContent = pValue < 0.001 ? '<0.001' : pValue.toFixed(4);
+    document.getElementById('res-desc')!.textContent = isSignificant ? UI.sigText : UI.noSigText;
+    const conclusion = isSignificant ? `${UI.justSig} ${cramer.toFixed(2)})` : UI.justNoSig;
+    document.getElementById('justificationText')!.textContent =
+      `${UI.justIntro} ${total} ${UI.justTableOf} ${rows}x${cols}${UI.justObtained} χ²(${df}) = ${chi2.toFixed(2)}, p = ${pValue.toFixed(4)}${UI.justPAt}${alpha}${UI.justConcluded} ${conclusion}.`;
+  };
+
+  const calculate = () => {
+    const { rTot, cTot, total } = computeTotals();
+    const { chi2, expData } = computeExpected(rTot, cTot, total);
     const df = (rows - 1) * (cols - 1);
     const pValue = chiSquareProb(chi2, df);
     const alpha = parseFloat(alphaInput.value) || 0.05;
-    const isSignificant = pValue < alpha;
-
     const maxDim = Math.min(rows, cols);
     const cramer = total > 0 && maxDim > 1 ? Math.sqrt(chi2 / (total * (maxDim - 1))) : 0;
-
-    let cramerTxt = UI.cramerNull;
-    if (cramer > 0.5) cramerTxt = UI.cramerStrong;
-    else if (cramer > 0.3) cramerTxt = UI.cramerModerate;
-    else if (cramer > 0.1) cramerTxt = UI.cramerWeak;
-
-    document.getElementById('res-chi')!.textContent = chi2.toFixed(3);
-    document.getElementById('res-df')!.textContent = df.toString();
-    document.getElementById(
-      'res-cramer',
-    )!.innerHTML = `${cramer.toFixed(2)} <span class="chi-cramer-text">(${cramerTxt})</span>`;
-
-    const pvalBlock = document.getElementById('pvalueBlock')!;
-    pvalBlock.className = 'chi-stat-block ' + (isSignificant ? 'significant' : 'not-significant');
-    document.getElementById('res-pvalue')!.textContent =
-      pValue < 0.001 ? '<0.001' : pValue.toFixed(4);
-
-    const desc = isSignificant ? UI.sigText : UI.noSigText;
-    document.getElementById('res-desc')!.textContent = desc;
-
-    const conclusion = isSignificant
-      ? `${UI.justSig} ${cramer.toFixed(2)})`
-      : UI.justNoSig;
-    const justText = `${UI.justIntro} ${total} ${UI.justTableOf} ${rows}x${cols}${UI.justObtained} χ²(${df}) = ${chi2.toFixed(2)}, p = ${pValue.toFixed(4)}${UI.justPAt}${alpha}${UI.justConcluded} ${conclusion}.`;
-    document.getElementById('justificationText')!.textContent = justText;
-
+    updateCalcDisplay({ chi2, df, pValue, alpha, cramer, cramerTxt: getCramerText(cramer), total });
     drawChart(obsData, expData);
   };
 
@@ -466,7 +422,7 @@ const { ui } = Astro.props;
     --chi-primary-border: rgba(245, 158, 11, 0.2);
     --chi-primary-border-light: rgba(245, 158, 11, 0.15);
     --chi-sidebar-bg: rgba(254, 252, 232, 0.6);
-    --chi-card-bg: #ffffff;
+    --chi-card-bg: #fff;
     --chi-surface-bg: #f8fafc;
     --chi-surface-bg-2: #f1f5f9;
     --chi-border: #e2e8f0;
@@ -481,6 +437,7 @@ const { ui } = Astro.props;
     --chi-alert-border: #fde68a;
     --chi-alert-title: #d97706;
     --chi-alert-text: #92400e;
+
     display: flex;
     flex-direction: column;
     background: var(--chi-card-bg);
@@ -682,11 +639,11 @@ const { ui } = Astro.props;
     font-weight: 700;
   }
 
-  :global(.chi-header-col) {
-    background: var(--chi-surface-bg-2) !important;
+  :global(.chi-contingency-table .chi-header-col) {
+    background: var(--chi-surface-bg-2);
     font-size: 0.85rem;
-    color: var(--chi-text) !important;
-    font-weight: 700 !important;
+    color: var(--chi-text);
+    font-weight: 700;
     width: 50px;
   }
 
@@ -711,14 +668,14 @@ const { ui } = Astro.props;
     box-shadow: 0 0 0 2px rgba(245, 158, 11, 0.15);
   }
 
-  :global(.chi-total-cell) {
-    background: var(--chi-border-cell) !important;
+  :global(.chi-contingency-table .chi-total-cell) {
+    background: var(--chi-border-cell);
     font-weight: 700;
     color: var(--chi-text-label);
   }
 
-  :global(.chi-grand-total) {
-    background: var(--chi-border) !important;
+  :global(.chi-contingency-table .chi-grand-total) {
+    background: var(--chi-border);
   }
 
   :global(.chi-expected-area) {
@@ -916,7 +873,7 @@ const { ui } = Astro.props;
     padding: 1.5rem;
   }
 
-  :global(#barCanvas) {
+  :global(#bar-canvas) {
     width: 100%;
     height: 250px;
     display: block;

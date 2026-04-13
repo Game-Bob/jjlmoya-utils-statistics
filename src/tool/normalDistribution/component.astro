@@ -1,0 +1,587 @@
+---
+import { Icon } from 'astro-icon/components';
+import type { NormalDistributionUI } from './ui';
+
+interface Props {
+  ui: NormalDistributionUI;
+}
+
+const { ui } = Astro.props;
+---
+
+<div
+  class="nd-card"
+  id="nd-app"
+  data-btn-copied={ui.btnCopied}
+  data-hint-std={ui.hintStdDev}
+  data-hint-pct={ui.hintPercentile}
+  data-label-prob={ui.resultProbability}
+  data-label-x={ui.resultX}
+  data-label-z={ui.resultZScore}
+  data-label-za={ui.resultZScoreA}
+  data-label-zb={ui.resultZScoreB}
+>
+  <aside class="nd-sidebar">
+    <div class="nd-heading">
+      <Icon name="mdi:chart-bell-curve" />{ui.labelTitle}
+    </div>
+
+    <div class="nd-input-group">
+      <label class="nd-label" for="nd-mean">{ui.labelMean} (μ)</label>
+      <input type="number" id="nd-mean" class="nd-input" value="0" step="any" />
+    </div>
+
+    <div class="nd-input-group">
+      <label class="nd-label" for="nd-std">{ui.labelStdDev} (σ)</label>
+      <input type="number" id="nd-std" class="nd-input" value="1" step="any" />
+      <p class="nd-hint-error nd-hidden" id="nd-std-error">{ui.hintStdDev}</p>
+    </div>
+
+    <div class="nd-mode-toggle">
+      <button class="nd-mode-btn active" id="nd-btn-left" type="button">{ui.btnLeft}</button>
+      <button class="nd-mode-btn" id="nd-btn-right" type="button">{ui.btnRight}</button>
+      <button class="nd-mode-btn" id="nd-btn-between" type="button">{ui.btnBetween}</button>
+      <button class="nd-mode-btn" id="nd-btn-inverse" type="button">{ui.btnInverse}</button>
+    </div>
+
+    <div class="nd-input-group" id="nd-group-a">
+      <label class="nd-label" id="nd-label-a" for="nd-val-a">{ui.labelValue}</label>
+      <input type="number" id="nd-val-a" class="nd-input" value="1" step="any" />
+    </div>
+
+    <div class="nd-input-group nd-hidden" id="nd-group-b">
+      <label class="nd-label" for="nd-val-b">{ui.labelValueB}</label>
+      <input type="number" id="nd-val-b" class="nd-input" value="2" step="any" />
+    </div>
+
+    <div class="nd-input-group nd-hidden" id="nd-group-p">
+      <label class="nd-label" for="nd-pct">{ui.labelPercentile}</label>
+      <input type="number" id="nd-pct" class="nd-input" value="0.95" min="0.0001" max="0.9999" step="0.0001" />
+      <p class="nd-hint-error nd-hidden" id="nd-pct-error">{ui.hintPercentile}</p>
+    </div>
+  </aside>
+
+  <main class="nd-main">
+    <div class="nd-result-hero">
+      <div class="nd-result-label" id="nd-result-label">{ui.resultProbability}</div>
+      <div class="nd-result-value" id="nd-result">–</div>
+    </div>
+
+    <div class="nd-z-row">
+      <div class="nd-z-item">
+        <span class="nd-z-label" id="nd-z-label">{ui.resultZScore}</span>
+        <span class="nd-z-value" id="nd-z">–</span>
+      </div>
+      <div class="nd-z-item nd-hidden" id="nd-z-b-item">
+        <span class="nd-z-label" id="nd-zb-label">{ui.resultZScoreB}</span>
+        <span class="nd-z-value" id="nd-zb">–</span>
+      </div>
+    </div>
+
+    <div class="nd-chart-section">
+      <div class="nd-chart-label">{ui.labelChart}</div>
+      <p class="nd-chart-desc">{ui.chartDesc}</p>
+      <canvas id="nd-chart"></canvas>
+    </div>
+
+    <div class="nd-copy-block">
+      <div class="nd-copy-header">{ui.labelReport}</div>
+      <p class="nd-copy-text" id="nd-report"></p>
+      <button class="nd-copy-btn" id="nd-copy">{ui.btnCopy}</button>
+    </div>
+  </main>
+</div>
+
+<script>
+  const app = document.getElementById('nd-app')!;
+  const d = app.dataset;
+  const UI = {
+    btnCopied: d.btnCopied ?? '', hintStd: d.hintStd ?? '', hintPct: d.hintPct ?? '',
+    labelProb: d.labelProb ?? '', labelX: d.labelX ?? '',
+    labelZ: d.labelZ ?? '', labelZa: d.labelZa ?? '', labelZb: d.labelZb ?? '',
+  };
+
+  const meanEl = document.getElementById('nd-mean') as HTMLInputElement;
+  const stdEl = document.getElementById('nd-std') as HTMLInputElement;
+  const valAEl = document.getElementById('nd-val-a') as HTMLInputElement;
+  const valBEl = document.getElementById('nd-val-b') as HTMLInputElement;
+  const pctEl = document.getElementById('nd-pct') as HTMLInputElement;
+  const stdError = document.getElementById('nd-std-error')!;
+  const pctError = document.getElementById('nd-pct-error')!;
+  const resultLabel = document.getElementById('nd-result-label')!;
+  const resultEl = document.getElementById('nd-result')!;
+  const zLabel = document.getElementById('nd-z-label')!;
+  const zEl = document.getElementById('nd-z')!;
+  const zbItem = document.getElementById('nd-z-b-item')!;
+  const zbLabel = document.getElementById('nd-zb-label')!;
+  const zbEl = document.getElementById('nd-zb')!;
+  const canvas = document.getElementById('nd-chart') as HTMLCanvasElement;
+  const report = document.getElementById('nd-report')!;
+  const copyBtn = document.getElementById('nd-copy')!;
+  const labelA = document.getElementById('nd-label-a')!;
+  const groupA = document.getElementById('nd-group-a')!;
+  const groupB = document.getElementById('nd-group-b')!;
+  const groupP = document.getElementById('nd-group-p')!;
+
+  type Mode = 'left' | 'right' | 'between' | 'inverse';
+  let mode: Mode = 'left';
+
+  const modeButtons: Record<Mode, HTMLElement> = {
+    left: document.getElementById('nd-btn-left')!,
+    right: document.getElementById('nd-btn-right')!,
+    between: document.getElementById('nd-btn-between')!,
+    inverse: document.getElementById('nd-btn-inverse')!,
+  };
+
+  function setMode(m: Mode): void {
+    mode = m;
+    Object.entries(modeButtons).forEach(([k, btn]) => btn.classList.toggle('active', k === m));
+    groupA.classList.toggle('nd-hidden', m === 'inverse');
+    groupB.classList.toggle('nd-hidden', m !== 'between');
+    groupP.classList.toggle('nd-hidden', m !== 'inverse');
+    zbItem.classList.toggle('nd-hidden', m !== 'between');
+    labelA.textContent = m === 'between' ? (app.dataset.labelZa ?? '') : (app.dataset.labelZ ?? '');
+    zLabel.textContent = m === 'between' ? (app.dataset.labelZa ?? '') : (app.dataset.labelZ ?? '');
+    zbLabel.textContent = app.dataset.labelZb ?? '';
+    update();
+  }
+
+  Object.entries(modeButtons).forEach(([k, btn]) => {
+    btn.addEventListener('click', () => setMode(k as Mode));
+  });
+
+  function erf(x: number): number {
+    const sign = x < 0 ? -1 : 1;
+    const t = 1 / (1 + 0.3275911 * Math.abs(x));
+    const poly = ((((1.061405429 * t - 1.453152027) * t + 1.421413741) * t - 0.284496736) * t + 0.254829592) * t;
+    return sign * (1 - poly * Math.exp(-(x * x)));
+  }
+
+  const phi = (z: number) => 0.5 * (1 + erf(z / Math.SQRT2));
+
+  function phiInv(p: number): number {
+    if (p <= 0 || p >= 1) return NaN;
+    const a = [-3.969683028665376e1, 2.209460984245205e2, -2.759285104469687e2, 1.383577518672690e2, -3.066479806614716e1, 2.506628277459239];
+    const b = [-5.447609879822406e1, 1.615858368580409e2, -1.556989798598866e2, 6.680131188771972e1, -1.328068155288572e1];
+    const c = [-7.784894002430293e-3, -3.223964580411365e-1, -2.400758277161838, -2.549732539343734, 4.374664141464968, 2.938163982698783];
+    const dd = [7.784695709041462e-3, 3.224671290700398e-1, 2.445134137142996, 3.754408661907416];
+    const pLow = 0.02425;
+    const pHigh = 1 - pLow;
+    let q: number;
+    if (p < pLow) {
+      q = Math.sqrt(-2 * Math.log(p));
+      return (((((c[0] * q + c[1]) * q + c[2]) * q + c[3]) * q + c[4]) * q + c[5]) / ((((dd[0] * q + dd[1]) * q + dd[2]) * q + dd[3]) * q + 1);
+    }
+    if (p <= pHigh) {
+      q = p - 0.5;
+      const r = q * q;
+      return (((((a[0] * r + a[1]) * r + a[2]) * r + a[3]) * r + a[4]) * r + a[5]) * q / (((((b[0] * r + b[1]) * r + b[2]) * r + b[3]) * r + b[4]) * r + 1);
+    }
+    q = Math.sqrt(-2 * Math.log(1 - p));
+    return -(((((c[0] * q + c[1]) * q + c[2]) * q + c[3]) * q + c[4]) * q + c[5]) / ((((dd[0] * q + dd[1]) * q + dd[2]) * q + dd[3]) * q + 1);
+  }
+
+  const fmt4 = (n: number) => n.toFixed(4);
+  const fmt6 = (n: number) => n.toFixed(6);
+  const fmtZ = (z: number) => (z >= 0 ? '+' : '') + z.toFixed(4);
+
+  interface ChartShade { a: number; b: number; prob: number; }
+
+  function drawChart(mean: number, std: number, shade: ChartShade): void {
+    const { a, b, prob } = shade;
+    const c = canvas.getContext('2d')!;
+    const W = canvas.clientWidth || 500;
+    const H = 180;
+    canvas.width = W; canvas.height = H;
+    c.clearRect(0, 0, W, H);
+
+    const pad = { l: 24, r: 24, t: 16, b: 28 };
+    const xMin = mean - 4 * std; const xMax = mean + 4 * std;
+    const peak = 1 / (std * Math.sqrt(2 * Math.PI));
+    const yMax = peak * 1.1;
+    const toX = (v: number) => pad.l + ((v - xMin) / (xMax - xMin)) * (W - pad.l - pad.r);
+    const toY = (v: number) => pad.t + (1 - v / yMax) * (H - pad.t - pad.b);
+    const pdf = (x: number) => Math.exp(-0.5 * ((x - mean) / std) ** 2) / (std * Math.sqrt(2 * Math.PI));
+
+    const steps = 200;
+    const dx = (xMax - xMin) / steps;
+
+    c.fillStyle = 'rgba(99,102,241,0.18)';
+    c.beginPath();
+    c.moveTo(toX(a), toY(0));
+    for (let i = 0; i <= steps; i++) {
+      const x = xMin + i * dx;
+      if (x >= a && x <= b) c.lineTo(toX(x), toY(pdf(x)));
+    }
+    c.lineTo(toX(b), toY(0));
+    c.closePath();
+    c.fill();
+
+    c.strokeStyle = '#6366f1';
+    c.lineWidth = 2.5;
+    c.beginPath();
+    for (let i = 0; i <= steps; i++) {
+      const x = xMin + i * dx;
+      if (i === 0) c.moveTo(toX(x), toY(pdf(x))); else c.lineTo(toX(x), toY(pdf(x)));
+    }
+    c.stroke();
+
+    c.strokeStyle = 'rgba(99,102,241,0.35)';
+    c.lineWidth = 1;
+    c.setLineDash([4, 4]);
+    c.beginPath();
+    c.moveTo(toX(mean), toY(0));
+    c.lineTo(toX(mean), toY(peak));
+    c.stroke();
+    c.setLineDash([]);
+
+    c.fillStyle = '#6b7280';
+    c.font = '11px system-ui, sans-serif';
+    c.textAlign = 'center';
+    [-2, -1, 0, 1, 2].forEach(k => {
+      const xv = mean + k * std;
+      c.fillText(k === 0 ? 'μ' : `${k > 0 ? '+' : ''}${k}σ`, toX(xv), H - 6);
+    });
+
+    c.fillStyle = '#6366f1';
+    c.font = 'bold 13px system-ui, sans-serif';
+    c.textAlign = 'left';
+    c.fillText((prob * 100).toFixed(2) + '%', pad.l + 4, pad.t + 16);
+  }
+
+  function update(): void {
+    const mean = parseFloat(meanEl.value);
+    const std = parseFloat(stdEl.value);
+    const validStd = !isNaN(std) && std > 0;
+    stdError.classList.toggle('nd-hidden', validStd);
+    if (isNaN(mean) || !validStd) return;
+
+    if (mode === 'inverse') {
+      const p = parseFloat(pctEl.value);
+      const validP = !isNaN(p) && p > 0 && p < 1;
+      pctError.classList.toggle('nd-hidden', validP);
+      if (!validP) return;
+      const z = phiInv(p);
+      const x = mean + z * std;
+      resultLabel.textContent = UI.labelX;
+      resultEl.textContent = fmt4(x);
+      zLabel.textContent = UI.labelZ;
+      zEl.textContent = fmtZ(z);
+      report.textContent = `\u03bc=${fmt4(mean)}, \u03c3=${fmt4(std)}, p=${fmt6(p)}, X=${fmt4(x)}, z=${fmtZ(z)}`;
+      drawChart(mean, std, { a: xMin(mean, std), b: x, prob: p });
+      return;
+    }
+
+    const a = parseFloat(valAEl.value);
+    let b: number;
+    if (mode === 'between') { b = parseFloat(valBEl.value); }
+    else if (mode === 'left') { b = mean - 4 * std; }
+    else { b = mean + 4 * std; }
+    if (isNaN(a)) return;
+
+    const zA = (a - mean) / std;
+    let prob: number;
+    let shadeA: number;
+    let shadeB: number;
+
+    if (mode === 'left') {
+      prob = phi(zA);
+      shadeA = mean - 4 * std; shadeB = a;
+    } else if (mode === 'right') {
+      prob = 1 - phi(zA);
+      shadeA = a; shadeB = mean + 4 * std;
+    } else {
+      if (isNaN(b)) return;
+      const zB = (b - mean) / std;
+      prob = phi(zB) - phi(zA);
+      shadeA = a; shadeB = b;
+      zbEl.textContent = fmtZ(zB);
+      report.textContent = `\u03bc=${fmt4(mean)}, \u03c3=${fmt4(std)}, P(${fmt4(a)} \u2264 X \u2264 ${fmt4(b)}) = ${fmt6(prob)}, z\u2081=${fmtZ(zA)}, z\u2082=${fmtZ(zB)}`;
+      resultLabel.textContent = UI.labelProb;
+      resultEl.textContent = fmt6(prob);
+      zEl.textContent = fmtZ(zA);
+      drawChart(mean, std, { a: shadeA, b: shadeB, prob });
+      return;
+    }
+
+    resultLabel.textContent = UI.labelProb;
+    resultEl.textContent = fmt6(prob);
+    zEl.textContent = fmtZ(zA);
+    const modeStr = mode === 'left' ? `X \u2264 ${fmt4(a)}` : `X \u2265 ${fmt4(a)}`;
+    report.textContent = `\u03bc=${fmt4(mean)}, \u03c3=${fmt4(std)}, P(${modeStr}) = ${fmt6(prob)}, z=${fmtZ(zA)}`;
+    drawChart(mean, std, shadeA, shadeB, prob);
+  }
+
+  function xMin(mean: number, std: number) { return mean - 4 * std; }
+
+  [meanEl, stdEl, valAEl, valBEl, pctEl].forEach(el => el.addEventListener('input', update));
+  window.addEventListener('resize', update);
+
+  copyBtn.addEventListener('click', () => {
+    navigator.clipboard.writeText(report.textContent || '');
+    const orig = copyBtn.innerHTML; copyBtn.textContent = UI.btnCopied;
+    setTimeout(() => { copyBtn.innerHTML = orig; }, 1500);
+  });
+
+  setMode('left');
+</script>
+
+<style>
+  :global(.nd-card) {
+    --nd-bg: #fff;
+    --nd-primary: #6366f1;
+    --nd-primary-hover: #4f46e5;
+    --nd-border: rgba(99, 102, 241, 0.2);
+    --nd-shadow: rgba(99, 102, 241, 0.08);
+    --nd-sidebar-bg: rgba(238, 242, 255, 0.5);
+    --nd-sidebar-border: rgba(99, 102, 241, 0.15);
+    --nd-text: #0f172a;
+    --nd-text-muted: #475569;
+    --nd-surface: #f8fafc;
+    --nd-input-bg: #fff;
+    --nd-input-border: rgba(99, 102, 241, 0.3);
+
+    display: flex;
+    flex-direction: column;
+    background: var(--nd-bg);
+    border: 1px solid var(--nd-border);
+    border-radius: 1.5rem;
+    box-shadow: 0 10px 40px var(--nd-shadow);
+    overflow: hidden;
+    margin: 2rem 0;
+  }
+
+  :global(.theme-dark .nd-card) {
+    --nd-bg: #18181b;
+    --nd-primary: #818cf8;
+    --nd-primary-hover: #6366f1;
+    --nd-border: rgba(129, 140, 248, 0.2);
+    --nd-sidebar-bg: rgba(39, 39, 42, 0.8);
+    --nd-sidebar-border: rgba(129, 140, 248, 0.15);
+    --nd-text: #f4f4f5;
+    --nd-text-muted: #a1a1aa;
+    --nd-surface: #27272a;
+    --nd-input-bg: #3f3f46;
+    --nd-input-border: rgba(129, 140, 248, 0.25);
+  }
+
+  :global(.nd-sidebar) {
+    background: var(--nd-sidebar-bg);
+    border-bottom: 1px solid var(--nd-sidebar-border);
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  :global(.nd-heading) {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--nd-text);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  :global(.nd-input-group) {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+  }
+
+  :global(.nd-label) {
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: var(--nd-text-muted);
+  }
+
+  :global(.nd-input) {
+    width: 100%;
+    padding: 0.6rem 0.75rem;
+    border-radius: 0.625rem;
+    border: 1px solid var(--nd-input-border);
+    background: var(--nd-input-bg);
+    color: var(--nd-text);
+    font-size: 0.95rem;
+    transition: border-color 0.2s;
+  }
+
+  :global(.nd-hint-error) {
+    font-size: 0.75rem;
+    color: #ef4444;
+  }
+
+  :global(.nd-hidden) {
+    display: none;
+  }
+
+  :global(.nd-mode-toggle) {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.375rem;
+  }
+
+  :global(.nd-mode-btn) {
+    padding: 0.5rem 0.4rem;
+    font-size: 0.75rem;
+    font-weight: 600;
+    background: var(--nd-surface);
+    color: var(--nd-text-muted);
+    border: 1px solid var(--nd-input-border);
+    border-radius: 0.5rem;
+    cursor: pointer;
+    transition: background 0.2s, color 0.2s, border-color 0.2s;
+    text-align: center;
+  }
+
+  :global(.nd-mode-btn.active) {
+    background: var(--nd-primary);
+    color: #fff;
+    border-color: var(--nd-primary);
+  }
+
+  :global(.nd-main) {
+    flex: 1;
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  :global(.nd-result-hero) {
+    background: rgba(99, 102, 241, 0.06);
+    border: 1px solid rgba(99, 102, 241, 0.2);
+    border-radius: 1rem;
+    padding: 1.25rem 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+
+  :global(.nd-result-label) {
+    font-size: 0.7rem;
+    font-weight: 700;
+    color: var(--nd-primary);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+
+  :global(.nd-result-value) {
+    font-size: 2rem;
+    font-weight: 800;
+    color: var(--nd-primary);
+    letter-spacing: -0.02em;
+  }
+
+  :global(.nd-z-row) {
+    display: flex;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+  }
+
+  :global(.nd-z-item) {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+  }
+
+  :global(.nd-z-label) {
+    font-size: 0.72rem;
+    font-weight: 600;
+    color: var(--nd-text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+
+  :global(.nd-z-value) {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--nd-text);
+  }
+
+  :global(.nd-chart-section) {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  :global(.nd-chart-label) {
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: var(--nd-text);
+  }
+
+  :global(.nd-chart-desc) {
+    font-size: 0.8rem;
+    color: var(--nd-text-muted);
+  }
+
+  :global(#nd-chart) {
+    width: 100%;
+    height: 180px;
+    display: block;
+    border-radius: 0.75rem;
+    background: var(--nd-surface);
+  }
+
+  :global(.nd-copy-block) {
+    background: rgba(99, 102, 241, 0.06);
+    border: 1px solid rgba(99, 102, 241, 0.25);
+    border-radius: 1rem;
+    padding: 1rem 1.25rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  :global(.nd-copy-header) {
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: var(--nd-primary);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+
+  :global(.nd-copy-text) {
+    font-size: 0.85rem;
+    color: var(--nd-text);
+    line-height: 1.6;
+    background: var(--nd-input-bg);
+    border: 1px solid var(--nd-input-border);
+    border-radius: 0.5rem;
+    padding: 0.625rem 0.75rem;
+    min-height: 2.25rem;
+    margin: 0;
+    word-break: break-all;
+  }
+
+  :global(.nd-copy-btn) {
+    align-self: flex-start;
+    padding: 0.5rem 1.25rem;
+    background: var(--nd-primary);
+    color: #fff;
+    border: none;
+    border-radius: 0.5rem;
+    font-weight: 700;
+    font-size: 0.875rem;
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+
+  :global(.nd-copy-btn:hover) {
+    background: var(--nd-primary-hover);
+  }
+
+  @media (min-width: 768px) {
+    :global(.nd-card) {
+      flex-direction: row;
+    }
+
+    :global(.nd-sidebar) {
+      width: 280px;
+      flex-shrink: 0;
+      border-bottom: none;
+      border-right: 1px solid var(--nd-sidebar-border);
+    }
+  }
+</style>

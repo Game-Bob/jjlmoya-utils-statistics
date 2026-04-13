@@ -3,7 +3,7 @@ import type { ToolLocaleContent } from '../../../types';
 import type { ChiSquareUI } from '../ui';
 
 const slug = 'calculateur-chi-deux-independance';
-const title = 'Calculateur du Test du Chi-Deux d\'Indépendance en Ligne';
+const title = 'Calculateur du Test du Chi Deux d\'Indépendance en Ligne';
 const description =
   'Déterminez s\'il existe une relation statistique entre deux variables catégorielles. Remplissez la matrice des fréquences observées et calculez la valeur P instantanément.';
 

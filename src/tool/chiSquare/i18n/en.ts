@@ -3,7 +3,7 @@ import type { ToolLocaleContent } from '../../../types';
 import type { ChiSquareUI } from '../ui';
 
 const slug = 'chi-square-independence-calculator';
-const title = 'Chi-Square Independence Test Calculator Online';
+const title = 'Chi Square Independence Test Calculator Online';
 const description =
   'Determine whether a statistical relationship exists between two categorical variables. Fill in the observed frequency matrix and calculate the P-Value instantly.';
 

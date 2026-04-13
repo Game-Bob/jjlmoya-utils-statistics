@@ -80,7 +80,7 @@ const { ui } = Astro.props;
     </div>
 
     <div class="pc-canvas-wrap" id="canvasWrapper">
-      <canvas id="scatterPlot"></canvas>
+      <canvas id="scatter-plot"></canvas>
       <div class="pc-error-overlay" id="errorLabel" style="display: none;">
         <Icon name="mdi:alert-circle" />
         <p id="errorMsg">{ui.errorMsg}</p>
@@ -121,7 +121,7 @@ const { ui } = Astro.props;
   const copyResultsBtn = document.getElementById('copyResults');
   const errorLabel = document.getElementById('errorLabel')!;
   const errorMsgEl = document.getElementById('errorMsg')!;
-  const canvas = document.getElementById('scatterPlot') as HTMLCanvasElement;
+  const canvas = document.getElementById('scatter-plot') as HTMLCanvasElement;
   const ctx = canvas.getContext('2d');
   const regressionEq = document.getElementById('regressionEq')!;
 
@@ -151,7 +151,7 @@ const { ui } = Astro.props;
     text.split(/\r?\n/).reduce((acc, line) => {
       const parts = line.trim().split(/[\t,;|\s+]+/).filter((p) => p !== '');
       if (parts.length >= 2) {
-        const x = cleanValue(parts[0], sep), y = cleanValue(parts[1], sep);
+        const x = cleanValue(parts[0]!, sep), y = cleanValue(parts[1]!, sep);
         if (x !== null && y !== null) acc.push({ x, y });
       }
       return acc;
@@ -173,6 +173,27 @@ const { ui } = Astro.props;
     return { r, r2: r * r, n, m, b, meanX: mx, meanY: my };
   };
 
+  const drawRegression = (c: CanvasRenderingContext2D, stats: ReturnType<typeof calculateStats>, conv: { toX: (v: number) => number; toY: (v: number) => number; x0: number; x1: number }) => {
+    if (!stats) return;
+    c.strokeStyle = 'rgba(236,72,153,0.4)';
+    c.lineWidth = 2;
+    c.setLineDash([5, 5]);
+    c.beginPath();
+    c.moveTo(conv.toX(conv.x0), conv.toY(stats.m * conv.x0 + stats.b));
+    c.lineTo(conv.toX(conv.x1), conv.toY(stats.m * conv.x1 + stats.b));
+    c.stroke();
+    c.setLineDash([]);
+  };
+
+  const drawScatterPoints = (c: CanvasRenderingContext2D, pts: Point[], toX: (v: number) => number, toY: (v: number) => number) => {
+    pts.forEach((p) => {
+      c.fillStyle = '#6366f1';
+      c.beginPath();
+      c.arc(toX(p.x), toY(p.y), 4, 0, Math.PI * 2);
+      c.fill();
+    });
+  };
+
   const drawChart = (pts: Point[], stats: ReturnType<typeof calculateStats>) => {
     if (!ctx) return;
     const container = canvas.parentElement!;
@@ -184,7 +205,6 @@ const { ui } = Astro.props;
     const w = rect.width, h = rect.height, pad = 30;
     ctx.clearRect(0, 0, w, h);
     if (pts.length < 1) return;
-
     const minX = Math.min(...pts.map((p) => p.x)), maxX = Math.max(...pts.map((p) => p.x));
     const minY = Math.min(...pts.map((p) => p.y)), maxY = Math.max(...pts.map((p) => p.y));
     const rX = maxX - minX || 1, rY = maxY - minY || 1;
@@ -192,23 +212,8 @@ const { ui } = Astro.props;
     const y0 = minY - rY * 0.1, y1 = maxY + rY * 0.1;
     const toX = (v: number) => pad + ((v - x0) / (x1 - x0)) * (w - 2 * pad);
     const toY = (v: number) => h - pad - ((v - y0) / (y1 - y0)) * (h - 2 * pad);
-
-    if (stats) {
-      ctx.strokeStyle = 'rgba(236,72,153,0.4)';
-      ctx.lineWidth = 2;
-      ctx.setLineDash([5, 5]);
-      ctx.beginPath();
-      ctx.moveTo(toX(x0), toY(stats.m * x0 + stats.b));
-      ctx.lineTo(toX(x1), toY(stats.m * x1 + stats.b));
-      ctx.stroke();
-      ctx.setLineDash([]);
-    }
-    pts.forEach((p) => {
-      ctx.fillStyle = '#6366f1';
-      ctx.beginPath();
-      ctx.arc(toX(p.x), toY(p.y), 4, 0, Math.PI * 2);
-      ctx.fill();
-    });
+    drawRegression(ctx, stats, { toX, toY, x0, x1 });
+    drawScatterPoints(ctx, pts, toX, toY);
   };
 
   const setInterp = (text: string, cls: string) => {
@@ -216,12 +221,23 @@ const { ui } = Astro.props;
     ui.inter.className = 'pc-interp-badge ' + cls;
   };
 
+  const applyInterp = (absR: number, r: number) => {
+    if (absR >= 0.999) {
+      setInterp(r > 0 ? UI.interpPerfectPos : UI.interpPerfectNeg, 'pc-interp-strong');
+    } else if (absR >= 0.7) {
+      setInterp(UI.interpStrong, 'pc-interp-strong');
+    } else if (absR >= 0.4) {
+      setInterp(UI.interpModerate, 'pc-interp-moderate');
+    } else {
+      setInterp(UI.interpWeak, 'pc-interp-weak');
+    }
+  };
+
   const updateResults = () => {
     const text = dataInput.value;
     const pts = parseData(text, decimalSep.value);
     const stats = calculateStats(pts);
     localStorage.setItem('pearson_data', text);
-
     if (stats) {
       ui.r.textContent = stats.r.toFixed(4);
       ui.r2.textContent = (stats.r2 * 100).toFixed(1) + '%';
@@ -231,17 +247,7 @@ const { ui } = Astro.props;
       ui.meanY.textContent = stats.meanY.toFixed(2);
       regressionEq.style.display = 'block';
       regressionEq.textContent = `y = ${stats.m.toFixed(2)}x + ${stats.b.toFixed(2)}`;
-
-      const absR = Math.abs(stats.r);
-      if (absR >= 0.999) {
-        setInterp(stats.r > 0 ? UI.interpPerfectPos : UI.interpPerfectNeg, 'pc-interp--strong');
-      } else if (absR >= 0.7) {
-        setInterp(UI.interpStrong, 'pc-interp--strong');
-      } else if (absR >= 0.4) {
-        setInterp(UI.interpModerate, 'pc-interp--moderate');
-      } else {
-        setInterp(UI.interpWeak, 'pc-interp--weak');
-      }
+      applyInterp(Math.abs(stats.r), stats.r);
       errorLabel.style.display = 'none';
     } else {
       errorMsgEl.textContent = UI.errorMsg;
@@ -290,12 +296,12 @@ const { ui } = Astro.props;
     --pc-text: #1e293b;
     --pc-text-muted: #64748b;
     --pc-text-label: #64748b;
-    --pc-input-bg: #ffffff;
+    --pc-input-bg: #fff;
     --pc-input-border: #e2e8f0;
     --pc-input-border-focus: #6366f1;
     --pc-surface: rgba(255, 255, 255, 0.5);
     --pc-surface-border: rgba(99, 102, 241, 0.05);
-    --pc-icon-btn-bg: #ffffff;
+    --pc-icon-btn-bg: #fff;
     --pc-icon-btn-border: #e2e8f0;
     --pc-icon-btn-color: #64748b;
     --pc-stat-value: #1e293b;
@@ -498,7 +504,7 @@ const { ui } = Astro.props;
     color: var(--pc-stat-value);
   }
 
-  :global(.pc-stat-means) { font-size: 1rem !important; }
+  :global(.pc-stat-block .pc-stat-means) { font-size: 1rem; }
 
   :global(.pc-canvas-wrap) {
     background: var(--pc-surface);
@@ -509,7 +515,7 @@ const { ui } = Astro.props;
     overflow: hidden;
   }
 
-  :global(#scatterPlot) {
+  :global(#scatter-plot) {
     display: block;
     width: 100%;
     height: 280px;
@@ -548,32 +554,32 @@ const { ui } = Astro.props;
     color: var(--pc-text-muted);
   }
 
-  :global(.pc-interp--strong) {
+  :global(.pc-interp-strong) {
     background: #dcfce7;
     color: #166534;
   }
 
-  :global(.theme-dark .pc-interp--strong) {
+  :global(.theme-dark .pc-interp-strong) {
     background: rgba(22, 163, 74, 0.15);
     color: #86efac;
   }
 
-  :global(.pc-interp--moderate) {
+  :global(.pc-interp-moderate) {
     background: #fef9c3;
     color: #854d0e;
   }
 
-  :global(.theme-dark .pc-interp--moderate) {
+  :global(.theme-dark .pc-interp-moderate) {
     background: rgba(202, 138, 4, 0.15);
     color: #fde047;
   }
 
-  :global(.pc-interp--weak) {
+  :global(.pc-interp-weak) {
     background: #f1f5f9;
     color: #475569;
   }
 
-  :global(.theme-dark .pc-interp--weak) {
+  :global(.theme-dark .pc-interp-weak) {
     background: #27272a;
     color: #a1a1aa;
   }
@@ -624,10 +630,19 @@ const { ui } = Astro.props;
   }
 
   @media (max-width: 600px) {
-    :global(.pc-card) { border-radius: 1rem; margin: 0; }
+    :global(.pc-card) {
+      border-radius: 1rem;
+      margin: 0;
+    }
     :global(.pc-sidebar) { padding: 1.25rem; }
-    :global(.pc-main) { padding: 1.25rem; gap: 1.25rem; }
-    :global(.pc-results-top) { grid-template-columns: 1fr; gap: 1rem; }
+    :global(.pc-main) {
+      padding: 1.25rem;
+      gap: 1.25rem;
+    }
+    :global(.pc-results-top) {
+      grid-template-columns: 1fr;
+      gap: 1rem;
+    }
     :global(.pc-main-stat) {
       border-right: none;
       border-bottom: 2px solid var(--pc-main-stat-border);
@@ -635,11 +650,24 @@ const { ui } = Astro.props;
       padding-bottom: 1rem;
       min-width: unset;
     }
-    :global(.pc-r-value) { font-size: 2.5rem; letter-spacing: -1px; }
-    :global(.pc-stats-grid) { grid-template-columns: repeat(2, 1fr); gap: 1rem; }
-    :global(.pc-actions-row) { flex-direction: column; gap: 0.75rem; align-items: flex-start; }
-    :global(.pc-interp-badge) { font-size: 0.8rem; padding: 0.4rem 1rem; }
+    :global(.pc-r-value) {
+      font-size: 2.5rem;
+      letter-spacing: -1px;
+    }
+    :global(.pc-stats-grid) {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1rem;
+    }
+    :global(.pc-actions-row) {
+      flex-direction: column;
+      gap: 0.75rem;
+      align-items: flex-start;
+    }
+    :global(.pc-interp-badge) {
+      font-size: 0.8rem;
+      padding: 0.4rem 1rem;
+    }
     :global(.pc-canvas-wrap) { border-radius: 1rem; }
-    :global(#scatterPlot) { height: 200px; }
+    :global(#scatter-plot) { height: 200px; }
   }
 </style>

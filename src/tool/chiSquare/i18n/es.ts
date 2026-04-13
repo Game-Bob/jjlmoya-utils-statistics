@@ -3,7 +3,7 @@ import type { ToolLocaleContent } from '../../../types';
 import type { ChiSquareUI } from '../ui';
 
 const slug = 'calculadora-chi-cuadrado-independencia';
-const title = 'Calculadora Chi-Cuadrado de Independencia Online';
+const title = 'Calculadora Chi Cuadrado de Independencia Online';
 const description =
   'Determina si existe una relación estadística entre dos variables categóricas. Llena la matriz de frecuencias observadas y calcula el P-Valor al instante.';
 
