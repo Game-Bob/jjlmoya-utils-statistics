@@ -2,7 +2,7 @@ import type { WithContext, FAQPage, HowTo, SoftwareApplication } from 'schema-dt
 import type { ToolLocaleContent } from '../../../types';
 import type { DescriptiveStatsUI } from '../ui';
 
-const slug = 'miao-shu-xing-tong-ji-ji-suan-qi';
+const slug = 'descriptive-statistics-calculator';
 const title = '在线描述性统计计算器';
 const description =
   '立即计算所有关键的描述性统计指标：均值、中位数、众数、标准差、方差、四分位数、偏度、峰度等。粘贴您的数据，即可实时获得结果。';

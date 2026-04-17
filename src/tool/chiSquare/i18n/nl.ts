@@ -3,7 +3,7 @@ import type { ToolLocaleContent } from '../../../types';
 import type { ChiSquareUI } from '../ui';
 
 const slug = 'chi-kwadraat-onafhankelijkheidstoets-calculator';
-const title = 'Chi-kwadraat onafhankelijkheidstoets online calculator';
+const title = 'Chi kwadraat onafhankelijkheidstoets online calculator';
 const description =
   'Bepaal of er een statistisch verband bestaat tussen twee categorische variabelen. Vul de tabel met waargenomen frequenties in en bereken direct de P-waarde.';
 

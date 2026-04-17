@@ -3,7 +3,7 @@ import type { ToolLocaleContent } from '../../../types';
 import type { ChiSquareUI } from '../ui';
 
 const slug = 'kalkulyator-testa-hi-kvadrat-na-nezavisimost';
-const title = 'Онлайн калькулятор теста независимости Хи-квадрат';
+const title = 'Онлайн калькулятор теста независимости Хи квадрат';
 const description =
   'Определите, существует ли статистическая связь между двумя категориальными переменными. Заполните матрицу наблюдаемых частот и мгновенно рассчитайте P-значение.';
 

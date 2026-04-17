@@ -122,7 +122,7 @@ export const content: ToolLocaleContent<NormalDistributionUI> = {
     },
     {
       type: 'tip',
-      title: 'Aturan Empiris 68-95-99,7',
+      title: 'Aturan Empiris 68 95 99,7',
       html: 'Dalam distribusi normal apa pun: <strong>68%</strong> data berada dalam ±1σ dari mean, <strong>95%</strong> dalam ±2σ, dan <strong>99,7%</strong> dalam ±3σ. Verifikasi ini dengan menghitung P(-1 ≤ z ≤ 1) dengan μ=0 dan σ=1.',
     },
     { type: 'title', level: 2, text: 'Glosarium Referensi Cepat' },

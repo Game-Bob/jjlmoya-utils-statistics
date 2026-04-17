@@ -131,7 +131,7 @@ export const content: ToolLocaleContent<ABTestUI> = {
           ],
         },
         {
-          title: 'Uji Rata-rata Kontinu',
+          title: 'Uji Rata rata Kontinu',
           description: 'Membandingkan nilai numerik rata-rata antara dua kelompok.',
           icon: 'mdi:chart-bell-curve',
           highlight: false,

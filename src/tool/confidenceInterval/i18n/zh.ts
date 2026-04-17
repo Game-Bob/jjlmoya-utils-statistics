@@ -2,7 +2,7 @@ import type { WithContext, FAQPage, HowTo, SoftwareApplication } from 'schema-dt
 import type { ToolLocaleContent } from '../../../types';
 import type { ConfidenceIntervalUI } from '../ui';
 
-const slug = 'zhi-xin-qu-jian-ji-suan-qi';
+const slug = 'confidence-interval-calculator';
 const title = '在线置信区间计算器';
 const description =
   '使用 Z 或 Student t 分布计算总体均值的置信区间。输入样本均值、标准差、样本量和置信水平，即可立即获得区间、误差幅度（误差范围）和临界值。';

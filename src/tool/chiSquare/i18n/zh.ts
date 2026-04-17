@@ -2,7 +2,7 @@ import type { WithContext, FAQPage, HowTo, SoftwareApplication } from 'schema-dt
 import type { ToolLocaleContent } from '../../../types';
 import type { ChiSquareUI } from '../ui';
 
-const slug = 'chi-square-du-li-xing-jian-yan-jisuanqi';
+const slug = 'chi-square-independence-calculator';
 const title = '在线卡方独立性检验计算器';
 const description =
   '确定两个分类变量之间是否存在统计学关系。填写观测频数矩阵并立即计算 P 值。';

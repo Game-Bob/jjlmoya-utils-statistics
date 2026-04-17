@@ -2,7 +2,7 @@ import type { WithContext, FAQPage, HowTo, SoftwareApplication } from 'schema-dt
 import type { ToolLocaleContent } from '../../../types';
 import type { PearsonCorrelationUI } from '../ui';
 
-const slug = 'pi-er-xun-xiang-guan-ji-suan-qi';
+const slug = 'pearson-correlation-calculator';
 const title = '在线皮尔逊相关系数计算器';
 const description =
   '通过数据对计算皮尔逊 r 系数、决定系数 r² 和线性回归线。100% 私密且本地化的工具。';

@@ -122,10 +122,10 @@ export const content: ToolLocaleContent<NormalDistributionUI> = {
     },
     {
       type: 'tip',
-      title: 'Den empiriska 68-95-99,7-regeln',
+      title: 'Den empiriska 68 95 99,7 regeln',
       html: 'I alla normalfördelningar: <strong>68 %</strong> av data hamnar inom ±1σ från medelvärdet, <strong>95 %</strong> inom ±2σ och <strong>99,7 %</strong> inom ±3σ. Verifiera detta genom att beräkna P(-1 ≤ z ≤ 1) med μ=0 och σ=1.',
     },
-    { type: 'title', level: 2, text: 'Snabbreferens - Ordlista' },
+    { type: 'title', level: 2, text: 'Snabbreferens   Ordlista' },
     {
       type: 'glossary',
       items: [

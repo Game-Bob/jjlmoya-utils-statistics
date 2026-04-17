@@ -3,7 +3,7 @@ import type { ToolLocaleContent } from '../../../types';
 import type { ChiSquareUI } from '../ui';
 
 const slug = 'kalkulator-testu-niezaleznosci-chi-kwadrat';
-const title = 'Kalkulator testu niezależności chi-kwadrat online';
+const title = 'Kalkulator testu niezależności chi kwadrat online';
 const description =
   'Ustal, czy istnieje statystyczny związek między dwiema zmiennymi kategorialnymi. Wypełnij macierz obserwowanych liczebności i natychmiast oblicz wartość p.';
 
@@ -102,7 +102,7 @@ export const content: ToolLocaleContent<ChiSquareUI> = {
     {
       type: 'title',
       level: 2,
-      text: 'Kalkulator testu niezależności chi-kwadrat',
+      text: 'Kalkulator testu niezależności chi kwadrat',
     },
     {
       type: 'paragraph',
@@ -120,7 +120,7 @@ export const content: ToolLocaleContent<ChiSquareUI> = {
     {
       type: 'title',
       level: 2,
-      text: 'Do czego dokładnie służy statystyka chi-kwadrat (χ²)?',
+      text: 'Do czego dokładnie służy statystyka chi kwadrat (χ²)?',
     },
     {
       type: 'paragraph',
@@ -248,7 +248,7 @@ export const content: ToolLocaleContent<ChiSquareUI> = {
     labelPValue: 'Wartość p (p)',
     sigDescInitial: 'Istnieje istotny związek',
     labelGlobalStats: 'Statystyki ogólne',
-    labelChiSquareStat: 'Chi-kwadrat (χ²)',
+    labelChiSquareStat: 'Chi kwadrat (χ²)',
     labelDegrees: 'Stopnie (df)',
     labelCramer: 'Siła związku (V Craméra)',
     labelVisualization: 'Wizualizacja reszt (Obserwowane vs Oczekiwane)',

@@ -122,7 +122,7 @@ export const content: ToolLocaleContent<NormalDistributionUI> = {
     },
     {
       type: 'tip',
-      title: 'La regola empirica 68-95-99,7',
+      title: 'La regola empirica 68 95 99,7',
       html: 'In qualsiasi distribuzione normale: il <strong>68%</strong> dei dati ricade entro ±1σ dalla media, il <strong>95%</strong> entro ±2σ e il <strong>99,7%</strong> entro ±3σ. Verificalo calcolando P(-1 ≤ z ≤ 1) con μ=0 e σ=1.',
     },
     { type: 'title', level: 2, text: 'Glossario di riferimento rapido' },

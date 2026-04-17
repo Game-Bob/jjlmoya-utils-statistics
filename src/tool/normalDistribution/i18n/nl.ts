@@ -95,7 +95,7 @@ export const content: ToolLocaleContent<NormalDistributionUI> = {
   howTo: howToData,
   schemas: [faqSchema, howToSchema, appSchema],
   seo: [
-    { type: 'title', level: 2, text: 'Normale verdeling calculator: kansen in real-time' },
+    { type: 'title', level: 2, text: 'Normale verdeling calculator: kansen in real time' },
     {
       type: 'paragraph',
       html: 'De <strong>Normale verdeling calculator</strong> berekent direct elke kans voor de normale verdeling: linkerstaart, rechterstaart, centraal interval en inverse. Voer eenvoudigweg het gemiddelde en de standaarddeviatie in om het resultaat te krijgen en dit te visualiseren op de Gauss-klokcurve.',
@@ -122,10 +122,10 @@ export const content: ToolLocaleContent<NormalDistributionUI> = {
     },
     {
       type: 'tip',
-      title: 'De empirische 68-95-99,7-regel',
+      title: 'De empirische 68 95 99,7 regel',
       html: 'Bij elke normale verdeling geldt: <strong>68%</strong> van de gegevens ligt binnen ±1σ van het gemiddelde, <strong>95%</strong> binnen ±2σ en <strong>99,7%</strong> binnen ±3σ. Controleer dit door P(-1 ≤ z ≤ 1) te berekenen met μ=0 en σ=1.',
     },
-    { type: 'title', level: 2, text: 'Snelnaslag-woordenlijst' },
+    { type: 'title', level: 2, text: 'Snelnaslag woordenlijst' },
     {
       type: 'glossary',
       items: [

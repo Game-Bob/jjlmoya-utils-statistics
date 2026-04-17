@@ -3,7 +3,7 @@ import type { ToolLocaleContent } from '../../../types';
 import type { ABTestUI } from '../ui';
 
 const slug = 'ab-test-kalkylator-hypotestest';
-const title = 'A/B-test Kalkylator för hypotestest online';
+const title = 'AB test Kalkylator för hypotestest online';
 const description =
   'Jämför två grupper (A och B) för att avgöra om det finns en statistiskt signifikant skillnad i deras konverteringar eller medelvärden. Beräkna P-värdet direkt.';
 

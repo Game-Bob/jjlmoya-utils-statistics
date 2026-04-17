@@ -2,7 +2,7 @@ import type { WithContext, FAQPage, HowTo, SoftwareApplication } from 'schema-dt
 import type { ToolLocaleContent } from '../../../types';
 import type { NormalDistributionUI } from '../ui';
 
-const slug = 'zheng-tai-fen-bu-ji-suan-qi';
+const slug = 'normal-distribution-calculator';
 const title = '在线正态分布计算器';
 const description =
   '立即计算正态分布概率：P(X ≤ a)、P(X ≥ a)、P(a ≤ X ≤ b) 以及逆正态分布。输入均值和标准差，即可可视化带有阴影区域的离斯钟形曲线。';
@@ -122,7 +122,7 @@ export const content: ToolLocaleContent<NormalDistributionUI> = {
     },
     {
       type: 'tip',
-      title: '68-95-99.7 经验法则',
+      title: '68 95 99.7 经验法则',
       html: '在任何正态分布中：<strong>68%</strong> 的数据位于均值 ±1σ 范围内，<strong>95%</strong> 位于 ±2σ 范围内，<strong>99.7%</strong> 位于 ±3σ 范围内。您可以通过在 μ=0 且 σ=1 时计算 P(-1 ≤ z ≤ 1) 来验证这一点。',
     },
     { type: 'title', level: 2, text: '快速参考术语表' },

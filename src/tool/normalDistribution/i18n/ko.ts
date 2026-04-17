@@ -2,7 +2,7 @@ import type { WithContext, FAQPage, HowTo, SoftwareApplication } from 'schema-dt
 import type { ToolLocaleContent } from '../../../types';
 import type { NormalDistributionUI } from '../ui';
 
-const slug = 'jongyu-bunpo-gyesangi';
+const slug = 'normal-distribution-calculator';
 const title = '온라인 정규 분포 계산기';
 const description =
   '정규 분포 확률을 즉시 계산하세요: P(X ≤ a), P(X ≥ a), P(a ≤ X ≤ b) 및 역정규 분포. 평균과 표준 편차를 입력하고 색칠된 영역이 표시된 가우스 종 모양 곡선을 시각화하세요.';
@@ -122,7 +122,7 @@ export const content: ToolLocaleContent<NormalDistributionUI> = {
     },
     {
       type: 'tip',
-      title: '68-95-99.7 경험적 법칙',
+      title: '68 95 99.7 경험적 법칙',
       html: '모든 정규 분포에서 데이터의 <strong>68%</strong>는 평균의 ±1σ 이내에, <strong>95%</strong>는 ±2σ 이내에, <strong>99.7%</strong>는 ±3σ 이내에 위치합니다. μ=0, σ=1일 때 P(-1 ≤ z ≤ 1)을 계산하여 이를 확인해 보세요.',
     },
     { type: 'title', level: 2, text: '핵심 용어 사전' },

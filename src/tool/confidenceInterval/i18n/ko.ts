@@ -2,7 +2,7 @@ import type { WithContext, FAQPage, HowTo, SoftwareApplication } from 'schema-dt
 import type { ToolLocaleContent } from '../../../types';
 import type { ConfidenceIntervalUI } from '../ui';
 
-const slug = 'sinroe-gugan-gyesangi';
+const slug = 'confidence-interval-calculator';
 const title = '온라인 신뢰 구간 계산기';
 const description =
   'Z 분포 또는 Student t 분포를 사용하여 모집단 평균에 대한 신뢰 구간을 계산합니다. 표본 평균, 표준 편차, 표본 크기 및 신뢰 수준을 입력하면 구간, 오차 한계 및 임계값을 즉시 알 수 있습니다.';

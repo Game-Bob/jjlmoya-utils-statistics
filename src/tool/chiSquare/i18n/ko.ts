@@ -2,7 +2,7 @@ import type { WithContext, FAQPage, HowTo, SoftwareApplication } from 'schema-dt
 import type { ToolLocaleContent } from '../../../types';
 import type { ChiSquareUI } from '../ui';
 
-const slug = 'chi-square-dokribseong-geomjeong-calculator';
+const slug = 'chi-square-independence-calculator';
 const title = '온라인 카이제곱 독립성 검정 계산기';
 const description =
   '두 범주형 변수 사이에 통계적 관계가 있는지 확인하세요. 관측 빈도 행렬을 입력하고 P-값을 즉시 계산합니다.';

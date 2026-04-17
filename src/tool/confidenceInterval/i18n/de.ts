@@ -3,7 +3,7 @@ import type { ToolLocaleContent } from '../../../types';
 import type { ConfidenceIntervalUI } from '../ui';
 
 const slug = 'konfidenzintervall-rechner';
-const title = 'Konfidenzintervall-Rechner Online';
+const title = 'Konfidenzintervall Rechner Online';
 const description =
   'Berechnen Sie Konfidenzintervalle für das Populationsmittel mit Z- oder Student-t-Verteilungen. Geben Sie Mittelwert, Standardabweichung, Stichprobengröße und Konfidenzniveau ein, um Intervall, Fehlermarge und kritischen Wert sofort zu erhalten.';
 

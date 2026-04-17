@@ -122,7 +122,7 @@ export const content: ToolLocaleContent<NormalDistributionUI> = {
     },
     {
       type: 'tip',
-      title: '68-95-99.7の経験則',
+      title: '68 95 99.7の経験則',
       html: 'あらゆる正規分布において、データの<strong>68%</strong>が平均の±1σ以内、<strong>95%</strong>が±2σ以内、<strong>99.7%</strong>が±3σ以内に収まります。μ=0、σ=1としてP(-1 ≤ z ≤ 1)を計算して確認してみてください。',
     },
     { type: 'title', level: 2, text: 'クイックリファレンス用語集' },

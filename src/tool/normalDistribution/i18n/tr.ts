@@ -122,7 +122,7 @@ export const content: ToolLocaleContent<NormalDistributionUI> = {
     },
     {
       type: 'tip',
-      title: '68-95-99,7 Ampirik Kuralı',
+      title: '68 95 99,7 Ampirik Kuralı',
       html: 'Herhangi bir normal dağılımda: verilerin <strong>%68</strong>\'i ortalamanın ±1σ, <strong>%95</strong>\'i ±2σ ve <strong>%99,7</strong>\'si ±3σ dahilindedir. Bunu μ=0 ve σ=1 ile P(-1 ≤ z ≤ 1) hesaplayarak doğrulayın.',
     },
     { type: 'title', level: 2, text: 'Hızlı Başvuru Sözlüğü' },

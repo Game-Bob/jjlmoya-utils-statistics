@@ -2,8 +2,8 @@ import type { WithContext, FAQPage, HowTo, SoftwareApplication } from 'schema-dt
 import type { ToolLocaleContent } from '../../../types';
 import type { ChiSquareUI } from '../ui';
 
-const slug = 'chi-två-test-oberoende-kalkylator';
-const title = 'Chi-två-test för oberoende online kalkylator';
+const slug = 'chi-tva-test-oberoende-kalkylator';
+const title = 'Chi två test för oberoende online kalkylator';
 const description =
   'Avgör om det finns ett statistiskt samband mellan två kategoriala variabler. Fyll i matrisen för observerade frekvenser och beräkna P-värdet direkt.';
 

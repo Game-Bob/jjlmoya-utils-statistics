@@ -3,7 +3,7 @@ import type { ToolLocaleContent } from '../../../types';
 import type { ChiSquareUI } from '../ui';
 
 const slug = 'chi-quadrat-unabhaengigkeitstest-rechner';
-const title = 'Chi-Quadrat-Unabhängigkeitstest Rechner Online';
+const title = 'Chi Quadrat Unabhängigkeitstest Rechner Online';
 const description =
   'Bestimmen Sie, ob eine statistische Beziehung zwischen zwei kategorialen Variablen besteht. Füllen Sie die beobachtete Häufigkeitsmatrix aus und berechnen Sie den P-Wert sofort.';
 

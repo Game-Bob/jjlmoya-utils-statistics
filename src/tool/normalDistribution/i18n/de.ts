@@ -122,7 +122,7 @@ export const content: ToolLocaleContent<NormalDistributionUI> = {
     },
     {
       type: 'tip',
-      title: 'Die empirische 68-95-99,7-Regel',
+      title: 'Die empirische 68 95 99,7 Regel',
       html: 'In jeder Normalverteilung liegen: <strong>68 %</strong> der Daten innerhalb von ±1σ um den Mittelwert, <strong>95 %</strong> innerhalb von ±2σ und <strong>99,7 %</strong> innerhalb von ±3σ. Überprüfen Sie dies, indem Sie P(-1 ≤ z ≤ 1) mit μ=0 und σ=1 berechnen.',
     },
     { type: 'title', level: 2, text: 'Kurzreferenz Glossar' },

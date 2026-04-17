@@ -2,7 +2,7 @@ import type { WithContext, FAQPage, HowTo, SoftwareApplication } from 'schema-dt
 import type { ToolLocaleContent } from '../../../types';
 import type { ABTestUI } from '../ui';
 
-const slug = 'ab-test-gaseol-geomjeong-calculator';
+const slug = 'ab-test-hypothesis-calculator';
 const title = '온라인 A/B 테스트 가설 검정 계산기';
 const description =
   '두 그룹(A와 B)을 비교하여 전환율이나 평균에 통계적으로 유의미한 차이가 있는지 확인하세요. P-값을 즉시 계산합니다.';

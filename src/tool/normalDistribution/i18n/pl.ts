@@ -122,7 +122,7 @@ export const content: ToolLocaleContent<NormalDistributionUI> = {
     },
     {
       type: 'tip',
-      title: 'Reguła empiryczna 68-95-99,7',
+      title: 'Reguła empiryczna 68 95 99,7',
       html: 'W dowolnym rozkładzie normalnym: <strong>68%</strong> danych mieści się w granicach ±1σ od średniej, <strong>95%</strong> w granicach ±2σ, a <strong>99,7%</strong> w granicach ±3σ. Sprawdź to, obliczając P(-1 ≤ z ≤ 1) przy μ=0 i σ=1.',
     },
     { type: 'title', level: 2, text: 'Szybki słowniczek' },

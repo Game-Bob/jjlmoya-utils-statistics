@@ -3,7 +3,7 @@ import type { ToolLocaleContent } from '../../../types';
 import type { ChiSquareUI } from '../ui';
 
 const slug = 'calculadora-teste-independencia-qui-quadrado';
-const title = 'Calculadora de Teste de Independência Qui-Quadrado Online';
+const title = 'Calculadora de Teste de Independência Qui Quadrado Online';
 const description =
   'Determine se existe uma relação estatística entre duas variáveis categóricas. Preencha a matriz de frequências observadas e calcule o valor-P instantaneamente.';
 

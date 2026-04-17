@@ -122,7 +122,7 @@ export const content: ToolLocaleContent<NormalDistributionUI> = {
     },
     {
       type: 'tip',
-      title: 'Эмпирическое правило 68-95-99,7',
+      title: 'Эмпирическое правило 68 95 99,7',
       html: 'В любом нормальном распределении: <strong>68%</strong> данных попадают в пределы ±1σ от среднего, <strong>95%</strong> — в пределы ±2σ, и <strong>99,7%</strong> — в пределы ±3σ. Проверьте это, рассчитав P(-1 ≤ z ≤ 1) при μ=0 и σ=1.',
     },
     { type: 'title', level: 2, text: 'Глоссарий для быстрой справки' },

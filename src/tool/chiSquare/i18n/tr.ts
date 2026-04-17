@@ -3,7 +3,7 @@ import type { ToolLocaleContent } from '../../../types';
 import type { ChiSquareUI } from '../ui';
 
 const slug = 'ki-kare-bagimsizlik-testi-hesaplama';
-const title = 'Online Ki-Kare Bağımsızlık Testi Hesaplama Aracı';
+const title = 'Online Ki Kare Bağımsızlık Testi Hesaplama Aracı';
 const description =
   'İki kategorik değişken arasında istatistiksel bir ilişki olup olmadığını belirleyin. Gözlemlenen frekans matrisini doldurun ve P-Değerini anında hesaplayın.';
 

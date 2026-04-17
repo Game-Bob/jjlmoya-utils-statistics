@@ -3,7 +3,7 @@ import type { ToolLocaleContent } from '../../../types';
 import type { ABTestUI } from '../ui';
 
 const slug = 'kalkulyator-ab-testa-proverka-gipotez';
-const title = 'Онлайн калькулятор проверки гипотез A/B-теста';
+const title = 'Онлайн калькулятор проверки гипотез AB теста';
 const description =
   'Сравните две группы (A и B), чтобы определить, есть ли статистически значимая разница в их конверсиях или средних значениях. Мгновенный расчет P-значения.';
 

@@ -2,7 +2,7 @@ import type { WithContext, FAQPage, HowTo, SoftwareApplication } from 'schema-dt
 import type { ToolLocaleContent } from '../../../types';
 import type { SampleSizeUI } from '../ui';
 
-const slug = 'pyobon-keugi-gyesangi';
+const slug = 'sample-size-calculator';
 const title = '온라인 표본 크기 계산기';
 const description =
   '연구에 필요한 정확한 인원수를 계산하세요. 유한 또는 무한 모집단 옵션, 조정 가능한 신뢰 수준 및 오차 한계를 포함합니다.';

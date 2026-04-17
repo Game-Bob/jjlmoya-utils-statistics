@@ -2,7 +2,7 @@ import type { WithContext, FAQPage, HowTo, SoftwareApplication } from 'schema-dt
 import type { ToolLocaleContent } from '../../../types';
 import type { PearsonCorrelationUI } from '../ui';
 
-const slug = 'pearson-sanggwan-gyesangi';
+const slug = 'pearson-correlation-calculator';
 const title = '온라인 피어슨 상관 계수 계산기';
 const description =
   '데이터 쌍에서 피어슨 r 계수, 결정 계수 r² 및 선형 회귀선을 계산합니다. 100% 비공개 및 로컬 도구입니다.';

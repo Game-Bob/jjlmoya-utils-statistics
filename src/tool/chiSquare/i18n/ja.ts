@@ -2,7 +2,7 @@ import type { WithContext, FAQPage, HowTo, SoftwareApplication } from 'schema-dt
 import type { ToolLocaleContent } from '../../../types';
 import type { ChiSquareUI } from '../ui';
 
-const slug = 'chi-nijo-dokuritsusei-kentei-calculator';
+const slug = 'chi-square-independence-calculator';
 const title = 'オンライン・カイ二乗独立性検定計算機';
 const description =
   '2つのカテゴリ変数の間に統計的な関係があるかどうかを判定します。観測度数行列を入力して、P値を即座に計算します。';

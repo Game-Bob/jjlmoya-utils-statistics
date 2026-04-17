@@ -3,7 +3,7 @@ import type { ToolLocaleContent } from '../../../types';
 import type { ABTestUI } from '../ui';
 
 const slug = 'ab-test-hypothesentest-rechner';
-const title = 'A/B-Test Hypothesentest Rechner Online';
+const title = 'AB Test Hypothesentest Rechner Online';
 const description =
   'Vergleichen Sie zwei Gruppen (A und B), um festzustellen, ob ein statistisch signifikanter Unterschied in ihren Konversionen oder Mittelwerten besteht. Berechnen Sie den P-Wert sofort.';
 

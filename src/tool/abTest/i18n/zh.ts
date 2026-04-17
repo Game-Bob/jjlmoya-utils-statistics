@@ -2,7 +2,7 @@ import type { WithContext, FAQPage, HowTo, SoftwareApplication } from 'schema-dt
 import type { ToolLocaleContent } from '../../../types';
 import type { ABTestUI } from '../ui';
 
-const slug = 'ab-test-jia-she-jian-yan-jisuanqi';
+const slug = 'ab-test-hypothesis-calculator';
 const title = '在线 A/B 测试假设检验计算器';
 const description =
   '比较两个小组（A 和 B），以确定它们的转化率或平均值是否存在统计学上的显著差异。立即计算 P 值。';

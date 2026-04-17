@@ -2,7 +2,7 @@ import type { WithContext, FAQPage, HowTo, SoftwareApplication } from 'schema-dt
 import type { ToolLocaleContent } from '../../../types';
 import type { SampleSizeUI } from '../ui';
 
-const slug = 'yang-ben-liang-ji-suan-qi';
+const slug = 'sample-size-calculator';
 const title = '在线样本量计算器';
 const description =
   '计算研究所需的准确人数。包括有限或无限总体选项、可调节的置信水平和误差幅度。';

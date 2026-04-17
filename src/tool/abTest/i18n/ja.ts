@@ -2,7 +2,7 @@ import type { WithContext, FAQPage, HowTo, SoftwareApplication } from 'schema-dt
 import type { ToolLocaleContent } from '../../../types';
 import type { ABTestUI } from '../ui';
 
-const slug = 'ab-test-kasetsu-kentei-calculator';
+const slug = 'ab-test-hypothesis-calculator';
 const title = 'オンラインA/Bテスト仮説検定計算機';
 const description =
   '2つのグループ（AとB）を比較して、コンバージョンや平均に統計的に有意な差があるかどうかを判定します。P値を即座に計算します。';

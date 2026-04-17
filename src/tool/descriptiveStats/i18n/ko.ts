@@ -2,7 +2,7 @@ import type { WithContext, FAQPage, HowTo, SoftwareApplication } from 'schema-dt
 import type { ToolLocaleContent } from '../../../types';
 import type { DescriptiveStatsUI } from '../ui';
 
-const slug = 'kisul-tonggye-gyesangi';
+const slug = 'descriptive-statistics-calculator';
 const title = '온라인 기술 통계 계산기';
 const description =
   '평균, 중앙값, 최빈값, 표준 편차, 분산, 사분위수, 왜도, 첨도 등 모든 핵심 기술 통계량을 즉시 계산합니다. 데이터를 붙여넣으면 실시간으로 결과를 얻을 수 있습니다.';

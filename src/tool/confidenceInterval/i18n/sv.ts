@@ -3,7 +3,7 @@ import type { ToolLocaleContent } from '../../../types';
 import type { ConfidenceIntervalUI } from '../ui';
 
 const slug = 'konfidensintervall-kalkylator';
-const title = 'Konfidensintervall-kalkylator online';
+const title = 'Konfidensintervall kalkylator online';
 const description =
   'Beräkna konfidensintervall för populationsmedelvärdet med hjälp av Z- eller Student t-fördelningar. Ange urvalsmedelvärde, standardavvikelse, urvalsstorlek och konfidensnivå för att få intervallet, felmarginalen och det kritiska värdet direkt.';
 
