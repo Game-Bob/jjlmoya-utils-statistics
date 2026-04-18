@@ -1,0 +1,16 @@
+export { abTest } from './tool/abTest/entry';
+export { chiSquare } from './tool/chiSquare/entry';
+export { confidenceInterval } from './tool/confidenceInterval/entry';
+export { descriptiveStats } from './tool/descriptiveStats/entry';
+export { normalDistribution } from './tool/normalDistribution/entry';
+export { pearsonCorrelation } from './tool/pearsonCorrelation/entry';
+export { sampleSize } from './tool/sampleSize/entry';
+export { statisticsCategory } from './category';
+import { abTest } from './tool/abTest/entry';
+import { chiSquare } from './tool/chiSquare/entry';
+import { confidenceInterval } from './tool/confidenceInterval/entry';
+import { descriptiveStats } from './tool/descriptiveStats/entry';
+import { normalDistribution } from './tool/normalDistribution/entry';
+import { pearsonCorrelation } from './tool/pearsonCorrelation/entry';
+import { sampleSize } from './tool/sampleSize/entry';
+export const ALL_ENTRIES = [abTest, chiSquare, confidenceInterval, descriptiveStats, normalDistribution, pearsonCorrelation, sampleSize];
