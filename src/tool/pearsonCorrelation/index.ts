@@ -1,7 +1,4 @@
 import type { StatisticsToolEntry, ToolDefinition } from '../../types';
-import PearsonCorrelationComponent from './component.astro';
-import PearsonCorrelationSEO from './seo.astro';
-import PearsonCorrelationBibliography from './bibliography.astro';
 
 import type { PearsonCorrelationUI } from './ui';
 
@@ -32,11 +29,10 @@ export const pearsonCorrelation: StatisticsToolEntry<PearsonCorrelationUI> = {
   },
 };
 
-export { PearsonCorrelationComponent, PearsonCorrelationSEO, PearsonCorrelationBibliography };
 
 export const PEARSON_CORRELATION_TOOL: ToolDefinition = {
   entry: pearsonCorrelation,
-  Component: PearsonCorrelationComponent,
-  SEOComponent: PearsonCorrelationSEO,
-  BibliographyComponent: PearsonCorrelationBibliography,
+  Component: () => import('./component.astro'),
+  SEOComponent: () => import('./seo.astro'),
+  BibliographyComponent: () => import('./bibliography.astro'),
 };

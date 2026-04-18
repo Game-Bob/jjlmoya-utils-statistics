@@ -1,7 +1,4 @@
 import type { StatisticsToolEntry, ToolDefinition } from '../../types';
-import ChiSquareComponent from './component.astro';
-import ChiSquareSEO from './seo.astro';
-import ChiSquareBibliography from './bibliography.astro';
 
 import type { ChiSquareUI } from './ui';
 
@@ -32,11 +29,10 @@ export const chiSquare: StatisticsToolEntry<ChiSquareUI> = {
   },
 };
 
-export { ChiSquareComponent, ChiSquareSEO, ChiSquareBibliography };
 
 export const CHI_SQUARE_TOOL: ToolDefinition = {
   entry: chiSquare,
-  Component: ChiSquareComponent,
-  SEOComponent: ChiSquareSEO,
-  BibliographyComponent: ChiSquareBibliography,
+  Component: () => import('./component.astro'),
+  SEOComponent: () => import('./seo.astro'),
+  BibliographyComponent: () => import('./bibliography.astro'),
 };

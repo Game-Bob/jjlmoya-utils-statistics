@@ -1,7 +1,4 @@
 import type { StatisticsToolEntry, ToolDefinition } from '../../types';
-import SampleSizeComponent from './component.astro';
-import SampleSizeSEO from './seo.astro';
-import SampleSizeBibliography from './bibliography.astro';
 
 import type { SampleSizeUI } from './ui';
 
@@ -32,11 +29,10 @@ export const sampleSize: StatisticsToolEntry<SampleSizeUI> = {
   },
 };
 
-export { SampleSizeComponent, SampleSizeSEO, SampleSizeBibliography };
 
 export const SAMPLE_SIZE_TOOL: ToolDefinition = {
   entry: sampleSize,
-  Component: SampleSizeComponent,
-  SEOComponent: SampleSizeSEO,
-  BibliographyComponent: SampleSizeBibliography,
+  Component: () => import('./component.astro'),
+  SEOComponent: () => import('./seo.astro'),
+  BibliographyComponent: () => import('./bibliography.astro'),
 };

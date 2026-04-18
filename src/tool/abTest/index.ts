@@ -1,7 +1,4 @@
 import type { StatisticsToolEntry, ToolDefinition } from '../../types';
-import ABTestComponent from './component.astro';
-import ABTestSEO from './seo.astro';
-import ABTestBibliography from './bibliography.astro';
 
 import type { ABTestUI } from './ui';
 
@@ -32,11 +29,10 @@ export const abTest: StatisticsToolEntry<ABTestUI> = {
   },
 };
 
-export { ABTestComponent, ABTestSEO, ABTestBibliography };
 
 export const AB_TEST_TOOL: ToolDefinition = {
   entry: abTest,
-  Component: ABTestComponent,
-  SEOComponent: ABTestSEO,
-  BibliographyComponent: ABTestBibliography,
+  Component: () => import('./component.astro'),
+  SEOComponent: () => import('./seo.astro'),
+  BibliographyComponent: () => import('./bibliography.astro'),
 };

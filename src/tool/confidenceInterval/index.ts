@@ -1,7 +1,4 @@
 import type { StatisticsToolEntry, ToolDefinition } from '../../types';
-import ConfidenceIntervalComponent from './component.astro';
-import ConfidenceIntervalSEO from './seo.astro';
-import ConfidenceIntervalBibliography from './bibliography.astro';
 import type { ConfidenceIntervalUI } from './ui';
 
 export type { ConfidenceIntervalUI };
@@ -31,11 +28,10 @@ export const confidenceInterval: StatisticsToolEntry<ConfidenceIntervalUI> = {
   },
 };
 
-export { ConfidenceIntervalComponent, ConfidenceIntervalSEO, ConfidenceIntervalBibliography };
 
 export const CONFIDENCE_INTERVAL_TOOL: ToolDefinition = {
   entry: confidenceInterval,
-  Component: ConfidenceIntervalComponent,
-  SEOComponent: ConfidenceIntervalSEO,
-  BibliographyComponent: ConfidenceIntervalBibliography,
+  Component: () => import('./component.astro'),
+  SEOComponent: () => import('./seo.astro'),
+  BibliographyComponent: () => import('./bibliography.astro'),
 };

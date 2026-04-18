@@ -1,7 +1,4 @@
 import type { StatisticsToolEntry, ToolDefinition } from '../../types';
-import DescriptiveStatsComponent from './component.astro';
-import DescriptiveStatsSEO from './seo.astro';
-import DescriptiveStatsBibliography from './bibliography.astro';
 import type { DescriptiveStatsUI } from './ui';
 
 export type { DescriptiveStatsUI };
@@ -31,11 +28,10 @@ export const descriptiveStats: StatisticsToolEntry<DescriptiveStatsUI> = {
   },
 };
 
-export { DescriptiveStatsComponent, DescriptiveStatsSEO, DescriptiveStatsBibliography };
 
 export const DESCRIPTIVE_STATS_TOOL: ToolDefinition = {
   entry: descriptiveStats,
-  Component: DescriptiveStatsComponent,
-  SEOComponent: DescriptiveStatsSEO,
-  BibliographyComponent: DescriptiveStatsBibliography,
+  Component: () => import('./component.astro'),
+  SEOComponent: () => import('./seo.astro'),
+  BibliographyComponent: () => import('./bibliography.astro'),
 };

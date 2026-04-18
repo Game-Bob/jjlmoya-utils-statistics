@@ -1,7 +1,4 @@
 import type { StatisticsToolEntry, ToolDefinition } from '../../types';
-import NormalDistributionComponent from './component.astro';
-import NormalDistributionSEO from './seo.astro';
-import NormalDistributionBibliography from './bibliography.astro';
 import type { NormalDistributionUI } from './ui';
 
 export type { NormalDistributionUI };
@@ -31,11 +28,10 @@ export const normalDistribution: StatisticsToolEntry<NormalDistributionUI> = {
   },
 };
 
-export { NormalDistributionComponent, NormalDistributionSEO, NormalDistributionBibliography };
 
 export const NORMAL_DISTRIBUTION_TOOL: ToolDefinition = {
   entry: normalDistribution,
-  Component: NormalDistributionComponent,
-  SEOComponent: NormalDistributionSEO,
-  BibliographyComponent: NormalDistributionBibliography,
+  Component: () => import('./component.astro'),
+  SEOComponent: () => import('./seo.astro'),
+  BibliographyComponent: () => import('./bibliography.astro'),
 };
