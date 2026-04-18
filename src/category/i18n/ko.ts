@@ -1,7 +1,7 @@
 import type { CategoryLocaleContent } from '../../types';
 
 export const content: CategoryLocaleContent = {
-  slug: 'tong-gye',
+  slug: 'statistics',
   title: '통계 및 확률 도구',
   description:
     '무료 통계 유틸리티 컬렉션을 살펴보세요. 중심 경향치, 분산, 확률을 정밀하게 계산할 수 있습니다.',

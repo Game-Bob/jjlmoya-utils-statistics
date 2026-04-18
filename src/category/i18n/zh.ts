@@ -1,7 +1,7 @@
 import type { CategoryLocaleContent } from '../../types';
 
 export const content: CategoryLocaleContent = {
-  slug: 'tong-ji',
+  slug: 'statistics',
   title: '统计与概率工具',
   description:
     '探索我们的免费统计工具集合。精确计算集中趋势、离散程度和概率。',

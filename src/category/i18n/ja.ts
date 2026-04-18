@@ -1,7 +1,7 @@
 import type { CategoryLocaleContent } from '../../types';
 
 export const content: CategoryLocaleContent = {
-  slug: 'toukei',
+  slug: 'statistics',
   title: '統計と確率のツール',
   description:
     '無料の統計ユーティリティコレクションを探索してください。代表値、散布度、確率を正確に計算します。',
