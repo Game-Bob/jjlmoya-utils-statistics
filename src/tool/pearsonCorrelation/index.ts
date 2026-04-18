@@ -1,3 +1,4 @@
+import { pearsonCorrelation } from './entry';
 export * from './entry';
 export const PEARSON_CORRELATION_TOOL: ToolDefinition = {
   entry: pearsonCorrelation,

@@ -1,3 +1,4 @@
+import { normalDistribution } from './entry';
 export * from './entry';
 export const NORMAL_DISTRIBUTION_TOOL: ToolDefinition = {
   entry: normalDistribution,

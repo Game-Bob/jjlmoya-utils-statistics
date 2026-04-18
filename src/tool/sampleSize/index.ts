@@ -1,3 +1,4 @@
+import { sampleSize } from './entry';
 export * from './entry';
 export const SAMPLE_SIZE_TOOL: ToolDefinition = {
   entry: sampleSize,

@@ -1,3 +1,4 @@
+import { descriptiveStats } from './entry';
 export * from './entry';
 export const DESCRIPTIVE_STATS_TOOL: ToolDefinition = {
   entry: descriptiveStats,

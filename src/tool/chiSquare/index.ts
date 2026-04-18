@@ -1,3 +1,4 @@
+import { chiSquare } from './entry';
 export * from './entry';
 export const CHI_SQUARE_TOOL: ToolDefinition = {
   entry: chiSquare,

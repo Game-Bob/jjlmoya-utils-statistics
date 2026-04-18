@@ -1,3 +1,4 @@
+import { confidenceInterval } from './entry';
 export * from './entry';
 export const CONFIDENCE_INTERVAL_TOOL: ToolDefinition = {
   entry: confidenceInterval,
