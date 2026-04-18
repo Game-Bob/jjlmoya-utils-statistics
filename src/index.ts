@@ -15,7 +15,7 @@ export type {
   ToolDefinition,
 } from './types';
 
-export { ALL_TOOLS } from './tools';
+export { ALL_ENTRIES, ALL_TOOLS } from './tools';
 
 export { ChiSquareComponent, ChiSquareSEO, ChiSquareBibliography, CHI_SQUARE_TOOL } from './tool/chiSquare/index';
 export { ABTestComponent, ABTestSEO, ABTestBibliography, AB_TEST_TOOL } from './tool/abTest/index';
