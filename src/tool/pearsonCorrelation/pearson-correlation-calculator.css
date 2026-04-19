@@ -1,4 +1,4 @@
-:global(.pc-card) {
+.pc-card {
     --pc-bg: rgba(255, 255, 255, 0.7);
     --pc-border: rgba(99, 102, 241, 0.15);
     --pc-shadow: rgba(0, 0, 0, 0.08);
@@ -38,7 +38,7 @@
     min-height: 600px;
   }
 
-  :global(.theme-dark .pc-card) {
+  .theme-dark .pc-card {
     --pc-bg: rgba(24, 24, 27, 0.95);
     --pc-border: rgba(99, 102, 241, 0.2);
     --pc-shadow: rgba(0, 0, 0, 0.3);
@@ -66,7 +66,7 @@
     --pc-error-color: #f87171;
   }
 
-  :global(.pc-sidebar) {
+  .pc-sidebar {
     background: var(--pc-sidebar-bg);
     border-right: 1px solid var(--pc-sidebar-border);
     padding: 2rem;
@@ -75,13 +75,13 @@
     gap: 1.5rem;
   }
 
-  :global(.pc-sidebar-header) {
+  .pc-sidebar-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
   }
 
-  :global(.pc-sidebar-title) {
+  .pc-sidebar-title {
     margin: 0;
     font-size: 1.1rem;
     font-weight: 700;
@@ -91,7 +91,7 @@
     gap: 0.5rem;
   }
 
-  :global(.pc-textarea) {
+  .pc-textarea {
     flex: 1;
     width: 100%;
     min-height: 300px;
@@ -106,27 +106,27 @@
     box-sizing: border-box;
   }
 
-  :global(.pc-textarea:focus) {
+  .pc-textarea:focus {
     outline: none;
     border-color: var(--pc-input-border-focus);
     box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
   }
 
-  :global(.pc-setting-row) {
+  .pc-setting-row {
     display: flex;
     align-items: center;
     justify-content: space-between;
     gap: 0.5rem;
   }
 
-  :global(.pc-setting-label) {
+  .pc-setting-label {
     font-size: 0.75rem;
     font-weight: 700;
     color: var(--pc-text-label);
     text-transform: uppercase;
   }
 
-  :global(.pc-setting-select) {
+  .pc-setting-select {
     padding: 0.25rem 0.5rem;
     border-radius: 0.5rem;
     border: 1px solid var(--pc-input-border);
@@ -136,7 +136,7 @@
     cursor: pointer;
   }
 
-  :global(.pc-privacy-badge) {
+  .pc-privacy-badge {
     margin-top: auto;
     padding-top: 1rem;
     border-top: 1px dashed var(--pc-privacy-border);
@@ -147,21 +147,21 @@
     gap: 0.5rem;
   }
 
-  :global(.pc-main) {
+  .pc-main {
     padding: 2rem;
     display: flex;
     flex-direction: column;
     gap: 2rem;
   }
 
-  :global(.pc-results-top) {
+  .pc-results-top {
     display: grid;
     grid-template-columns: auto 1fr;
     gap: 2rem;
     align-items: center;
   }
 
-  :global(.pc-main-stat) {
+  .pc-main-stat {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -171,7 +171,7 @@
     min-width: 200px;
   }
 
-  :global(.pc-r-value) {
+  .pc-r-value {
     font-size: 4rem;
     font-weight: 950;
     letter-spacing: -2px;
@@ -184,7 +184,7 @@
     width: 100%;
   }
 
-  :global(.pc-r-label) {
+  .pc-r-label {
     font-size: 0.75rem;
     text-transform: uppercase;
     font-weight: 800;
@@ -192,18 +192,18 @@
     margin-top: 0.5rem;
   }
 
-  :global(.pc-stats-grid) {
+  .pc-stats-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
     gap: 1.5rem;
   }
 
-  :global(.pc-stat-group) {
+  .pc-stat-group {
     display: flex;
     flex-direction: column;
   }
 
-  :global(.pc-stat-label) {
+  .pc-stat-label {
     font-size: 0.7rem;
     color: var(--pc-text-label);
     font-weight: 600;
@@ -211,15 +211,15 @@
     margin-bottom: 0.25rem;
   }
 
-  :global(.pc-stat-value) {
+  .pc-stat-value {
     font-size: 1.25rem;
     font-weight: 800;
     color: var(--pc-stat-value);
   }
 
-  :global(.pc-stat-block .pc-stat-means) { font-size: 1rem; }
+  .pc-stat-block .pc-stat-means { font-size: 1rem; }
 
-  :global(.pc-canvas-wrap) {
+  .pc-canvas-wrap {
     background: var(--pc-surface);
     border: 1px solid var(--pc-surface-border);
     border-radius: 1.5rem;
@@ -228,13 +228,13 @@
     overflow: hidden;
   }
 
-  :global(#scatter-plot) {
+  #scatter-plot {
     display: block;
     width: 100%;
     height: 280px;
   }
 
-  :global(.pc-error-overlay) {
+  .pc-error-overlay {
     position: absolute;
     inset: 0;
     background: var(--pc-error-bg);
@@ -250,7 +250,7 @@
     gap: 0.75rem;
   }
 
-  :global(.pc-actions-row) {
+  .pc-actions-row {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -258,7 +258,7 @@
     padding-top: 1.5rem;
   }
 
-  :global(.pc-interp-badge) {
+  .pc-interp-badge {
     padding: 0.5rem 1.25rem;
     border-radius: 100px;
     font-weight: 700;
@@ -267,49 +267,49 @@
     color: var(--pc-text-muted);
   }
 
-  :global(.pc-interp-strong) {
+  .pc-interp-strong {
     background: #dcfce7;
     color: #166534;
   }
 
-  :global(.theme-dark .pc-interp-strong) {
+  .theme-dark .pc-interp-strong {
     background: rgba(22, 163, 74, 0.15);
     color: #86efac;
   }
 
-  :global(.pc-interp-moderate) {
+  .pc-interp-moderate {
     background: #fef9c3;
     color: #854d0e;
   }
 
-  :global(.theme-dark .pc-interp-moderate) {
+  .theme-dark .pc-interp-moderate {
     background: rgba(202, 138, 4, 0.15);
     color: #fde047;
   }
 
-  :global(.pc-interp-weak) {
+  .pc-interp-weak {
     background: #f1f5f9;
     color: #475569;
   }
 
-  :global(.theme-dark .pc-interp-weak) {
+  .theme-dark .pc-interp-weak {
     background: #27272a;
     color: #a1a1aa;
   }
 
-  :global(.pc-btn-group) {
+  .pc-btn-group {
     display: flex;
     gap: 0.5rem;
     align-items: center;
   }
 
-  :global(.pc-regression-eq) {
+  .pc-regression-eq {
     font-size: 0.75rem;
     color: var(--pc-text-muted);
     margin-right: 1rem;
   }
 
-  :global(.pc-icon-btn) {
+  .pc-icon-btn {
     width: 40px;
     height: 40px;
     display: flex;
@@ -323,63 +323,63 @@
     transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
   }
 
-  :global(.pc-icon-btn:hover) {
+  .pc-icon-btn:hover {
     transform: translateY(-2px);
     border-color: var(--pc-primary);
     color: var(--pc-primary);
   }
 
-  :global(.pc-main > *),
-  :global(.pc-sidebar > *) { min-width: 0; }
+  .pc-main > *,
+  .pc-sidebar > * { min-width: 0; }
 
   @media (max-width: 900px) {
-    :global(.pc-card) { grid-template-columns: 1fr; }
-    :global(.pc-sidebar) {
+    .pc-card { grid-template-columns: 1fr; }
+    .pc-sidebar {
       border-right: none;
       border-bottom: 1px solid var(--pc-sidebar-border);
       padding: 1.5rem;
     }
-    :global(.pc-textarea) { min-height: 150px; }
+    .pc-textarea { min-height: 150px; }
   }
 
   @media (max-width: 600px) {
-    :global(.pc-card) {
+    .pc-card {
       border-radius: 1rem;
       margin: 0;
     }
-    :global(.pc-sidebar) { padding: 1.25rem; }
-    :global(.pc-main) {
+    .pc-sidebar { padding: 1.25rem; }
+    .pc-main {
       padding: 1.25rem;
       gap: 1.25rem;
     }
-    :global(.pc-results-top) {
+    .pc-results-top {
       grid-template-columns: 1fr;
       gap: 1rem;
     }
-    :global(.pc-main-stat) {
+    .pc-main-stat {
       border-right: none;
       border-bottom: 2px solid var(--pc-main-stat-border);
       padding-right: 0;
       padding-bottom: 1rem;
       min-width: unset;
     }
-    :global(.pc-r-value) {
+    .pc-r-value {
       font-size: 2.5rem;
       letter-spacing: -1px;
     }
-    :global(.pc-stats-grid) {
+    .pc-stats-grid {
       grid-template-columns: repeat(2, 1fr);
       gap: 1rem;
     }
-    :global(.pc-actions-row) {
+    .pc-actions-row {
       flex-direction: column;
       gap: 0.75rem;
       align-items: flex-start;
     }
-    :global(.pc-interp-badge) {
+    .pc-interp-badge {
       font-size: 0.8rem;
       padding: 0.4rem 1rem;
     }
-    :global(.pc-canvas-wrap) { border-radius: 1rem; }
-    :global(#scatter-plot) { height: 200px; }
+    .pc-canvas-wrap { border-radius: 1rem; }
+    #scatter-plot { height: 200px; }
   }

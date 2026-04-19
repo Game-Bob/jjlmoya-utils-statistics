@@ -1,4 +1,4 @@
-:global(.ds-card) {
+.ds-card {
     --ds-bg: #fff;
     --ds-primary: #10b981;
     --ds-primary-hover: #059669;
@@ -22,7 +22,7 @@
     margin: 2rem 0;
   }
 
-  :global(.theme-dark .ds-card) {
+  .theme-dark .ds-card {
     --ds-bg: #18181b;
     --ds-primary: #34d399;
     --ds-primary-hover: #10b981;
@@ -36,7 +36,7 @@
     --ds-input-border: rgba(52, 211, 153, 0.25);
   }
 
-  :global(.ds-sidebar) {
+  .ds-sidebar {
     background: var(--ds-sidebar-bg);
     border-bottom: 1px solid var(--ds-sidebar-border);
     padding: 1.5rem;
@@ -45,7 +45,7 @@
     gap: 1rem;
   }
 
-  :global(.ds-heading) {
+  .ds-heading {
     font-size: 1.1rem;
     font-weight: 700;
     color: var(--ds-text);
@@ -54,14 +54,14 @@
     gap: 0.5rem;
   }
 
-  :global(.ds-type-toggle) {
+  .ds-type-toggle {
     display: flex;
     border: 1px solid var(--ds-input-border);
     border-radius: 0.625rem;
     overflow: hidden;
   }
 
-  :global(.ds-type-btn) {
+  .ds-type-btn {
     flex: 1;
     padding: 0.5rem 0.75rem;
     font-size: 0.8rem;
@@ -73,18 +73,18 @@
     transition: background 0.2s, color 0.2s;
   }
 
-  :global(.ds-type-btn.active) {
+  .ds-type-btn.active {
     background: var(--ds-primary);
     color: #fff;
   }
 
-  :global(.ds-label) {
+  .ds-label {
     font-size: 0.875rem;
     font-weight: 700;
     color: var(--ds-text-muted);
   }
 
-  :global(.ds-textarea) {
+  .ds-textarea {
     width: 100%;
     padding: 0.75rem;
     border-radius: 0.75rem;
@@ -96,22 +96,22 @@
     transition: border-color 0.2s;
   }
 
-  :global(.ds-hint) {
+  .ds-hint {
     font-size: 0.8rem;
     color: var(--ds-text-muted);
   }
 
-  :global(.ds-hint-error) {
+  .ds-hint-error {
     color: #ef4444;
   }
 
-  :global(.ds-filter-notice) {
+  .ds-filter-notice {
     font-size: 0.75rem;
     color: #f59e0b;
     min-height: 1rem;
   }
 
-  :global(.ds-main) {
+  .ds-main {
     flex: 1;
     padding: 1.5rem;
     display: flex;
@@ -119,13 +119,13 @@
     gap: 1.5rem;
   }
 
-  :global(.ds-section) {
+  .ds-section {
     display: flex;
     flex-direction: column;
     gap: 0.75rem;
   }
 
-  :global(.ds-section-title) {
+  .ds-section-title {
     font-size: 0.7rem;
     font-weight: 700;
     color: var(--ds-primary);
@@ -133,13 +133,13 @@
     letter-spacing: 0.08em;
   }
 
-  :global(.ds-group) {
+  .ds-group {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 0.75rem;
   }
 
-  :global(.ds-stat) {
+  .ds-stat {
     background: var(--ds-surface);
     border-radius: 0.75rem;
     padding: 0.75rem;
@@ -148,12 +148,12 @@
     gap: 0.25rem;
   }
 
-  :global(.ds-stat-hero) {
+  .ds-stat-hero {
     background: rgba(16, 185, 129, 0.07);
     border: 1px solid rgba(16, 185, 129, 0.2);
   }
 
-  :global(.ds-sl) {
+  .ds-sl {
     font-size: 0.72rem;
     font-weight: 600;
     color: var(--ds-text-muted);
@@ -161,35 +161,35 @@
     letter-spacing: 0.04em;
   }
 
-  :global(.ds-sv) {
+  .ds-sv {
     font-size: 1.1rem;
     font-weight: 700;
     color: var(--ds-text);
   }
 
-  :global(.ds-sv-hero) {
+  .ds-sv-hero {
     font-size: 1.6rem;
     color: var(--ds-primary);
   }
 
-  :global(.ds-chart-section) {
+  .ds-chart-section {
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
   }
 
-  :global(.ds-chart-label) {
+  .ds-chart-label {
     font-size: 0.9rem;
     font-weight: 700;
     color: var(--ds-text);
   }
 
-  :global(.ds-chart-desc) {
+  .ds-chart-desc {
     font-size: 0.8rem;
     color: var(--ds-text-muted);
   }
 
-  :global(#ds-chart) {
+  #ds-chart {
     width: 100%;
     height: 180px;
     display: block;
@@ -197,7 +197,7 @@
     background: var(--ds-surface);
   }
 
-  :global(#ds-boxplot) {
+  #ds-boxplot {
     width: 100%;
     height: 80px;
     display: block;
@@ -205,7 +205,7 @@
     background: var(--ds-surface);
   }
 
-  :global(.ds-insight-box) {
+  .ds-insight-box {
     background: rgba(16, 185, 129, 0.06);
     border: 1px solid rgba(16, 185, 129, 0.2);
     border-radius: 1rem;
@@ -215,7 +215,7 @@
     gap: 0.5rem;
   }
 
-  :global(.ds-insight-title) {
+  .ds-insight-title {
     font-size: 0.72rem;
     font-weight: 700;
     color: var(--ds-primary);
@@ -223,14 +223,14 @@
     letter-spacing: 0.06em;
   }
 
-  :global(.ds-insight-text) {
+  .ds-insight-text {
     font-size: 0.875rem;
     color: var(--ds-text);
     line-height: 1.6;
     margin: 0;
   }
 
-  :global(.ds-copy-block) {
+  .ds-copy-block {
     background: rgba(16, 185, 129, 0.06);
     border: 1px solid rgba(16, 185, 129, 0.25);
     border-radius: 1rem;
@@ -240,7 +240,7 @@
     gap: 0.75rem;
   }
 
-  :global(.ds-copy-header) {
+  .ds-copy-header {
     font-size: 0.75rem;
     font-weight: 700;
     color: var(--ds-primary);
@@ -248,7 +248,7 @@
     letter-spacing: 0.06em;
   }
 
-  :global(.ds-copy-text) {
+  .ds-copy-text {
     font-size: 0.85rem;
     color: var(--ds-text);
     line-height: 1.6;
@@ -261,7 +261,7 @@
     word-break: break-all;
   }
 
-  :global(.ds-copy-btn) {
+  .ds-copy-btn {
     align-self: flex-start;
     padding: 0.5rem 1.25rem;
     background: var(--ds-primary);
@@ -274,16 +274,16 @@
     transition: background 0.2s;
   }
 
-  :global(.ds-copy-btn:hover) {
+  .ds-copy-btn:hover {
     background: var(--ds-primary-hover);
   }
 
   @media (min-width: 768px) {
-    :global(.ds-card) {
+    .ds-card {
       flex-direction: row;
     }
 
-    :global(.ds-sidebar) {
+    .ds-sidebar {
       width: 280px;
       flex-shrink: 0;
       border-bottom: none;
@@ -292,7 +292,7 @@
   }
 
   @media (max-width: 600px) {
-    :global(.ds-group) {
+    .ds-group {
       grid-template-columns: repeat(2, 1fr);
     }
   }

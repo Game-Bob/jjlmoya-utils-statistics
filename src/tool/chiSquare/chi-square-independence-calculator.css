@@ -1,4 +1,4 @@
-:global(.chi-card) {
+.chi-card {
     --chi-primary: #f59e0b;
     --chi-primary-dark: #d97706;
     --chi-primary-deep: #92400e;
@@ -32,7 +32,7 @@
     margin: 2rem 0;
   }
 
-  :global(.theme-dark .chi-card) {
+  .theme-dark .chi-card {
     --chi-primary: #fbbf24;
     --chi-primary-dark: #f59e0b;
     --chi-primary-deep: #fde68a;
@@ -57,18 +57,18 @@
     --chi-alert-text: #fde68a;
   }
 
-  :global(.chi-sidebar) {
+  .chi-sidebar {
     background: var(--chi-sidebar-bg);
     border-bottom: 1px solid var(--chi-primary-border-light);
     padding: 1.5rem;
   }
 
   @media (min-width: 768px) {
-    :global(.chi-card) {
+    .chi-card {
       flex-direction: row;
     }
 
-    :global(.chi-sidebar) {
+    .chi-sidebar {
       width: 340px;
       flex-shrink: 0;
       border-bottom: none;
@@ -79,7 +79,7 @@
     }
   }
 
-  :global(.chi-sidebar-heading) {
+  .chi-sidebar-heading {
     display: flex;
     align-items: center;
     gap: 0.5rem;
@@ -89,12 +89,12 @@
     margin-bottom: 1.25rem;
   }
 
-  :global(.chi-sidebar-heading [data-icon]) {
+  .chi-sidebar-heading [data-icon] {
     color: var(--chi-primary);
     font-size: 1.5em;
   }
 
-  :global(.chi-group-section) {
+  .chi-group-section {
     background: var(--chi-card-bg);
     border: 1px solid var(--chi-border);
     border-radius: 1rem;
@@ -104,13 +104,13 @@
     gap: 1rem;
   }
 
-  :global(.chi-input-row) {
+  .chi-input-row {
     display: flex;
     flex-direction: column;
     gap: 0.35rem;
   }
 
-  :global(.chi-input-row label) {
+  .chi-input-row label {
     font-size: 0.85rem;
     font-weight: 700;
     color: var(--chi-text-label);
@@ -118,7 +118,7 @@
     justify-content: space-between;
   }
 
-  :global(.chi-input-row select) {
+  .chi-input-row select {
     width: 100%;
     padding: 0.75rem 1rem;
     padding-right: 2.5rem;
@@ -135,17 +135,17 @@
     cursor: pointer;
   }
 
-  :global(.chi-input-row select:hover) {
+  .chi-input-row select:hover {
     border-color: #94a3b8;
   }
 
-  :global(.chi-input-row select:focus) {
+  .chi-input-row select:focus {
     outline: none;
     border-color: var(--chi-primary);
     box-shadow: 0 0 0 3px rgba(245, 158, 11, 0.15);
   }
 
-  :global(.chi-info-box) {
+  .chi-info-box {
     margin-top: auto;
     padding: 1.25rem;
     background: var(--chi-primary-light);
@@ -155,13 +155,13 @@
     gap: 0.75rem;
   }
 
-  :global(.chi-info-icon) {
+  .chi-info-icon {
     flex-shrink: 0;
     color: var(--chi-primary-dark);
     font-size: 1.25rem;
   }
 
-  :global(.chi-info-text) {
+  .chi-info-text {
     font-size: 0.75rem;
     color: var(--chi-info-text);
     line-height: 1.5;
@@ -169,7 +169,7 @@
     font-weight: 500;
   }
 
-  :global(.chi-main) {
+  .chi-main {
     flex: 1;
     display: flex;
     flex-direction: column;
@@ -177,7 +177,7 @@
     gap: 2rem;
   }
 
-  :global(.chi-table-container) {
+  .chi-table-container {
     overflow-x: auto;
     background: var(--chi-surface-bg);
     border: 1px solid var(--chi-border);
@@ -185,7 +185,7 @@
     padding: 1rem;
   }
 
-  :global(.chi-table-title) {
+  .chi-table-title {
     font-weight: 700;
     color: var(--chi-text-label);
     margin-bottom: 0.75rem;
@@ -195,35 +195,35 @@
     font-size: 0.95rem;
   }
 
-  :global(.chi-table-title [data-icon]) {
+  .chi-table-title [data-icon] {
     color: var(--chi-primary);
   }
 
-  :global(.chi-contingency-table) {
+  .chi-contingency-table {
     width: 100%;
     border-collapse: collapse;
     table-layout: fixed;
   }
 
-  :global(.chi-contingency-table th),
-  :global(.chi-contingency-table td) {
+  .chi-contingency-table th,
+  .chi-contingency-table td {
     padding: 0.5rem;
     text-align: center;
     border: 1px solid var(--chi-border-cell);
   }
 
-  :global(.chi-contingency-table th) {
+  .chi-contingency-table th {
     background: var(--chi-surface-bg-2);
     font-size: 0.85rem;
     color: var(--chi-text-muted);
   }
 
-  :global(.chi-header-row th) {
+  .chi-header-row th {
     color: var(--chi-text);
     font-weight: 700;
   }
 
-  :global(.chi-contingency-table .chi-header-col) {
+  .chi-contingency-table .chi-header-col {
     background: var(--chi-surface-bg-2);
     font-size: 0.85rem;
     color: var(--chi-text);
@@ -231,7 +231,7 @@
     width: 50px;
   }
 
-  :global(.chi-cell-input) {
+  .chi-cell-input {
     width: 100%;
     box-sizing: border-box;
     padding: 0.5rem;
@@ -245,30 +245,30 @@
     transition: all 0.2s;
   }
 
-  :global(.chi-cell-input:focus) {
+  .chi-cell-input:focus {
     background: var(--chi-card-bg);
     border: 1px solid var(--chi-primary);
     outline: none;
     box-shadow: 0 0 0 2px rgba(245, 158, 11, 0.15);
   }
 
-  :global(.chi-contingency-table .chi-total-cell) {
+  .chi-contingency-table .chi-total-cell {
     background: var(--chi-border-cell);
     font-weight: 700;
     color: var(--chi-text-label);
   }
 
-  :global(.chi-contingency-table .chi-grand-total) {
+  .chi-contingency-table .chi-grand-total {
     background: var(--chi-border);
   }
 
-  :global(.chi-expected-area) {
+  .chi-expected-area {
     margin-top: 1rem;
     border-top: 1px solid var(--chi-border);
     padding-top: 1rem;
   }
 
-  :global(.chi-expected-toggle) {
+  .chi-expected-toggle {
     background: none;
     border: none;
     color: var(--chi-primary);
@@ -281,60 +281,60 @@
     padding: 0;
   }
 
-  :global(.chi-expected-toggle:hover) {
+  .chi-expected-toggle:hover {
     text-decoration: underline;
   }
 
-  :global(.chi-expected-content) {
+  .chi-expected-content {
     display: none;
     margin-top: 1rem;
   }
 
-  :global(.chi-expected-content.open) {
+  .chi-expected-content.open {
     display: block;
   }
 
-  :global(.chi-expected-desc) {
+  .chi-expected-desc {
     font-size: 0.8rem;
     color: var(--chi-text-secondary);
     margin-bottom: 0.75rem;
     margin-top: 0;
   }
 
-  :global(.chi-alert) {
+  .chi-alert {
     background: var(--chi-alert-bg);
     border: 1px solid var(--chi-alert-border);
     padding: 1rem;
     border-radius: 0.75rem;
   }
 
-  :global(.chi-alert-title) {
+  .chi-alert-title {
     color: var(--chi-alert-title);
     font-weight: 800;
     font-size: 0.9rem;
     margin-bottom: 0.25rem;
   }
 
-  :global(.chi-alert-body) {
+  .chi-alert-body {
     color: var(--chi-alert-text);
     font-size: 0.85rem;
     margin: 0;
     font-weight: 500;
   }
 
-  :global(.chi-results-grid) {
+  .chi-results-grid {
     display: grid;
     grid-template-columns: 1fr;
     gap: 1rem;
   }
 
   @media (min-width: 640px) {
-    :global(.chi-results-grid) {
+    .chi-results-grid {
       grid-template-columns: 1fr 1fr;
     }
   }
 
-  :global(.chi-stat-block) {
+  .chi-stat-block {
     background: var(--chi-surface-bg);
     border: 1px solid var(--chi-border);
     border-radius: 1rem;
@@ -346,7 +346,7 @@
     text-align: center;
   }
 
-  :global(.chi-stat-block.significant) {
+  .chi-stat-block.significant {
     background: linear-gradient(
       135deg,
       rgba(16, 185, 129, 0.05),
@@ -355,7 +355,7 @@
     border-color: rgba(16, 185, 129, 0.3);
   }
 
-  :global(.chi-stat-block.not-significant) {
+  .chi-stat-block.not-significant {
     background: linear-gradient(
       135deg,
       rgba(239, 68, 68, 0.05),
@@ -364,7 +364,7 @@
     border-color: rgba(239, 68, 68, 0.3);
   }
 
-  :global(.theme-dark .chi-stat-block.significant) {
+  .theme-dark .chi-stat-block.significant {
     background: linear-gradient(
       135deg,
       rgba(16, 185, 129, 0.12),
@@ -372,7 +372,7 @@
     );
   }
 
-  :global(.theme-dark .chi-stat-block.not-significant) {
+  .theme-dark .chi-stat-block.not-significant {
     background: linear-gradient(
       135deg,
       rgba(239, 68, 68, 0.12),
@@ -380,7 +380,7 @@
     );
   }
 
-  :global(.chi-stat-title) {
+  .chi-stat-title {
     font-size: 0.85rem;
     font-weight: 700;
     color: var(--chi-text-muted);
@@ -389,29 +389,29 @@
     letter-spacing: 0.05em;
   }
 
-  :global(.chi-stat-value) {
+  .chi-stat-value {
     font-size: 2.5rem;
     font-weight: 800;
     line-height: 1;
     color: var(--chi-text);
   }
 
-  :global(.chi-stat-block.significant .chi-stat-value) {
+  .chi-stat-block.significant .chi-stat-value {
     color: #059669;
   }
 
-  :global(.chi-stat-block.not-significant .chi-stat-value) {
+  .chi-stat-block.not-significant .chi-stat-value {
     color: #dc2626;
   }
 
-  :global(.chi-stat-desc) {
+  .chi-stat-desc {
     font-size: 0.9rem;
     font-weight: 600;
     margin-top: 0.75rem;
     color: var(--chi-text-muted);
   }
 
-  :global(.chi-stat-secondary-row) {
+  .chi-stat-secondary-row {
     display: flex;
     gap: 2rem;
     justify-content: center;
@@ -419,45 +419,45 @@
     margin-top: 0.5rem;
   }
 
-  :global(.chi-secondary-label) {
+  .chi-secondary-label {
     font-size: 0.75rem;
     color: var(--chi-text-secondary);
     font-weight: 700;
   }
 
-  :global(.chi-secondary-stat) {
+  .chi-secondary-stat {
     font-size: 2rem;
     font-weight: 800;
     color: var(--chi-primary);
   }
 
-  :global(.chi-cramer-row) {
+  .chi-cramer-row {
     margin-top: 1rem;
     padding-top: 0.5rem;
     border-top: 1px dashed var(--chi-border-cell);
     width: 100%;
   }
 
-  :global(.chi-cramer-value) {
+  .chi-cramer-value {
     font-size: 1.25rem;
     font-weight: 800;
     color: var(--chi-text);
   }
 
-  :global(.chi-cramer-text) {
+  .chi-cramer-text {
     font-size: 0.8rem;
     color: var(--chi-text-muted);
     font-weight: 500;
   }
 
-  :global(.chi-visual-section) {
+  .chi-visual-section {
     background: var(--chi-card-bg);
     border: 1px solid var(--chi-border);
     border-radius: 1rem;
     padding: 1.5rem;
   }
 
-  :global(#bar-canvas) {
+  #bar-canvas {
     width: 100%;
     height: 250px;
     display: block;
@@ -465,7 +465,7 @@
     border-radius: 0.75rem;
   }
 
-  :global(.chi-heatmap-info) {
+  .chi-heatmap-info {
     font-size: 0.8rem;
     color: var(--chi-text-secondary);
     text-align: right;
@@ -473,7 +473,7 @@
     font-style: italic;
   }
 
-  :global(.chi-copy-block) {
+  .chi-copy-block {
     background: var(--chi-primary-light);
     border: 1px dashed var(--chi-primary-border);
     border-radius: 1rem;
@@ -483,7 +483,7 @@
     gap: 1rem;
   }
 
-  :global(.chi-copy-header) {
+  .chi-copy-header {
     display: flex;
     align-items: center;
     gap: 0.5rem;
@@ -492,7 +492,7 @@
     font-size: 0.9rem;
   }
 
-  :global(.chi-copy-text) {
+  .chi-copy-text {
     font-size: 1.05rem;
     line-height: 1.6;
     color: var(--chi-text);
@@ -501,7 +501,7 @@
     font-weight: 500;
   }
 
-  :global(.chi-copy-btn) {
+  .chi-copy-btn {
     align-self: flex-end;
     background: var(--chi-primary);
     color: white;
@@ -517,18 +517,18 @@
     transition: all 0.2s;
   }
 
-  :global(.chi-copy-btn:hover) {
+  .chi-copy-btn:hover {
     background: var(--chi-primary-dark);
     transform: translateY(-1px);
     box-shadow: 0 4px 10px rgba(245, 158, 11, 0.2);
   }
 
-  :global(.chi-copy-btn:active) {
+  .chi-copy-btn:active {
     transform: translateY(0);
     box-shadow: none;
   }
 
-  :global(.chi-math-sym) {
+  .chi-math-sym {
     font-style: italic;
     font-weight: 600;
   }
