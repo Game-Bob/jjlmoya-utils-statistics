@@ -1,3 +1,4 @@
+import { bibliography } from '../bibliography';
 import type { WithContext, FAQPage, HowTo, SoftwareApplication } from 'schema-dts';
 import type { ToolLocaleContent } from '../../../types';
 import type { SampleSizeUI } from '../ui';
@@ -87,13 +88,8 @@ export const content: ToolLocaleContent<SampleSizeUI> = {
   slug,
   title,
   description,
-  faqTitle: 'Veelgestelde vragen',
   faq: faqData,
-  bibliographyTitle: 'Bibliografie & Referenties',
-  bibliography: [
-    { name: 'Bepaling van de steekproefomvang - Wikipedia', url: 'https://nl.wikipedia.org/wiki/Steekproef' },
-    { name: 'Berekening van de steekproefomvang - PubMed', url: 'https://pubmed.ncbi.nlm.nih.gov/30526013/' },
-  ],
+  bibliography,
   howTo: howToData,
   schemas: [faqSchema, howToSchema, appSchema],
   seo: [
@@ -215,7 +211,5 @@ export const content: ToolLocaleContent<SampleSizeUI> = {
     justError: '% en een foutmarge van',
     justResultIs: '%, is de representatieve steekproefomvang',
     justUnit: 'personen.',
-    faqTitle: 'Veelgestelde vragen',
-    bibliographyTitle: 'Bibliografie & Referenties',
   },
 };

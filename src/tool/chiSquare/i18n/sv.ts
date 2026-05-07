@@ -1,3 +1,4 @@
+import { bibliography } from '../bibliography';
 import type { WithContext, FAQPage, HowTo, SoftwareApplication } from 'schema-dts';
 import type { ToolLocaleContent } from '../../../types';
 import type { ChiSquareUI } from '../ui';
@@ -87,15 +88,8 @@ export const content: ToolLocaleContent<ChiSquareUI> = {
   slug,
   title,
   description,
-  faqTitle: 'Vanliga frågor',
   faq: faqData,
-  bibliographyTitle: 'Bibliografi och referenser',
-  bibliography: [
-    {
-      name: 'Chi-två-test - Wikipedia',
-      url: 'https://sv.wikipedia.org/wiki/Chi-tv%C3%A5-test',
-    },
-  ],
+  bibliography,
   howTo: howToData,
   schemas: [faqSchema, howToSchema, appSchema],
   seo: [
@@ -276,7 +270,5 @@ export const content: ToolLocaleContent<ChiSquareUI> = {
     justificationConcluded: ', dras den empiriska slutsatsen att',
     justificationSig: "ETT STARKT SAMBAND FINNS mellan variablerna (Cramér's V:",
     justificationNoSig: 'INGET statistiskt signifikant samband FINNS',
-    faqTitle: 'Vanliga frågor',
-    bibliographyTitle: 'Bibliografi och referenser',
   },
 };

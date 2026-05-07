@@ -1,3 +1,4 @@
+import { bibliography } from '../bibliography';
 import type { WithContext, FAQPage, HowTo, SoftwareApplication } from 'schema-dts';
 import type { ToolLocaleContent } from '../../../types';
 import type { SampleSizeUI } from '../ui';
@@ -87,13 +88,8 @@ export const content: ToolLocaleContent<SampleSizeUI> = {
   slug,
   title,
   description,
-  faqTitle: 'よくある質問',
   faq: faqData,
-  bibliographyTitle: '参考文献およびリファレンス',
-  bibliography: [
-    { name: '標本サイズの決定 - Wikipedia', url: 'https://ja.wikipedia.org/wiki/%E6%A0%87%E6%9C%AC%E3%82%B5%E3%82%A4%E3%82%BA%E3%81%AE%E6%B1%BD%E5%AE%9A' },
-    { name: '標本サイズの計算 - PubMed', url: 'https://pubmed.ncbi.nlm.nih.gov/30526013/' },
-  ],
+  bibliography,
   howTo: howToData,
   schemas: [faqSchema, howToSchema, appSchema],
   seo: [
@@ -215,7 +211,5 @@ export const content: ToolLocaleContent<SampleSizeUI> = {
     justError: '%、許容誤差',
     justResultIs: '%における代表的な標本サイズは',
     justUnit: '人です。',
-    faqTitle: 'よくある質問',
-    bibliographyTitle: '参考文献およびリファレンス',
   },
 };

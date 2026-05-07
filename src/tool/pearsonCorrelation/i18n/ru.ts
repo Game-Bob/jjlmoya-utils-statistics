@@ -1,3 +1,4 @@
+import { bibliography } from '../bibliography';
 import type { WithContext, FAQPage, HowTo, SoftwareApplication } from 'schema-dts';
 import type { ToolLocaleContent } from '../../../types';
 import type { PearsonCorrelationUI } from '../ui';
@@ -87,14 +88,8 @@ export const content: ToolLocaleContent<PearsonCorrelationUI> = {
   slug,
   title,
   description,
-  faqTitle: 'Часто задаваемые вопросы',
   faq: faqData,
-  bibliographyTitle: 'Библиография и ссылки',
-  bibliography: [
-    { name: 'Коэффициент корреляции Пирсона - Википедия', url: 'https://ru.wikipedia.org/wiki/%D0%9A%D0%BE%D1%8D%D1%84%D1%84%D0%B8%D1%86%D0%B8%D0%B5%D0%BD%D1%82_%D0%BA%D0%BE%D1%80%D1%80%D0%B5%D0%BB%D1%8F%D1%86%D0%B8%D0%B8_%D0%9F%D0%B8%D1%80%D1%81%D0%BE%D0%BD%D0%B0' },
-    { name: 'Pearson Correlation: Definition, Formula and Interpretation', url: 'https://numiqo.es/tutorial/pearson-correlation' },
-    { name: "Interpretation of Pearson's Correlation Coefficient", url: 'https://www.cimec.es/coeficiente-correlacion-pearson/' },
-  ],
+  bibliography,
   howTo: howToData,
   schemas: [faqSchema, howToSchema, appSchema],
   seo: [
@@ -204,7 +199,5 @@ export const content: ToolLocaleContent<PearsonCorrelationUI> = {
     errorMsg: 'Введите минимум 2 пары данных для графика',
     btnCopyTitle: 'Копировать результаты',
     btnDownloadTitle: 'Скачать график',
-    faqTitle: 'Часто задаваемые вопросы',
-    bibliographyTitle: 'Библиография и ссылки',
   },
 };

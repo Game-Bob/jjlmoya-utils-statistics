@@ -1,3 +1,4 @@
+import { bibliography } from '../bibliography';
 import type { WithContext, FAQPage, HowTo, SoftwareApplication } from 'schema-dts';
 import type { ToolLocaleContent } from '../../../types';
 import type { SampleSizeUI } from '../ui';
@@ -87,13 +88,8 @@ export const content: ToolLocaleContent<SampleSizeUI> = {
   slug,
   title,
   description,
-  faqTitle: 'Questions Fréquentes',
   faq: faqData,
-  bibliographyTitle: 'Bibliographie et Références',
-  bibliography: [
-    { name: 'Sample size determination - Wikipedia', url: 'https://en.wikipedia.org/wiki/Sample_size_determination' },
-    { name: "Calcul de la taille de l'échantillon - PubMed", url: 'https://pubmed.ncbi.nlm.nih.gov/30526013/' },
-  ],
+  bibliography,
   howTo: howToData,
   schemas: [faqSchema, howToSchema, appSchema],
   seo: [
@@ -215,7 +211,5 @@ export const content: ToolLocaleContent<SampleSizeUI> = {
     justError: "% et une marge d'erreur de",
     justResultIs: "%, la taille d'échantillon représentative est de",
     justUnit: 'individus.',
-    faqTitle: 'Questions Fréquentes',
-    bibliographyTitle: 'Bibliographie et Références',
   },
 };

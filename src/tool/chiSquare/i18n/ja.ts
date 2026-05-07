@@ -1,3 +1,4 @@
+import { bibliography } from '../bibliography';
 import type { WithContext, FAQPage, HowTo, SoftwareApplication } from 'schema-dts';
 import type { ToolLocaleContent } from '../../../types';
 import type { ChiSquareUI } from '../ui';
@@ -87,15 +88,8 @@ export const content: ToolLocaleContent<ChiSquareUI> = {
   slug,
   title,
   description,
-  faqTitle: 'よくある質問',
   faq: faqData,
-  bibliographyTitle: '参考文献およびリファレンス',
-  bibliography: [
-    {
-      name: 'カイ二乗検定 - Wikipedia',
-      url: 'https://ja.wikipedia.org/wiki/%E3%82%AB%E3%82%A4%E4%BA%8C%E4%B9%97%E6%A4%9C%E5%AE%9A',
-    },
-  ],
+  bibliography,
   howTo: howToData,
   schemas: [faqSchema, howToSchema, appSchema],
   seo: [
@@ -276,7 +270,5 @@ export const content: ToolLocaleContent<ChiSquareUI> = {
     justificationConcluded: ' で評価した結果、以下のように実証的に結論付けられます。',
     justificationSig: '変数間に強い連関があります（クラメールのV:',
     justificationNoSig: '統計的に有意な連関は認められません',
-    faqTitle: 'よくある質問',
-    bibliographyTitle: '参考文献およびリファレンス',
   },
 };

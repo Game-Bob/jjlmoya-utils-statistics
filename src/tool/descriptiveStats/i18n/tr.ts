@@ -1,3 +1,4 @@
+import { bibliography } from '../bibliography';
 import type { WithContext, FAQPage, HowTo, SoftwareApplication } from 'schema-dts';
 import type { ToolLocaleContent } from '../../../types';
 import type { DescriptiveStatsUI } from '../ui';
@@ -83,15 +84,8 @@ export const content: ToolLocaleContent<DescriptiveStatsUI> = {
   slug,
   title,
   description,
-  faqTitle: 'Sıkça Sorulan Sorular',
   faq: faqData,
-  bibliographyTitle: 'Bibliyografya & Referanslar',
-  bibliography: [
-    { name: 'Betimsel istatistik - Vikipedi', url: 'https://tr.wikipedia.org/wiki/Betimsel_istatistik' },
-    { name: 'Standart sapma - Vikipedi', url: 'https://tr.wikipedia.org/wiki/Standart_sapma' },
-    { name: 'Çarpıklık - Vikipedi', url: 'https://tr.wikipedia.org/wiki/%C3%87arp%C4%B1kl%C4%B1k' },
-    { name: 'Basıklık - Vikipedi', url: 'https://tr.wikipedia.org/wiki/Bas%C4%B1kl%C4%B1k' },
-  ],
+  bibliography,
   howTo: howToData,
   schemas: [faqSchema, howToSchema, appSchema],
   seo: [
@@ -194,7 +188,5 @@ export const content: ToolLocaleContent<DescriptiveStatsUI> = {
     btnCopy: 'Özeti Kopyala',
     btnCopied: 'Kopyalandı!',
     noMode: 'Mod yok',
-    faqTitle: 'Sıkça Sorulan Sorular',
-    bibliographyTitle: 'Bibliyografya & Referanslar',
   },
 };

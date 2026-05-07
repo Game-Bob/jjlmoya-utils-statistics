@@ -1,3 +1,4 @@
+import { bibliography } from '../bibliography';
 import type { WithContext, FAQPage, HowTo, SoftwareApplication } from 'schema-dts';
 import type { ToolLocaleContent } from '../../../types';
 import type { DescriptiveStatsUI } from '../ui';
@@ -83,15 +84,8 @@ export const content: ToolLocaleContent<DescriptiveStatsUI> = {
   slug,
   title,
   description,
-  faqTitle: 'よくある質問',
   faq: faqData,
-  bibliographyTitle: '参考文献およびリファレンス',
-  bibliography: [
-    { name: '記述統計学 - Wikipedia', url: 'https://ja.wikipedia.org/wiki/%E8%A8%98%E8%BF%B0%E7%B5%B1%E8%A8%88%E5%AD%A6' },
-    { name: '標準偏差 - Wikipedia', url: 'https://ja.wikipedia.org/wiki/%E6%A0%87%E6%BA%96%E5%81%8F%E5%B7%AE' },
-    { name: '歪度 - Wikipedia', url: 'https://ja.wikipedia.org/wiki/%E4%歪%E5%BA%A6' },
-    { name: '尖度 - Wikipedia', url: 'https://ja.wikipedia.org/wiki/%E5%B0%96%E5%BA%A6' },
-  ],
+  bibliography,
   howTo: howToData,
   schemas: [faqSchema, howToSchema, appSchema],
   seo: [
@@ -194,7 +188,5 @@ export const content: ToolLocaleContent<DescriptiveStatsUI> = {
     btnCopy: 'サマリーをコピー',
     btnCopied: 'コピーしました！',
     noMode: '最頻値なし',
-    faqTitle: 'よくある質問',
-    bibliographyTitle: '参考文献およびリファレンス',
   },
 };

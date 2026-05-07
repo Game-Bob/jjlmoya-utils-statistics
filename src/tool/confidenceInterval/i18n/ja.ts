@@ -1,3 +1,4 @@
+import { bibliography } from '../bibliography';
 import type { WithContext, FAQPage, HowTo, SoftwareApplication } from 'schema-dts';
 import type { ToolLocaleContent } from '../../../types';
 import type { ConfidenceIntervalUI } from '../ui';
@@ -83,15 +84,8 @@ export const content: ToolLocaleContent<ConfidenceIntervalUI> = {
   slug,
   title,
   description,
-  faqTitle: 'よくある質問',
   faq: faqData,
-  bibliographyTitle: '参考文献およびリファレンス',
-  bibliography: [
-    { name: '信頼区間 - Wikipedia', url: 'https://ja.wikipedia.org/wiki/%E4%BF%A1%E9%A0%BC%E5%8C%BA%E9%96%93' },
-    { name: 't分布 - Wikipedia', url: 'https://ja.wikipedia.org/wiki/T%E5%88%86%E5%B8%83' },
-    { name: 'NIST e Handbook of Statistical Methods', url: 'https://www.itl.nist.gov/div898/handbook/prc/section1/prc14.htm' },
-    { name: '標準誤差 - Wikipedia', url: 'https://ja.wikipedia.org/wiki/%E6%A0%87%E6%BA%96%E8%AA%A4%E5%B7%AE' },
-  ],
+  bibliography,
   howTo: howToData,
   schemas: [faqSchema, howToSchema, appSchema],
   seo: [
@@ -157,8 +151,6 @@ export const content: ToolLocaleContent<ConfidenceIntervalUI> = {
     labelReport: 'レポート用サマリー',
     btnCopy: 'サマリーをコピー',
     btnCopied: 'コピーしました！',
-    faqTitle: 'よくある質問',
-    bibliographyTitle: '参考文献およびリファレンス',
     tabStats: '要約統計量',
     tabRaw: '生データ',
     labelRaw: 'データを貼り付け',

@@ -1,3 +1,4 @@
+import { bibliography } from '../bibliography';
 import type { WithContext, FAQPage, HowTo, SoftwareApplication } from 'schema-dts';
 import type { ToolLocaleContent } from '../../../types';
 import type { ConfidenceIntervalUI } from '../ui';
@@ -83,15 +84,8 @@ export const content: ToolLocaleContent<ConfidenceIntervalUI> = {
   slug,
   title,
   description,
-  faqTitle: '常见问题',
   faq: faqData,
-  bibliographyTitle: '参考文献与引文',
-  bibliography: [
-    { name: '置信区间 - 维基百科', url: 'https://zh.wikipedia.org/wiki/%E7%BD%AE%E4%BF%A1%E5%8C%BA%E9%97%B4' },
-    { name: 'Student t-分布 - 维基百科', url: 'https://zh.wikipedia.org/wiki/Student_t-%E5%88%86%E5%B8%83' },
-    { name: 'NIST e-统计方法手册', url: 'https://www.itl.nist.gov/div898/handbook/prc/section1/prc14.htm' },
-    { name: '标准误 - 维基百科', url: 'https://zh.wikipedia.org/wiki/%E6%A0%87%E5%87%86%E8%AF%AF' },
-  ],
+  bibliography,
   howTo: howToData,
   schemas: [faqSchema, howToSchema, appSchema],
   seo: [
@@ -157,8 +151,6 @@ export const content: ToolLocaleContent<ConfidenceIntervalUI> = {
     labelReport: '报告摘要',
     btnCopy: '复制摘要',
     btnCopied: '已复制！',
-    faqTitle: '常见问题',
-    bibliographyTitle: '参考文献与引文',
     tabStats: '统计摘要',
     tabRaw: '原始数据',
     labelRaw: '粘贴数据',

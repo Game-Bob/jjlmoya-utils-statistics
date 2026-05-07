@@ -39,6 +39,4 @@ export interface ABTestUI extends Record<string, string> {
   justDiff: string;
   justSig: string;
   justNoSig: string;
-  faqTitle: string;
-  bibliographyTitle: string;
 }

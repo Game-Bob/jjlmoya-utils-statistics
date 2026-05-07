@@ -1,3 +1,4 @@
+import { bibliography } from '../bibliography';
 import type { WithContext, FAQPage, HowTo, SoftwareApplication } from 'schema-dts';
 import type { ToolLocaleContent } from '../../../types';
 import type { ABTestUI } from '../ui';
@@ -87,13 +88,8 @@ export const content: ToolLocaleContent<ABTestUI> = {
   slug,
   title,
   description,
-  faqTitle: 'Sıkça Sorulan Sorular',
   faq: faqData,
-  bibliographyTitle: 'Bibliyografya & Referanslar',
-  bibliography: [
-    { name: 'İstatistiksel hipotez testi - Vikipedi', url: 'https://tr.wikipedia.org/wiki/Hipotez_testi' },
-    { name: 'A/B Testi Hesaplayıcı - Optimizely', url: 'https://www.optimizely.com/sample-size-calculator/' },
-  ],
+  bibliography,
   howTo: howToData,
   schemas: [faqSchema, howToSchema, appSchema],
   seo: [
@@ -214,7 +210,5 @@ export const content: ToolLocaleContent<ABTestUI> = {
     justDiff: ', deneysel fark ',
     justSig: 'istatistiksel olarak anlamlıdır',
     justNoSig: 'istatistiksel olarak anlamlı DEĞİLDİR',
-    faqTitle: 'Sıkça Sorulan Sorular',
-    bibliographyTitle: 'Bibliyografya & Referanslar',
   },
 };

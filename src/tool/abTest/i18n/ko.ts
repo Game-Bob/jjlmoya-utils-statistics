@@ -1,3 +1,4 @@
+import { bibliography } from '../bibliography';
 import type { WithContext, FAQPage, HowTo, SoftwareApplication } from 'schema-dts';
 import type { ToolLocaleContent } from '../../../types';
 import type { ABTestUI } from '../ui';
@@ -87,13 +88,8 @@ export const content: ToolLocaleContent<ABTestUI> = {
   slug,
   title,
   description,
-  faqTitle: '자주 묻는 질문',
   faq: faqData,
-  bibliographyTitle: '참고 문헌 및 출처',
-  bibliography: [
-    { name: '통계적 가설 검정 - 위키백과', url: 'https://ko.wikipedia.org/wiki/%ED%86%B5%EA%B3%84%EC%A0%81_%EA%B0%80%EC%84%A4_%EA%B2%80%EC%A0%95' },
-    { name: 'A/B 테스트 계산기 - Optimizely', url: 'https://www.optimizely.com/sample-size-calculator/' },
-  ],
+  bibliography,
   howTo: howToData,
   schemas: [faqSchema, howToSchema, appSchema],
   seo: [
@@ -214,7 +210,5 @@ export const content: ToolLocaleContent<ABTestUI> = {
     justDiff: ' 하에서, 경험적 차이는 ',
     justSig: '통계적으로 유의미합니다',
     justNoSig: '통계적으로 유의미하지 않습니다',
-    faqTitle: '자주 묻는 질문',
-    bibliographyTitle: '참고 문헌 및 출처',
   },
 };

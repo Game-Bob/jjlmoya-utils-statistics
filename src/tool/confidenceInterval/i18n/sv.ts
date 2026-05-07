@@ -1,3 +1,4 @@
+import { bibliography } from '../bibliography';
 import type { WithContext, FAQPage, HowTo, SoftwareApplication } from 'schema-dts';
 import type { ToolLocaleContent } from '../../../types';
 import type { ConfidenceIntervalUI } from '../ui';
@@ -83,15 +84,8 @@ export const content: ToolLocaleContent<ConfidenceIntervalUI> = {
   slug,
   title,
   description,
-  faqTitle: 'Vanliga frågor',
   faq: faqData,
-  bibliographyTitle: 'Bibliografi och referenser',
-  bibliography: [
-    { name: 'Konfidensintervall Wikipedia', url: 'https://sv.wikipedia.org/wiki/Konfidensintervall' },
-    { name: 'Student t-fördelning Wikipedia', url: 'https://sv.wikipedia.org/wiki/Students_t-f%C3%B6rdelning' },
-    { name: 'NIST e Handbook of Statistical Methods', url: 'https://www.itl.nist.gov/div898/handbook/prc/section1/prc14.htm' },
-    { name: 'Standardfel Wikipedia', url: 'https://sv.wikipedia.org/wiki/Standardfel' },
-  ],
+  bibliography,
   howTo: howToData,
   schemas: [faqSchema, howToSchema, appSchema],
   seo: [
@@ -157,8 +151,6 @@ export const content: ToolLocaleContent<ConfidenceIntervalUI> = {
     labelReport: 'Sammanfattning för din rapport',
     btnCopy: 'Kopiera sammanfattning',
     btnCopied: 'Kopierad!',
-    faqTitle: 'Vanliga frågor',
-    bibliographyTitle: 'Bibliografi och referenser',
     tabStats: 'Sammanfattande statistik',
     tabRaw: 'Rådata',
     labelRaw: 'Klistra in data',

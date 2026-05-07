@@ -19,8 +19,6 @@ export interface ConfidenceIntervalUI extends Record<string, string> {
   labelReport: string;
   btnCopy: string;
   btnCopied: string;
-  faqTitle: string;
-  bibliographyTitle: string;
   tabStats: string;
   tabRaw: string;
   labelRaw: string;

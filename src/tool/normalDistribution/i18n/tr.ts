@@ -1,3 +1,4 @@
+import { bibliography } from '../bibliography';
 import type { WithContext, FAQPage, HowTo, SoftwareApplication } from 'schema-dts';
 import type { ToolLocaleContent } from '../../../types';
 import type { NormalDistributionUI } from '../ui';
@@ -83,15 +84,8 @@ export const content: ToolLocaleContent<NormalDistributionUI> = {
   slug,
   title,
   description,
-  faqTitle: 'Sıkça Sorulan Sorular',
   faq: faqData,
-  bibliographyTitle: 'Bibliyografya & Referanslar',
-  bibliography: [
-    { name: 'Normal dağılım - Vikipedi', url: 'https://tr.wikipedia.org/wiki/Normal_da%C4%9F%C4%B1l%C4%B1m' },
-    { name: 'Hata fonksiyonu - Vikipedi', url: 'https://tr.wikipedia.org/wiki/Hata_fonksiyonu' },
-    { name: 'Abramowitz ve Stegun - NIST', url: 'https://dlmf.nist.gov/' },
-    { name: 'Z puanı - Vikipedi', url: 'https://tr.wikipedia.org/wiki/Z_puan%C4%B1' },
-  ],
+  bibliography,
   howTo: howToData,
   schemas: [faqSchema, howToSchema, appSchema],
   seo: [
@@ -160,7 +154,5 @@ export const content: ToolLocaleContent<NormalDistributionUI> = {
     labelReport: 'Raporunuz için özet',
     btnCopy: 'Özeti Kopyala',
     btnCopied: 'Kopyalandı!',
-    faqTitle: 'Sıkça Sorulan Sorular',
-    bibliographyTitle: 'Bibliyografya & Referanslar',
   },
 };

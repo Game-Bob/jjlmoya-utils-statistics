@@ -1,3 +1,4 @@
+import { bibliography } from '../bibliography';
 import type { WithContext, FAQPage, HowTo, SoftwareApplication } from 'schema-dts';
 import type { ToolLocaleContent } from '../../../types';
 import type { ChiSquareUI } from '../ui';
@@ -87,15 +88,8 @@ export const content: ToolLocaleContent<ChiSquareUI> = {
   slug,
   title,
   description,
-  faqTitle: '常见问题',
   faq: faqData,
-  bibliographyTitle: '参考文献与引文',
-  bibliography: [
-    {
-      name: '卡方检验 - 维基百科',
-      url: 'https://zh.wikipedia.org/wiki/%E5%8D%A1%E6%96%B9%E6%A3%80%E9%AA%8C',
-    },
-  ],
+  bibliography,
   howTo: howToData,
   schemas: [faqSchema, howToSchema, appSchema],
   seo: [
@@ -276,7 +270,5 @@ export const content: ToolLocaleContent<ChiSquareUI> = {
     justificationConcluded: ' 下进行评估，经验性地得出结论：',
     justificationSig: '变量之间存在强关联（克莱姆 V：',
     justificationNoSig: '不存在统计学上的显著关联',
-    faqTitle: '常见问题',
-    bibliographyTitle: '参考文献与引文',
   },
 };

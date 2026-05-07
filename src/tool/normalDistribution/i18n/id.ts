@@ -1,3 +1,4 @@
+import { bibliography } from '../bibliography';
 import type { WithContext, FAQPage, HowTo, SoftwareApplication } from 'schema-dts';
 import type { ToolLocaleContent } from '../../../types';
 import type { NormalDistributionUI } from '../ui';
@@ -83,15 +84,8 @@ export const content: ToolLocaleContent<NormalDistributionUI> = {
   slug,
   title,
   description,
-  faqTitle: 'Pertanyaan yang Sering Diajukan',
   faq: faqData,
-  bibliographyTitle: 'Bibliografi & Referensi',
-  bibliography: [
-    { name: 'Distribusi normal - Wikipedia', url: 'https://id.wikipedia.org/wiki/Distribusi_normal' },
-    { name: 'Fungsi galat - Wikipedia', url: 'https://id.wikipedia.org/wiki/Fungsi_galat' },
-    { name: 'Abramowitz dan Stegun - NIST', url: 'https://dlmf.nist.gov/' },
-    { name: 'Skor standar - Wikipedia', url: 'https://id.wikipedia.org/wiki/Skor_standar' },
-  ],
+  bibliography,
   howTo: howToData,
   schemas: [faqSchema, howToSchema, appSchema],
   seo: [
@@ -160,7 +154,5 @@ export const content: ToolLocaleContent<NormalDistributionUI> = {
     labelReport: 'Ringkasan untuk laporan Anda',
     btnCopy: 'Salin Ringkasan',
     btnCopied: 'Disalin!',
-    faqTitle: 'Pertanyaan yang Sering Diajukan',
-    bibliographyTitle: 'Bibliografi & Referensi',
   },
 };

@@ -1,3 +1,4 @@
+import { bibliography } from '../bibliography';
 import type { WithContext, FAQPage, HowTo, SoftwareApplication } from 'schema-dts';
 import type { ToolLocaleContent } from '../../../types';
 import type { ChiSquareUI } from '../ui';
@@ -87,15 +88,8 @@ export const content: ToolLocaleContent<ChiSquareUI> = {
   slug,
   title,
   description,
-  faqTitle: '자주 묻는 질문',
   faq: faqData,
-  bibliographyTitle: '참고 문헌 및 출처',
-  bibliography: [
-    {
-      name: '카이제곱 검정 - 위키백과',
-      url: 'https://ko.wikipedia.org/wiki/%EC%B9%B4%EC%9D%B4%EC%A0%9C%EA%B3%B1_%EA%B2%80%EC%A0%95',
-    },
-  ],
+  bibliography,
   howTo: howToData,
   schemas: [faqSchema, howToSchema, appSchema],
   seo: [
@@ -276,7 +270,5 @@ export const content: ToolLocaleContent<ChiSquareUI> = {
     justificationConcluded: '에서 평가한 결과, 다음과 같은 결론에 도달했습니다.',
     justificationSig: '변수 간에 강한 연관성이 존재합니다 (크래머 V:',
     justificationNoSig: '통계적으로 유의미한 연관성이 존재하지 않습니다',
-    faqTitle: '자주 묻는 질문',
-    bibliographyTitle: '참고 문헌 및 출처',
   },
 };

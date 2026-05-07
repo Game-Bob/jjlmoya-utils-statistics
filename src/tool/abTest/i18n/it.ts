@@ -1,3 +1,4 @@
+import { bibliography } from '../bibliography';
 import type { WithContext, FAQPage, HowTo, SoftwareApplication } from 'schema-dts';
 import type { ToolLocaleContent } from '../../../types';
 import type { ABTestUI } from '../ui';
@@ -87,13 +88,8 @@ export const content: ToolLocaleContent<ABTestUI> = {
   slug,
   title,
   description,
-  faqTitle: 'Domande frequenti',
   faq: faqData,
-  bibliographyTitle: 'Bibliografia e riferimenti',
-  bibliography: [
-    { name: 'Test d\'ipotesi statistica - Wikipedia', url: 'https://it.wikipedia.org/wiki/Test_di_verifica_delle_ipotesi' },
-    { name: 'Calcolatore A/B Testing - Optimizely', url: 'https://www.optimizely.com/sample-size-calculator/' },
-  ],
+  bibliography,
   howTo: howToData,
   schemas: [faqSchema, howToSchema, appSchema],
   seo: [
@@ -214,7 +210,5 @@ export const content: ToolLocaleContent<ABTestUI> = {
     justDiff: ', la differenza empirica ',
     justSig: 'È statisticamente significativa',
     justNoSig: 'NON è statisticamente significativa',
-    faqTitle: 'Domande frequenti',
-    bibliographyTitle: 'Bibliografia e riferimenti',
   },
 };

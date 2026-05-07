@@ -1,3 +1,4 @@
+import { bibliography } from '../bibliography';
 import type { WithContext, FAQPage, HowTo, SoftwareApplication } from 'schema-dts';
 import type { ToolLocaleContent } from '../../../types';
 import type { PearsonCorrelationUI } from '../ui';
@@ -87,14 +88,8 @@ export const content: ToolLocaleContent<PearsonCorrelationUI> = {
   slug,
   title,
   description,
-  faqTitle: 'Vanliga frågor',
   faq: faqData,
-  bibliographyTitle: 'Bibliografi och referenser',
-  bibliography: [
-    { name: 'Pearsons korrelationskoefficient - Wikipedia', url: 'https://sv.wikipedia.org/wiki/Pearsons_korrelationskoefficient' },
-    { name: 'Pearson Correlation: Definition, Formula and Interpretation', url: 'https://numiqo.es/tutorial/pearson-correlation' },
-    { name: "Interpretation of Pearson's Correlation Coefficient", url: 'https://www.cimec.es/coeficiente-correlacion-pearson/' },
-  ],
+  bibliography,
   howTo: howToData,
   schemas: [faqSchema, howToSchema, appSchema],
   seo: [
@@ -204,7 +199,5 @@ export const content: ToolLocaleContent<PearsonCorrelationUI> = {
     errorMsg: 'Ange minst 2 datapar för att rita diagrammet',
     btnCopyTitle: 'Kopiera resultat',
     btnDownloadTitle: 'Ladda ner diagram',
-    faqTitle: 'Vanliga frågor',
-    bibliographyTitle: 'Bibliografi och referenser',
   },
 };

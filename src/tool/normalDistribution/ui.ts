@@ -22,6 +22,4 @@ export interface NormalDistributionUI extends Record<string, string> {
   labelReport: string;
   btnCopy: string;
   btnCopied: string;
-  faqTitle: string;
-  bibliographyTitle: string;
 }

@@ -1,3 +1,4 @@
+import { bibliography } from '../bibliography';
 import type { WithContext, FAQPage, HowTo, SoftwareApplication } from 'schema-dts';
 import type { ToolLocaleContent } from '../../../types';
 import type { SampleSizeUI } from '../ui';
@@ -87,13 +88,8 @@ export const content: ToolLocaleContent<SampleSizeUI> = {
   slug,
   title,
   description,
-  faqTitle: 'Häufig gestellte Fragen',
   faq: faqData,
-  bibliographyTitle: 'Bibliographie & Referenzen',
-  bibliography: [
-    { name: 'Stichprobenumfang - Wikipedia', url: 'https://de.wikipedia.org/wiki/Stichprobenumfang' },
-    { name: 'Stichprobenberechnung - PubMed', url: 'https://pubmed.ncbi.nlm.nih.gov/30526013/' },
-  ],
+  bibliography,
   howTo: howToData,
   schemas: [faqSchema, howToSchema, appSchema],
   seo: [
@@ -215,7 +211,5 @@ export const content: ToolLocaleContent<SampleSizeUI> = {
     justError: ' % und einer Fehlermarge von',
     justResultIs: ' %, beträgt der repräsentative Stichprobenumfang',
     justUnit: 'Personen.',
-    faqTitle: 'Häufig gestellte Fragen',
-    bibliographyTitle: 'Bibliographie & Referenzen',
   },
 };

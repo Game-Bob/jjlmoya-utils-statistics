@@ -30,6 +30,4 @@ export interface SampleSizeUI extends Record<string, string> {
   justError: string;
   justResultIs: string;
   justUnit: string;
-  faqTitle: string;
-  bibliographyTitle: string;
 }

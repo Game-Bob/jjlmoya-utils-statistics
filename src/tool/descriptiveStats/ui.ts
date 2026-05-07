@@ -43,6 +43,4 @@ export interface DescriptiveStatsUI extends Record<string, string> {
   btnCopy: string;
   btnCopied: string;
   noMode: string;
-  faqTitle: string;
-  bibliographyTitle: string;
 }

@@ -1,3 +1,4 @@
+import { bibliography } from '../bibliography';
 import type { WithContext, FAQPage, HowTo, SoftwareApplication } from 'schema-dts';
 import type { ToolLocaleContent } from '../../../types';
 import type { NormalDistributionUI } from '../ui';
@@ -83,15 +84,8 @@ export const content: ToolLocaleContent<NormalDistributionUI> = {
   slug,
   title,
   description,
-  faqTitle: 'Vanliga frågor',
   faq: faqData,
-  bibliographyTitle: 'Bibliografi och referenser',
-  bibliography: [
-    { name: 'Normalfördelning - Wikipedia', url: 'https://sv.wikipedia.org/wiki/Normalf%C3%B6rdelning' },
-    { name: 'Error function - Wikipedia', url: 'https://en.wikipedia.org/wiki/Error_function' },
-    { name: 'Abramowitz and Stegun - NIST', url: 'https://dlmf.nist.gov/' },
-    { name: 'Z-poäng - Wikipedia', url: 'https://sv.wikipedia.org/wiki/Z-po%C3%A4ng' },
-  ],
+  bibliography,
   howTo: howToData,
   schemas: [faqSchema, howToSchema, appSchema],
   seo: [
@@ -160,7 +154,5 @@ export const content: ToolLocaleContent<NormalDistributionUI> = {
     labelReport: 'Sammanfattning för din rapport',
     btnCopy: 'Kopiera sammanfattning',
     btnCopied: 'Kopierad!',
-    faqTitle: 'Vanliga frågor',
-    bibliographyTitle: 'Bibliografi och referenser',
   },
 };

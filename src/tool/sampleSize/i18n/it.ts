@@ -1,3 +1,4 @@
+import { bibliography } from '../bibliography';
 import type { WithContext, FAQPage, HowTo, SoftwareApplication } from 'schema-dts';
 import type { ToolLocaleContent } from '../../../types';
 import type { SampleSizeUI } from '../ui';
@@ -87,13 +88,8 @@ export const content: ToolLocaleContent<SampleSizeUI> = {
   slug,
   title,
   description,
-  faqTitle: 'Domande frequenti',
   faq: faqData,
-  bibliographyTitle: 'Bibliografia e riferimenti',
-  bibliography: [
-    { name: 'Determinazione della dimensione del campione - Wikipedia', url: 'https://it.wikipedia.org/wiki/Determinazione_della_dimensione_del_campione' },
-    { name: 'Calcolo della dimensione del campione - PubMed', url: 'https://pubmed.ncbi.nlm.nih.gov/30526013/' },
-  ],
+  bibliography,
   howTo: howToData,
   schemas: [faqSchema, howToSchema, appSchema],
   seo: [
@@ -215,7 +211,5 @@ export const content: ToolLocaleContent<SampleSizeUI> = {
     justError: '% e un margine di errore del',
     justResultIs: '%, la dimensione del campione rappresentativo è di',
     justUnit: 'individui.',
-    faqTitle: 'Domande frequenti',
-    bibliographyTitle: 'Bibliografia e riferimenti',
   },
 };

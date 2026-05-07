@@ -1,3 +1,4 @@
+import { bibliography } from '../bibliography';
 import type { WithContext, FAQPage, HowTo, SoftwareApplication } from 'schema-dts';
 import type { ToolLocaleContent } from '../../../types';
 import type { ConfidenceIntervalUI } from '../ui';
@@ -83,15 +84,8 @@ export const content: ToolLocaleContent<ConfidenceIntervalUI> = {
   slug,
   title,
   description,
-  faqTitle: 'Sıkça Sorulan Sorular',
   faq: faqData,
-  bibliographyTitle: 'Bibliyografya & Referanslar',
-  bibliography: [
-    { name: 'Güven aralığı Vikipedi', url: 'https://tr.wikipedia.org/wiki/G%C3%BCven_aral%C4%B1%C4%9F%C4%B1' },
-    { name: 'Student t dağılımı Vikipedi', url: 'https://tr.wikipedia.org/wiki/Student_t_da%C4%9F%C4%B1l%C4%B1m%C4%B1' },
-    { name: 'NIST e Handbook of Statistical Methods', url: 'https://www.itl.nist.gov/div898/handbook/prc/section1/prc14.htm' },
-    { name: 'Standart hata Vikipedi', url: 'https://tr.wikipedia.org/wiki/Standart_hata' },
-  ],
+  bibliography,
   howTo: howToData,
   schemas: [faqSchema, howToSchema, appSchema],
   seo: [
@@ -157,8 +151,6 @@ export const content: ToolLocaleContent<ConfidenceIntervalUI> = {
     labelReport: 'Raporunuz için özet',
     btnCopy: 'Özeti Kopyala',
     btnCopied: 'Kopyalandı!',
-    faqTitle: 'Sıkça Sorulan Sorular',
-    bibliographyTitle: 'Bibliyografya & Referanslar',
     tabStats: 'Özet İstatistikler',
     tabRaw: 'Ham Veri',
     labelRaw: 'Veriyi yapıştırın',

@@ -1,3 +1,4 @@
+import { bibliography } from '../bibliography';
 import type { WithContext, FAQPage, HowTo, SoftwareApplication } from 'schema-dts';
 import type { ToolLocaleContent } from '../../../types';
 import type { ABTestUI } from '../ui';
@@ -87,13 +88,8 @@ export const content: ToolLocaleContent<ABTestUI> = {
   slug,
   title,
   description,
-  faqTitle: '常见问题',
   faq: faqData,
-  bibliographyTitle: '参考文献与引文',
-  bibliography: [
-    { name: '统计假设检验 - 维基百科', url: 'https://zh.wikipedia.org/wiki/%E7%B5%B1%E8%A8%88%E5%81%87%E8%AA%AC%E6%AA%A2%E5%AE%9A' },
-    { name: 'A/B 测试计算器 - Optimizely', url: 'https://www.optimizely.com/sample-size-calculator/' },
-  ],
+  bibliography,
   howTo: howToData,
   schemas: [faqSchema, howToSchema, appSchema],
   seo: [
@@ -214,7 +210,5 @@ export const content: ToolLocaleContent<ABTestUI> = {
     justDiff: ' 的情况下，经验差异 ',
     justSig: '具有统计学显著性',
     justNoSig: '不具有统计学显著性',
-    faqTitle: '常见问题',
-    bibliographyTitle: '参考文献与引文',
   },
 };

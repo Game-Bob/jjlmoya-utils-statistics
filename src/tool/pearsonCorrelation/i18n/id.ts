@@ -1,3 +1,4 @@
+import { bibliography } from '../bibliography';
 import type { WithContext, FAQPage, HowTo, SoftwareApplication } from 'schema-dts';
 import type { ToolLocaleContent } from '../../../types';
 import type { PearsonCorrelationUI } from '../ui';
@@ -87,14 +88,8 @@ export const content: ToolLocaleContent<PearsonCorrelationUI> = {
   slug,
   title,
   description,
-  faqTitle: 'Pertanyaan yang Sering Diajukan',
   faq: faqData,
-  bibliographyTitle: 'Bibliografi & Referensi',
-  bibliography: [
-    { name: 'Koefisien korelasi Pearson - Wikipedia', url: 'https://id.wikipedia.org/wiki/Koefisien_korelasi_Pearson' },
-    { name: 'Pearson Correlation: Definition, Formula and Interpretation', url: 'https://numiqo.es/tutorial/pearson-correlation' },
-    { name: "Interpretation of Pearson's Correlation Coefficient", url: 'https://www.cimec.es/coeficiente-correlacion-pearson/' },
-  ],
+  bibliography,
   howTo: howToData,
   schemas: [faqSchema, howToSchema, appSchema],
   seo: [
@@ -224,7 +219,5 @@ export const content: ToolLocaleContent<PearsonCorrelationUI> = {
     errorMsg: 'Masukkan setidaknya 2 pasangan data untuk grafik',
     btnCopyTitle: 'Salin hasil',
     btnDownloadTitle: 'Unduh grafik',
-    faqTitle: 'Pertanyaan yang Sering Diajukan',
-    bibliographyTitle: 'Bibliografi & Referensi',
   },
 };

@@ -1,3 +1,4 @@
+import { bibliography } from '../bibliography';
 import type { WithContext, FAQPage, HowTo, SoftwareApplication } from 'schema-dts';
 import type { ToolLocaleContent } from '../../../types';
 import type { DescriptiveStatsUI } from '../ui';
@@ -83,15 +84,8 @@ export const content: ToolLocaleContent<DescriptiveStatsUI> = {
   slug,
   title,
   description,
-  faqTitle: 'Frequently Asked Questions',
   faq: faqData,
-  bibliographyTitle: 'Bibliography & References',
-  bibliography: [
-    { name: 'Descriptive statistics - Wikipedia', url: 'https://en.wikipedia.org/wiki/Descriptive_statistics' },
-    { name: 'Standard deviation - Wikipedia', url: 'https://en.wikipedia.org/wiki/Standard_deviation' },
-    { name: 'Skewness - Wikipedia', url: 'https://en.wikipedia.org/wiki/Skewness' },
-    { name: 'Kurtosis - Wikipedia', url: 'https://en.wikipedia.org/wiki/Kurtosis' },
-  ],
+  bibliography,
   howTo: howToData,
   schemas: [faqSchema, howToSchema, appSchema],
   seo: [
@@ -194,7 +188,5 @@ export const content: ToolLocaleContent<DescriptiveStatsUI> = {
     btnCopy: 'Copy Summary',
     btnCopied: 'Copied!',
     noMode: 'No mode',
-    faqTitle: 'Frequently Asked Questions',
-    bibliographyTitle: 'Bibliography & References',
   },
 };

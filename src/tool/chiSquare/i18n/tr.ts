@@ -1,3 +1,4 @@
+import { bibliography } from '../bibliography';
 import type { WithContext, FAQPage, HowTo, SoftwareApplication } from 'schema-dts';
 import type { ToolLocaleContent } from '../../../types';
 import type { ChiSquareUI } from '../ui';
@@ -87,15 +88,8 @@ export const content: ToolLocaleContent<ChiSquareUI> = {
   slug,
   title,
   description,
-  faqTitle: 'Sıkça Sorulan Sorular',
   faq: faqData,
-  bibliographyTitle: 'Bibliyografya & Referanslar',
-  bibliography: [
-    {
-      name: 'Ki-kare testi - Vikipedi',
-      url: 'https://tr.wikipedia.org/wiki/Ki-kare_testi',
-    },
-  ],
+  bibliography,
   howTo: howToData,
   schemas: [faqSchema, howToSchema, appSchema],
   seo: [
@@ -276,7 +270,5 @@ export const content: ToolLocaleContent<ChiSquareUI> = {
     justificationConcluded: ', deneysel olarak şu sonuca varılmıştır:',
     justificationSig: "Değişkenler arasında GÜÇLÜ BİR İLİŞKİ MEVCUTTUR (Cramér'ın V'si:",
     justificationNoSig: 'İstatistiksel olarak anlamlı bir ilişki MEVCUT DEĞİLDİR',
-    faqTitle: 'Sıkça Sorulan Sorular',
-    bibliographyTitle: 'Bibliyografya & Referanslar',
   },
 };

@@ -1,3 +1,4 @@
+import { bibliography } from '../bibliography';
 import type { WithContext, FAQPage, HowTo, SoftwareApplication } from 'schema-dts';
 import type { ToolLocaleContent } from '../../../types';
 import type { ABTestUI } from '../ui';
@@ -87,13 +88,8 @@ export const content: ToolLocaleContent<ABTestUI> = {
   slug,
   title,
   description,
-  faqTitle: 'Questions Fréquentes',
   faq: faqData,
-  bibliographyTitle: 'Bibliographie et Références',
-  bibliography: [
-    { name: 'Statistical hypothesis testing - Wikipedia', url: 'https://en.wikipedia.org/wiki/Statistical_hypothesis_testing' },
-    { name: 'A/B Testing Calculator - Optimizely', url: 'https://www.optimizely.com/sample-size-calculator/' },
-  ],
+  bibliography,
   howTo: howToData,
   schemas: [faqSchema, howToSchema, appSchema],
   seo: [
@@ -214,7 +210,5 @@ export const content: ToolLocaleContent<ABTestUI> = {
     justDiff: ', la différence empirique ',
     justSig: 'EST statistiquement significative',
     justNoSig: "n'est PAS statistiquement significative",
-    faqTitle: 'Questions Fréquentes',
-    bibliographyTitle: 'Bibliographie et Références',
   },
 };

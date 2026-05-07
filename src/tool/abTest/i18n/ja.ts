@@ -1,3 +1,4 @@
+import { bibliography } from '../bibliography';
 import type { WithContext, FAQPage, HowTo, SoftwareApplication } from 'schema-dts';
 import type { ToolLocaleContent } from '../../../types';
 import type { ABTestUI } from '../ui';
@@ -87,13 +88,8 @@ export const content: ToolLocaleContent<ABTestUI> = {
   slug,
   title,
   description,
-  faqTitle: 'よくある質問',
   faq: faqData,
-  bibliographyTitle: '参考文献およびリファレンス',
-  bibliography: [
-    { name: '統計的仮説検定 - Wikipedia', url: 'https://ja.wikipedia.org/wiki/%E7%B5%B1%E8%A8%88%E7%9A%84%E4%BB%AE%E8%AA%AC%E6%A4%9C%E5%AE%9A' },
-    { name: 'A/Bテスト計算機 - Optimizely', url: 'https://www.optimizely.com/sample-size-calculator/' },
-  ],
+  bibliography,
   howTo: howToData,
   schemas: [faqSchema, howToSchema, appSchema],
   seo: [
@@ -214,7 +210,5 @@ export const content: ToolLocaleContent<ABTestUI> = {
     justDiff: 'において、経験的な差は',
     justSig: '統計的に有意です',
     justNoSig: '統計的に有意ではありません',
-    faqTitle: 'よくある質問',
-    bibliographyTitle: '参考文献およびリファレンス',
   },
 };

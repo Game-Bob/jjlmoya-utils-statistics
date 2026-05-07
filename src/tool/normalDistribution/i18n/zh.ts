@@ -1,3 +1,4 @@
+import { bibliography } from '../bibliography';
 import type { WithContext, FAQPage, HowTo, SoftwareApplication } from 'schema-dts';
 import type { ToolLocaleContent } from '../../../types';
 import type { NormalDistributionUI } from '../ui';
@@ -83,15 +84,8 @@ export const content: ToolLocaleContent<NormalDistributionUI> = {
   slug,
   title,
   description,
-  faqTitle: '常见问题',
   faq: faqData,
-  bibliographyTitle: '参考文献与引文',
-  bibliography: [
-    { name: '正态分布 - 维基百科', url: 'https://zh.wikipedia.org/wiki/%E6%AD%A3%E6%80%81%E5%88%86%E5%B8%83' },
-    { name: '误差函数 - 维基百科', url: 'https://zh.wikipedia.org/wiki/%E8%AF%AF%E5%B7%AE%E5%87%BD%E6%95%B0' },
-    { name: 'Abramowitz 和 Stegun - NIST', url: 'https://dlmf.nist.gov/' },
-    { name: '标准分数 - 维基百科', url: 'https://zh.wikipedia.org/wiki/%E6%A0%87%E5%87%86%E5%88%86%E6%95%B0' },
-  ],
+  bibliography,
   howTo: howToData,
   schemas: [faqSchema, howToSchema, appSchema],
   seo: [
@@ -160,7 +154,5 @@ export const content: ToolLocaleContent<NormalDistributionUI> = {
     labelReport: '报告摘要',
     btnCopy: '复制摘要',
     btnCopied: '已复制！',
-    faqTitle: '常见问题',
-    bibliographyTitle: '参考文献与引文',
   },
 };

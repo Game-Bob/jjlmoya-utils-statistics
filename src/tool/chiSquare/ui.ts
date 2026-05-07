@@ -41,6 +41,4 @@ export interface ChiSquareUI extends Record<string, string> {
   justificationConcluded: string;
   justificationSig: string;
   justificationNoSig: string;
-  faqTitle: string;
-  bibliographyTitle: string;
 }

@@ -1,3 +1,4 @@
+import { bibliography } from '../bibliography';
 import type { WithContext, FAQPage, HowTo, SoftwareApplication } from 'schema-dts';
 import type { ToolLocaleContent } from '../../../types';
 import type { SampleSizeUI } from '../ui';
@@ -87,13 +88,8 @@ export const content: ToolLocaleContent<SampleSizeUI> = {
   slug,
   title,
   description,
-  faqTitle: 'Perguntas Frequentes',
   faq: faqData,
-  bibliographyTitle: 'Bibliografia e Referências',
-  bibliography: [
-    { name: 'Determinação do tamanho da amostra - Wikipédia', url: 'https://pt.wikipedia.org/wiki/Determina%C3%A7%C3%A3o_do_tamanho_da_amostra' },
-    { name: 'Cálculo do tamanho da amostra - PubMed', url: 'https://pubmed.ncbi.nlm.nih.gov/30526013/' },
-  ],
+  bibliography,
   howTo: howToData,
   schemas: [faqSchema, howToSchema, appSchema],
   seo: [
@@ -215,7 +211,5 @@ export const content: ToolLocaleContent<SampleSizeUI> = {
     justError: '% e uma margem de erro de',
     justResultIs: '%, o tamanho da amostra representativa é de',
     justUnit: 'indivíduos.',
-    faqTitle: 'Perguntas Frequentes',
-    bibliographyTitle: 'Bibliografia e Referências',
   },
 };

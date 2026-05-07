@@ -1,3 +1,4 @@
+import { bibliography } from '../bibliography';
 import type { WithContext, FAQPage, HowTo, SoftwareApplication } from 'schema-dts';
 import type { ToolLocaleContent } from '../../../types';
 import type { ConfidenceIntervalUI } from '../ui';
@@ -83,15 +84,8 @@ export const content: ToolLocaleContent<ConfidenceIntervalUI> = {
   slug,
   title,
   description,
-  faqTitle: 'Pertanyaan yang Sering Diajukan',
   faq: faqData,
-  bibliographyTitle: 'Bibliografi & Referensi',
-  bibliography: [
-    { name: 'Interval kepercayaan Wikipedia', url: 'https://id.wikipedia.org/wiki/Interval_kepercayaan' },
-    { name: 'Distribusi t Student Wikipedia', url: 'https://id.wikipedia.org/wiki/Distribusi-t_Student' },
-    { name: 'NIST e Handbook of Statistical Methods', url: 'https://www.itl.nist.gov/div898/handbook/prc/section1/prc14.htm' },
-    { name: 'Kesalahan standar Wikipedia', url: 'https://id.wikipedia.org/wiki/Galat_baku' },
-  ],
+  bibliography,
   howTo: howToData,
   schemas: [faqSchema, howToSchema, appSchema],
   seo: [
@@ -157,8 +151,6 @@ export const content: ToolLocaleContent<ConfidenceIntervalUI> = {
     labelReport: 'Ringkasan untuk laporan Anda',
     btnCopy: 'Salin Ringkasan',
     btnCopied: 'Disalin!',
-    faqTitle: 'Pertanyaan yang Sering Diajukan',
-    bibliographyTitle: 'Bibliografi & Referensi',
     tabStats: 'Statistik Ringkasan',
     tabRaw: 'Data Mentah',
     labelRaw: 'Tempel data',

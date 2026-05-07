@@ -1,3 +1,4 @@
+import { bibliography } from '../bibliography';
 import type { WithContext, FAQPage, HowTo, SoftwareApplication } from 'schema-dts';
 import type { ToolLocaleContent } from '../../../types';
 import type { SampleSizeUI } from '../ui';
@@ -87,13 +88,8 @@ export const content: ToolLocaleContent<SampleSizeUI> = {
   slug,
   title,
   description,
-  faqTitle: '자주 묻는 질문',
   faq: faqData,
-  bibliographyTitle: '참고 문헌 및 출처',
-  bibliography: [
-    { name: '표본 크기 결정 - 위키백과', url: 'https://ko.wikipedia.org/wiki/%ED%91%9C%EB%B3%B8_%ED%81%AC%EA%B8%B0_%EA%B2%B0%EC%A0%95' },
-    { name: '표본 크기 계산 - PubMed', url: 'https://pubmed.ncbi.nlm.nih.gov/30526013/' },
-  ],
+  bibliography,
   howTo: howToData,
   schemas: [faqSchema, howToSchema, appSchema],
   seo: [
@@ -215,7 +211,5 @@ export const content: ToolLocaleContent<SampleSizeUI> = {
     justError: '%이며 오차 한계가',
     justResultIs: '%일 때, 대표 표본 크기는',
     justUnit: '명입니다.',
-    faqTitle: '자주 묻는 질문',
-    bibliographyTitle: '참고 문헌 및 출처',
   },
 };

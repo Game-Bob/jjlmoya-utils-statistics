@@ -1,3 +1,4 @@
+import { bibliography } from '../bibliography';
 import type { WithContext, FAQPage, HowTo, SoftwareApplication } from 'schema-dts';
 import type { ToolLocaleContent } from '../../../types';
 import type { SampleSizeUI } from '../ui';
@@ -87,13 +88,8 @@ export const content: ToolLocaleContent<SampleSizeUI> = {
   slug,
   title,
   description,
-  faqTitle: 'Vanliga frågor',
   faq: faqData,
-  bibliographyTitle: 'Bibliografi och referenser',
-  bibliography: [
-    { name: 'Bestämning av urvalsstorlek - Wikipedia', url: 'https://sv.wikipedia.org/wiki/Urval' },
-    { name: 'Beräkning av urvalsstorlek - PubMed', url: 'https://pubmed.ncbi.nlm.nih.gov/30526013/' },
-  ],
+  bibliography,
   howTo: howToData,
   schemas: [faqSchema, howToSchema, appSchema],
   seo: [
@@ -215,7 +211,5 @@ export const content: ToolLocaleContent<SampleSizeUI> = {
     justError: ' % och en felmarginal på',
     justResultIs: ' %, är den representativa urvalsstorleken',
     justUnit: 'personer.',
-    faqTitle: 'Vanliga frågor',
-    bibliographyTitle: 'Bibliografi och referenser',
   },
 };

@@ -1,3 +1,4 @@
+import { bibliography } from '../bibliography';
 import type { WithContext, FAQPage, HowTo, SoftwareApplication } from 'schema-dts';
 import type { ToolLocaleContent } from '../../../types';
 import type { ConfidenceIntervalUI } from '../ui';
@@ -83,15 +84,8 @@ export const content: ToolLocaleContent<ConfidenceIntervalUI> = {
   slug,
   title,
   description,
-  faqTitle: '자주 묻는 질문',
   faq: faqData,
-  bibliographyTitle: '참고 문헌 및 출처',
-  bibliography: [
-    { name: '신뢰 구간 - 위키백과', url: 'https://ko.wikipedia.org/wiki/%EC%8B%A0%EB%A2%B0_%EA%B5%AC%EA%B0%84' },
-    { name: 't 분포 - 위키백과', url: 'https://ko.wikipedia.org/wiki/T_%EB%B6%84%ED%8F%AC' },
-    { name: 'NIST e Handbook of Statistical Methods', url: 'https://www.itl.nist.gov/div898/handbook/prc/section1/prc14.htm' },
-    { name: '표준 오차 - 위키백과', url: 'https://ko.wikipedia.org/wiki/%ED%91%9C%EC%A4%80_%EC%98%A4%EC%B0%A8' },
-  ],
+  bibliography,
   howTo: howToData,
   schemas: [faqSchema, howToSchema, appSchema],
   seo: [
@@ -157,8 +151,6 @@ export const content: ToolLocaleContent<ConfidenceIntervalUI> = {
     labelReport: '보고서용 요약',
     btnCopy: '요약 복사',
     btnCopied: '복사 완료!',
-    faqTitle: '자주 묻는 질문',
-    bibliographyTitle: '참고 문헌 및 출처',
     tabStats: '요약 통계',
     tabRaw: '원시 데이터',
     labelRaw: '데이터 붙여넣기',

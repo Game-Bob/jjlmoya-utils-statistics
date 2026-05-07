@@ -1,3 +1,4 @@
+import { bibliography } from '../bibliography';
 import type { WithContext, FAQPage, HowTo, SoftwareApplication } from 'schema-dts';
 import type { ToolLocaleContent } from '../../../types';
 import type { ABTestUI } from '../ui';
@@ -87,13 +88,8 @@ export const content: ToolLocaleContent<ABTestUI> = {
   slug,
   title,
   description,
-  faqTitle: 'Pertanyaan yang Sering Diajukan',
   faq: faqData,
-  bibliographyTitle: 'Bibliografi & Referensi',
-  bibliography: [
-    { name: 'Pengujian hipotesis statistik - Wikipedia', url: 'https://id.wikipedia.org/wiki/Uji_hipotesis' },
-    { name: 'Kalkulator A/B Testing - Optimizely', url: 'https://www.optimizely.com/sample-size-calculator/' },
-  ],
+  bibliography,
   howTo: howToData,
   schemas: [faqSchema, howToSchema, appSchema],
   seo: [
@@ -214,7 +210,5 @@ export const content: ToolLocaleContent<ABTestUI> = {
     justDiff: ', perbedaan empiris ',
     justSig: 'ADALAH signifikan secara statistik',
     justNoSig: 'TIDAK signifikan secara statistik',
-    faqTitle: 'Pertanyaan yang Sering Diajukan',
-    bibliographyTitle: 'Bibliografi & Referensi',
   },
 };

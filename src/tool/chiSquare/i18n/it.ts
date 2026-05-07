@@ -1,3 +1,4 @@
+import { bibliography } from '../bibliography';
 import type { WithContext, FAQPage, HowTo, SoftwareApplication } from 'schema-dts';
 import type { ToolLocaleContent } from '../../../types';
 import type { ChiSquareUI } from '../ui';
@@ -87,15 +88,8 @@ export const content: ToolLocaleContent<ChiSquareUI> = {
   slug,
   title,
   description,
-  faqTitle: 'Domande frequenti',
   faq: faqData,
-  bibliographyTitle: 'Bibliografia e riferimenti',
-  bibliography: [
-    {
-      name: 'Test chi quadrato - Wikipedia',
-      url: 'https://it.wikipedia.org/wiki/Test_chi_quadrato',
-    },
-  ],
+  bibliography,
   howTo: howToData,
   schemas: [faqSchema, howToSchema, appSchema],
   seo: [
@@ -276,7 +270,5 @@ export const content: ToolLocaleContent<ChiSquareUI> = {
     justificationConcluded: ', si conclude empiricamente che',
     justificationSig: 'ESISTE UNA FORTE ASSOCIAZIONE tra le variabili (V di Cramér:',
     justificationNoSig: 'NON ESISTE un\'associazione statisticamente significativa',
-    faqTitle: 'Domande frequenti',
-    bibliographyTitle: 'Bibliografia e riferimenti',
   },
 };

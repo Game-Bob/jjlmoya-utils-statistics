@@ -1,3 +1,4 @@
+import { bibliography } from '../bibliography';
 import type { WithContext, FAQPage, HowTo, SoftwareApplication } from 'schema-dts';
 import type { ToolLocaleContent } from '../../../types';
 import type { SampleSizeUI } from '../ui';
@@ -87,13 +88,8 @@ export const content: ToolLocaleContent<SampleSizeUI> = {
   slug,
   title,
   description,
-  faqTitle: '常见问题',
   faq: faqData,
-  bibliographyTitle: '参考文献与引文',
-  bibliography: [
-    { name: '样本量确定 - 维基百科', url: 'https://zh.wikipedia.org/wiki/%E6%A0%B7%E6%9C%AC%E9%87%8F%E7%A1%AE%E5%AE%9A' },
-    { name: '样本量计算 - PubMed', url: 'https://pubmed.ncbi.nlm.nih.gov/30526013/' },
-  ],
+  bibliography,
   howTo: howToData,
   schemas: [faqSchema, howToSchema, appSchema],
   seo: [
@@ -215,7 +211,5 @@ export const content: ToolLocaleContent<SampleSizeUI> = {
     justError: '% 且误差幅度为',
     justResultIs: '%，代表性样本量为',
     justUnit: '人。',
-    faqTitle: '常见问题',
-    bibliographyTitle: '参考文献与引文',
   },
 };

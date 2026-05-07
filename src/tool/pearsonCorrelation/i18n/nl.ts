@@ -1,3 +1,4 @@
+import { bibliography } from '../bibliography';
 import type { WithContext, FAQPage, HowTo, SoftwareApplication } from 'schema-dts';
 import type { ToolLocaleContent } from '../../../types';
 import type { PearsonCorrelationUI } from '../ui';
@@ -87,14 +88,8 @@ export const content: ToolLocaleContent<PearsonCorrelationUI> = {
   slug,
   title,
   description,
-  faqTitle: 'Veelgestelde vragen',
   faq: faqData,
-  bibliographyTitle: 'Bibliografie & Referenties',
-  bibliography: [
-    { name: 'Pearson-correlatiecoëfficiënt - Wikipedia', url: 'https://nl.wikipedia.org/wiki/Pearson-correlatieco%C3%ABffici%C3%ABnt' },
-    { name: 'Pearson Correlation: Definition, Formula and Interpretation', url: 'https://numiqo.es/tutorial/pearson-correlation' },
-    { name: 'Interpretation of Pearson\'s Correlation Coefficient', url: 'https://www.cimec.es/coeficiente-correlacion-pearson/' },
-  ],
+  bibliography,
   howTo: howToData,
   schemas: [faqSchema, howToSchema, appSchema],
   seo: [
@@ -204,7 +199,5 @@ export const content: ToolLocaleContent<PearsonCorrelationUI> = {
     errorMsg: 'Voer minimaal 2 gegevensparen in voor de grafiek',
     btnCopyTitle: 'Resultaten kopiëren',
     btnDownloadTitle: 'Grafiek downloaden',
-    faqTitle: 'Veelgestelde vragen',
-    bibliographyTitle: 'Bibliografie & Referenties',
   },
 };

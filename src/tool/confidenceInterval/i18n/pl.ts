@@ -1,3 +1,4 @@
+import { bibliography } from '../bibliography';
 import type { WithContext, FAQPage, HowTo, SoftwareApplication } from 'schema-dts';
 import type { ToolLocaleContent } from '../../../types';
 import type { ConfidenceIntervalUI } from '../ui';
@@ -83,15 +84,8 @@ export const content: ToolLocaleContent<ConfidenceIntervalUI> = {
   slug,
   title,
   description,
-  faqTitle: 'Często zadawane pytania',
   faq: faqData,
-  bibliographyTitle: 'Bibliografia i źródła',
-  bibliography: [
-    { name: 'Przedział ufności - Wikipedia', url: 'https://pl.wikipedia.org/wiki/Przedzia%C5%82_ufno%C5%9Bci' },
-    { name: 'Rozkład t-Studenta - Wikipedia', url: 'https://pl.wikipedia.org/wiki/Rozk%C5%82ad_t-Studenta' },
-    { name: 'NIST e Handbook of Statistical Methods', url: 'https://www.itl.nist.gov/div898/handbook/prc/section1/prc14.htm' },
-    { name: 'Błąd standardowy - Wikipedia', url: 'https://pl.wikipedia.org/wiki/B%C5%82%C4%85d_standardowy' },
-  ],
+  bibliography,
   howTo: howToData,
   schemas: [faqSchema, howToSchema, appSchema],
   seo: [
@@ -157,8 +151,6 @@ export const content: ToolLocaleContent<ConfidenceIntervalUI> = {
     labelReport: 'Podsumowanie do raportu',
     btnCopy: 'Kopiuj podsumowanie',
     btnCopied: 'Skopiowano!',
-    faqTitle: 'Często zadawane pytania',
-    bibliographyTitle: 'Bibliografia i źródła',
     tabStats: 'Statystyki opisowe',
     tabRaw: 'Surowe dane',
     labelRaw: 'Wklej dane',

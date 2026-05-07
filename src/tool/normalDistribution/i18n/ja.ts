@@ -1,3 +1,4 @@
+import { bibliography } from '../bibliography';
 import type { WithContext, FAQPage, HowTo, SoftwareApplication } from 'schema-dts';
 import type { ToolLocaleContent } from '../../../types';
 import type { NormalDistributionUI } from '../ui';
@@ -83,15 +84,8 @@ export const content: ToolLocaleContent<NormalDistributionUI> = {
   slug,
   title,
   description,
-  faqTitle: 'よくある質問',
   faq: faqData,
-  bibliographyTitle: '参考文献およびリファレンス',
-  bibliography: [
-    { name: '正規分布 - Wikipedia', url: 'https://ja.wikipedia.org/wiki/%E6%AD%A3%E8%A6%8F%E5%88%86%E5%B8%83' },
-    { name: '誤差関数 - Wikipedia', url: 'https://ja.wikipedia.org/wiki/%E8%AA%A4%E5%B7%AE%E9%96%A2%E6%95%B0' },
-    { name: 'Abramowitz and Stegun - NIST', url: 'https://dlmf.nist.gov/' },
-    { name: '標準得点 - Wikipedia', url: 'https://ja.wikipedia.org/wiki/%E6%A0%87%E6%BA%96%E5%BE%97%E7%82%B9' },
-  ],
+  bibliography,
   howTo: howToData,
   schemas: [faqSchema, howToSchema, appSchema],
   seo: [
@@ -160,7 +154,5 @@ export const content: ToolLocaleContent<NormalDistributionUI> = {
     labelReport: 'レポート用サマリー',
     btnCopy: 'サマリーをコピー',
     btnCopied: 'コピーしました！',
-    faqTitle: 'よくある質問',
-    bibliographyTitle: '参考文献およびリファレンス',
   },
 };

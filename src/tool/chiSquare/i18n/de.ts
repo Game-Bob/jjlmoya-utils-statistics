@@ -1,3 +1,4 @@
+import { bibliography } from '../bibliography';
 import type { WithContext, FAQPage, HowTo, SoftwareApplication } from 'schema-dts';
 import type { ToolLocaleContent } from '../../../types';
 import type { ChiSquareUI } from '../ui';
@@ -87,15 +88,8 @@ export const content: ToolLocaleContent<ChiSquareUI> = {
   slug,
   title,
   description,
-  faqTitle: 'Häufig gestellte Fragen',
   faq: faqData,
-  bibliographyTitle: 'Bibliographie & Referenzen',
-  bibliography: [
-    {
-      name: 'Chi-Quadrat-Test - Wikipedia',
-      url: 'https://de.wikipedia.org/wiki/Chi-Quadrat-Test',
-    },
-  ],
+  bibliography,
   howTo: howToData,
   schemas: [faqSchema, howToSchema, appSchema],
   seo: [
@@ -276,7 +270,5 @@ export const content: ToolLocaleContent<ChiSquareUI> = {
     justificationConcluded: ' wird empirisch geschlussfolgert, dass',
     justificationSig: 'ein STARKER ZUSAMMENHANG zwischen den Variablen BESTEHT (Cramér-V:',
     justificationNoSig: 'KEIN statistisch signifikanter Zusammenhang BESTEHT',
-    faqTitle: 'Häufig gestellte Fragen',
-    bibliographyTitle: 'Bibliographie & Referenzen',
   },
 };

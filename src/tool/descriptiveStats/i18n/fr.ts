@@ -1,3 +1,4 @@
+import { bibliography } from '../bibliography';
 import type { WithContext, FAQPage, HowTo, SoftwareApplication } from 'schema-dts';
 import type { ToolLocaleContent } from '../../../types';
 import type { DescriptiveStatsUI } from '../ui';
@@ -83,15 +84,8 @@ export const content: ToolLocaleContent<DescriptiveStatsUI> = {
   slug,
   title,
   description,
-  faqTitle: 'Questions Frequentes',
   faq: faqData,
-  bibliographyTitle: 'Bibliographie et References',
-  bibliography: [
-    { name: 'Statistique descriptive - Wikipedia', url: 'https://fr.wikipedia.org/wiki/Statistique_descriptive' },
-    { name: 'Ecart type - Wikipedia', url: 'https://fr.wikipedia.org/wiki/%C3%89cart_type' },
-    { name: 'Asymetrie statistique - Wikipedia', url: 'https://fr.wikipedia.org/wiki/Asymetrie_(statistiques)' },
-    { name: 'Kurtosis - Wikipedia', url: 'https://fr.wikipedia.org/wiki/Kurtosis' },
-  ],
+  bibliography,
   howTo: howToData,
   schemas: [faqSchema, howToSchema, appSchema],
   seo: [
@@ -189,7 +183,5 @@ export const content: ToolLocaleContent<DescriptiveStatsUI> = {
     btnCopy: 'Copier le Resume',
     btnCopied: 'Copie !',
     noMode: 'Pas de mode',
-    faqTitle: 'Questions Frequentes',
-    bibliographyTitle: 'Bibliographie et References',
   },
 };

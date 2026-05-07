@@ -1,3 +1,4 @@
+import { bibliography } from '../bibliography';
 import type { WithContext, FAQPage, HowTo, SoftwareApplication } from 'schema-dts';
 import type { ToolLocaleContent } from '../../../types';
 import type { DescriptiveStatsUI } from '../ui';
@@ -83,15 +84,8 @@ export const content: ToolLocaleContent<DescriptiveStatsUI> = {
   slug,
   title,
   description,
-  faqTitle: '常见问题',
   faq: faqData,
-  bibliographyTitle: '参考文献与引文',
-  bibliography: [
-    { name: '描述性统计 - 维基百科', url: 'https://zh.wikipedia.org/wiki/%E6%8F%8F%E8%BF%B0%E6%80%A7%E7%BB%9F%E8%AE%A1' },
-    { name: '标准差 - 维基百科', url: 'https://zh.wikipedia.org/wiki/%E6%A0%87%E5%87%86%E5%B7%AE' },
-    { name: '偏度 - 维基百科', url: 'https://zh.wikipedia.org/wiki/%E5%81%8F%E5%BA%A6' },
-    { name: '峰度 - 维基百科', url: 'https://zh.wikipedia.org/wiki/%E5%B3%B0%E5%BA%A6' },
-  ],
+  bibliography,
   howTo: howToData,
   schemas: [faqSchema, howToSchema, appSchema],
   seo: [
@@ -194,7 +188,5 @@ export const content: ToolLocaleContent<DescriptiveStatsUI> = {
     btnCopy: '复制摘要',
     btnCopied: '已复制！',
     noMode: '无众数',
-    faqTitle: '常见问题',
-    bibliographyTitle: '参考文献与引文',
   },
 };

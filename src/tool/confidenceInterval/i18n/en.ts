@@ -1,3 +1,4 @@
+import { bibliography } from '../bibliography';
 import type { WithContext, FAQPage, HowTo, SoftwareApplication } from 'schema-dts';
 import type { ToolLocaleContent } from '../../../types';
 import type { ConfidenceIntervalUI } from '../ui';
@@ -83,15 +84,8 @@ export const content: ToolLocaleContent<ConfidenceIntervalUI> = {
   slug,
   title,
   description,
-  faqTitle: 'Frequently Asked Questions',
   faq: faqData,
-  bibliographyTitle: 'Bibliography & References',
-  bibliography: [
-    { name: 'Confidence interval Wikipedia', url: 'https://en.wikipedia.org/wiki/Confidence_interval' },
-    { name: 'Student t distribution Wikipedia', url: 'https://en.wikipedia.org/wiki/Student%27s_t-distribution' },
-    { name: 'NIST e Handbook of Statistical Methods', url: 'https://www.itl.nist.gov/div898/handbook/prc/section1/prc14.htm' },
-    { name: 'Standard error Wikipedia', url: 'https://en.wikipedia.org/wiki/Standard_error' },
-  ],
+  bibliography,
   howTo: howToData,
   schemas: [faqSchema, howToSchema, appSchema],
   seo: [
@@ -157,8 +151,6 @@ export const content: ToolLocaleContent<ConfidenceIntervalUI> = {
     labelReport: 'Summary for your report',
     btnCopy: 'Copy Summary',
     btnCopied: 'Copied!',
-    faqTitle: 'Frequently Asked Questions',
-    bibliographyTitle: 'Bibliography & References',
     tabStats: 'Summary Stats',
     tabRaw: 'Raw Data',
     labelRaw: 'Paste data',

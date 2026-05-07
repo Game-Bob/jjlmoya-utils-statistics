@@ -1,3 +1,4 @@
+import { bibliography } from '../bibliography';
 import type { WithContext, FAQPage, HowTo, SoftwareApplication } from 'schema-dts';
 import type { ToolLocaleContent } from '../../../types';
 import type { ChiSquareUI } from '../ui';
@@ -87,15 +88,8 @@ export const content: ToolLocaleContent<ChiSquareUI> = {
   slug,
   title,
   description,
-  faqTitle: 'Perguntas Frequentes',
   faq: faqData,
-  bibliographyTitle: 'Bibliografia e Referências',
-  bibliography: [
-    {
-      name: 'Teste qui-quadrado de Pearson - Wikipédia',
-      url: 'https://pt.wikipedia.org/wiki/Teste_qui-quadrado_de_Pearson',
-    },
-  ],
+  bibliography,
   howTo: howToData,
   schemas: [faqSchema, howToSchema, appSchema],
   seo: [
@@ -276,7 +270,5 @@ export const content: ToolLocaleContent<ChiSquareUI> = {
     justificationConcluded: ', conclui-se empiricamente que',
     justificationSig: 'EXISTE UMA FORTE ASSOCIAÇÃO entre as variáveis (V de Cramér:',
     justificationNoSig: 'NÃO EXISTE associação estatisticamente significativa',
-    faqTitle: 'Perguntas Frequentes',
-    bibliographyTitle: 'Bibliografia e Referências',
   },
 };

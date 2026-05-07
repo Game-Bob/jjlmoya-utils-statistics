@@ -1,3 +1,4 @@
+import { bibliography } from '../bibliography';
 import type { WithContext, FAQPage, HowTo, SoftwareApplication } from 'schema-dts';
 import type { ToolLocaleContent } from '../../../types';
 import type { PearsonCorrelationUI } from '../ui';
@@ -87,14 +88,8 @@ export const content: ToolLocaleContent<PearsonCorrelationUI> = {
   slug,
   title,
   description,
-  faqTitle: 'Preguntas Frecuentes',
   faq: faqData,
-  bibliographyTitle: 'Bibliografía y Referencias',
-  bibliography: [
-    { name: "Pearson's correlation coefficient - Wikipedia", url: 'https://en.wikipedia.org/wiki/Pearson_correlation_coefficient' },
-    { name: 'Correlación de Pearson: Definición, fórmula e interpretación', url: 'https://numiqo.es/tutorial/pearson-correlation' },
-    { name: 'Interpretación del Coeficiente de Correlación de Pearson', url: 'https://www.cimec.es/coeficiente-correlacion-pearson/' },
-  ],
+  bibliography,
   howTo: howToData,
   schemas: [faqSchema, howToSchema, appSchema],
   seo: [
@@ -204,7 +199,5 @@ export const content: ToolLocaleContent<PearsonCorrelationUI> = {
     errorMsg: 'Introduce al menos 2 pares de datos para graficar',
     btnCopyTitle: 'Copiar resultados',
     btnDownloadTitle: 'Descargar gráfico',
-    faqTitle: 'Preguntas Frecuentes',
-    bibliographyTitle: 'Bibliografía y Referencias',
   },
 };

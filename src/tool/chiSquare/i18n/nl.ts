@@ -1,3 +1,4 @@
+import { bibliography } from '../bibliography';
 import type { WithContext, FAQPage, HowTo, SoftwareApplication } from 'schema-dts';
 import type { ToolLocaleContent } from '../../../types';
 import type { ChiSquareUI } from '../ui';
@@ -87,15 +88,8 @@ export const content: ToolLocaleContent<ChiSquareUI> = {
   slug,
   title,
   description,
-  faqTitle: 'Veelgestelde vragen',
   faq: faqData,
-  bibliographyTitle: 'Bibliografie & Referenties',
-  bibliography: [
-    {
-      name: 'Chi-kwadraattoets - Wikipedia',
-      url: 'https://nl.wikipedia.org/wiki/Chi-kwadraattoets',
-    },
-  ],
+  bibliography,
   howTo: howToData,
   schemas: [faqSchema, howToSchema, appSchema],
   seo: [
@@ -276,7 +270,5 @@ export const content: ToolLocaleContent<ChiSquareUI> = {
     justificationConcluded: ', wordt empirisch geconcludeerd dat',
     justificationSig: "ER EEN STERK VERBAND BESTAAT tussen de variabelen (Cramér's V:",
     justificationNoSig: 'ER GEEN statistisch significant verband BESTAAT',
-    faqTitle: 'Veelgestelde vragen',
-    bibliographyTitle: 'Bibliografie & Referenties',
   },
 };

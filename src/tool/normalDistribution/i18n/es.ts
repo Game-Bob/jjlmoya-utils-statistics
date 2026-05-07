@@ -1,3 +1,4 @@
+import { bibliography } from '../bibliography';
 import type { WithContext, FAQPage, HowTo, SoftwareApplication } from 'schema-dts';
 import type { ToolLocaleContent } from '../../../types';
 import type { NormalDistributionUI } from '../ui';
@@ -83,15 +84,8 @@ export const content: ToolLocaleContent<NormalDistributionUI> = {
   slug,
   title,
   description,
-  faqTitle: 'Preguntas Frecuentes',
   faq: faqData,
-  bibliographyTitle: 'Bibliografia y Referencias',
-  bibliography: [
-    { name: 'Distribucion normal - Wikipedia', url: 'https://es.wikipedia.org/wiki/Distribuci%C3%B3n_normal' },
-    { name: 'Funcion de error - Wikipedia', url: 'https://es.wikipedia.org/wiki/Funci%C3%B3n_error' },
-    { name: 'Abramowitz and Stegun - NIST', url: 'https://dlmf.nist.gov/' },
-    { name: 'Puntuacion z - Wikipedia', url: 'https://es.wikipedia.org/wiki/Puntuaci%C3%B3n_z' },
-  ],
+  bibliography,
   howTo: howToData,
   schemas: [faqSchema, howToSchema, appSchema],
   seo: [
@@ -160,7 +154,5 @@ export const content: ToolLocaleContent<NormalDistributionUI> = {
     labelReport: 'Resumen para tu informe',
     btnCopy: 'Copiar Resumen',
     btnCopied: 'Copiado!',
-    faqTitle: 'Preguntas Frecuentes',
-    bibliographyTitle: 'Bibliografia y Referencias',
   },
 };

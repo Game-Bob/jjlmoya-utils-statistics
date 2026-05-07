@@ -1,3 +1,4 @@
+import { bibliography } from '../bibliography';
 import type { WithContext, FAQPage, HowTo, SoftwareApplication } from 'schema-dts';
 import type { ToolLocaleContent } from '../../../types';
 import type { SampleSizeUI } from '../ui';
@@ -87,13 +88,8 @@ export const content: ToolLocaleContent<SampleSizeUI> = {
   slug,
   title,
   description,
-  faqTitle: 'Często zadawane pytania',
   faq: faqData,
-  bibliographyTitle: 'Bibliografia i źródła',
-  bibliography: [
-    { name: 'Dobór wielkości próby - Wikipedia', url: 'https://pl.wikipedia.org/wiki/Dob%C3%B3r_wielko%C5%9Bci_pr%C3%B3by' },
-    { name: 'Obliczanie wielkości próby - PubMed', url: 'https://pubmed.ncbi.nlm.nih.gov/30526013/' },
-  ],
+  bibliography,
   howTo: howToData,
   schemas: [faqSchema, howToSchema, appSchema],
   seo: [
@@ -215,7 +211,5 @@ export const content: ToolLocaleContent<SampleSizeUI> = {
     justError: '% i marginesie błędu',
     justResultIs: '%, reprezentatywna wielkość próby to',
     justUnit: 'osób.',
-    faqTitle: 'Często zadawane pytania',
-    bibliographyTitle: 'Bibliografia i źródła',
   },
 };

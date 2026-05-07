@@ -21,6 +21,4 @@ export interface PearsonCorrelationUI extends Record<string, string> {
   errorMsg: string;
   btnCopyTitle: string;
   btnDownloadTitle: string;
-  faqTitle: string;
-  bibliographyTitle: string;
 }

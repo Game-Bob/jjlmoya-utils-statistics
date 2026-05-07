@@ -1,3 +1,4 @@
+import { bibliography } from '../bibliography';
 import type { WithContext, FAQPage, HowTo, SoftwareApplication } from 'schema-dts';
 import type { ToolLocaleContent } from '../../../types';
 import type { DescriptiveStatsUI } from '../ui';
@@ -83,15 +84,8 @@ export const content: ToolLocaleContent<DescriptiveStatsUI> = {
   slug,
   title,
   description,
-  faqTitle: 'Vanliga frågor',
   faq: faqData,
-  bibliographyTitle: 'Bibliografi och referenser',
-  bibliography: [
-    { name: 'Beskrivande statistik - Wikipedia', url: 'https://sv.wikipedia.org/wiki/Beskrivande_statistik' },
-    { name: 'Standardavvikelse - Wikipedia', url: 'https://sv.wikipedia.org/wiki/Standardavvikelse' },
-    { name: 'Skevhet - Wikipedia', url: 'https://sv.wikipedia.org/wiki/Skevhet' },
-    { name: 'Kurtosis - Wikipedia', url: 'https://sv.wikipedia.org/wiki/Kurtosis' },
-  ],
+  bibliography,
   howTo: howToData,
   schemas: [faqSchema, howToSchema, appSchema],
   seo: [
@@ -194,7 +188,5 @@ export const content: ToolLocaleContent<DescriptiveStatsUI> = {
     btnCopy: 'Kopiera sammanfattning',
     btnCopied: 'Kopierad!',
     noMode: 'Inget typvärde',
-    faqTitle: 'Vanliga frågor',
-    bibliographyTitle: 'Bibliografi och referenser',
   },
 };

@@ -1,3 +1,4 @@
+import { bibliography } from '../bibliography';
 import type { WithContext, FAQPage, HowTo, SoftwareApplication } from 'schema-dts';
 import type { ToolLocaleContent } from '../../../types';
 import type { NormalDistributionUI } from '../ui';
@@ -83,15 +84,8 @@ export const content: ToolLocaleContent<NormalDistributionUI> = {
   slug,
   title,
   description,
-  faqTitle: '자주 묻는 질문',
   faq: faqData,
-  bibliographyTitle: '참고 문헌 및 출처',
-  bibliography: [
-    { name: '정규 분포 - 위키백과', url: 'https://ko.wikipedia.org/wiki/%EC%A0%95%EA%B2%90_%EB%B6%84%ED%8F%AC' },
-    { name: '오차 함수 - 위키백과', url: 'https://ko.wikipedia.org/wiki/%EC%98%A4%EC%B0%A8_%ED%95%A8%EC%82%98' },
-    { name: 'Abramowitz 및 Stegun - NIST', url: 'https://dlmf.nist.gov/' },
-    { name: '표준 점수 - 위키백과', url: 'https://ko.wikipedia.org/wiki/%ED%91%9C%EC%A4%80_%EC%A0%90%EC%82%AC' },
-  ],
+  bibliography,
   howTo: howToData,
   schemas: [faqSchema, howToSchema, appSchema],
   seo: [
@@ -160,7 +154,5 @@ export const content: ToolLocaleContent<NormalDistributionUI> = {
     labelReport: '보고서용 요약',
     btnCopy: '요약 복사',
     btnCopied: '복사 완료!',
-    faqTitle: '자주 묻는 질문',
-    bibliographyTitle: '참고 문헌 및 출처',
   },
 };

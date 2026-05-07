@@ -1,3 +1,4 @@
+import { bibliography } from '../bibliography';
 import type { WithContext, FAQPage, HowTo, SoftwareApplication } from 'schema-dts';
 import type { ToolLocaleContent } from '../../../types';
 import type { DescriptiveStatsUI } from '../ui';
@@ -83,15 +84,8 @@ export const content: ToolLocaleContent<DescriptiveStatsUI> = {
   slug,
   title,
   description,
-  faqTitle: 'Pertanyaan yang Sering Diajukan',
   faq: faqData,
-  bibliographyTitle: 'Bibliografi & Referensi',
-  bibliography: [
-    { name: 'Statistik deskriptif - Wikipedia', url: 'https://id.wikipedia.org/wiki/Statistik_deskriptif' },
-    { name: 'Simpangan baku - Wikipedia', url: 'https://id.wikipedia.org/wiki/Simpangan_baku' },
-    { name: 'Kemiringan (statistik) - Wikipedia', url: 'https://id.wikipedia.org/wiki/Kemiringan_(statistik)' },
-    { name: 'Kurtosis - Wikipedia', url: 'https://id.wikipedia.org/wiki/Kurtosis' },
-  ],
+  bibliography,
   howTo: howToData,
   schemas: [faqSchema, howToSchema, appSchema],
   seo: [
@@ -194,7 +188,5 @@ export const content: ToolLocaleContent<DescriptiveStatsUI> = {
     btnCopy: 'Salin Ringkasan',
     btnCopied: 'Disalin!',
     noMode: 'Tidak ada modus',
-    faqTitle: 'Pertanyaan yang Sering Diajukan',
-    bibliographyTitle: 'Bibliografi & Referensi',
   },
 };

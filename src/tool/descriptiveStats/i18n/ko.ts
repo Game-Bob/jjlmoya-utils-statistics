@@ -1,3 +1,4 @@
+import { bibliography } from '../bibliography';
 import type { WithContext, FAQPage, HowTo, SoftwareApplication } from 'schema-dts';
 import type { ToolLocaleContent } from '../../../types';
 import type { DescriptiveStatsUI } from '../ui';
@@ -83,15 +84,8 @@ export const content: ToolLocaleContent<DescriptiveStatsUI> = {
   slug,
   title,
   description,
-  faqTitle: '자주 묻는 질문',
   faq: faqData,
-  bibliographyTitle: '참고 문헌 및 출처',
-  bibliography: [
-    { name: '기술 통계학 - 위키백과', url: 'https://ko.wikipedia.org/wiki/%EA%B8%B0%EC%88%A0_%ED%86%B5%EA%B3%84%ED%95%99' },
-    { name: '표준 편차 - 위키백과', url: 'https://ko.wikipedia.org/wiki/%ED%91%9C%EC%A4%80_%ED%8E%B8%EC%B0%A8' },
-    { name: '왜도 - 위키백과', url: 'https://ko.wikipedia.org/wiki/%EC%99%9C%EB%8F%84' },
-    { name: '첨도 - 위키백과', url: 'https://ko.wikipedia.org/wiki/%EC%B2%A8%EB%8F%84' },
-  ],
+  bibliography,
   howTo: howToData,
   schemas: [faqSchema, howToSchema, appSchema],
   seo: [
@@ -194,7 +188,5 @@ export const content: ToolLocaleContent<DescriptiveStatsUI> = {
     btnCopy: '요약 복사',
     btnCopied: '복사 완료!',
     noMode: '최빈값 없음',
-    faqTitle: '자주 묻는 질문',
-    bibliographyTitle: '참고 문헌 및 출처',
   },
 };
