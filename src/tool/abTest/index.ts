@@ -1,3 +1,4 @@
+import type { ToolDefinition } from '../../types';
 import { abTest } from './entry';
 export * from './entry';
 export const AB_TEST_TOOL: ToolDefinition = {

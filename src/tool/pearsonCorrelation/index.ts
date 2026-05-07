@@ -1,3 +1,4 @@
+import type { ToolDefinition } from '../../types';
 import { pearsonCorrelation } from './entry';
 export * from './entry';
 export const PEARSON_CORRELATION_TOOL: ToolDefinition = {
