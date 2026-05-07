@@ -81,7 +81,7 @@ interface Props {
 
 const { Component, locale, content, localeUrls, allToolsNav, englishSlug } = Astro.props;
 
-const cssFiles = import.meta.glob("../../tool/" + "**" + "/" + "*.css", {
+const cssFiles = import.meta.glob("../../tool/**" + "/\x2a.css", {
   query: "?raw",
   import: "default",
 });
