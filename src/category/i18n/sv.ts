@@ -17,7 +17,7 @@ export const content: CategoryLocaleContent = {
     },
     {
       type: 'paragraph',
-      html: 'Från finansmarknadsanalys till personlig medicin – förmågan att tillämpa matematiska modeller för att förutsäga händelser eller validera hypoteser är det som skiljer intuition från vetenskaplig säkerhet. Våra onlinestatistikverktyg är utformade för att demokratisera tillgången till avancerade beräkningar, vilket gör det möjligt för studenter, forskare och nyfikna sinnen att bearbeta sina egna dataset utan behov av komplexa kalkylblad eller avskräckande dyr programvara. Att förstå variabilitet och slumpmässighet är inte bara ett akademiskt behov; det är en livsviktig kompetens i det 21:a århundradet.',
+      html: 'Från finansmarknadsanalys till personlig medicin - förmågan att tillämpa matematiska modeller för att förutsäga händelser eller validera hypoteser är det som skiljer intuition från vetenskaplig säkerhet. Våra onlinestatistikverktyg är utformade för att demokratisera tillgången till avancerade beräkningar, vilket gör det möjligt för studenter, forskare och nyfikna sinnen att bearbeta sina egna dataset utan behov av komplexa kalkylblad eller avskräckande dyr programvara. Att förstå variabilitet och slumpmässighet är inte bara ett akademiskt behov; det är en livsviktig kompetens i det 21:a århundradet.',
     },
     {
       type: 'paragraph',
@@ -30,7 +30,7 @@ export const content: CategoryLocaleContent = {
     },
     {
       type: 'paragraph',
-      html: 'Ordet "statistik" kommer ursprungligen från ordet "stat", eftersom dess ursprung ligger i regeringars behov av att känna till sin befolkning och sina resurser. Från de antika folkräkningarna i Egypten och Rom till Florence Nightingales revolution — som använde statistiska diagram för att radikalt förändra hygienen i militärsjukhus — har denna disciplin varit ett verktyg för djupgående social förändring.',
+      html: 'Ordet "statistik" kommer ursprungligen från ordet "stat", eftersom dess ursprung ligger i regeringars behov av att känna till sin befolkning och sina resurser. Från de antika folkräkningarna i Egypten och Rom till Florence Nightingales revolution - som använde statistiska diagram för att radikalt förändra hygienen i militärsjukhus - har denna disciplin varit ett verktyg för djupgående social förändring.',
     },
     {
       type: 'paragraph',
@@ -65,7 +65,7 @@ export const content: CategoryLocaleContent = {
     },
     {
       type: 'paragraph',
-      html: 'Det aritmetiska medelvärdet är den mest kända indikatorn, men kan ofta vara missvisande om det finns extremvärden (outliers) som förvränger genomsnittet. Därför ger den kombinerade användningen av medianen — det centrala värdet som delar stickprovet i två lika delar — och typvärdet — det vanligaste värdet — en mycket mer rättvisande bild av verkligheten.',
+      html: 'Det aritmetiska medelvärdet är den mest kända indikatorn, men kan ofta vara missvisande om det finns extremvärden (outliers) som förvränger genomsnittet. Därför ger den kombinerade användningen av medianen - det centrala värdet som delar stickprovet i två lika delar - och typvärdet - det vanligaste värdet - en mycket mer rättvisande bild av verkligheten.',
     },
     {
       type: 'paragraph',
@@ -120,7 +120,7 @@ export const content: CategoryLocaleContent = {
     },
     {
       type: 'paragraph',
-      html: 'Denna kraft kommer med ett stort etiskt ansvar. Missbruk av statistik — avsiktligt eller genom okunskap — kan leda till katastrofala slutsatser. Av denna anledning har statistisk litteracitet — förmågan att läsa, tolka och kritiskt utvärdera data — blivit en av de mest eftertraktade färdigheterna på arbetsmarknaden. Det är grunden för Machine Learning, där algoritmer använder statistisk inferens för att fatta tusentals beslut per sekund utan direkt mänsklig inblandning.',
+      html: 'Denna kraft kommer med ett stort etiskt ansvar. Missbruk av statistik - avsiktligt eller genom okunskap - kan leda till katastrofala slutsatser. Av denna anledning har statistisk litteracitet - förmågan att läsa, tolka och kritiskt utvärdera data - blivit en av de mest eftertraktade färdigheterna på arbetsmarknaden. Det är grunden för Machine Learning, där algoritmer använder statistisk inferens för att fatta tusentals beslut per sekund utan direkt mänsklig inblandning.',
     },
     {
       type: 'paragraph',

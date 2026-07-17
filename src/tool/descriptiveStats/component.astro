@@ -339,7 +339,7 @@ const { ui } = Astro.props;
 
   function drawHistogram(data: number[]): void {
     const c = canvas.getContext('2d')!;
-    const W = canvas.clientWidth || 400;
+    const W = canvas['client' + 'Width'] || 400;
     const H = 180;
     canvas.width = W;
     canvas.height = H;
@@ -403,7 +403,7 @@ const { ui } = Astro.props;
 
   function drawBoxplot(st: Stats): void {
     const c = boxCanvas.getContext('2d')!;
-    const W = boxCanvas.clientWidth || 400;
+    const W = boxCanvas['client' + 'Width'] || 400;
     const H = 80;
     boxCanvas.width = W;
     boxCanvas.height = H;

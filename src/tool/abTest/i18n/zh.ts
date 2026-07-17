@@ -46,7 +46,7 @@ const howToData = [
   },
   {
     name: '记录统计判定',
-    text: '查看“显著性判定”，并复制生成的关于实际提升（Lift）是否拒绝随机假设的依据。',
+    text: '查看\"显著性判定\"，并复制生成的关于实际提升（Lift）是否拒绝随机假设的依据。',
   },
 ];
 
@@ -107,7 +107,7 @@ export const content: ToolLocaleContent<ABTestUI> = {
         { value: '即时', label: '内置图表', icon: 'mdi:lightning-bolt' },
       ],
     },
-    { type: 'title', level: 2, text: '为什么我们要将测试分为“转化率”和“平均值”？' },
+    { type: 'title', level: 2, text: '为什么我们要将测试分为\"转化率\"和\"平均值\"？' },
     {
       type: 'paragraph',
       html: '根据研究性质的不同，成功指标也会发生变化。我们的工具原生支持行业内最广泛使用的两种统计检验类型。',
@@ -142,7 +142,7 @@ export const content: ToolLocaleContent<ABTestUI> = {
     { type: 'title', level: 2, text: '如何解读结果：P 值是您的指南' },
     {
       type: 'paragraph',
-      html: '本计算器的核心是著名的 <strong>P 值</strong>。这个数字告诉您，如果原假设（假设“两组相等”）为真，获得这些观测差异的概率。',
+      html: '本计算器的核心是著名的 <strong>P 值</strong>。这个数字告诉您，如果原假设（假设\"两组相等\"）为真，获得这些观测差异的概率。',
     },
     {
       type: 'table',
@@ -156,7 +156,7 @@ export const content: ToolLocaleContent<ABTestUI> = {
     {
       type: 'tip',
       title: '小样本修正',
-      html: '如果您的分组处理的受试者少于 30 个，工具将显示“小样本”警告。在这些临界场景中，经典的正态近似会失去精度；我们建议使用精确的 Student t 检验或 Fisher 工具。',
+      html: '如果您的分组处理的受试者少于 30 个，工具将显示\"小样本\"警告。在这些临界场景中，经典的正态近似会失去精度；我们建议使用精确的 Student t 检验或 Fisher 工具。',
     },
     { type: 'title', level: 2, text: 'A/B 测试术语表' },
     {

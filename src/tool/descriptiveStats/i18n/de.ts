@@ -92,7 +92,7 @@ export const content: ToolLocaleContent<DescriptiveStatsUI> = {
     { type: 'title', level: 2, text: 'Rechner für deskriptive Statistik: Alle Kennzahlen auf einen Blick' },
     {
       type: 'paragraph',
-      html: 'Egal ob Student, Forscher oder Datenanalyst – der <strong>Rechner für deskriptive Statistik</strong> liefert Ihnen sofort eine vollständige statistische Zusammenfassung jedes numerischen Datensatzes. Fügen Sie Ihre Daten ein und erhalten Sie 15 gleichzeitig berechnete Statistiken – ganz ohne Tabellenkalkulationsprogramm.',
+      html: 'Egal ob Student, Forscher oder Datenanalyst - der <strong>Rechner für deskriptive Statistik</strong> liefert Ihnen sofort eine vollständige statistische Zusammenfassung jedes numerischen Datensatzes. Fügen Sie Ihre Daten ein und erhalten Sie 15 gleichzeitig berechnete Statistiken - ganz ohne Tabellenkalkulationsprogramm.',
     },
     {
       type: 'stats',

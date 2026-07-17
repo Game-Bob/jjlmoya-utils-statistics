@@ -30,7 +30,7 @@ export const content: CategoryLocaleContent = {
     },
     {
       type: 'paragraph',
-      html: 'A palavra "estatística" provém originalmente da palavra "estado", pois suas origens encontram-se na necessidade dos governos de conhecer sua população e seus recursos. Dos antigos censos no Egito e em Roma até a revolução de Florence Nightingale — que utilizou gráficos estatísticos para mudar radicalmente a higiene nos hospitais militares —, esta disciplina tem sido uma ferramenta de mudança social profunda.',
+      html: 'A palavra "estatística" provém originalmente da palavra "estado", pois suas origens encontram-se na necessidade dos governos de conhecer sua população e seus recursos. Dos antigos censos no Egito e em Roma até a revolução de Florence Nightingale - que utilizou gráficos estatísticos para mudar radicalmente a higiene nos hospitais militares -, esta disciplina tem sido uma ferramenta de mudança social profunda.',
     },
     {
       type: 'paragraph',
@@ -65,7 +65,7 @@ export const content: CategoryLocaleContent = {
     },
     {
       type: 'paragraph',
-      html: 'A média aritmética é o indicador mais conhecido, mas muitas vezes pode ser enganosa se existirem valores atípicos (outliers) que distorçam a média. Por isso, o uso conjunto da mediana — o valor central que divide a amostra em duas partes iguais — e da moda — o valor mais frequente — oferece um retrato muito mais fiel da realidade.',
+      html: 'A média aritmética é o indicador mais conhecido, mas muitas vezes pode ser enganosa se existirem valores atípicos (outliers) que distorçam a média. Por isso, o uso conjunto da mediana - o valor central que divide a amostra em duas partes iguais - e da moda - o valor mais frequente - oferece um retrato muito mais fiel da realidade.',
     },
     {
       type: 'paragraph',
@@ -120,7 +120,7 @@ export const content: CategoryLocaleContent = {
     },
     {
       type: 'paragraph',
-      html: 'Este poder acarreta uma grande responsabilidade ética. O mau uso da estatística (intencionado ou por ignorância) pode levar a conclusões desastrosas. Por isso, a literacia estatística — a capacidade de ler, interpretar e criticar dados — tornou-se uma das competências mais procuradas no mercado de trabalho. É a base do Machine Learning, onde os algoritmos utilizam a inferência estatística para tomar milhares de decisões por segundo sem intervenção humana direta.',
+      html: 'Este poder acarreta uma grande responsabilidade ética. O mau uso da estatística (intencionado ou por ignorância) pode levar a conclusões desastrosas. Por isso, a literacia estatística - a capacidade de ler, interpretar e criticar dados - tornou-se uma das competências mais procuradas no mercado de trabalho. É a base do Machine Learning, onde os algoritmos utilizam a inferência estatística para tomar milhares de decisões por segundo sem intervenção humana direta.',
     },
     {
       type: 'paragraph',

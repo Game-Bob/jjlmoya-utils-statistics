@@ -27,7 +27,7 @@ const faqData = [
   {
     question: "Quelle proportion attendue (p) dois-je mettre si je ne sais rien de la population ?",
     answer:
-      "Laissez la valeur par défaut : 50%. En statistiques, cela représente le \"pire scénario possible\" car cela maximise la variance p(1-p), garantissant que votre taille d'échantillon ne sera jamais trop petite.",
+      "Laissez la valeur par défaut: 50%. En statistiques, cela représente le \"pire scénario possible\" car cela maximise la variance p(1-p), garantissant que votre taille d'échantillon ne sera jamais trop petite.",
   },
 ];
 
@@ -112,7 +112,7 @@ export const content: ToolLocaleContent<SampleSizeUI> = {
       type: 'paragraph',
       html: "En statistiques, il est rarement possible d'étudier toute une population. La solution est de sélectionner un sous-groupe représentatif connu sous le nom d'échantillon. Si l'échantillon est trop petit, les résultats seront biaisés.",
     },
-    { type: 'title', level: 2, text: 'Les deux modes de calcul : Population Finie et Infinie' },
+    { type: 'title', level: 2, text: 'Les deux modes de calcul: Population Finie et Infinie' },
     {
       type: 'paragraph',
       html: "Notre calculateur s'adapte à votre situation en offrant deux modes de calcul distincts.",
@@ -202,7 +202,7 @@ export const content: ToolLocaleContent<SampleSizeUI> = {
     defaultJustification: "Pour une population de 10 000 personnes, avec un niveau de confiance de 95% et une marge d'erreur de 5%, la taille d'échantillon représentative est de 370 individus.",
     btnCopy: 'Copier le Texte',
     btnCopied: 'Copié !',
-    labelChart: "Sensibilité : Taille vs Marge d'Erreur",
+    labelChart: "Sensibilité: Taille vs Marge d'Erreur",
     chartDesc: "Observez comment la taille de l'échantillon s'emballe lorsqu'on tente de réduire la marge d'erreur.",
     justForFinite: 'Pour une population de',
     justPersons: 'personnes',

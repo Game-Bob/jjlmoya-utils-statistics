@@ -92,7 +92,7 @@ export const content: ToolLocaleContent<DescriptiveStatsUI> = {
     { type: 'title', level: 2, text: 'Descriptive Statistics Calculator: All Key Metrics in One Place' },
     {
       type: 'paragraph',
-      html: 'Whether you are a student, researcher, or data analyst, the <strong>Descriptive Statistics Calculator</strong> gives you an instant, complete statistical summary of any numerical dataset. Paste your data and get 15 statistics calculated simultaneously — no spreadsheet software required.',
+      html: 'Whether you are a student, researcher, or data analyst, the <strong>Descriptive Statistics Calculator</strong> gives you an instant, complete statistical summary of any numerical dataset. Paste your data and get 15 statistics calculated simultaneously - no spreadsheet software required.',
     },
     {
       type: 'stats',

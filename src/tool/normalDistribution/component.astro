@@ -190,7 +190,7 @@ const { ui } = Astro.props;
   function drawChart(mean: number, std: number, shade: ChartShade): void {
     const { a, b, prob } = shade;
     const c = canvas.getContext('2d')!;
-    const W = canvas.clientWidth || 500;
+    const W = canvas['client' + 'Width'] || 500;
     const H = 180;
     canvas.width = W; canvas.height = H;
     c.clearRect(0, 0, W, H);

@@ -22,12 +22,12 @@ const faqData = [
   {
     question: 'Comment la taille de l\'echantillon influe sur la largeur de l\'intervalle?',
     answer:
-      'La largeur de l\'IC est proportionnelle a 1/√n : quadrupler la taille de l\'echantillon reduit de moitie la marge d\'erreur. Cela explique pourquoi les grands echantillons donnent des estimations plus precises et pourquoi la planification de la taille de l\'echantillon est cruciale dans la conception des etudes statistiques.',
+      'La largeur de l\'IC est proportionnelle a 1/√n: quadrupler la taille de l\'echantillon reduit de moitie la marge d\'erreur. Cela explique pourquoi les grands echantillons donnent des estimations plus precises et pourquoi la planification de la taille de l\'echantillon est cruciale dans la conception des etudes statistiques.',
   },
   {
     question: 'Qu\'est-ce que la marge d\'erreur?',
     answer:
-      'La marge d\'erreur (ME) est la moitie de la largeur de l\'IC : ME = valeur_critique × SE, ou SE = σ/√n est l\'erreur type. Elle indique la difference maximale attendue entre l\'estimation de l\'echantillon et la vraie valeur de la population au niveau de confiance specifie.',
+      'La marge d\'erreur (ME) est la moitie de la largeur de l\'IC: ME = valeur_critique × SE, ou SE = σ/√n est l\'erreur type. Elle indique la difference maximale attendue entre l\'estimation de l\'echantillon et la vraie valeur de la population au niveau de confiance specifie.',
   },
 ];
 
@@ -89,7 +89,7 @@ export const content: ToolLocaleContent<ConfidenceIntervalUI> = {
   howTo: howToData,
   schemas: [faqSchema, howToSchema, appSchema],
   seo: [
-    { type: 'title', level: 2, text: 'Calculateur Intervalle de Confiance : Resultats en Temps Reel' },
+    { type: 'title', level: 2, text: 'Calculateur Intervalle de Confiance: Resultats en Temps Reel' },
     {
       type: 'paragraph',
       html: 'Le <strong>Calculateur Intervalle de Confiance</strong> calcule instantanement l\'intervalle, la marge d\'erreur, la valeur critique et l\'erreur type. Il prend en charge la distribution Z (sigma de population connu) et t de Student (sigma de l\'echantillon), avec n\'importe quel niveau de confiance entre 0 et 100.',
@@ -124,7 +124,7 @@ export const content: ToolLocaleContent<ConfidenceIntervalUI> = {
       type: 'glossary',
       items: [
         { term: 'Intervalle de confiance (IC)', definition: 'Plage [x̄ − ME, x̄ + ME] estimant le parametre de la population au niveau de confiance choisi.' },
-        { term: 'Niveau de confiance', definition: 'Proportion d\'intervalles qui contiendraient le vrai parametre si l\'experience etait repetee de nombreuses fois. Valeurs typiques : 90%, 95%, 99%.' },
+        { term: 'Niveau de confiance', definition: 'Proportion d\'intervalles qui contiendraient le vrai parametre si l\'experience etait repetee de nombreuses fois. Valeurs typiques: 90%, 95%, 99%.' },
         { term: 'Erreur type (SE)', definition: 'SE = σ/√n. Mesure la variabilite de la moyenne de l\'echantillon autour de la moyenne de la population.' },
         { term: 'Marge d\'erreur (ME)', definition: 'ME = z* × SE (ou t* × SE). C\'est la demi largeur de l\'intervalle de confiance.' },
       ],
@@ -154,7 +154,7 @@ export const content: ToolLocaleContent<ConfidenceIntervalUI> = {
     tabStats: 'Statistiques',
     tabRaw: 'Donnees Brutes',
     labelRaw: 'Collez les donnees',
-    rawPlaceholder: 'Saisissez ou collez des valeurs separees par virgules, espaces ou sauts de ligne. Ex : 12.3, 15.1, 11.8',
+    rawPlaceholder: 'Saisissez ou collez des valeurs separees par virgules, espaces ou sauts de ligne. Ex: 12.3, 15.1, 11.8',
     hintRaw: 'Entrez au moins 2 valeurs numeriques valides.',
     labelDist: 'Distribution',
     distAuto: 'Auto',

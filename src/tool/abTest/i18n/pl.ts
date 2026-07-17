@@ -142,7 +142,7 @@ export const content: ToolLocaleContent<ABTestUI> = {
     { type: 'title', level: 2, text: 'Jak interpretować wyniki: Wartość p jest Twoim przewodnikiem' },
     {
       type: 'paragraph',
-      html: 'Sercem tego kalkulatora jest słynna <strong>wartość p</strong>. Liczba ta informuje o prawdopodobieństwie uzyskania obserwowanej różnicy, gdyby hipoteza zerowa (zakładająca, że „obie grupy są równe”) była prawdziwa.',
+      html: 'Sercem tego kalkulatora jest słynna <strong>wartość p</strong>. Liczba ta informuje o prawdopodobieństwie uzyskania obserwowanej różnicy, gdyby hipoteza zerowa (zakładająca, że \"obie grupy są równe\") była prawdziwa.',
     },
     {
       type: 'table',
@@ -156,7 +156,7 @@ export const content: ToolLocaleContent<ABTestUI> = {
     {
       type: 'tip',
       title: 'Korekta dla małych prób',
-      html: 'Jeśli Twoje grupy obejmują mniej niż 30 osób, narzędzie wyświetli ostrzeżenie o „małej próbie”. W tych granicznych scenariuszach klasyczna aproksymacja normalna traci precyzję; zalecamy korzystanie z dokładnego testu t-Studenta lub narzędzi Fishera.',
+      html: 'Jeśli Twoje grupy obejmują mniej niż 30 osób, narzędzie wyświetli ostrzeżenie o \"małej próbie\". W tych granicznych scenariuszach klasyczna aproksymacja normalna traci precyzję; zalecamy korzystanie z dokładnego testu t-Studenta lub narzędzi Fishera.',
     },
     { type: 'title', level: 2, text: 'Glosariusz testowania A/B' },
     {

@@ -17,7 +17,7 @@ const faqData = [
   {
     question: 'Do czego służy współczynnik V Craméra?',
     answer:
-      'Podczas gdy chi-kwadrat mówi, czy istnieje „jakikolwiek” związek, V Craméra mówi, „jak silny” jest ten związek. Przyjmuje wartości od 0 (całkowita niezależność) do 1 (absolutna zależność matematyczna). Wartości powyżej 0,5 są uważane za bardzo silne z punktu widzenia socjologii.',
+      'Podczas gdy chi-kwadrat mówi, czy istnieje \"jakikolwiek\" związek, V Craméra mówi, \"jak silny\" jest ten związek. Przyjmuje wartości od 0 (całkowita niezależność) do 1 (absolutna zależność matematyczna). Wartości powyżej 0,5 są uważane za bardzo silne z punktu widzenia socjologii.',
   },
   {
     question: 'Co się stanie, jeśli moje liczebności oczekiwane są bardzo niskie?',
@@ -100,7 +100,7 @@ export const content: ToolLocaleContent<ChiSquareUI> = {
     },
     {
       type: 'paragraph',
-      html: 'Podczas gdy klasyczne narzędzia, takie jak test A/B czy statystyki opisowe, doskonale sprawdzają się w przypadku liczb ciągłych (średnie, zarobki, wagi), świat rzeczywisty jest pełen danych kategorialnych (kolory, marki, poziomy satysfakcji). <strong>Kalkulator niezależności chi-kwadrat</strong> to „królewski” test służący do analitycznego ustalenia, czy dwie zmienne jakościowe są ze sobą powiązane statystycznie, czy też zmieniają się całkowicie niezależnie od siebie.',
+      html: 'Podczas gdy klasyczne narzędzia, takie jak test A/B czy statystyki opisowe, doskonale sprawdzają się w przypadku liczb ciągłych (średnie, zarobki, wagi), świat rzeczywisty jest pełen danych kategorialnych (kolory, marki, poziomy satysfakcji). <strong>Kalkulator niezależności chi-kwadrat</strong> to \"królewski\" test służący do analitycznego ustalenia, czy dwie zmienne jakościowe są ze sobą powiązane statystycznie, czy też zmieniają się całkowicie niezależnie od siebie.',
     },
     {
       type: 'stats',
@@ -154,7 +154,7 @@ export const content: ToolLocaleContent<ChiSquareUI> = {
     },
     {
       type: 'paragraph',
-      html: 'Uzyskanie bardzo niskiej wartości p nie oznacza, że zmienne są powiązane „intensywnie”; wskazuje to jedynie, że przypadek nie może być winowajcą (być może dlatego, że masz dziesiątki tysięcy rzeczywistych przypadków). Aby zmierzyć „wielkość efektu”, automatycznie dołączamy <strong>Współczynnik V Craméra</strong>.',
+      html: 'Uzyskanie bardzo niskiej wartości p nie oznacza, że zmienne są powiązane \"intensywnie\"; wskazuje to jedynie, że przypadek nie może być winowajcą (być może dlatego, że masz dziesiątki tysięcy rzeczywistych przypadków). Aby zmierzyć \"wielkość efektu\", automatycznie dołączamy <strong>Współczynnik V Craméra</strong>.',
     },
     {
       type: 'table',
@@ -194,7 +194,7 @@ export const content: ToolLocaleContent<ChiSquareUI> = {
     },
     {
       type: 'paragraph',
-      html: 'Aby poprawić wrażenia użytkownika i ułatwić wyciąganie wniosków w raportach, nasza macierz automatycznie zabarwi tło komórek na podstawie ich reszt standaryzowanych (odchylenie):<br/><br/><strong>Odcienie zieleni:</strong> komórka ma <em>znacznie więcej sukcesów</em>, niż wynikałoby to z czystej matematyki.<br/><strong>Odcienie czerwieni:</strong> komórka jest niebezpiecznie „pusta” w porównaniu z oczekiwaną normą.',
+      html: 'Aby poprawić wrażenia użytkownika i ułatwić wyciąganie wniosków w raportach, nasza macierz automatycznie zabarwi tło komórek na podstawie ich reszt standaryzowanych (odchylenie):<br/><br/><strong>Odcienie zieleni:</strong> komórka ma <em>znacznie więcej sukcesów</em>, niż wynikałoby to z czystej matematyki.<br/><strong>Odcienie czerwieni:</strong> komórka jest niebezpiecznie \"pusta\" w porównaniu z oczekiwaną normą.',
     },
     {
       type: 'title',
@@ -218,7 +218,7 @@ export const content: ToolLocaleContent<ChiSquareUI> = {
         },
         {
           term: 'Reszta standaryzowana',
-          definition: 'Znormalizowana różnica między tym, co zaobserwowano, a tym, czego oczekiwano. Mierzy, która komórka najbardziej „napędza” odkrycie.',
+          definition: 'Znormalizowana różnica między tym, co zaobserwowano, a tym, czego oczekiwano. Mierzy, która komórka najbardziej \"napędza\" odkrycie.',
         },
       ],
     },

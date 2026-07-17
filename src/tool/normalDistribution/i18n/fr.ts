@@ -6,43 +6,43 @@ import type { NormalDistributionUI } from '../ui';
 const slug = 'calculateur-distribution-normale';
 const title = 'Calculateur de Distribution Normale en Ligne';
 const description =
-  'Calculez instantanement les probabilites de la distribution normale : P(X ≤ a), P(X ≥ a), P(a ≤ X ≤ b) et normale inverse. Entrez la moyenne et l\'ecart type et visualisez la courbe de Gauss avec la zone ombreee.';
+  'Calculez instantanément les probabilités de la distribution normale: P(X ≤ a), P(X ≥ a), P(a ≤ X ≤ b) et normale inverse. Entrez la moyenne et l\'écart type et visualisez la courbe de Gauss avec la zone ombrée.';
 
 const faqData = [
   {
     question: 'Qu\'est-ce que la distribution normale?',
     answer:
-      "La distribution normale, ou courbe en cloche de Gauss, est la distribution de probabilite continue la plus importante en statistique. Elle est entierement definie par deux parametres : la moyenne (μ), qui fixe le centre, et l'ecart type (σ), qui controle l'etendue. Elle est symetrique par rapport a la moyenne et ses queues s'etendent a l'infini.",
+      "La distribution normale, ou courbe en cloche de Gauss, est la distribution de probabilité continue la plus importante en statistique. Elle est entièrement définie par deux paramètres: la moyenne (μ), qui fixe le centre, et l'écart type (σ), qui contrôle l'étendue. Elle est symétrique par rapport a la moyenne et ses queues s'étendent à l'infini.",
   },
   {
-    question: 'Comment la probabilite est-elle calculee?',
+    question: 'Comment la probabilité est-elle calculée?',
     answer:
-      "La probabilite est obtenue en integrant la fonction de densite de probabilite (FDP). Comme il n'existe pas de primitive en forme fermee, elle est calculee via la fonction d'erreur (erf). Cette calculatrice utilise l'approximation haute precision d'Abramowitz et Stegun pour obtenir des resultats precis.",
+      "La probabilité est obtenue en intégrant la fonction de densité de probabilité (FDP). Comme il n'existe pas de primitive en forme fermée, elle est calculée via la fonction d'erreur (erf). Cette calculatrice utilise l'approximation haute précision d'Abramowitz et Stegun pour obtenir des résultats précis.",
   },
   {
     question: 'Qu\'est-ce qu\'un score z?',
     answer:
-      "Le score z (ou score standardise) indique de combien d'ecarts types une valeur s'eloigne de la moyenne : z = (X - μ) / σ. Il permet de comparer des valeurs issues de distributions d'echelles differentes. Par exemple, z = 1 signifie que X est exactement 1 ecart type au-dessus de la moyenne.",
+      "Le score z (ou score standardisé) indique de combien d'écarts types une valeur s'éloigne de la moyenne: z = (X - μ) / σ. Il permet de comparer des valeurs issues de distributions d'échelles différentes. Par exemple, z = 1 signifie que X est exactement 1 écart type au-dessus de la moyenne.",
   },
   {
-    question: 'A quoi sert la distribution normale inverse?',
+    question: 'À quoi sert la distribution normale inverse?',
     answer:
-      "La normale inverse repond a la question : quelle valeur X correspond au p-ieme percentile ? C'est-a-dire, etant donne P(X ≤ x) = p, trouver x. Elle est largement utilisee en controle qualite (limites de tolerance), en statistique inferentielle (valeurs critiques) et en simulation de variables aleatoires.",
+      "La normale inverse répond à la question: quelle valeur X correspond au p-ième percentile ? C'est-à-dire, étant donné P(X ≤ x) = p, trouver x. Elle est largement utilisée en contrôle qualité (limites de tolérance), en statistique inférentielle (valeurs critiques) et en simulation de variables aléatoires.",
   },
 ];
 
 const howToData = [
   {
-    name: 'Entrez les parametres',
-    text: "Saisissez la moyenne (μ) et l'ecart type (σ > 0) de votre distribution normale. La distribution normale standard (μ=0, σ=1) est utilisee par defaut.",
+    name: 'Entrez les paramètres',
+    text: "Saisissez la moyenne (μ) et l'écart type (σ > 0) de votre distribution normale. La distribution normale standard (μ=0, σ=1) est utilisée par défaut.",
   },
   {
     name: 'Choisissez le type de calcul',
-    text: "Selectionnez un mode : P(X ≤ a) pour la queue gauche, P(X ≥ a) pour la queue droite, P(a ≤ X ≤ b) pour un intervalle, ou Inverse pour trouver la valeur X correspondant a un percentile.",
+    text: "Sélectionnez un mode: P(X ≤ a) pour la queue gauche, P(X ≥ a) pour la queue droite, P(a ≤ X ≤ b) pour un intervalle, ou Inverse pour trouver la valeur X correspondant à un percentile.",
   },
   {
-    name: 'Lisez le resultat et le graphique',
-    text: "La probabilite s'affiche instantanement avec le score z. La courbe de Gauss montre la zone ombreee correspondant a la probabilite calculee.",
+    name: 'Lisez le résultat et le graphique',
+    text: "La probabilité s'affiche instantanément avec le score z. La courbe de Gauss montre la zone ombrée correspondant à la probabilité calculée.",
   },
 ];
 
@@ -89,17 +89,17 @@ export const content: ToolLocaleContent<NormalDistributionUI> = {
   howTo: howToData,
   schemas: [faqSchema, howToSchema, appSchema],
   seo: [
-    { type: 'title', level: 2, text: 'Calculateur de Distribution Normale : Probabilites en Temps Reel' },
+    { type: 'title', level: 2, text: 'Calculateur de Distribution Normale: Probabilités en Temps Réel' },
     {
       type: 'paragraph',
-      html: 'Le <strong>Calculateur de Distribution Normale</strong> calcule instantanement toute probabilite de la loi normale : queue gauche, queue droite, intervalle central et inverse. Il suffit d\'entrer la moyenne et l\'ecart type pour obtenir le resultat et le visualiser sur la courbe de Gauss.',
+      html: 'Le <strong>Calculateur de Distribution Normale</strong> calcule instantanément toute probabilité de la loi normale: queue gauche, queue droite, intervalle central et inverse. Il suffit d\'entrer la moyenne et l\'écart type pour obtenir le résultat et le visualiser sur la courbe de Gauss.',
     },
     {
       type: 'stats',
       columns: 3,
       items: [
         { value: '4', label: 'Modes de calcul', icon: 'mdi:function-variant' },
-        { value: 'Live', label: 'Resultats en temps reel', icon: 'mdi:lightning-bolt' },
+        { value: 'Live', label: 'Résultats en temps réel', icon: 'mdi:lightning-bolt' },
         { value: 'Gratuit', label: 'Sans inscription', icon: 'mdi:check-decagram' },
       ],
     },
@@ -108,51 +108,51 @@ export const content: ToolLocaleContent<NormalDistributionUI> = {
       type: 'table',
       headers: ['Mode', 'Description', 'Exemple d\'utilisation'],
       rows: [
-        ['<strong>P(X ≤ a)</strong>', 'Probabilite cumulee jusqu\'a la valeur a (queue gauche).', 'Pourcentage d\'eleves en dessous d\'un seuil.'],
-        ['<strong>P(X ≥ a)</strong>', 'Probabilite de la queue droite a partir de a.', 'Probabilite de depasser un seuil de qualite.'],
-        ['<strong>P(a ≤ X ≤ b)</strong>', 'Probabilite dans un intervalle central ou asymetrique.', 'Proportion de pieces dans la tolerance.'],
-        ['<strong>Inverse</strong>', 'Trouve X tel que P(X ≤ x) = p (le p-ieme percentile).', 'Valeur critique dans un test d\'hypothese.'],
+        ['<strong>P(X ≤ a)</strong>', 'Probabilité cumulée jusqu\'a la valeur a (queue gauche).', 'Pourcentage d\'élèves en dessous d\'un seuil.'],
+        ['<strong>P(X ≥ a)</strong>', 'Probabilité de la queue droite à partir de a.', 'Probabilité de dépasser un seuil de qualité.'],
+        ['<strong>P(a ≤ X ≤ b)</strong>', 'Probabilité dans un intervalle central ou asymétrique.', 'Proportion de pièces dans la tolérance.'],
+        ['<strong>Inverse</strong>', 'Trouve X tel que P(X ≤ x) = p (le p-ième percentile).', 'Valeur critique dans un test d\'hypothèse.'],
       ],
     },
     {
       type: 'tip',
-      title: 'La regle empirique 68 95 99.7',
-      html: 'Dans toute distribution normale : <strong>68%</strong> des donnees tombent dans ±1σ de la moyenne, <strong>95%</strong> dans ±2σ et <strong>99,7%</strong> dans ±3σ. Verifiez-le en calculant P(-1 ≤ z ≤ 1) avec μ=0 et σ=1.',
+      title: 'La règle empirique 68 95 99.7',
+      html: 'Dans toute distribution normale: <strong>68%</strong> des données tombent dans ±1σ de la moyenne, <strong>95%</strong> dans ±2σ et <strong>99,7%</strong> dans ±3σ. Vérifiez-le en calculant P(-1 ≤ z ≤ 1) avec μ=0 et σ=1.',
     },
     { type: 'title', level: 2, text: 'Glossaire Rapide' },
     {
       type: 'glossary',
       items: [
-        { term: 'Moyenne (μ)', definition: 'Parametre de localisation. Determine le centre de la courbe de Gauss.' },
-        { term: 'Ecart type (σ)', definition: 'Parametre d\'echelle. Controle la largeur de la cloche. Doit etre strictement positif.' },
-        { term: 'Score z', definition: 'Valeur standardisee : z = (X - μ) / σ. Indique de combien d\'ecarts types X s\'eloigne de la moyenne.' },
-        { term: 'FDP', definition: "Fonction de Densite de Probabilite. L'aire sous la FDP sur un intervalle est egale a la probabilite de cet intervalle." },
+        { term: 'Moyenne (μ)', definition: 'Paramètre de localisation. Détermine le centre de la courbe de Gauss.' },
+        { term: 'Écart type (σ)', definition: 'Paramètre d\'échelle. Contrôle la largeur de la cloche. Doit être strictement positif.' },
+        { term: 'Score z', definition: 'Valeur standardisée: z = (X - μ) / σ. Indique de combien d\'écarts types X s\'éloigne de la moyenne.' },
+        { term: 'FDP', definition: "Fonction de Densité de Probabilité. L'aire sous la FDP sur un intervalle est égale à la probabilité de cet intervalle." },
       ],
     },
   ],
   ui: {
     labelTitle: 'Distribution Normale',
     labelMean: 'Moyenne',
-    labelStdDev: 'Ecart type',
+    labelStdDev: 'Écart type',
     btnLeft: 'P(X ≤ a)',
     btnRight: 'P(X ≥ a)',
     btnBetween: 'P(a ≤ X ≤ b)',
     btnInverse: 'Inverse',
     labelValue: 'Valeur X (a)',
-    labelValueA: 'Borne inferieure (a)',
-    labelValueB: 'Borne superieure (b)',
+    labelValueA: 'Borne inférieure (a)',
+    labelValueB: 'Borne supérieure (b)',
     labelPercentile: 'Percentile p (0 < p < 1)',
-    resultProbability: 'Probabilite',
+    resultProbability: 'Probabilité',
     resultX: 'Valeur X',
     resultZScore: 'Score z',
-    resultZScoreA: 'z₁ (borne inferieure)',
-    resultZScoreB: 'z₂ (borne superieure)',
-    hintStdDev: "L'ecart type doit etre superieur a 0.",
-    hintPercentile: 'Le percentile doit etre compris entre 0 et 1 (exclusif).',
+    resultZScoreA: 'z₁ (borne inférieure)',
+    resultZScoreB: 'z₂ (borne supérieure)',
+    hintStdDev: "L'écart type doit être supérieur a 0.",
+    hintPercentile: 'Le percentile doit être compris entre 0 et 1 (exclusif).',
     labelChart: 'Courbe de Gauss',
-    chartDesc: 'Zone ombreee correspondant a la probabilite calculee.',
-    labelReport: 'Resume pour votre rapport',
-    btnCopy: 'Copier le Resume',
-    btnCopied: 'Copie !',
+    chartDesc: 'Zone ombrée correspondant à la probabilité calculée.',
+    labelReport: 'Résumé pour votre rapport',
+    btnCopy: 'Copier le Résumé',
+    btnCopied: 'Copié !',
   },
 };

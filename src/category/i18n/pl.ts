@@ -30,11 +30,11 @@ export const content: CategoryLocaleContent = {
     },
     {
       type: 'paragraph',
-      html: 'Słowo "statystyka" wywodzi się pierwotnie od słowa "państwo" (łac. status), ponieważ jej początki tkwią w potrzebie rządów do poznania swojej populacji i zasobów. Od starożytnych spisów ludności w Egipcie i Rzymie po rewolucję Florence Nightingale — która wykorzystywała wykresy statystyczne do radykalnej zmiany higieny w szpitalach wojskowych — dyscyplina ta była narzędziem głębokich przemian społecznych.',
+      html: 'Słowo "statystyka" wywodzi się pierwotnie od słowa "państwo" (łac. status), ponieważ jej początki tkwią w potrzebie rządów do poznania swojej populacji i zasobów. Od starożytnych spisów ludności w Egipcie i Rzymie po rewolucję Florence Nightingale - która wykorzystywała wykresy statystyczne do radykalnej zmiany higieny w szpitalach wojskowych - dyscyplina ta była narzędziem głębokich przemian społecznych.',
     },
     {
       type: 'paragraph',
-      html: 'Wraz z nadejściem XX wieku i pracami takich gigantów jak Karl Pearson, Ronald Fisher i Jerzy Neyman, statystyka została sformalizowana matematycznie. Fisher w szczególności wprowadził koncepcje takie jak planowanie eksperymentów i metoda największej wiarygodności — narzędzia, których do dziś używamy do testowania skuteczności leków czy bezpieczeństwa samolotów. Dziś, w 2026 roku, znajdujemy się w fazie trzeciej wielkiej rewolucji: połączenia klasycznej statystyki z mocą obliczeniową sztucznej inteligencji, gdzie modele nie tylko opisują przeszłość, ale autonomicznie się z niej uczą.',
+      html: 'Wraz z nadejściem XX wieku i pracami takich gigantów jak Karl Pearson, Ronald Fisher i Jerzy Neyman, statystyka została sformalizowana matematycznie. Fisher w szczególności wprowadził koncepcje takie jak planowanie eksperymentów i metoda największej wiarygodności - narzędzia, których do dziś używamy do testowania skuteczności leków czy bezpieczeństwa samolotów. Dziś, w 2026 roku, znajdujemy się w fazie trzeciej wielkiej rewolucji: połączenia klasycznej statystyki z mocą obliczeniową sztucznej inteligencji, gdzie modele nie tylko opisują przeszłość, ale autonomicznie się z niej uczą.',
     },
     {
       type: 'title',
@@ -65,7 +65,7 @@ export const content: CategoryLocaleContent = {
     },
     {
       type: 'paragraph',
-      html: 'Średnia arytmetyczna jest najbardziej znanym wskaźnikiem, ale często może być myląca, jeśli istnieją wartości odstające (outliers), które zniekształcają wynik. Dlatego wspólne stosowanie mediany — wartości środkowej, która dzieli próbę na dwie równe części — oraz dominanty (mody) — wartości najczęstszej — oferuje znacznie wierniejszy portret rzeczywistości.',
+      html: 'Średnia arytmetyczna jest najbardziej znanym wskaźnikiem, ale często może być myląca, jeśli istnieją wartości odstające (outliers), które zniekształcają wynik. Dlatego wspólne stosowanie mediany - wartości środkowej, która dzieli próbę na dwie równe części - oraz dominanty (mody) - wartości najczęstszej - oferuje znacznie wierniejszy portret rzeczywistości.',
     },
     {
       type: 'paragraph',
@@ -120,7 +120,7 @@ export const content: CategoryLocaleContent = {
     },
     {
       type: 'paragraph',
-      html: 'Ta moc wiąże się z wielką odpowiedzialnością etyczną. Niewłaściwe użycie statystyki (zamierzone lub wynikające z ignorancji) może prowadzić do katastrofalnych wniosków. Z tego powodu kompetencje statystyczne — umiejętność czytania, interpretowania i krytycznej oceny danych — stały się jednymi z najbardziej pożądanych umiejętności na rynku pracy. Jest to fundament uczenia maszynowego (Machine Learning), gdzie algorytmy wykorzystują wnioskowanie statystyczne do podejmowania tysięcy decyzji na sekundę bez bezpośredniej ingerencji człowieka.',
+      html: 'Ta moc wiąże się z wielką odpowiedzialnością etyczną. Niewłaściwe użycie statystyki (zamierzone lub wynikające z ignorancji) może prowadzić do katastrofalnych wniosków. Z tego powodu kompetencje statystyczne - umiejętność czytania, interpretowania i krytycznej oceny danych - stały się jednymi z najbardziej pożądanych umiejętności na rynku pracy. Jest to fundament uczenia maszynowego (Machine Learning), gdzie algorytmy wykorzystują wnioskowanie statystyczne do podejmowania tysięcy decyzji na sekundę bez bezpośredniej ingerencji człowieka.',
     },
     {
       type: 'paragraph',

@@ -92,7 +92,7 @@ export const content: ToolLocaleContent<DescriptiveStatsUI> = {
     { type: 'title', level: 2, text: 'Calculadora de Estatística Descritiva: Todas as Métricas num só Lugar' },
     {
       type: 'paragraph',
-      html: 'Seja estudante, investigador ou analista de dados, a <strong>Calculadora de Estatística Descritiva</strong> oferece um resumo estatístico instantâneo e completo de qualquer conjunto de dados numéricos. Cole os seus dados e obtenha 15 estatísticas calculadas simultaneamente — sem necessidade de software de folha de cálculo.',
+      html: 'Seja estudante, investigador ou analista de dados, a <strong>Calculadora de Estatística Descritiva</strong> oferece um resumo estatístico instantâneo e completo de qualquer conjunto de dados numéricos. Cole os seus dados e obtenha 15 estatísticas calculadas simultaneamente - sem necessidade de software de folha de cálculo.',
     },
     {
       type: 'stats',

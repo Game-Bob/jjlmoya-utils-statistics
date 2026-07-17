@@ -30,7 +30,7 @@ export const content: CategoryLocaleContent = {
     },
     {
       type: 'paragraph',
-      html: 'La palabra "estadística" proviene originalmente de la palabra "estado", ya que sus orígenes se encuentran en la necesidad de los gobiernos de conocer su población y sus recursos. Desde los antiguos censos en Egipto y Roma hasta la revolución de Florence Nightingale —quien utilizó gráficos estadísticos para cambiar radicalmente la higiene en los hospitales militares—, esta disciplina ha sido una herramienta de cambio social profundo.',
+      html: 'La palabra "estadística" proviene originalmente de la palabra "estado", ya que sus orígenes se encuentran en la necesidad de los gobiernos de conocer su población y sus recursos. Desde los antiguos censos en Egipto y Roma hasta la revolución de Florence Nightingale -quien utilizó gráficos estadísticos para cambiar radicalmente la higiene en los hospitales militares-, esta disciplina ha sido una herramienta de cambio social profundo.',
     },
     {
       type: 'paragraph',
@@ -65,7 +65,7 @@ export const content: CategoryLocaleContent = {
     },
     {
       type: 'paragraph',
-      html: 'La media aritmética es el indicador más conocido, pero a menudo puede ser engañoso si existen valores atípicos (outliers) que distorsionan el promedio. Por eso, el uso conjunto de la mediana —el valor central que divide la muestra en dos partes iguales— y la moda —el valor más frecuente— ofrece un retrato mucho más fiel de la realidad.',
+      html: 'La media aritmética es el indicador más conocido, pero a menudo puede ser engañoso si existen valores atípicos (outliers) que distorsionan el promedio. Por eso, el uso conjunto de la mediana -el valor central que divide la muestra en dos partes iguales- y la moda -el valor más frecuente- ofrece un retrato mucho más fiel de la realidad.',
     },
     {
       type: 'paragraph',
@@ -120,7 +120,7 @@ export const content: CategoryLocaleContent = {
     },
     {
       type: 'paragraph',
-      html: 'Este poder conlleva una gran responsabilidad ética. El mal uso de la estadística (intencionado o por ignorancia) puede llevar a conclusiones desastrosas. Por ello, la alfabetización estadística —la capacidad de leer, interpretar y criticar datos— se ha convertido en una de las habilidades más demandadas en el mercado laboral. Es la base del Machine Learning, donde los algoritmos utilizan la inferencia estadística para tomar miles de decisiones por segundo sin intervención humana directa.',
+      html: 'Este poder conlleva una gran responsabilidad ética. El mal uso de la estadística (intencionado o por ignorancia) puede llevar a conclusiones desastrosas. Por ello, la alfabetización estadística -la capacidad de leer, interpretar y criticar datos- se ha convertido en una de las habilidades más demandadas en el mercado laboral. Es la base del Machine Learning, donde los algoritmos utilizan la inferencia estadística para tomar miles de decisiones por segundo sin intervención humana directa.',
     },
     {
       type: 'paragraph',

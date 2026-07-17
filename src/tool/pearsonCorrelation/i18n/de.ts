@@ -96,7 +96,7 @@ export const content: ToolLocaleContent<PearsonCorrelationUI> = {
     { type: 'title', level: 2, text: 'Pearson-Korrelationsrechner Online: Der vollständige Leitfaden' },
     {
       type: 'paragraph',
-      html: 'Der <strong>Pearson-Korrelationskoeffizient</strong> (r) ist das statistische Standardwerkzeug, um zu messen, wie zwei numerische Variablen linear miteinander in Beziehung stehen. Ob für akademische Arbeiten, Marktanalysen oder wissenschaftliche Forschung – die Stärke Ihrer Daten zu verstehen, ist entscheidend.',
+      html: 'Der <strong>Pearson-Korrelationskoeffizient</strong> (r) ist das statistische Standardwerkzeug, um zu messen, wie zwei numerische Variablen linear miteinander in Beziehung stehen. Ob für akademische Arbeiten, Marktanalysen oder wissenschaftliche Forschung - die Stärke Ihrer Daten zu verstehen, ist entscheidend.',
     },
     {
       type: 'stats',

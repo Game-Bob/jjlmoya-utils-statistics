@@ -120,7 +120,7 @@ export const content: CategoryLocaleContent = {
     },
     {
       type: 'paragraph',
-      html: 'Bu güç büyük bir etik sorumluluğu da beraberinde getirir. İstatistiğin (kasıtlı veya bilgisizlikten kaynaklanan) kötüye kullanımı felaketle sonuçlanan kararlara yol açabilir. Bu nedenle, istatistik okuryazarlığı —verileri okuma, yorumlama ve eleştirel bir şekilde değerlendirme yeteneği— iş piyasasında en çok aranan becerilerden biri haline gelmiştir. Algoritmaların doğrudan insan müdahalesi olmadan saniyede binlerce karar vermek için istatistiksel çıkarım kullandığı Makine Öğrenmesinin temelidir.',
+      html: 'Bu güç büyük bir etik sorumluluğu da beraberinde getirir. İstatistiğin (kasıtlı veya bilgisizlikten kaynaklanan) kötüye kullanımı felaketle sonuçlanan kararlara yol açabilir. Bu nedenle, istatistik okuryazarlığı -verileri okuma, yorumlama ve eleştirel bir şekilde değerlendirme yeteneği- iş piyasasında en çok aranan becerilerden biri haline gelmiştir. Algoritmaların doğrudan insan müdahalesi olmadan saniyede binlerce karar vermek için istatistiksel çıkarım kullandığı Makine Öğrenmesinin temelidir.',
     },
     {
       type: 'paragraph',

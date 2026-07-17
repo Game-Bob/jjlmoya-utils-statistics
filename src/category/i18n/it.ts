@@ -30,7 +30,7 @@ export const content: CategoryLocaleContent = {
     },
     {
       type: 'paragraph',
-      html: 'La parola "statistica" deriva originariamente dalla parola "Stato", poiché le sue origini risiedono nella necessità dei governi di conoscere la propria popolazione e le proprie risorse. Dai censimenti nell\'antico Egitto e a Roma alla rivoluzione di Florence Nightingale — che utilizzò i grafici statistici per cambiare radicalmente l\'igiene negli ospedali militari — questa disciplina è stata uno strumento di profondo cambiamento sociale.',
+      html: 'La parola "statistica" deriva originariamente dalla parola "Stato", poiché le sue origini risiedono nella necessità dei governi di conoscere la propria popolazione e le proprie risorse. Dai censimenti nell\'antico Egitto e a Roma alla rivoluzione di Florence Nightingale - che utilizzò i grafici statistici per cambiare radicalmente l\'igiene negli ospedali militari - questa disciplina è stata uno strumento di profondo cambiamento sociale.',
     },
     {
       type: 'paragraph',
@@ -65,7 +65,7 @@ export const content: CategoryLocaleContent = {
     },
     {
       type: 'paragraph',
-      html: 'La media aritmetica è l\'indicatore più noto, ma può spesso essere fuorviante se esistono valori anomali (outliers) che distorcono la media. Per questo, l\'uso congiunto della mediana — il valore centrale che divide il campione in due parti uguali — e della moda — il valore più frequente — offre un ritratto della realtà molto più fedele.',
+      html: 'La media aritmetica è l\'indicatore più noto, ma può spesso essere fuorviante se esistono valori anomali (outliers) che distorcono la media. Per questo, l\'uso congiunto della mediana - il valore centrale che divide il campione in due parti uguali - e della moda - il valore più frequente - offre un ritratto della realtà molto più fedele.',
     },
     {
       type: 'paragraph',
@@ -120,7 +120,7 @@ export const content: CategoryLocaleContent = {
     },
     {
       type: 'paragraph',
-      html: "Questo potere comporta una grande responsabilità etica. L'uso improprio della statistica (intenzionale o per ignoranza) può portare a conclusioni disastrose. Per questo motivo, l'alfabetizzazione statistica — la capacità di leggere, interpretare e criticare i dati — è diventata una delle abilità più richieste nel mercato del lavoro. È la base del Machine Learning, dove gli algoritmi utilizzano l'inferenza statistica per prendere migliaia di decisioni al secondo senza un intervento umano diretto.",
+      html: "Questo potere comporta una grande responsabilità etica. L'uso improprio della statistica (intenzionale o per ignoranza) può portare a conclusioni disastrose. Per questo motivo, l'alfabetizzazione statistica - la capacità di leggere, interpretare e criticare i dati - è diventata una delle abilità più richieste nel mercato del lavoro. È la base del Machine Learning, dove gli algoritmi utilizzano l'inferenza statistica per prendere migliaia di decisioni al secondo senza un intervento umano diretto.",
     },
     {
       type: 'paragraph',
@@ -146,7 +146,7 @@ export const content: CategoryLocaleContent = {
     },
     {
       type: 'paragraph',
-      html: 'Guardando al 2026, la statistica smetterà di essere uno strumento statico per trasformarsi in sistemi di analisi in tempo reale. L\'integrazione di modelli statistici direttamente nei dispositivi IoT permetterà ai sensori non solo di raccogliere dati, ma di rilevare istantaneamente anomalie statistiche per prevenire incidenti in fabbriche intelligenti o città connesse. Anche l\'informatica quantistica promette di rivoluzionare il campo, consentendo simulazioni Monte Carlo — che oggi richiederebbero secoli — in pochi secondi.',
+      html: 'Guardando al 2026, la statistica smetterà di essere uno strumento statico per trasformarsi in sistemi di analisi in tempo reale. L\'integrazione di modelli statistici direttamente nei dispositivi IoT permetterà ai sensori non solo di raccogliere dati, ma di rilevare istantaneamente anomalie statistiche per prevenire incidenti in fabbriche intelligenti o città connesse. Anche l\'informatica quantistica promette di rivoluzionare il campo, consentendo simulazioni Monte Carlo - che oggi richiederebbero secoli - in pochi secondi.',
     },
     {
       type: 'paragraph',

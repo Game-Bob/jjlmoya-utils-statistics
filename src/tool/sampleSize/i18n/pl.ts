@@ -27,7 +27,7 @@ const faqData = [
   {
     question: 'Jaką oczekiwaną proporcję (p) powinienem zastosować, jeśli nic nie wiem o populacji?',
     answer:
-      'Pozostaw wartość domyślną: 50%. W statystyce reprezentuje to „najgorszy scenariusz”, ponieważ maksymalizuje wariancję p(1-p), zapewniając, że wielkość próby nigdy nie będzie zbyt mała w żadnych okolicznościach.',
+      'Pozostaw wartość domyślną: 50%. W statystyce reprezentuje to \"najgorszy scenariusz\", ponieważ maksymalizuje wariancję p(1-p), zapewniając, że wielkość próby nigdy nie będzie zbyt mała w żadnych okolicznościach.',
   },
 ];
 
@@ -193,7 +193,7 @@ export const content: ToolLocaleContent<SampleSizeUI> = {
     labelConfCustom: 'Niestandardowy poziom ufności (%)',
     labelErrorMargin: 'Margines błędu (%)',
     labelProportion: 'Oczekiwana proporcja',
-    hintProportion: '50% to „najgorszy przypadek”, który daje największą i najbezpieczniejszą próbę.',
+    hintProportion: '50% to \"najgorszy przypadek\", który daje największą i najbezpieczniejszą próbę.',
     hintProportionError: 'Proporcja 0% lub 100% unieważnia próbę. Sugerujemy stosowanie wartości między 5% a 95%.',
     labelSampleSize: 'Sugerowana wielkość',
     labelSampleSub: 'potrzebnych ankiet',

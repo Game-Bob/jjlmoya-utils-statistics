@@ -30,7 +30,7 @@ export const content: CategoryLocaleContent = {
     },
     {
       type: 'paragraph',
-      html: 'The word "statistics" originally comes from the word "state," as its origins lie in the need of governments to know their population and resources. From the ancient censuses in Egypt and Rome to the revolution of Florence Nightingale — who used statistical charts to radically change hygiene in military hospitals — this discipline has been a tool for profound social change.',
+      html: 'The word "statistics" originally comes from the word "state," as its origins lie in the need of governments to know their population and resources. From the ancient censuses in Egypt and Rome to the revolution of Florence Nightingale - who used statistical charts to radically change hygiene in military hospitals - this discipline has been a tool for profound social change.',
     },
     {
       type: 'paragraph',
@@ -65,7 +65,7 @@ export const content: CategoryLocaleContent = {
     },
     {
       type: 'paragraph',
-      html: 'The arithmetic mean is the best-known indicator, but it can often be misleading if there are outliers that distort the average. Therefore, the combined use of the median — the central value that divides the sample into two equal parts — and the mode — the most frequent value — offers a much more accurate portrait of reality.',
+      html: 'The arithmetic mean is the best-known indicator, but it can often be misleading if there are outliers that distort the average. Therefore, the combined use of the median - the central value that divides the sample into two equal parts - and the mode - the most frequent value - offers a much more accurate portrait of reality.',
     },
     {
       type: 'paragraph',
@@ -120,7 +120,7 @@ export const content: CategoryLocaleContent = {
     },
     {
       type: 'paragraph',
-      html: 'This power comes with great ethical responsibility. The misuse of statistics — intentional or through ignorance — can lead to disastrous conclusions. For this reason, statistical literacy — the ability to read, interpret, and critically evaluate data — has become one of the most sought-after skills in the labor market. It is the foundation of Machine Learning, where algorithms use statistical inference to make thousands of decisions per second without direct human intervention.',
+      html: 'This power comes with great ethical responsibility. The misuse of statistics - intentional or through ignorance - can lead to disastrous conclusions. For this reason, statistical literacy - the ability to read, interpret, and critically evaluate data - has become one of the most sought-after skills in the labor market. It is the foundation of Machine Learning, where algorithms use statistical inference to make thousands of decisions per second without direct human intervention.',
     },
     {
       type: 'paragraph',

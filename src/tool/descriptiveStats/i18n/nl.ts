@@ -92,7 +92,7 @@ export const content: ToolLocaleContent<DescriptiveStatsUI> = {
     { type: 'title', level: 2, text: 'Beschrijvende statistiek calculator: Alle belangrijke statistieken op één plek' },
     {
       type: 'paragraph',
-      html: 'Of u nu een student, onderzoeker of data-analist bent, de <strong>Beschrijvende statistiek calculator</strong> geeft u direct een compleet statistisch overzicht van elke numerieke dataset. Plak uw gegevens en krijg 15 tegelijkertijd berekende statistieken — geen spreadsheetsoftware nodig.',
+      html: 'Of u nu een student, onderzoeker of data-analist bent, de <strong>Beschrijvende statistiek calculator</strong> geeft u direct een compleet statistisch overzicht van elke numerieke dataset. Plak uw gegevens en krijg 15 tegelijkertijd berekende statistieken - geen spreadsheetsoftware nodig.',
     },
     {
       type: 'stats',

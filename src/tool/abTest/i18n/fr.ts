@@ -22,7 +22,7 @@ const faqData = [
   {
     question: "Quelle est la différence entre le test de proportions et le test de moyennes ?",
     answer:
-      "Le test de proportions mesure des variables dichotomiques de succès ou d'échec : clics, ouvertures d'e-mails, conversions. Le test de moyennes compare le comportement quantitatif accumulé : dépense moyenne du panier d'achat ou jours de récupération clinique.",
+      "Le test de proportions mesure des variables dichotomiques de succès ou d'échec: clics, ouvertures d'e-mails, conversions. Le test de moyennes compare le comportement quantitatif accumulé: dépense moyenne du panier d'achat ou jours de récupération clinique.",
   },
   {
     question: "Et si mon échantillon est inférieur à 30 sujets ?",
@@ -139,7 +139,7 @@ export const content: ToolLocaleContent<ABTestUI> = {
         },
       ],
     },
-    { type: 'title', level: 2, text: 'Comment interpréter les résultats : la P-Valeur est votre guide' },
+    { type: 'title', level: 2, text: 'Comment interpréter les résultats: la P-Valeur est votre guide' },
     {
       type: 'paragraph',
       html: "Le coeur de cette calculatrice est la fameuse <strong>P-Valeur</strong>. Ce nombre vous indique la probabilité d'avoir obtenu ces différences observées si l'Hypothèse Nulle (qui postule que \"les deux groupes sont égaux\") était vraie.",
@@ -196,7 +196,7 @@ export const content: ToolLocaleContent<ABTestUI> = {
     labelLiftText: 'd\'amélioration par rapport au Groupe A',
     labelConfidencePrefix: 'Confiance statistique :',
     labelDistributions: 'Distributions de Probabilité',
-    chartDesc: 'Observez le chevauchement : moins de chevauchement implique une plus grande certitude que les différences sont réelles et non dues au hasard.',
+    chartDesc: 'Observez le chevauchement: moins de chevauchement implique une plus grande certitude que les différences sont réelles et non dues au hasard.',
     labelReport: 'Texte pour votre rapport',
     defaultJustification: 'Après analyse de X sujets, le Groupe B présente une amélioration de Y% avec une confiance statistique de Z% (p=0,00).',
     btnCopy: 'Copier le Texte',

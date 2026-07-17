@@ -92,7 +92,7 @@ export const content: ToolLocaleContent<DescriptiveStatsUI> = {
     { type: 'title', level: 2, text: 'Kalkulator Statistik Deskriptif: Semua Metrik Utama di Satu Tempat' },
     {
       type: 'paragraph',
-      html: 'Baik Anda seorang pelajar, peneliti, atau analis data, <strong>Kalkulator Statistik Deskriptif</strong> memberi Anda ringkasan statistik instan dan lengkap dari kumpulan data numerik apa pun. Tempelkan data Anda dan dapatkan 15 statistik yang dihitung secara bersamaan — tidak memerlukan perangkat lunak spreadsheet.',
+      html: 'Baik Anda seorang pelajar, peneliti, atau analis data, <strong>Kalkulator Statistik Deskriptif</strong> memberi Anda ringkasan statistik instan dan lengkap dari kumpulan data numerik apa pun. Tempelkan data Anda dan dapatkan 15 statistik yang dihitung secara bersamaan - tidak memerlukan perangkat lunak spreadsheet.',
     },
     {
       type: 'stats',

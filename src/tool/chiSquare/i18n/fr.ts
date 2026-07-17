@@ -12,7 +12,7 @@ const faqData = [
   {
     question: 'Qu\'est-ce que le test du Chi-Deux d\'indépendance ?',
     answer:
-      'C\'est un test statistique utilisé pour évaluer la probabilité qu\'une association observée entre deux variables catégorielles ou nominales soit due au hasard. Par exemple : si le dessert préféré d\'une personne est lié à la région dans laquelle elle vit.',
+      'C\'est un test statistique utilisé pour évaluer la probabilité qu\'une association observée entre deux variables catégorielles ou nominales soit due au hasard. Par exemple: si le dessert préféré d\'une personne est lié à la région dans laquelle elle vit.',
   },
   {
     question: 'À quoi sert le coefficient V de Cramér ?',
@@ -129,7 +129,7 @@ export const content: ToolLocaleContent<ChiSquareUI> = {
           icon: 'mdi:link',
           highlight: true,
           points: [
-            'Exemple : Les visiteurs mobiles préfèrent le Design A, mais les utilisateurs PC le Design B.',
+            'Exemple: Les visiteurs mobiles préfèrent le Design A, mais les utilisateurs PC le Design B.',
             'Le Chi-Deux (χ²) monte en flèche et la valeur P chute.',
             'Le V de Cramér indique la force (ex. Fort > 0,5).',
           ],
@@ -140,7 +140,7 @@ export const content: ToolLocaleContent<ChiSquareUI> = {
           icon: 'mdi:link-off',
           highlight: false,
           points: [
-            'Exemple : La couleur des yeux d\'un client n\'affecte pas quelle marque de voiture il achète.',
+            'Exemple: La couleur des yeux d\'un client n\'affecte pas quelle marque de voiture il achète.',
             'Le Chi-Deux est minuscule et la valeur P est supérieure à 0,05.',
             'L\'Hypothèse Nulle ne peut pas être rejetée.',
           ],
@@ -150,7 +150,7 @@ export const content: ToolLocaleContent<ChiSquareUI> = {
     {
       type: 'title',
       level: 2,
-      text: 'V de Cramér : Comprendre la Force du Lien',
+      text: 'V de Cramér: Comprendre la Force du Lien',
     },
     {
       type: 'paragraph',

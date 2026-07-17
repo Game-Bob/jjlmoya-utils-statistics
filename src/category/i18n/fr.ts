@@ -26,15 +26,15 @@ export const content: CategoryLocaleContent = {
     {
       type: 'title',
       level: 2,
-      text: 'Brève histoire : Des recensements à l\'algorithme',
+      text: 'Brève histoire: Des recensements à l\'algorithme',
     },
     {
       type: 'paragraph',
-      html: 'Le mot "statistique" vient à l\'origine du mot "État", car ses origines résident dans le besoin des gouvernements de connaître leur population et leurs ressources. Des anciens recensements en Égypte et à Rome à la révolution de Florence Nightingale — qui utilisa des graphiques statistiques pour transformer radicalement l\'hygiène dans les hôpitaux militaires —, cette discipline a été un outil de changement social profond.',
+      html: 'Le mot "statistique" vient à l\'origine du mot "État", car ses origines résident dans le besoin des gouvernements de connaître leur population et leurs ressources. Des anciens recensements en Égypte et à Rome à la révolution de Florence Nightingale - qui utilisa des graphiques statistiques pour transformer radicalement l\'hygiène dans les hôpitaux militaires -, cette discipline a été un outil de changement social profond.',
     },
     {
       type: 'paragraph',
-      html: 'Avec l\'arrivée du XXe siècle et les travaux de géants comme Karl Pearson, Ronald Fisher et Jerzy Neyman, les statistiques se sont formalisées mathématiquement. Fisher, en particulier, introduisit des concepts tels que la conception d\'expériences et le maximum de vraisemblance, des outils que nous utilisons encore aujourd\'hui pour tester l\'efficacité des médicaments ou la sécurité des avions. Aujourd\'hui, en 2026, nous sommes dans la troisième grande révolution : l\'union des statistiques classiques avec la puissance de calcul de l\'Intelligence Artificielle, où les modèles ne décrivent plus seulement le passé, mais en apprennent de manière autonome.',
+      html: 'Avec l\'arrivée du XXe siècle et les travaux de géants comme Karl Pearson, Ronald Fisher et Jerzy Neyman, les statistiques se sont formalisées mathématiquement. Fisher, en particulier, introduisit des concepts tels que la conception d\'expériences et le maximum de vraisemblance, des outils que nous utilisons encore aujourd\'hui pour tester l\'efficacité des médicaments ou la sécurité des avions. Aujourd\'hui, en 2026, nous sommes dans la troisième grande révolution: l\'union des statistiques classiques avec la puissance de calcul de l\'Intelligence Artificielle, où les modèles ne décrivent plus seulement le passé, mais en apprennent de manière autonome.',
     },
     {
       type: 'title',
@@ -61,11 +61,11 @@ export const content: CategoryLocaleContent = {
     {
       type: 'title',
       level: 3,
-      text: 'Tendance centrale : Où se trouvent mes données ?',
+      text: 'Tendance centrale: Où se trouvent mes données ?',
     },
     {
       type: 'paragraph',
-      html: 'La moyenne arithmétique est l\'indicateur le plus connu, mais elle peut souvent être trompeuse si des valeurs aberrantes (outliers) distordent la moyenne. C\'est pourquoi l\'utilisation conjointe de la médiane — la valeur centrale qui divise l\'échantillon en deux parties égales — et du mode — la valeur la plus fréquente — offre un portrait beaucoup plus fidèle de la réalité.',
+      html: 'La moyenne arithmétique est l\'indicateur le plus connu, mais elle peut souvent être trompeuse si des valeurs aberrantes (outliers) distordent la moyenne. C\'est pourquoi l\'utilisation conjointe de la médiane - la valeur centrale qui divise l\'échantillon en deux parties égales - et du mode - la valeur la plus fréquente - offre un portrait beaucoup plus fidèle de la réalité.',
     },
     {
       type: 'paragraph',
@@ -78,13 +78,13 @@ export const content: CategoryLocaleContent = {
     {
       type: 'list',
       items: [
-        'Échantillonnage représentatif : La qualité de l\'analyse dépend entièrement de ce que l\'échantillon reflète fidèlement la population totale, évitant les biais de sélection.',
-        'Intervalles de confiance : La plage de valeurs contenant le paramètre de population avec une probabilité donnée, indiquant la précision du calcul.',
-        'La corrélation n\'implique pas la causalité : Ce que deux variables évoluent ensemble ne signifie pas que l\'une cause l\'autre ; cherchez toujours des variables de confusion.',
-        'Distribution normale : Le modèle mathématique décrivant comment la plupart des variables naturelles et sociales se distribuent dans la célèbre courbe en cloche.',
-        'Valeur p et signification : La mesure de la probabilité que les résultats observés soient dus purement au hasard plutôt qu\'à un effet réel.',
-        'Erreurs de type I et II : La distinction fondamentale entre les faux positifs (rejeter une vérité) et les faux négatifs (accepter un mensonge).',
-        'Degrés de liberté : Un concept technique mais vital qui définit combien de données sont véritablement indépendantes pour calculer une statistique.',
+        'Échantillonnage représentatif: La qualité de l\'analyse dépend entièrement de ce que l\'échantillon reflète fidèlement la population totale, évitant les biais de sélection.',
+        'Intervalles de confiance: La plage de valeurs contenant le paramètre de population avec une probabilité donnée, indiquant la précision du calcul.',
+        'La corrélation n\'implique pas la causalité: Ce que deux variables évoluent ensemble ne signifie pas que l\'une cause l\'autre ; cherchez toujours des variables de confusion.',
+        'Distribution normale: Le modèle mathématique décrivant comment la plupart des variables naturelles et sociales se distribuent dans la célèbre courbe en cloche.',
+        'Valeur p et signification: La mesure de la probabilité que les résultats observés soient dus purement au hasard plutôt qu\'à un effet réel.',
+        'Erreurs de type I et II: La distinction fondamentale entre les faux positifs (rejeter une vérité) et les faux négatifs (accepter un mensonge).',
+        'Degrés de liberté: Un concept technique mais vital qui définit combien de données sont véritablement indépendantes pour calculer une statistique.',
       ],
     },
     {
@@ -107,20 +107,20 @@ export const content: CategoryLocaleContent = {
     {
       type: 'tip',
       title: 'Visualisez avant de calculer',
-      html: "Avant de plonger dans des calculs complexes, essayez toujours de représenter vos données graphiquement. Un simple histogramme, un nuage de points ou un diagramme en boîte peut instantanément révéler des erreurs dans la collecte de données, des tendances inattendues ou la forme réelle de la distribution. Les chiffres sans contexte visuel cachent souvent les secrets et anomalies les plus importants de votre recherche. Comme disait John Tukey : 'Un dessin vaut mille tests de signification'.",
+      html: "Avant de plonger dans des calculs complexes, essayez toujours de représenter vos données graphiquement. Un simple histogramme, un nuage de points ou un diagramme en boîte peut instantanément révéler des erreurs dans la collecte de données, des tendances inattendues ou la forme réelle de la distribution. Les chiffres sans contexte visuel cachent souvent les secrets et anomalies les plus importants de votre recherche. Comme disait John Tukey: 'Un dessin vaut mille tests de signification'.",
     },
     {
       type: 'title',
       level: 2,
-      text: 'Statistiques inférentielles : Le pouvoir de la prédiction',
+      text: 'Statistiques inférentielles: Le pouvoir de la prédiction',
     },
     {
       type: 'paragraph',
-      html: 'Si les statistiques descriptives nous disent ce qui s\'est passé, les statistiques inférentielles essaient de nous dire ce qui se passera ou quelles caractéristiques a une population totale à partir d\'un petit échantillon. C\'est là que la magie opère : nous pouvons prédire le vainqueur d\'une élection en interrogeant seulement une petite fraction de la population, ou assurer la sécurité d\'un nouveau vaccin en calculant ses effets dans un groupe de contrôle.',
+      html: 'Si les statistiques descriptives nous disent ce qui s\'est passé, les statistiques inférentielles essaient de nous dire ce qui se passera ou quelles caractéristiques a une population totale à partir d\'un petit échantillon. C\'est là que la magie opère: nous pouvons prédire le vainqueur d\'une élection en interrogeant seulement une petite fraction de la population, ou assurer la sécurité d\'un nouveau vaccin en calculant ses effets dans un groupe de contrôle.',
     },
     {
       type: 'paragraph',
-      html: 'Ce pouvoir implique une grande responsabilité éthique. L\'utilisation abusive des statistiques — intentionnelle ou par ignorance — peut mener à des conclusions désastreuses. C\'est pourquoi la littératie statistique — la capacité de lire, d\'interpréter et de critiquer les données — est devenue l\'une des compétences les plus demandées sur le marché du travail. C\'est la base du Machine Learning, où les algorithmes utilisent l\'inférence statistique pour prendre des milliers de décisions par seconde sans intervention humaine directe.',
+      html: 'Ce pouvoir implique une grande responsabilité éthique. L\'utilisation abusive des statistiques - intentionnelle ou par ignorance - peut mener à des conclusions désastreuses. C\'est pourquoi la littératie statistique - la capacité de lire, d\'interpréter et de critiquer les données - est devenue l\'une des compétences les plus demandées sur le marché du travail. C\'est la base du Machine Learning, où les algorithmes utilisent l\'inférence statistique pour prendre des milliers de décisions par seconde sans intervention humaine directe.',
     },
     {
       type: 'paragraph',
@@ -129,7 +129,7 @@ export const content: CategoryLocaleContent = {
     {
       type: 'title',
       level: 2,
-      text: 'Erreurs statistiques : Attention aux pièges',
+      text: 'Erreurs statistiques: Attention aux pièges',
     },
     {
       type: 'paragraph',
@@ -159,7 +159,7 @@ export const content: CategoryLocaleContent = {
     {
       type: 'title',
       level: 2,
-      text: 'Conclusion : Le pouvoir des chiffres entre vos mains',
+      text: 'Conclusion: Le pouvoir des chiffres entre vos mains',
     },
     {
       type: 'paragraph',

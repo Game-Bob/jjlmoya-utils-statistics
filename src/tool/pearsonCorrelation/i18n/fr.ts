@@ -110,7 +110,7 @@ export const content: ToolLocaleContent<PearsonCorrelationUI> = {
     { type: 'title', level: 2, text: 'À quoi sert le coefficient r de Pearson ?' },
     {
       type: 'paragraph',
-      html: "L'indice de Pearson permet de découvrir s'il existe une tendance : quand une variable augmente, l'autre augmente-t-elle aussi (<strong>corrélation positive</strong>) ou diminue-t-elle (<strong>corrélation négative</strong>) ? Cet outil est fondamental pour l'analyse de données avec Excel, SPSS ou Python.",
+      html: "L'indice de Pearson permet de découvrir s'il existe une tendance: quand une variable augmente, l'autre augmente-t-elle aussi (<strong>corrélation positive</strong>) ou diminue-t-elle (<strong>corrélation négative</strong>) ? Cet outil est fondamental pour l'analyse de données avec Excel, SPSS ou Python.",
     },
     {
       type: 'comparative',
@@ -131,7 +131,7 @@ export const content: ToolLocaleContent<PearsonCorrelationUI> = {
         },
       ],
     },
-    { type: 'title', level: 2, text: 'Interprétation des résultats : tableau de valeurs' },
+    { type: 'title', level: 2, text: 'Interprétation des résultats: tableau de valeurs' },
     {
       type: 'table',
       headers: ['Plage de Valeur (r)', 'Force de la Relation', 'Signification Pratique'],

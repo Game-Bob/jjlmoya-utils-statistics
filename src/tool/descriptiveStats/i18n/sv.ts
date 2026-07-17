@@ -92,7 +92,7 @@ export const content: ToolLocaleContent<DescriptiveStatsUI> = {
     { type: 'title', level: 2, text: 'Kalkylator för beskrivande statistik: Alla viktiga mått på ett ställe' },
     {
       type: 'paragraph',
-      html: 'Oavsett om du är student, forskare eller dataanalytiker ger <strong>Kalkylatorn för beskrivande statistik</strong> dig en omedelbar och fullständig statistisk sammanfattning av alla numeriska dataset. Klistra in dina data och få 15 statistiska mått beräknade samtidigt – utan behov av kalkylprogram.',
+      html: 'Oavsett om du är student, forskare eller dataanalytiker ger <strong>Kalkylatorn för beskrivande statistik</strong> dig en omedelbar och fullständig statistisk sammanfattning av alla numeriska dataset. Klistra in dina data och få 15 statistiska mått beräknade samtidigt - utan behov av kalkylprogram.',
     },
     {
       type: 'stats',

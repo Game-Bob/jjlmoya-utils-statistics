@@ -6,43 +6,43 @@ import type { ConfidenceIntervalUI } from '../ui';
 const slug = 'calculadora-intervalo-confianza';
 const title = 'Calculadora de Intervalo de Confianza Online';
 const description =
-  'Calcula intervalos de confianza para la media poblacional con distribuciones Z o t de Student. Introduce la media muestral, desviacion tipica, tamano muestral y nivel de confianza y obtén el intervalo, margen de error y valor critico al instante.';
+  'Calcula intervalos de confianza para la media poblacional con distribuciones Z o t de Student. Introduce la media muestral, desviación típica, tamaño muestral y nivel de confianza y obtén el intervalo, margen de error y valor crítico al instante.';
 
 const faqData = [
   {
-    question: 'Que es un intervalo de confianza?',
+    question: '¿Qué es un intervalo de confianza?',
     answer:
-      'Un intervalo de confianza (IC) es un rango de valores calculado a partir de los datos de la muestra que, con una determinada probabilidad (nivel de confianza), contiene el valor verdadero del parametro poblacional. Por ejemplo, un IC del 95% para la media significa que, si repetieras el muestreo muchas veces, el 95% de los intervalos calculados contendrian la media real de la poblacion.',
+      'Un intervalo de confianza (IC) es un rango de valores calculado a partir de los datos de la muestra que, con una determinada probabilidad (nivel de confianza), contiene el valor verdadero del parámetro poblacional. Por ejemplo, un IC del 95% para la media significa que, si repetieras el muestreo muchas veces, el 95% de los intervalos calculados contendrían la media real de la población.',
   },
   {
-    question: 'Cuando se usa la distribucion Z y cuando la t de Student?',
+    question: '¿Cuándo se usa la distribución Z y cuándo la t de Student?',
     answer:
-      'Se usa Z cuando se conoce la desviacion tipica poblacional (σ) o cuando n es muy grande (>30). Se usa t de Student cuando solo se dispone de la desviacion tipica muestral (s) y n es pequeno. Para n > 30, ambas distribuciones son practicamente equivalentes, pero la t sigue siendo mas conservadora y tecnicamente correcta cuando no se conoce σ.',
+      'Se usa Z cuando se conoce la desviación típica poblacional (σ) o cuando n es muy grande (>30). Se usa t de Student cuando solo se dispone de la desviación típica muestral (s) y n es pequeño. Para n > 30, ambas distribuciones son prácticamente equivalentes, pero la t sigue siendo más conservadora y técnicamente correcta cuando no se conoce σ.',
   },
   {
-    question: 'Como afecta el tamano muestral a la amplitud del intervalo?',
+    question: '¿Cómo afecta el tamaño muestral a la amplitud del intervalo?',
     answer:
-      'La amplitud del IC es proporcional a 1/√n: si cuadruplicas el tamano de la muestra, el margen de error se reduce a la mitad. Esto explica por que las muestras grandes producen estimaciones mas precisas y por que la planificacion del tamano muestral es crucial en el diseno de estudios estadisticos.',
+      'La amplitud del IC es proporcional a 1/√n: si cuadruplicas el tamaño de la muestra, el margen de error se reduce a la mitad. Esto explica por qué las muestras grandes producen estimaciones más precisas y por qué la planificación del tamaño muestral es crucial en el diseño de estudios estadísticos.',
   },
   {
-    question: 'Que es el margen de error?',
+    question: '¿Qué es el margen de error?',
     answer:
-      'El margen de error (ME) es la mitad de la anchura del IC: ME = valor_critico × SE, donde SE = σ/√n es el error estandar. Indica la maxima diferencia esperada entre la estimacion muestral y el valor poblacional verdadero con el nivel de confianza especificado.',
+      'El margen de error (ME) es la mitad de la anchura del IC: ME = valor_crítico × SE, donde SE = σ/√n es el error estándar. Indica la máxima diferencia esperada entre la estimación muestral y el valor poblacional verdadero con el nivel de confianza especificado.',
   },
 ];
 
 const howToData = [
   {
-    name: 'Introduce los parametros de la muestra',
-    text: 'Escribe la media muestral (x̄), la desviacion tipica (σ o s > 0) y el tamano muestral (n ≥ 2).',
+    name: 'Introduce los parámetros de la muestra',
+    text: 'Escribe la media muestral (x̄), la desviación típica (σ o s > 0) y el tamaño muestral (n ≥ 2).',
   },
   {
     name: 'Elige el nivel de confianza',
-    text: 'Selecciona 90%, 95%, 99% mediante los botones de acceso rapido o escribe cualquier valor entre 0 y 100.',
+    text: 'Selecciona 90%, 95%, 99% mediante los botones de acceso rápido o escribe cualquier valor entre 0 y 100.',
   },
   {
-    name: 'Selecciona la distribucion y lee el resultado',
-    text: 'Elige Z si conoces la desviacion tipica poblacional o t si trabajas con una muestra. El intervalo, el margen de error y el valor critico se calculan al instante.',
+    name: 'Selecciona la distribución y lee el resultado',
+    text: 'Elige Z si conoces la desviación típica poblacional o t si trabajas con una muestra. El intervalo, el margen de error y el valor crítico se calculan al instante.',
   },
 ];
 
@@ -92,7 +92,7 @@ export const content: ToolLocaleContent<ConfidenceIntervalUI> = {
     { type: 'title', level: 2, text: 'Calculadora de Intervalo de Confianza: Resultados al Instante' },
     {
       type: 'paragraph',
-      html: 'La <strong>Calculadora de Intervalo de Confianza</strong> calcula al instante el intervalo, el margen de error, el valor critico y el error estandar. Admite la distribucion Z (sigma poblacional conocida) y la t de Student (sigma muestral), con cualquier nivel de confianza entre 0 y 100.',
+      html: 'La <strong>Calculadora de Intervalo de Confianza</strong> calcula al instante el intervalo, el margen de error, el valor crítico y el error estándar. Admite la distribución Z (sigma poblacional conocida) y la t de Student (sigma muestral), con cualquier nivel de confianza entre 0 y 100.',
     },
     {
       type: 'stats',
@@ -103,29 +103,29 @@ export const content: ToolLocaleContent<ConfidenceIntervalUI> = {
         { value: 'Gratis', label: 'Sin registro', icon: 'mdi:check-decagram' },
       ],
     },
-    { type: 'title', level: 2, text: 'Distribucion Z vs t de Student' },
+    { type: 'title', level: 2, text: 'Distribución Z vs t de Student' },
     {
       type: 'table',
-      headers: ['Criterio', 'Distribucion Z', 'Distribucion t'],
+      headers: ['Criterio', 'Distribución Z', 'Distribución t'],
       rows: [
         ['Cuando usar', 'σ poblacional conocida o n > 30', 's muestral, cualquier n'],
-        ['Valor critico (95%)', 'z* = 1.960', 't* depende de df = n−1'],
+        ['Valor crítico (95%)', 'z* = 1.960', 't* depende de df = n−1'],
         ['Grados de libertad', 'No aplica', 'df = n − 1'],
-        ['Para n grande', 'IC mas estrecho', 'Converge a Z'],
+        ['Para n grande', 'IC más estrecho', 'Converge a Z'],
       ],
     },
     {
       type: 'tip',
-      title: 'Como interpretar correctamente el intervalo de confianza',
-      html: 'Un IC del <strong>95%</strong> no significa que hay un 95% de probabilidad de que la media este en ese intervalo. Significa que el <strong>metodo</strong> produce intervalos que contienen la media verdadera el 95% de las veces en repetidas muestras. Una vez calculado, el intervalo o contiene la media o no la contiene.',
+      title: 'Cómo interpretar correctamente el intervalo de confianza',
+      html: 'Un IC del <strong>95%</strong> no significa que hay un 95% de probabilidad de que la media esté en ese intervalo. Significa que el <strong>método</strong> produce intervalos que contienen la media verdadera el 95% de las veces en repetidas muestras. Una vez calculado, el intervalo o contiene la media o no la contiene.',
     },
-    { type: 'title', level: 2, text: 'Glosario Rapido' },
+    { type: 'title', level: 2, text: 'Glosario Rápido' },
     {
       type: 'glossary',
       items: [
-        { term: 'Intervalo de confianza (IC)', definition: 'Rango [x̄ − ME, x̄ + ME] que estima el parametro poblacional con el nivel de confianza elegido.' },
-        { term: 'Nivel de confianza', definition: 'Proporcion de intervalos que contendrian el parametro verdadero si el experimento se repitiera muchas veces. Valores tipicos: 90%, 95%, 99%.' },
-        { term: 'Error estandar (SE)', definition: 'SE = σ/√n. Mide la variabilidad de la media muestral respecto a la media poblacional.' },
+        { term: 'Intervalo de confianza (IC)', definition: 'Rango [x̄ − ME, x̄ + ME] que estima el parámetro poblacional con el nivel de confianza elegido.' },
+        { term: 'Nivel de confianza', definition: 'Proporción de intervalos que contendrían el parámetro verdadero si el experimento se repitiera muchas veces. Valores típicos: 90%, 95%, 99%.' },
+        { term: 'Error estándar (SE)', definition: 'SE = σ/√n. Mide la variabilidad de la media muestral respecto a la media poblacional.' },
         { term: 'Margen de error (ME)', definition: 'ME = z* × SE (o t* × SE). Es la semiamplitud del IC.' },
       ],
     },
@@ -133,24 +133,24 @@ export const content: ToolLocaleContent<ConfidenceIntervalUI> = {
   ui: {
     labelTitle: 'Intervalo de Confianza',
     labelMean: 'Media muestral (x̄)',
-    labelStdDev: 'Desviacion tipica',
-    labelN: 'Tamano muestral (n)',
+    labelStdDev: 'Desviación típica',
+    labelN: 'Tamaño muestral (n)',
     labelConf: 'Nivel de confianza (%)',
     btnZ: 'Z (σ conocida)',
     btnT: 't de Student',
     labelCI: 'Intervalo de Confianza',
     labelME: 'Margen de Error',
-    labelCritical: 'Valor Critico',
-    labelSE: 'Error Estandar',
+    labelCritical: 'Valor Crítico',
+    labelSE: 'Error Estándar',
     labelDF: 'Grados de Libertad',
     hintN: 'n debe ser un entero mayor o igual a 2.',
-    hintStdDev: 'La desviacion tipica debe ser mayor que 0.',
+    hintStdDev: 'La desviación típica debe ser mayor que 0.',
     hintConf: 'El nivel de confianza debe estar entre 0 y 100 (exclusivo).',
-    labelChart: 'Representacion del Intervalo',
-    chartDesc: 'Linea numerica con el IC sombreado y el margen de error.',
+    labelChart: 'Representación del Intervalo',
+    chartDesc: 'Línea numérica con el IC sombreado y el margen de error.',
     labelReport: 'Resumen para tu informe',
     btnCopy: 'Copiar Resumen',
-    btnCopied: 'Copiado!',
+    btnCopied: '¡Copiado!',
     tabStats: 'Estadísticos',
     tabRaw: 'Datos Crudos',
     labelRaw: 'Pega los datos',

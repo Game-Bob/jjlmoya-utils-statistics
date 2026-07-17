@@ -30,7 +30,7 @@ export const content: CategoryLocaleContent = {
     },
     {
       type: 'paragraph',
-      html: 'Kata "statistik" berasal dari kata "negara" (state), karena asal-usulnya terletak pada kebutuhan pemerintah untuk mengetahui populasi dan sumber daya mereka. Dari sensus kuno di Mesir dan Roma hingga revolusi Florence Nightingale — yang menggunakan grafik statistik untuk mengubah higienitas di rumah sakit militer secara radikal — disiplin ini telah menjadi alat perubahan sosial yang mendalam.',
+      html: 'Kata "statistik" berasal dari kata "negara" (state), karena asal-usulnya terletak pada kebutuhan pemerintah untuk mengetahui populasi dan sumber daya mereka. Dari sensus kuno di Mesir dan Roma hingga revolusi Florence Nightingale - yang menggunakan grafik statistik untuk mengubah higienitas di rumah sakit militer secara radikal - disiplin ini telah menjadi alat perubahan sosial yang mendalam.',
     },
     {
       type: 'paragraph',
@@ -65,7 +65,7 @@ export const content: CategoryLocaleContent = {
     },
     {
       type: 'paragraph',
-      html: 'Rata-rata aritmatika adalah indikator yang paling dikenal, namun sering kali bisa menyesatkan jika terdapat pencilan (outliers) yang mendistorsi rata-rata tersebut. Oleh karena itu, penggunaan gabungan antara median — nilai tengah yang membagi sampel menjadi dua bagian yang sama — dan modus — nilai yang paling sering muncul — menawarkan gambaran realitas yang jauh lebih akurat.',
+      html: 'Rata-rata aritmatika adalah indikator yang paling dikenal, namun sering kali bisa menyesatkan jika terdapat pencilan (outliers) yang mendistorsi rata-rata tersebut. Oleh karena itu, penggunaan gabungan antara median - nilai tengah yang membagi sampel menjadi dua bagian yang sama - dan modus - nilai yang paling sering muncul - menawarkan gambaran realitas yang jauh lebih akurat.',
     },
     {
       type: 'paragraph',
@@ -120,7 +120,7 @@ export const content: CategoryLocaleContent = {
     },
     {
       type: 'paragraph',
-      html: 'Kekuatan ini datang dengan tanggung jawab etis yang besar. Penyalahgunaan statistik — baik disengaja maupun karena ketidaktahuan — dapat menyebabkan kesimpulan yang membawa bencana. Oleh karena itu, literasi statistik — kemampuan untuk membaca, menginterpretasikan, dan mengevaluasi data secara kritis — telah menjadi salah satu keterampilan yang paling dicari di pasar tenaga kerja. Ini adalah landasan dari Machine Learning, di mana algoritma menggunakan inferensi statistik untuk membuat ribuan keputusan per detik tanpa campur tangan manusia secara langsung.',
+      html: 'Kekuatan ini datang dengan tanggung jawab etis yang besar. Penyalahgunaan statistik - baik disengaja maupun karena ketidaktahuan - dapat menyebabkan kesimpulan yang membawa bencana. Oleh karena itu, literasi statistik - kemampuan untuk membaca, menginterpretasikan, dan mengevaluasi data secara kritis - telah menjadi salah satu keterampilan yang paling dicari di pasar tenaga kerja. Ini adalah landasan dari Machine Learning, di mana algoritma menggunakan inferensi statistik untuk membuat ribuan keputusan per detik tanpa campur tangan manusia secara langsung.',
     },
     {
       type: 'paragraph',

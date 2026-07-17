@@ -92,7 +92,7 @@ export const content: ToolLocaleContent<DescriptiveStatsUI> = {
     { type: 'title', level: 2, text: 'Kalkulator statystyki opisowej: wszystkie kluczowe parametry w jednym miejscu' },
     {
       type: 'paragraph',
-      html: 'Niezależnie od tego, czy jesteś studentem, naukowcem czy analitykiem danych, <strong>Kalkulator statystyki opisowej</strong> zapewnia natychmiastowe i kompletne podsumowanie statystyczne dowolnego zbioru danych numerycznych. Wklej swoje dane i otrzymaj 15 statystyk obliczonych jednocześnie – bez potrzeby korzystania z arkuszy kalkulacyjnych.',
+      html: 'Niezależnie od tego, czy jesteś studentem, naukowcem czy analitykiem danych, <strong>Kalkulator statystyki opisowej</strong> zapewnia natychmiastowe i kompletne podsumowanie statystyczne dowolnego zbioru danych numerycznych. Wklej swoje dane i otrzymaj 15 statystyk obliczonych jednocześnie - bez potrzeby korzystania z arkuszy kalkulacyjnych.',
     },
     {
       type: 'stats',

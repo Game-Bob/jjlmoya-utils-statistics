@@ -27,7 +27,7 @@ const faqData = [
   {
     question: '如果我对总体一无所知，应该使用哪个预期比例 (p)？',
     answer:
-      '保留默认值：50%。在统计学中，这代表了“最坏情况”，因为它使方差 p(1-p) 最大化，从而确保您的样本量在任何情况下都不会太小。',
+      '保留默认值：50%。在统计学中，这代表了\"最坏情况\"，因为它使方差 p(1-p) 最大化，从而确保您的样本量在任何情况下都不会太小。',
   },
 ];
 
@@ -193,7 +193,7 @@ export const content: ToolLocaleContent<SampleSizeUI> = {
     labelConfCustom: '自定义置信度 (%)',
     labelErrorMargin: '误差幅度 (%)',
     labelProportion: '预期比例',
-    hintProportion: '50% 是“最坏情况”，能为您提供最大且最安全的样本。',
+    hintProportion: '50% 是\"最坏情况\"，能为您提供最大且最安全的样本。',
     hintProportionError: '0% 或 100% 的比例将使样本失效。我们建议使用 5% 到 95% 之间的值。',
     labelSampleSize: '建议规模',
     labelSampleSub: '所需调查人数',

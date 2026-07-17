@@ -17,7 +17,7 @@ export const content: CategoryLocaleContent = {
     },
     {
       type: 'paragraph',
-      html: 'Von der Finanzmarktanalyse bis zur personalisierten Medizin – die Fähigkeit, mathematische Modelle anzuwenden, um Ereignisse vorherzusagen oder Hypothesen zu validieren, unterscheidet Intuition von wissenschaftlicher Gewissheit. Unsere Online-Statistik-Tools sind darauf ausgelegt, den Zugang zu fortgeschrittenen Berechnungen zu demokratisieren und es Studenten, Forschern und Neugierigen zu ermöglichen, ihre eigenen Datensätze zu verarbeiten, ohne auf komplexe Tabellenkalkulationen oder prohibitiv teure Software angewiesen zu sein. Das Verständnis von Variabilität und Zufall ist nicht nur ein akademisches Bedürfnis, sondern eine lebenswichtige Kompetenz im 21. Jahrhundert.',
+      html: 'Von der Finanzmarktanalyse bis zur personalisierten Medizin - die Fähigkeit, mathematische Modelle anzuwenden, um Ereignisse vorherzusagen oder Hypothesen zu validieren, unterscheidet Intuition von wissenschaftlicher Gewissheit. Unsere Online-Statistik-Tools sind darauf ausgelegt, den Zugang zu fortgeschrittenen Berechnungen zu demokratisieren und es Studenten, Forschern und Neugierigen zu ermöglichen, ihre eigenen Datensätze zu verarbeiten, ohne auf komplexe Tabellenkalkulationen oder prohibitiv teure Software angewiesen zu sein. Das Verständnis von Variabilität und Zufall ist nicht nur ein akademisches Bedürfnis, sondern eine lebenswichtige Kompetenz im 21. Jahrhundert.',
     },
     {
       type: 'paragraph',
@@ -30,11 +30,11 @@ export const content: CategoryLocaleContent = {
     },
     {
       type: 'paragraph',
-      html: 'Das Wort "Statistik" leitet sich ursprünglich vom Wort "Staat" ab, da seine Ursprünge in der Notwendigkeit von Regierungen liegen, ihre Bevölkerung und Ressourcen zu kennen. Von den antiken Volkszählungen in Ägypten und Rom bis zur Revolution von Florence Nightingale – die statistische Diagramme nutzte, um die Hygiene in Militärkrankenhäusern radikal zu verändern – war diese Disziplin ein Werkzeug für tiefgreifenden sozialen Wandel.',
+      html: 'Das Wort "Statistik" leitet sich ursprünglich vom Wort "Staat" ab, da seine Ursprünge in der Notwendigkeit von Regierungen liegen, ihre Bevölkerung und Ressourcen zu kennen. Von den antiken Volkszählungen in Ägypten und Rom bis zur Revolution von Florence Nightingale - die statistische Diagramme nutzte, um die Hygiene in Militärkrankenhäusern radikal zu verändern - war diese Disziplin ein Werkzeug für tiefgreifenden sozialen Wandel.',
     },
     {
       type: 'paragraph',
-      html: 'Mit dem Anbruch des 20. Jahrhunderts und der Arbeit von Giganten wie Karl Pearson, Ronald Fisher und Jerzy Neyman wurde die Statistik formal mathematisiert. Fisher führte insbesondere Konzepte wie die Versuchsplanung und die Maximum-Likelihood-Methode ein – Werkzeuge, die wir noch heute nutzen, um die Wirksamkeit von Medikamenten oder die Sicherheit von Flugzeugen zu testen. Heute, im Jahr 2026, befinden wir uns in der dritten großen Revolution: der Vereinigung klassischer Statistik mit der Rechenleistung künstlicher Intelligenz, bei der Modelle nicht mehr nur die Vergangenheit beschreiben, sondern autonom daraus lernen.',
+      html: 'Mit dem Anbruch des 20. Jahrhunderts und der Arbeit von Giganten wie Karl Pearson, Ronald Fisher und Jerzy Neyman wurde die Statistik formal mathematisiert. Fisher führte insbesondere Konzepte wie die Versuchsplanung und die Maximum-Likelihood-Methode ein - Werkzeuge, die wir noch heute nutzen, um die Wirksamkeit von Medikamenten oder die Sicherheit von Flugzeugen zu testen. Heute, im Jahr 2026, befinden wir uns in der dritten großen Revolution: der Vereinigung klassischer Statistik mit der Rechenleistung künstlicher Intelligenz, bei der Modelle nicht mehr nur die Vergangenheit beschreiben, sondern autonom daraus lernen.',
     },
     {
       type: 'title',
@@ -65,7 +65,7 @@ export const content: CategoryLocaleContent = {
     },
     {
       type: 'paragraph',
-      html: 'Das arithmetische Mittel ist der bekannteste Indikator, kann aber oft irreführend sein, wenn Ausreißer (Outliers) den Durchschnitt verzerren. Daher bietet die gemeinsame Nutzung des Medians – des zentralen Wertes, der die Stichprobe in zwei gleiche Teile teilt – und des Modus – des am häufigsten vorkommenden Wertes – ein viel getreueres Porträt der Realität.',
+      html: 'Das arithmetische Mittel ist der bekannteste Indikator, kann aber oft irreführend sein, wenn Ausreißer (Outliers) den Durchschnitt verzerren. Daher bietet die gemeinsame Nutzung des Medians - des zentralen Wertes, der die Stichprobe in zwei gleiche Teile teilt - und des Modus - des am häufigsten vorkommenden Wertes - ein viel getreueres Porträt der Realität.',
     },
     {
       type: 'paragraph',
@@ -120,7 +120,7 @@ export const content: CategoryLocaleContent = {
     },
     {
       type: 'paragraph',
-      html: 'Diese Macht bringt eine große ethische Verantwortung mit sich. Der Missbrauch von Statistik (beabsichtigt oder durch Unwissenheit) kann zu katastrophalen Schlussfolgerungen führen. Daher ist statistische Kompetenz – die Fähigkeit, Daten zu lesen, zu interpretieren und kritisch zu hinterfragen – zu einer der gefragtesten Fähigkeiten auf dem Arbeitsmarkt geworden. Sie ist die Basis des Machine Learning, bei dem Algorithmen statistische Inferenz nutzen, um Tausende von Entscheidungen pro Sekunde ohne direktes menschliches Eingreifen zu treffen.',
+      html: 'Diese Macht bringt eine große ethische Verantwortung mit sich. Der Missbrauch von Statistik (beabsichtigt oder durch Unwissenheit) kann zu katastrophalen Schlussfolgerungen führen. Daher ist statistische Kompetenz - die Fähigkeit, Daten zu lesen, zu interpretieren und kritisch zu hinterfragen - zu einer der gefragtesten Fähigkeiten auf dem Arbeitsmarkt geworden. Sie ist die Basis des Machine Learning, bei dem Algorithmen statistische Inferenz nutzen, um Tausende von Entscheidungen pro Sekunde ohne direktes menschliches Eingreifen zu treffen.',
     },
     {
       type: 'paragraph',

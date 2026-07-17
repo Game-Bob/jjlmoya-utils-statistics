@@ -30,7 +30,7 @@ export const content: CategoryLocaleContent = {
     },
     {
       type: 'paragraph',
-      html: 'Het woord "statistiek" komt oorspronkelijk van het woord "staat", aangezien de oorsprong ligt in de noodzaak van overheden om hun bevolking en middelen te kennen. Van de oude volkstellingen in Egypte en Rome tot de revolutie van Florence Nightingale — die statistische grafieken gebruikte om de hygiëne in militaire ziekenhuizen radicaal te veranderen — is deze discipline een hulpmiddel geweest voor diepgaande sociale verandering.',
+      html: 'Het woord "statistiek" komt oorspronkelijk van het woord "staat", aangezien de oorsprong ligt in de noodzaak van overheden om hun bevolking en middelen te kennen. Van de oude volkstellingen in Egypte en Rome tot de revolutie van Florence Nightingale - die statistische grafieken gebruikte om de hygiëne in militaire ziekenhuizen radicaal te veranderen - is deze discipline een hulpmiddel geweest voor diepgaande sociale verandering.',
     },
     {
       type: 'paragraph',
@@ -65,7 +65,7 @@ export const content: CategoryLocaleContent = {
     },
     {
       type: 'paragraph',
-      html: 'Het rekenkundig gemiddelde is de bekendste indicator, maar kan vaak misleidend zijn als er uitschieters (outliers) zijn die het gemiddelde verkenen. Daarom biedt het gecombineerde gebruik van de mediaan — de centrale waarde die de steekproef in twee gelijke delen verdeelt — en de modus — de meest voorkomende waarde — een veel nauwkeuriger portret van de werkelijkheid.',
+      html: 'Het rekenkundig gemiddelde is de bekendste indicator, maar kan vaak misleidend zijn als er uitschieters (outliers) zijn die het gemiddelde verkenen. Daarom biedt het gecombineerde gebruik van de mediaan - de centrale waarde die de steekproef in twee gelijke delen verdeelt - en de modus - de meest voorkomende waarde - een veel nauwkeuriger portret van de werkelijkheid.',
     },
     {
       type: 'paragraph',
@@ -120,7 +120,7 @@ export const content: CategoryLocaleContent = {
     },
     {
       type: 'paragraph',
-      html: 'Deze kracht brengt een grote ethische verantwoordelijkheid met zich mee. Misbruik van statistiek (opzettelijk of door onwetendheid) kan leiden tot rampzalige conclusies. Om deze reden is statistische geletterdheid — het vermogen om gegevens te lezen, te interpreteren en kritisch te evalueren — een van de meest gewilde vaardigheden op de arbeidsmarkt geworden. Het is de basis van Machine Learning, waarbij algoritmen statistische inferentie gebruiken om duizenden beslissingen per seconde te nemen zonder directe menselijke tussenkomst.',
+      html: 'Deze kracht brengt een grote ethische verantwoordelijkheid met zich mee. Misbruik van statistiek (opzettelijk of door onwetendheid) kan leiden tot rampzalige conclusies. Om deze reden is statistische geletterdheid - het vermogen om gegevens te lezen, te interpreteren en kritisch te evalueren - een van de meest gewilde vaardigheden op de arbeidsmarkt geworden. Het is de basis van Machine Learning, waarbij algoritmen statistische inferentie gebruiken om duizenden beslissingen per seconde te nemen zonder directe menselijke tussenkomst.',
     },
     {
       type: 'paragraph',

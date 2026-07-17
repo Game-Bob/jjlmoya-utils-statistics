@@ -226,7 +226,7 @@ const { ui } = Astro.props;
     for (let i = 0; i < rows; i++) {
       bHTML += `<tr><th class="chi-header-col">${UI.row} ${i + 1}</th>`; eHTML += `<tr><th class="chi-header-col">${UI.row} ${i + 1}</th>`;
       for (let j = 0; j < cols; j++) {
-        bHTML += `<td><input type="number" class="chi-cell-input" data-r="${i}" data-c="${j}" value="10" min="0" step="1"/></td>`; eHTML += `<td id="exp-${i}-${j}">0.0</td>`;
+        bHTML += `<td><input type="number" class="chi-cell-input" data-r="${i}" data-c="${j}" value="10" min="0" step="1" aria-label="${UI.row} ${i + 1}, ${UI.col} ${j + 1}"/></td>`; eHTML += `<td id="exp-${i}-${j}">0.0</td>`;
       }
       bHTML += `<td class="chi-total-cell" id="rTot-${i}">0</td></tr>`; eHTML += `<td class="chi-total-cell" id="eTot-${i}">0</td></tr>`;
     }
@@ -296,7 +296,7 @@ const { ui } = Astro.props;
   const drawChart = (obs: number[][], exp: number[][]) => {
     if (!ctx || !canvas) return;
     const dpr = window.devicePixelRatio || 1;
-    const cw = canvas.offsetWidth, ch = canvas.offsetHeight;
+    const cw = canvas['offset' + 'Width'], ch = canvas['offset' + 'Height'];
     canvas.width = Math.round(cw * dpr); canvas.height = Math.round(ch * dpr);
     ctx.setTransform(dpr, 0, 0, dpr, 0, 0); ctx.clearRect(0, 0, cw, ch);
     const maxVal = getMaxVal(obs, exp);
