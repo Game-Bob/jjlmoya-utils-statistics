@@ -1,11 +1,11 @@
 import type { StatisticsCategoryEntry } from '../types';
-import { chiSquare } from '../tool/chiSquare/index';
-import { abTest } from '../tool/abTest/index';
-import { sampleSize } from '../tool/sampleSize/index';
-import { pearsonCorrelation } from '../tool/pearsonCorrelation/index';
-import { confidenceInterval } from '../tool/confidenceInterval/index';
-import { descriptiveStats } from '../tool/descriptiveStats/index';
-import { normalDistribution } from '../tool/normalDistribution/index';
+import { chiSquare } from '../tool/chiSquare/entry';
+import { abTest } from '../tool/abTest/entry';
+import { sampleSize } from '../tool/sampleSize/entry';
+import { pearsonCorrelation } from '../tool/pearsonCorrelation/entry';
+import { confidenceInterval } from '../tool/confidenceInterval/entry';
+import { descriptiveStats } from '../tool/descriptiveStats/entry';
+import { normalDistribution } from '../tool/normalDistribution/entry';
 
 export const statisticsCategory: StatisticsCategoryEntry = {
   icon: 'mdi:chart-bar',
