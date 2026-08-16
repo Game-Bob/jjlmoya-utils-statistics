@@ -137,6 +137,8 @@ export const content: ToolLocaleContent<DescriptiveStatsUI> = {
         { term: 'Corrección de Bessel', definition: 'División entre N-1 en lugar de N al calcular la varianza muestral para reducir el sesgo en la estimación.' },
       ],
     },
+    { type: 'title', level: 2, text: 'Cómo interpretar los resultados' },
+    { type: 'paragraph', html: 'La media, la mediana y la dispersión describen aspectos distintos de los datos. Compara varias métricas y revisa los valores atípicos antes de sacar conclusiones.' },
   ],
   ui: {
     labelTitle: 'Estadística Descriptiva',

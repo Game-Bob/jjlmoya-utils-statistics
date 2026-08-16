@@ -137,6 +137,8 @@ export const content: ToolLocaleContent<DescriptiveStatsUI> = {
         { term: 'Correction de Bessel', definition: 'Division par N-1 au lieu de N lors du calcul de la variance échantillon pour réduire le biais d\'estimation.' },
       ],
     },
+    { type: 'title', level: 2, text: 'Lire les résultats avec prudence' },
+    { type: 'paragraph', html: 'La moyenne, la médiane et la dispersion répondent à des questions différentes. Examinez plusieurs mesures et les valeurs atypiques avant de tirer une conclusion.' },
   ],
   ui: {
     labelTitle: 'Statistiques Descriptives',
