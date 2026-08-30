@@ -94,7 +94,7 @@ export const content: CategoryLocaleContent = {
     },
     {
       type: 'paragraph',
-      html: 'Probability is the bridge between the theoretical world and the unpredictability of reality. It helps us quantify risk and prepare for the unexpected. In fields such as insurance, corporate risk management, or meteorology, probabilistic models are the engine that enables the sustainability of the system. Without the law of large numbers, casinos would go bankrupt and airlines could not guarantee the safety of their routes.',
+      html: 'Probability is the bridge between the theoretical world and the unpredictability of reality. It helps us quantify risk and prepare for the unexpected. In fields such as insurance, corporate risk management, or meteorology, probabilistic models support decisions about system sustainability. Without the law of large numbers, casinos would go bankrupt and airlines would have less evidence for evaluating route safety.',
     },
     {
       type: 'paragraph',

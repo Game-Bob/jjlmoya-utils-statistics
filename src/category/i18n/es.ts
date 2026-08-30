@@ -94,7 +94,7 @@ export const content: CategoryLocaleContent = {
     },
     {
       type: 'paragraph',
-      html: 'La probabilidad es el puente entre el mundo teórico y la imprevisibilidad de la realidad. Nos ayuda a cuantificar el riesgo y a prepararnos para lo inesperado. En campos como el seguro, la gestión de riesgos empresariales o la meteorología, los modelos probabilísticos son el motor que permite la sostenibilidad del sistema. Sin la ley de los grandes números, los casinos quebrarían y las aerolíneas no podrían garantizar la seguridad de sus trayectos.',
+      html: 'La probabilidad es el puente entre el mundo teórico y la imprevisibilidad de la realidad. Nos ayuda a cuantificar el riesgo y a prepararnos para lo inesperado. En campos como el seguro, la gestión de riesgos empresariales o la meteorología, los modelos probabilísticos ayudan a evaluar la sostenibilidad de un sistema. Sin la ley de los grandes números, los casinos quebrarían y las aerolíneas tendrían menos evidencia para valorar la seguridad de sus trayectos.',
     },
     {
       type: 'paragraph',
