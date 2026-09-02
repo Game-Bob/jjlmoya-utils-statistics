@@ -6,6 +6,7 @@ import { pearsonCorrelation } from '../tool/pearsonCorrelation/entry';
 import { confidenceInterval } from '../tool/confidenceInterval/entry';
 import { descriptiveStats } from '../tool/descriptiveStats/entry';
 import { normalDistribution } from '../tool/normalDistribution/entry';
+import { oneWayAnova } from '../tool/oneWayAnova/entry';
 
 export const statisticsCategory: StatisticsCategoryEntry = {
   icon: 'mdi:chart-bar',
@@ -17,6 +18,7 @@ export const statisticsCategory: StatisticsCategoryEntry = {
     confidenceInterval,
     descriptiveStats,
     normalDistribution,
+    oneWayAnova,
   ],
   i18n: {
     es: () => import('./i18n/es').then((m) => m.content),

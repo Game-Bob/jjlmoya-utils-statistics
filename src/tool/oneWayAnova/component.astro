@@ -1,0 +1,129 @@
+---
+import type { OneWayAnovaUI } from './ui';
+
+interface Props {
+  ui: OneWayAnovaUI;
+}
+
+const { ui } = Astro.props;
+---
+
+<div class="anova-card" id="anovaApp">
+  <script id="anova-ui" is:inline type="application/json" set:html={JSON.stringify(ui)}></script>
+  <section class="anova-workbench" aria-label={ui.labelGroups}>
+    <div class="anova-controls">
+      <div class="anova-section-heading">
+        <span class="anova-overline">01</span>
+        <h2>{ui.labelGroups}</h2>
+      </div>
+      <div class="anova-preset-strip" aria-label={ui.labelGroups}>
+        <button type="button" data-preset="balanced">{ui.presetBalanced}</button>
+        <button type="button" data-preset="separated">{ui.presetSeparated}</button>
+        <button type="button" data-preset="subtle">{ui.presetSubtle}</button>
+      </div>
+      <p class="anova-input-hint">{ui.inputHint}</p>
+      <div class="anova-group-list" data-group-list></div>
+      <template data-group-template>
+        <fieldset class="anova-group" data-group>
+          <legend><span data-group-number></span></legend>
+          <div class="anova-field">
+            <label>{ui.labelGroupName}</label>
+            <input type="text" data-group-label maxlength="40" aria-label={ui.labelGroupName} />
+          </div>
+          <div class="anova-field anova-values-field">
+            <label>{ui.labelObservations}</label>
+            <textarea data-group-values rows="3" aria-label={ui.labelObservations}></textarea>
+          </div>
+          <button type="button" class="anova-remove" data-remove-group>{ui.removeGroup}</button>
+        </fieldset>
+      </template>
+      <div class="anova-control-footer">
+        <button type="button" class="anova-add" data-add-group>{ui.addGroup}</button>
+        <div class="anova-alpha">
+          <span class="anova-control-label">{ui.labelAlpha}</span>
+          <div class="anova-alpha-options">
+            <label><input type="radio" name="anova-alpha" value="0.10" data-alpha /> <span>{ui.alpha10}</span></label>
+            <label><input type="radio" name="anova-alpha" value="0.05" data-alpha checked /> <span>{ui.alpha05}</span></label>
+            <label><input type="radio" name="anova-alpha" value="0.01" data-alpha /> <span>{ui.alpha01}</span></label>
+          </div>
+        </div>
+      </div>
+      <div class="anova-actions">
+        <button type="button" class="anova-primary" data-analyze>{ui.analyze}</button>
+        <button type="button" class="anova-secondary" data-reset>{ui.reset}</button>
+      </div>
+      <p class="anova-error" data-error hidden></p>
+    </div>
+
+    <div class="anova-results" data-results hidden>
+      <div class="anova-result-heading">
+        <div>
+          <span class="anova-overline">02</span>
+          <h2>{ui.resultTitle}</h2>
+        </div>
+        <span class="anova-result-state" data-result-state></span>
+      </div>
+      <div class="anova-signal-band" aria-label={ui.labelVariationMap}>
+        <div class="anova-band-copy">
+          <span>{ui.labelVariationMap}</span>
+          <strong><span data-f-statistic>...</span> F</strong>
+        </div>
+        <div class="anova-band-track" aria-hidden="true">
+          <span class="anova-band-between" data-between-bar></span>
+          <span class="anova-band-within" data-within-bar></span>
+        </div>
+        <div class="anova-band-legend">
+          <span><i class="anova-dot anova-dot-between"></i>{ui.labelSignal} <strong data-between-percent>...</strong></span>
+          <span><i class="anova-dot anova-dot-within"></i>{ui.labelNoise} <strong data-within-percent>...</strong></span>
+        </div>
+      </div>
+      <div class="anova-plot-block">
+        <div class="anova-plot-heading">
+          <div>
+            <span class="anova-overline">02A</span>
+            <h3>{ui.labelGroupPlot}</h3>
+          </div>
+          <span class="anova-plot-description">{ui.plotDescription}</span>
+        </div>
+        <svg class="anova-group-plot" data-group-plot viewBox="0 0 680 285" role="img" aria-label={ui.labelGroupPlot}></svg>
+      </div>
+      <div class="anova-key-metrics">
+        <div><span>{ui.labelPValue}</span><strong data-p-value>...</strong></div>
+        <div><span>{ui.labelEtaSquared}</span><strong data-eta-squared>...</strong></div>
+        <div><span>{ui.labelGrandMean}</span><strong data-grand-mean>...</strong></div>
+      </div>
+      <div class="anova-table-wrap">
+        <table class="anova-table">
+          <thead><tr><th scope="col">{ui.labelSource}</th><th scope="col">{ui.labelSS}</th><th scope="col">{ui.labelDF}</th><th scope="col">{ui.labelMS}</th><th scope="col">{ui.labelF}</th><th scope="col">{ui.labelP}</th></tr></thead>
+          <tbody data-anova-rows></tbody>
+        </table>
+      </div>
+      <div class="anova-summary-block">
+        <h3>{ui.labelGroupSummary}</h3>
+        <div class="anova-summary-head"><span>{ui.labelGroupName}</span><span>{ui.labelN}</span><span>{ui.labelMean}</span><span>{ui.labelSD}</span></div>
+        <div data-group-summary></div>
+      </div>
+      <div class="anova-interpretation">
+        <span class="anova-overline">03</span>
+        <div>
+          <h3>{ui.labelInterpretation}</h3>
+          <p data-significant-copy>{ui.interpretationNotSignificant}</p>
+          <p class="anova-posthoc-note">{ui.postHocNote}</p>
+        </div>
+      </div>
+      <ul class="anova-warnings" data-warnings hidden></ul>
+      <div class="anova-report">
+        <div><h3>{ui.copySummary}</h3><p data-report>{ui.defaultReport}</p></div>
+        <button type="button" data-copy-report>{ui.copyReport}</button>
+      </div>
+    </div>
+    <div class="anova-empty" data-empty hidden><strong>{ui.emptyTitle}</strong><span>{ui.emptyBody}</span></div>
+  </section>
+</div>
+
+<script>
+  import { mountOneWayAnova } from './controller';
+  const root = document.getElementById('anovaApp');
+  const copy = document.getElementById('anova-ui');
+  if (root && copy?.textContent) mountOneWayAnova(root, JSON.parse(copy.textContent));
+</script>
