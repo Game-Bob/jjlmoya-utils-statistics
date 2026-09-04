@@ -7,187 +7,95 @@
     "preview_urls": true,
     "routes": [
         {
-            "pattern": "www.jjlmoya.es/utilidades/categorias/estadistica",
+            "pattern": "www.jjlmoya.es/utilidades/categorias/estadistica*",
             "zone_name": "jjlmoya.es"
         },
         {
-            "pattern": "www.jjlmoya.es/utilidades/categorias/estadistica/*",
+            "pattern": "www.jjlmoya.es/utilidades/calculadora-contraste-hipotesis-ab-test*",
             "zone_name": "jjlmoya.es"
         },
         {
-            "pattern": "www.jjlmoya.es/utilidades/calculadora-contraste-hipotesis-ab-test",
+            "pattern": "www.jjlmoya.es/utilidades/calculadora-chi-cuadrado-independencia*",
             "zone_name": "jjlmoya.es"
         },
         {
-            "pattern": "www.jjlmoya.es/utilidades/calculadora-contraste-hipotesis-ab-test/*",
+            "pattern": "www.jjlmoya.es/utilidades/calculadora-intervalo-confianza*",
             "zone_name": "jjlmoya.es"
         },
         {
-            "pattern": "www.jjlmoya.es/utilidades/calculadora-chi-cuadrado-independencia",
+            "pattern": "www.jjlmoya.es/utilidades/calculadora-estadistica-descriptiva*",
             "zone_name": "jjlmoya.es"
         },
         {
-            "pattern": "www.jjlmoya.es/utilidades/calculadora-chi-cuadrado-independencia/*",
+            "pattern": "www.jjlmoya.es/utilidades/calculadora-distribucion-normal*",
             "zone_name": "jjlmoya.es"
         },
         {
-            "pattern": "www.jjlmoya.es/utilidades/calculadora-intervalo-confianza",
+            "pattern": "www.jjlmoya.es/utilidades/calculadora-anova-un-factor-varianza-entre-dentro-grupos*",
             "zone_name": "jjlmoya.es"
         },
         {
-            "pattern": "www.jjlmoya.es/utilidades/calculadora-intervalo-confianza/*",
+            "pattern": "www.jjlmoya.es/utilidades/calculadora-correlacion-pearson*",
             "zone_name": "jjlmoya.es"
         },
         {
-            "pattern": "www.jjlmoya.es/utilidades/calculadora-estadistica-descriptiva",
+            "pattern": "www.jjlmoya.es/utilidades/calculadora-tamano-muestra*",
             "zone_name": "jjlmoya.es"
         },
         {
-            "pattern": "www.jjlmoya.es/utilidades/calculadora-estadistica-descriptiva/*",
-            "zone_name": "jjlmoya.es"
-        },
-        {
-            "pattern": "www.jjlmoya.es/utilidades/calculadora-distribucion-normal",
-            "zone_name": "jjlmoya.es"
-        },
-        {
-            "pattern": "www.jjlmoya.es/utilidades/calculadora-distribucion-normal/*",
-            "zone_name": "jjlmoya.es"
-        },
-        {
-            "pattern": "www.jjlmoya.es/utilidades/calculadora-anova-un-factor-varianza-entre-dentro-grupos",
-            "zone_name": "jjlmoya.es"
-        },
-        {
-            "pattern": "www.jjlmoya.es/utilidades/calculadora-anova-un-factor-varianza-entre-dentro-grupos/*",
-            "zone_name": "jjlmoya.es"
-        },
-        {
-            "pattern": "www.jjlmoya.es/utilidades/calculadora-correlacion-pearson",
-            "zone_name": "jjlmoya.es"
-        },
-        {
-            "pattern": "www.jjlmoya.es/utilidades/calculadora-correlacion-pearson/*",
-            "zone_name": "jjlmoya.es"
-        },
-        {
-            "pattern": "www.jjlmoya.es/utilidades/calculadora-tamano-muestra",
-            "zone_name": "jjlmoya.es"
-        },
-        {
-            "pattern": "www.jjlmoya.es/utilidades/calculadora-tamano-muestra/*",
-            "zone_name": "jjlmoya.es"
-        },
-        {
-            "pattern": "www.gamebob.dev/en/utilities/categories/statistics",
+            "pattern": "www.gamebob.dev/en/utilities/categories/statistics*",
             "zone_name": "gamebob.dev"
         },
         {
-            "pattern": "www.gamebob.dev/en/utilities/categories/statistics/*",
+            "pattern": "www.gamebob.dev/fr/utilitaires/categories/statistiques*",
             "zone_name": "gamebob.dev"
         },
         {
-            "pattern": "www.gamebob.dev/fr/utilitaires/categories/statistiques",
+            "pattern": "www.gamebob.dev/de/werkzeuge/kategorien/statistik*",
             "zone_name": "gamebob.dev"
         },
         {
-            "pattern": "www.gamebob.dev/fr/utilitaires/categories/statistiques/*",
+            "pattern": "www.gamebob.dev/it/utilita/categorie/statistica*",
             "zone_name": "gamebob.dev"
         },
         {
-            "pattern": "www.gamebob.dev/de/werkzeuge/kategorien/statistik",
+            "pattern": "www.gamebob.dev/pt/utilidades/categorias/estatistica*",
             "zone_name": "gamebob.dev"
         },
         {
-            "pattern": "www.gamebob.dev/de/werkzeuge/kategorien/statistik/*",
+            "pattern": "www.gamebob.dev/nl/hulpmiddelen/categorieen/statistiek*",
             "zone_name": "gamebob.dev"
         },
         {
-            "pattern": "www.gamebob.dev/it/utilita/categorie/statistica",
+            "pattern": "www.gamebob.dev/sv/verktyg/kategorier/statistik*",
             "zone_name": "gamebob.dev"
         },
         {
-            "pattern": "www.gamebob.dev/it/utilita/categorie/statistica/*",
+            "pattern": "www.gamebob.dev/pl/narzedzia/kategorie/statystyka*",
             "zone_name": "gamebob.dev"
         },
         {
-            "pattern": "www.gamebob.dev/pt/utilidades/categorias/estatistica",
+            "pattern": "www.gamebob.dev/id/utilitas/kategori/statistik*",
             "zone_name": "gamebob.dev"
         },
         {
-            "pattern": "www.gamebob.dev/pt/utilidades/categorias/estatistica/*",
+            "pattern": "www.gamebob.dev/tr/araclar/kategoriler/istatistik*",
             "zone_name": "gamebob.dev"
         },
         {
-            "pattern": "www.gamebob.dev/nl/hulpmiddelen/categorieen/statistiek",
+            "pattern": "www.gamebob.dev/ru/instrumenty/kategorii/statistika*",
             "zone_name": "gamebob.dev"
         },
         {
-            "pattern": "www.gamebob.dev/nl/hulpmiddelen/categorieen/statistiek/*",
+            "pattern": "www.gamebob.dev/ja/utilities/categories/statistics*",
             "zone_name": "gamebob.dev"
         },
         {
-            "pattern": "www.gamebob.dev/sv/verktyg/kategorier/statistik",
+            "pattern": "www.gamebob.dev/ko/utilities/categories/statistics*",
             "zone_name": "gamebob.dev"
         },
         {
-            "pattern": "www.gamebob.dev/sv/verktyg/kategorier/statistik/*",
-            "zone_name": "gamebob.dev"
-        },
-        {
-            "pattern": "www.gamebob.dev/pl/narzedzia/kategorie/statystyka",
-            "zone_name": "gamebob.dev"
-        },
-        {
-            "pattern": "www.gamebob.dev/pl/narzedzia/kategorie/statystyka/*",
-            "zone_name": "gamebob.dev"
-        },
-        {
-            "pattern": "www.gamebob.dev/id/utilitas/kategori/statistik",
-            "zone_name": "gamebob.dev"
-        },
-        {
-            "pattern": "www.gamebob.dev/id/utilitas/kategori/statistik/*",
-            "zone_name": "gamebob.dev"
-        },
-        {
-            "pattern": "www.gamebob.dev/tr/araclar/kategoriler/istatistik",
-            "zone_name": "gamebob.dev"
-        },
-        {
-            "pattern": "www.gamebob.dev/tr/araclar/kategoriler/istatistik/*",
-            "zone_name": "gamebob.dev"
-        },
-        {
-            "pattern": "www.gamebob.dev/ru/instrumenty/kategorii/statistika",
-            "zone_name": "gamebob.dev"
-        },
-        {
-            "pattern": "www.gamebob.dev/ru/instrumenty/kategorii/statistika/*",
-            "zone_name": "gamebob.dev"
-        },
-        {
-            "pattern": "www.gamebob.dev/ja/utilities/categories/statistics",
-            "zone_name": "gamebob.dev"
-        },
-        {
-            "pattern": "www.gamebob.dev/ja/utilities/categories/statistics/*",
-            "zone_name": "gamebob.dev"
-        },
-        {
-            "pattern": "www.gamebob.dev/ko/utilities/categories/statistics",
-            "zone_name": "gamebob.dev"
-        },
-        {
-            "pattern": "www.gamebob.dev/ko/utilities/categories/statistics/*",
-            "zone_name": "gamebob.dev"
-        },
-        {
-            "pattern": "www.gamebob.dev/zh/utilities/categories/statistics",
-            "zone_name": "gamebob.dev"
-        },
-        {
-            "pattern": "www.gamebob.dev/zh/utilities/categories/statistics/*",
+            "pattern": "www.gamebob.dev/zh/utilities/categories/statistics*",
             "zone_name": "gamebob.dev"
         },
         {
