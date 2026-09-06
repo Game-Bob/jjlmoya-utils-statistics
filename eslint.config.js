@@ -181,6 +181,19 @@ export default [
         },
     },
     {
+        files: ["**/category/StatisticsCategoryHome.astro"],
+        rules: {
+            "max-lines": "off",
+            "complexity": "off",
+        },
+    },
+    {
+        files: ["**/layouts/ProductionUtilityPage.astro"],
+        rules: {
+            "max-lines": "off",
+        },
+    },
+    {
         files: ["**/i18n/**/*.ts", "**/app.ts"],
         rules: {
             "@typescript-eslint/no-explicit-any": "off",

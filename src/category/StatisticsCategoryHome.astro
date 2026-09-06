@@ -1,0 +1,748 @@
+---
+import { Icon } from "astro-icon/components";
+import { SEORenderer } from "@jjlmoya/utils-shared";
+import ProductionBreadcrumb from "../components/ProductionBreadcrumb.astro";
+import ProductionPage from "../layouts/ProductionPage.astro";
+import type { CategoryLocaleContent, KnownLocale } from "../types";
+import { getCategoryPath } from "../mfe/routes";
+import { getCategoryUi } from "../mfe/category-ui";
+import { getStatisticsUi } from "./statistics-ui";
+
+interface CategoryTool {
+  id: string;
+  icon: string;
+  title: string;
+  description: string;
+  href: string;
+}
+
+interface Props {
+  locale: KnownLocale;
+  category: CategoryLocaleContent;
+  tools: CategoryTool[];
+  alternates: { language: KnownLocale; url: string }[];
+  image?: string | undefined;
+}
+
+type ToolFamily = "describe" | "compare" | "estimate" | "model";
+
+const { locale, category, tools, alternates, image } = Astro.props;
+const categoryUi = getCategoryUi(locale);
+const ui = getStatisticsUi(locale);
+const publicPath = getCategoryPath(locale, category.slug);
+const familyByTool: Record<string, ToolFamily> = {
+  "descriptive-stats": "describe",
+  "percentile-rank": "describe",
+  "chi-square": "compare",
+  "ab-test": "compare",
+  "pearson-correlation": "compare",
+  "one-way-anova-calculator": "compare",
+  "sample-size": "estimate",
+  "confidence-interval": "estimate",
+};
+const familyFor = (id: string): ToolFamily => familyByTool[id] ?? "model";
+const familyLabel = {
+  describe: ui.describeTools,
+  compare: ui.compareTools,
+  estimate: ui.estimateTools,
+  model: ui.modelTools,
+} satisfies Record<ToolFamily, string>;
+---
+
+<ProductionPage title={category.title} description={category.description} {locale} {publicPath} {alternates} {image}>
+  <div class="statistics-home" data-statistics-home data-tools-label={ui.toolsAvailable}>
+    <div class="statistics-grain" aria-hidden="true"></div>
+    <div class="statistics-light-atmosphere" aria-hidden="true">
+      <span class="statistics-atmosphere-orbit statistics-atmosphere-orbit-one"></span>
+      <span class="statistics-atmosphere-orbit statistics-atmosphere-orbit-two"></span>
+      <span class="statistics-atmosphere-mote statistics-atmosphere-mote-one"></span>
+      <span class="statistics-atmosphere-mote statistics-atmosphere-mote-two"></span>
+      <span class="statistics-atmosphere-mote statistics-atmosphere-mote-three"></span>
+      <span class="statistics-atmosphere-readout">LIVE SAMPLE / 09</span>
+    </div>
+    <div class="statistics-home-inner">
+      <ProductionBreadcrumb locale={locale} currentTitle={category.title} />
+
+      <header class="statistics-hero">
+        <div class="statistics-hero-copy">
+          <div class="statistics-kicker">
+            <span class="statistics-kicker-index">09</span>
+            <span>{ui.readoutLabel}</span>
+            <span class="statistics-kicker-equation" aria-hidden="true">μ / σ / p</span>
+          </div>
+          <div class="statistics-title-lockup">
+            <span class="statistics-title-mark" aria-hidden="true">∑</span>
+            <slot name="category-title" />
+          </div>
+          <p class="statistics-description">{category.description}</p>
+          <a class="statistics-enter" href="#statistics-catalog">
+            <span>{ui.exploreCatalog}</span>
+            <span class="statistics-enter-arrow" aria-hidden="true">↘</span>
+          </a>
+        </div>
+
+        <div class="statistics-orbit" aria-label={ui.readoutLabel}>
+          <div class="statistics-orbit-label statistics-orbit-label-top">n = {String(tools.length).padStart(2, "0")}</div>
+          <div class="statistics-orbit-label statistics-orbit-label-right">σ / 01</div>
+          <div class="statistics-orbit-label statistics-orbit-label-bottom">p &lt; 0.05</div>
+          <svg class="statistics-orbit-svg" viewBox="0 0 560 560" role="img" aria-label={category.description}>
+            <circle class="statistics-orbit-wash" cx="280" cy="280" r="232" />
+            <circle class="statistics-orbit-ring" cx="280" cy="280" r="232" />
+            <circle class="statistics-orbit-ring" cx="280" cy="280" r="174" />
+            <circle class="statistics-orbit-ring" cx="280" cy="280" r="92" />
+            <path class="statistics-orbit-wave" d="M35 335 C90 335 92 210 142 210 S190 390 232 390 S272 150 319 150 S360 330 407 330 S450 220 525 220" />
+            <path class="statistics-orbit-arc" d="M118 418 C178 499 342 505 434 390" />
+            <g class="statistics-orbit-points">
+              <circle cx="142" cy="210" r="8" />
+              <circle cx="232" cy="390" r="8" />
+              <circle cx="319" cy="150" r="8" />
+              <circle cx="407" cy="330" r="8" />
+            </g>
+            <circle class="statistics-orbit-core" cx="280" cy="280" r="18" />
+            <text x="280" y="296" text-anchor="middle">σ</text>
+          </svg>
+          <div class="statistics-orbit-caption"><span>{ui.toolsAvailable}</span><strong>{String(tools.length).padStart(2, "0")}</strong></div>
+        </div>
+
+        <div class="statistics-hero-scribble" aria-hidden="true">∿ ∿ ∿</div>
+      </header>
+
+      <section id="statistics-catalog" class="statistics-catalog" aria-labelledby="statistics-catalog-title">
+        <h2 id="statistics-catalog-title" class="statistics-visually-hidden">{ui.toolsAvailable}</h2>
+
+        <div class="statistics-filter-row" role="group" aria-label={ui.toolsAvailable}>
+          <button type="button" class="statistics-filter is-active" data-filter="all" aria-pressed="true"><span>∑</span>{ui.allTools}</button>
+          <button type="button" class="statistics-filter" data-filter="describe" aria-pressed="false"><span>μ</span>{ui.describeTools}</button>
+          <button type="button" class="statistics-filter" data-filter="compare" aria-pressed="false"><span>r</span>{ui.compareTools}</button>
+          <button type="button" class="statistics-filter" data-filter="estimate" aria-pressed="false"><span>±</span>{ui.estimateTools}</button>
+          <button type="button" class="statistics-filter" data-filter="model" aria-pressed="false"><span>∿</span>{ui.modelTools}</button>
+        </div>
+
+        <div class="statistics-specimen-field">
+          <div class="statistics-field-axis" aria-hidden="true"><span>0</span><i></i><span>1</span><i></i><span>2</span><i></i><span>3</span></div>
+          <div class="statistics-tools-grid">
+            {tools.map((tool, index) => {
+              const family = familyFor(tool.id);
+              return (
+                <a href={tool.href} class={`statistics-tool-card family-${family}`} data-tool-card data-family={family}>
+                  <div class="statistics-tool-card-topline">
+                    <span>{String(index + 1).padStart(2, "0")}</span>
+                    <span>{familyLabel[family]}</span>
+                  </div>
+                  <div class="statistics-tool-icon"><Icon name={tool.icon} /></div>
+                  <div class="statistics-tool-copy">
+                    <h3>{tool.title}</h3>
+                    <p>{tool.description}</p>
+                  </div>
+                  <span class="statistics-tool-cta"><span>{categoryUi.useTool}</span><strong aria-hidden="true">↗</strong></span>
+                  <span class="statistics-tool-ghost" aria-hidden="true">{String(index + 1).padStart(2, "0")}</span>
+                </a>
+              );
+            })}
+          </div>
+        </div>
+        <p class="statistics-filter-status" data-filter-status role="status" aria-live="polite">{tools.length} {ui.toolsAvailable}</p>
+      </section>
+
+      <section class="statistics-trajectory" aria-labelledby="statistics-trajectory-title">
+        <div class="statistics-trajectory-heading">
+          <div class="statistics-section-stamp statistics-section-stamp-light"><span>02</span><span>↘</span></div>
+          <div>
+            <p class="statistics-kicker-small">{ui.journeyLabel}</p>
+            <h2 id="statistics-trajectory-title">{ui.journeyLabel}</h2>
+          </div>
+          <p>{ui.exploreCatalog}</p>
+        </div>
+        <div class="statistics-trajectory-art">
+          <div class="statistics-trajectory-orb" aria-hidden="true">σ</div>
+          <svg viewBox="0 0 1200 330" role="img" aria-label={ui.journeyLabel}>
+            <path class="statistics-trajectory-line" d="M40 220 C128 220 128 84 215 84 S302 249 390 249 S478 124 565 124 S652 245 740 245 S827 74 915 74 S1002 194 1088 194 S1142 148 1180 148" />
+            <path class="statistics-trajectory-line-secondary" d="M40 258 C150 258 150 202 250 202 S360 85 460 85 S570 190 670 190 S780 105 880 105 S990 224 1180 224" />
+            <circle cx="215" cy="84" r="9" /><circle cx="565" cy="124" r="9" /><circle cx="915" cy="74" r="9" />
+          </svg>
+          <ol class="statistics-trajectory-steps">
+            <li><span>01</span><strong>{ui.describeTools}</strong><small>μ · σ · n</small></li>
+            <li><span>02</span><strong>{ui.compareTools}</strong><small>r · χ² · F</small></li>
+            <li><span>03</span><strong>{ui.estimateTools}</strong><small>CI · p</small></li>
+            <li><span>04</span><strong>{ui.modelTools}</strong><small>∿ · ∞</small></li>
+          </ol>
+        </div>
+      </section>
+
+      <section class="statistics-context" aria-labelledby="statistics-context-title">
+        <div class="statistics-context-copy">
+          <div class="statistics-section-stamp"><span>03</span><span>□</span></div>
+          <p class="statistics-kicker-small">{ui.readoutLabel}</p>
+          <h2 id="statistics-context-title">{category.title}</h2>
+          <div class="statistics-seo-copy"><SEORenderer content={{ locale, sections: category.seo }} /></div>
+        </div>
+      </section>
+
+      <footer class="statistics-colophon" aria-hidden="true">
+        <span>μ—σ—p</span><span>09 / 09</span><span>{tools.length} × {ui.toolsAvailable}</span><span>∿</span>
+      </footer>
+    </div>
+  </div>
+</ProductionPage>
+
+<script>
+  const root = document.querySelector<HTMLElement>("[data-statistics-home]");
+  const filters = [...document.querySelectorAll<HTMLButtonElement>("[data-filter]")];
+  const cards = [...document.querySelectorAll<HTMLElement>("[data-tool-card]")];
+  const status = document.querySelector<HTMLElement>("[data-filter-status]");
+
+  if (root && status) {
+    const toolsLabel = root.dataset.toolsLabel ?? "";
+    filters.forEach((filter) => {
+      filter.addEventListener("click", () => {
+        const selected = filter.dataset.filter ?? "all";
+        let visibleCount = 0;
+        filters.forEach((item) => {
+          const isSelected = item === filter;
+          item.classList.toggle("is-active", isSelected);
+          item.setAttribute("aria-pressed", String(isSelected));
+        });
+        cards.forEach((card) => {
+          const isVisible = selected === "all" || card.dataset.family === selected;
+          card.hidden = !isVisible;
+          if (isVisible) visibleCount += 1;
+        });
+        status.textContent = `${visibleCount} ${toolsLabel}`;
+      });
+    });
+  }
+</script>
+
+<style>
+  .statistics-home {
+    --stats-night: #f3eee2;
+    --stats-night-deep: #10111c;
+    --stats-ink: #171827;
+    --stats-muted: #5d6070;
+    --stats-paper: #eee5d1;
+    --stats-paper-ink: #171827;
+    --stats-paper-muted: rgb(23 24 39 / 0.72);
+    --stats-paper-line: rgb(23 24 39 / 0.18);
+    --stats-orbit-wash: rgb(44 156 171 / 0.08);
+    --stats-orbit-ring: rgb(44 156 171 / 0.3);
+    --stats-orbit-ellipse: rgb(44 156 171 / 0.24);
+    --stats-line: rgb(23 24 39 / 0.18);
+    --stats-acid: #b9e52f;
+    --stats-coral: #e86649;
+    --stats-sky: #2c9cab;
+    --text-main: var(--stats-ink);
+    --text-muted: var(--stats-muted);
+    --text-dimmed: rgb(243 237 219 / 0.45);
+    --statistics-accent: var(--stats-acid);
+
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+    min-height: 100vh;
+    background: var(--stats-night);
+    color: var(--stats-ink);
+    font: inherit;
+  }
+
+  :global(.theme-dark) .statistics-home {
+    --stats-night: #171827;
+    --stats-night-deep: #10111c;
+    --stats-ink: #f3eddb;
+    --stats-muted: #aeb1bd;
+    --stats-paper: #222333;
+    --stats-paper-ink: #f3eddb;
+    --stats-paper-muted: rgb(243 237 219 / 0.72);
+    --stats-paper-line: rgb(243 237 219 / 0.2);
+    --stats-orbit-wash: rgb(139 225 233 / 0.1);
+    --stats-orbit-ring: rgb(139 225 233 / 0.38);
+    --stats-orbit-ellipse: rgb(139 225 233 / 0.3);
+    --stats-line: rgb(243 237 219 / 0.22);
+    --stats-acid: #d8ff49;
+    --stats-coral: #ff7758;
+    --stats-sky: #8be1e9;
+    --text-main: var(--stats-ink);
+    --text-muted: var(--stats-muted);
+    --text-dimmed: rgb(243 237 219 / 0.45);
+    --statistics-accent: var(--stats-acid);
+  }
+
+  .statistics-home::before {
+    position: absolute;
+    inset: 0;
+    z-index: -2;
+    background: radial-gradient(circle at 75% 12%, rgb(44 156 171 / 0.14), transparent 28rem), radial-gradient(circle at 12% 52%, rgb(185 229 47 / 0.16), transparent 28rem), radial-gradient(circle at 76% 90%, rgb(232 102 73 / 0.1), transparent 24rem);
+    content: "";
+  }
+
+  :global(.theme-dark) .statistics-home::before {
+    background: radial-gradient(circle at 75% 12%, rgb(85 62 142 / 0.4), transparent 28rem), radial-gradient(circle at 12% 52%, rgb(216 255 73 / 0.1), transparent 28rem), radial-gradient(circle at 76% 90%, rgb(255 119 88 / 0.12), transparent 24rem);
+  }
+
+  .statistics-grain {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    opacity: 0.28;
+    background-image: radial-gradient(rgb(23 24 39 / 0.13) 0.55px, transparent 0.55px), radial-gradient(rgb(23 24 39 / 0.08) 0.45px, transparent 0.45px);
+    background-position: 0 0, 11px 13px;
+    background-size: 17px 17px, 23px 23px;
+    mix-blend-mode: multiply;
+  }
+
+  :global(.theme-dark) .statistics-grain { opacity: 0.18; background-image: radial-gradient(rgb(255 255 255 / 0.35) 0.55px, transparent 0.55px), radial-gradient(rgb(255 255 255 / 0.18) 0.45px, transparent 0.45px); mix-blend-mode: soft-light; }
+
+  .statistics-light-atmosphere {
+    position: absolute;
+    z-index: -1;
+    inset: 0;
+    overflow: hidden;
+    pointer-events: none;
+    color: var(--stats-sky);
+    opacity: 0.84;
+  }
+
+  :global(.theme-dark) .statistics-light-atmosphere { opacity: 0; }
+
+  .statistics-light-atmosphere::before,
+  .statistics-light-atmosphere::after {
+    position: absolute;
+    display: block;
+    content: "";
+  }
+
+  .statistics-light-atmosphere::before {
+    top: 5rem;
+    right: -15rem;
+    width: min(74vw, 72rem);
+    height: min(74vw, 72rem);
+    border: 1px solid rgb(44 156 171 / 0.16);
+    border-radius: 50%;
+    box-shadow: inset 0 0 0 1.8rem rgb(44 156 171 / 0.025), inset 0 0 0 5.5rem rgb(44 156 171 / 0.025);
+    transform: rotate(-12deg) scaleY(0.62);
+    animation: statistics-atmosphere-drift 18s ease-in-out infinite;
+  }
+
+  .statistics-light-atmosphere::after {
+    top: 26%;
+    left: -15%;
+    width: 130%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgb(232 102 73 / 0.28) 42%, rgb(44 156 171 / 0.35) 56%, transparent);
+    opacity: 0;
+    animation: statistics-atmosphere-scan 13s cubic-bezier(0.4, 0, 0.2, 1) 1.5s infinite;
+  }
+
+  .statistics-atmosphere-orbit {
+    position: absolute;
+    display: block;
+    border: 1px solid rgb(232 102 73 / 0.2);
+    border-radius: 50%;
+    transform: rotate(28deg) scaleY(0.24);
+    animation: statistics-atmosphere-orbit 16s ease-in-out infinite;
+  }
+
+  .statistics-atmosphere-orbit-one {
+    top: 9%;
+    right: 13%;
+    width: min(48vw, 44rem);
+    height: min(48vw, 44rem);
+  }
+
+  .statistics-atmosphere-orbit-two {
+    top: 37%;
+    right: -8%;
+    width: min(65vw, 60rem);
+    height: min(65vw, 60rem);
+    border-color: rgb(44 156 171 / 0.13);
+    transform: rotate(-18deg) scaleY(0.18);
+    animation-delay: -7s;
+  }
+
+  .statistics-atmosphere-mote {
+    position: absolute;
+    display: block;
+    width: 0.75rem;
+    height: 0.75rem;
+    border: 2px solid var(--stats-acid);
+    border-radius: 50%;
+    background: var(--stats-night);
+    box-shadow: 0 0 0 0 rgb(185 229 47 / 0.3);
+    animation: statistics-atmosphere-pulse 4.8s ease-in-out infinite;
+  }
+
+  .statistics-atmosphere-mote-one { top: 19%; right: 29%; }
+  .statistics-atmosphere-mote-two { top: 43%; right: 13%; animation-delay: -1.6s; }
+  .statistics-atmosphere-mote-three { top: 68%; right: 37%; animation-delay: -3.2s; }
+
+  .statistics-atmosphere-readout {
+    position: absolute;
+    top: 17%;
+    right: 4%;
+    color: var(--stats-coral);
+    font: 0.62rem/1.4 ui-monospace, SFMono-Regular, Menlo, monospace;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    animation: statistics-atmosphere-flicker 6s ease-in-out infinite;
+  }
+
+  @keyframes statistics-atmosphere-drift {
+    0%, 100% { transform: rotate(-12deg) scaleY(0.62) translate3d(0, 0, 0); }
+    50% { transform: rotate(-8deg) scaleY(0.62) translate3d(-1.2rem, 1rem, 0); }
+  }
+
+  @keyframes statistics-atmosphere-orbit {
+    0%, 100% { opacity: 0.48; transform: rotate(28deg) scaleY(0.24) translate3d(0, 0, 0); }
+    50% { opacity: 0.9; transform: rotate(31deg) scaleY(0.24) translate3d(0.8rem, -0.5rem, 0); }
+  }
+
+  @keyframes statistics-atmosphere-scan {
+    0%, 100% { opacity: 0; transform: translateX(-18%); }
+    16%, 72% { opacity: 0.8; }
+    88% { opacity: 0; transform: translateX(18%); }
+  }
+
+  @keyframes statistics-atmosphere-pulse {
+    0%, 100% { transform: scale(0.88); box-shadow: 0 0 0 0 rgb(185 229 47 / 0.24); }
+    50% { transform: scale(1.16); box-shadow: 0 0 0 0.8rem rgb(185 229 47 / 0); }
+  }
+
+  @keyframes statistics-atmosphere-flicker {
+    0%, 100% { opacity: 0.46; }
+    46%, 58% { opacity: 0.9; }
+    52% { opacity: 0.62; }
+  }
+
+  .statistics-home-inner { position: relative; max-width: 1440px; margin: 0 auto; padding: 1.5rem clamp(1.1rem, 4vw, 4.5rem) 2rem; }
+
+  .statistics-home .production-breadcrumb { margin-bottom: clamp(2rem, 4vw, 4rem); }
+
+  .statistics-home .production-breadcrumb :global(.production-breadcrumb-item a),
+  .statistics-home .production-breadcrumb :global(.production-breadcrumb-current),
+  .statistics-home .production-breadcrumb :global(.production-breadcrumb-item),
+  .statistics-home .production-breadcrumb :global(.production-breadcrumb-separator) { color: var(--stats-muted); }
+
+  .statistics-home .production-breadcrumb :global(.production-breadcrumb-item a:hover),
+  .statistics-home .production-breadcrumb :global(.production-breadcrumb-item a:focus-visible) { color: var(--stats-acid); }
+
+  .statistics-hero { position: relative; display: grid; grid-template-columns: minmax(0, 1fr) minmax(24rem, 0.95fr); gap: clamp(2rem, 6vw, 7rem); align-items: center; min-height: min(43rem, 66vh); padding: 0 0 clamp(3rem, 6vw, 6rem); }
+
+  .statistics-hero-copy { position: relative; z-index: 2; max-width: 42rem; }
+
+  .statistics-kicker,
+  .statistics-kicker-small,
+  .statistics-catalog-note,
+  .statistics-filter-status,
+  .statistics-tool-card-topline,
+  .statistics-colophon,
+  .statistics-orbit-label,
+  .statistics-orbit-caption,
+  .statistics-field-axis { color: var(--stats-muted); font: 0.68rem/1.4 ui-monospace, SFMono-Regular, Menlo, monospace; letter-spacing: 0.14em; text-transform: uppercase; }
+
+  .statistics-kicker { display: flex; gap: 1rem; align-items: center; margin: 0 0 1.8rem; }
+
+  .statistics-kicker-index { display: grid; width: 2.4rem; height: 2.4rem; place-items: center; border: 1px solid var(--stats-coral); border-radius: 50%; color: var(--stats-coral); }
+
+  .statistics-kicker-equation { margin-left: auto; color: var(--stats-acid); }
+
+  .statistics-title-lockup { position: relative; }
+
+  .statistics-title-mark { position: absolute; top: -1.8rem; left: -2.4rem; z-index: -1; color: rgb(216 255 73 / 0.12); font: 18rem/0.7 Georgia, serif; transform: rotate(-9deg); }
+
+  .statistics-hero :global(h1) { max-width: 18ch; margin: 0; color: var(--stats-ink); font-size: clamp(3.2rem, 5.2vw, 6.2rem); font-weight: 900; letter-spacing: -0.07em; line-height: 0.88; text-wrap: balance; }
+
+  .statistics-description { max-width: 36rem; margin: 2.6rem 0 0; color: var(--stats-muted); font-size: clamp(1rem, 1.45vw, 1.3rem); line-height: 1.6; }
+
+  .statistics-enter { display: inline-flex; gap: 1.2rem; align-items: center; margin-top: 2.4rem; padding: 0.8rem 0; border-bottom: 1px solid var(--stats-acid); color: var(--stats-acid); font-weight: 800; text-decoration: none; transition: gap 0.25s ease, color 0.25s ease; }
+
+  .statistics-enter:hover,
+  .statistics-enter:focus-visible { gap: 2.2rem; color: var(--stats-ink); }
+
+  .statistics-enter-arrow { font-size: 1.5rem; line-height: 0.6; }
+
+  .statistics-enter:focus-visible,
+  .statistics-filter:focus-visible,
+  .statistics-tool-card:focus-visible { outline: 3px solid var(--stats-coral); outline-offset: 5px; }
+
+  .statistics-orbit { position: relative; min-height: min(34rem, 48vw); color: var(--stats-sky); }
+
+  .statistics-orbit::before { position: absolute; inset: 11% 4% 6% 9%; border: 1px solid var(--stats-orbit-ellipse); border-radius: 50%; content: ""; transform: rotate(21deg) scaleY(0.35); }
+
+  .statistics-orbit-label { position: absolute; z-index: 2; color: var(--stats-sky); }
+
+  .statistics-orbit-label-top { top: 1%; left: 16%; }
+  .statistics-orbit-label-right { top: 44%; right: -2%; }
+  .statistics-orbit-label-bottom { bottom: 5%; left: 28%; color: var(--stats-coral); }
+
+  .statistics-orbit-svg { display: block; width: 100%; height: auto; overflow: visible; }
+
+  .statistics-orbit-wash { fill: var(--stats-orbit-wash); }
+
+  .statistics-orbit-ring { fill: none; stroke: var(--stats-orbit-ring); stroke-width: 1; stroke-dasharray: 3 13; }
+
+  .statistics-orbit-wave { fill: none; stroke: var(--stats-coral); stroke-width: 3; }
+
+  .statistics-orbit-arc { fill: none; stroke: var(--stats-acid); stroke-width: 1.5; stroke-dasharray: 2 8; }
+
+  .statistics-orbit-points circle { fill: var(--stats-night); stroke: var(--stats-acid); stroke-width: 3; }
+
+  .statistics-orbit-core { fill: var(--stats-acid); stroke: var(--stats-night); stroke-width: 7; }
+
+  .statistics-orbit-svg text { fill: var(--stats-night); font: 700 31px Georgia, serif; }
+
+  .statistics-orbit-caption { display: flex; justify-content: space-between; align-items: center; width: 68%; margin: -4.2rem 0 0 auto; padding-top: 1rem; border-top: 1px solid var(--stats-line); }
+
+  .statistics-orbit-caption strong { color: var(--stats-ink); font-size: 1.6rem; letter-spacing: -0.08em; }
+
+  .statistics-hero-scribble { position: absolute; right: 37%; bottom: 5%; color: var(--stats-coral); font: 3rem Georgia, serif; letter-spacing: -0.4em; transform: rotate(-12deg); }
+
+  .statistics-catalog { padding: clamp(2rem, 4vw, 4rem) 0 clamp(7rem, 13vw, 13rem); }
+
+  .statistics-trajectory-heading { display: grid; width: min(100%, 1320px); grid-template-columns: 4rem minmax(0, 1fr) auto; gap: 2rem; align-items: end; margin: 0 auto 3rem; }
+
+  .statistics-visually-hidden { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+
+  .statistics-section-stamp { display: grid; gap: 0.5rem; align-self: start; color: var(--stats-coral); font: 0.75rem ui-monospace, SFMono-Regular, Menlo, monospace; }
+
+  .statistics-section-stamp span:first-child { font-size: 1.35rem; }
+
+  .statistics-section-stamp span:last-child { width: 2rem; padding-top: 0.5rem; border-top: 1px solid currentcolor; }
+
+  .statistics-kicker-small { margin: 0 0 0.6rem; color: var(--stats-acid); }
+
+  .statistics-catalog h2,
+  .statistics-trajectory h2,
+  .statistics-context h2 { max-width: 14ch; margin: 0; color: var(--stats-ink); font-size: clamp(2.5rem, 5.5vw, 6rem); letter-spacing: -0.1em; line-height: 0.8; text-wrap: balance; }
+
+  .statistics-catalog-note { margin: 0 0 0.1rem; color: var(--stats-coral); text-align: right; }
+
+  .statistics-filter-row { display: flex; flex-wrap: wrap; gap: 0.6rem; margin-bottom: 2rem; }
+
+  .statistics-filter { display: inline-flex; gap: 0.7rem; align-items: center; padding: 0.72rem 1rem; border: 1px solid var(--stats-line); border-radius: 0; background: transparent; color: var(--stats-muted); cursor: pointer; font: inherit; font-size: 0.82rem; transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease, transform 0.2s ease; }
+
+  .statistics-filter span { color: var(--stats-coral); font: 1rem Georgia, serif; }
+
+  .statistics-filter:hover,
+  .statistics-filter.is-active { border-color: var(--stats-acid); background: var(--stats-acid); color: var(--stats-night-deep); transform: translateY(-0.2rem); }
+
+  .statistics-filter.is-active span { color: var(--stats-night-deep); }
+
+  .statistics-specimen-field { position: relative; padding: 1.4rem 0 0 2.3rem; border-top: 1px solid var(--stats-line); }
+
+  .statistics-field-axis { position: absolute; top: 1.7rem; bottom: 0; left: 0; display: flex; flex-direction: column; justify-content: space-between; color: var(--stats-muted); }
+
+  .statistics-field-axis i { display: block; width: 0.6rem; height: 1px; background: var(--stats-line); }
+
+  .statistics-tools-grid { display: grid; grid-template-columns: repeat(12, 1fr); gap: 1rem; }
+
+  .statistics-tool-card { --stats-card-ink: var(--stats-paper-ink); --stats-card-body: var(--stats-paper-muted); --stats-card-line: var(--stats-paper-line); --stats-card-ghost: rgb(23 24 39 / 0.1); position: relative; display: flex; min-height: 24rem; grid-column: span 4; flex-direction: column; overflow: hidden; padding: 1.35rem; border: 1px solid var(--stats-card-line); background: var(--stats-paper); color: var(--stats-card-ink); text-decoration: none; transform: rotate(0deg); transition: transform 0.25s ease, box-shadow 0.25s ease, filter 0.25s ease; }
+
+  .statistics-tool-card:nth-child(1) { grid-column: span 5; min-height: 29rem; background: var(--stats-acid); }
+  .statistics-tool-card:nth-child(2) { grid-column: span 3; min-height: 25rem; transform: translateY(2rem) rotate(1.3deg); background: var(--stats-coral); }
+  .statistics-tool-card:nth-child(3) { grid-column: span 4; min-height: 21rem; background: var(--stats-sky); }
+  .statistics-tool-card:nth-child(4) { grid-column: span 4; min-height: 22rem; transform: translateY(-1rem) rotate(-1deg); background: var(--stats-paper); }
+  .statistics-tool-card:nth-child(5) { grid-column: span 5; min-height: 27rem; background: var(--stats-paper); }
+  .statistics-tool-card:nth-child(6) { grid-column: span 3; min-height: 23rem; transform: translateY(1.2rem) rotate(1deg); background: var(--stats-acid); }
+  .statistics-tool-card:nth-child(7) { grid-column: span 4; min-height: 24rem; background: var(--stats-coral); }
+  .statistics-tool-card:nth-child(8) { grid-column: span 4; min-height: 26rem; transform: translateY(-1.1rem) rotate(-1.4deg); background: var(--stats-sky); }
+  .statistics-tool-card:nth-child(9) { grid-column: span 4; min-height: 22rem; background: var(--stats-paper); }
+
+  .statistics-tool-card:nth-child(1),
+  .statistics-tool-card:nth-child(2),
+  .statistics-tool-card:nth-child(3),
+  .statistics-tool-card:nth-child(6),
+  .statistics-tool-card:nth-child(7),
+  .statistics-tool-card:nth-child(8) {
+    --stats-card-ink: var(--stats-night-deep);
+    --stats-card-body: rgb(16 17 28 / 0.78);
+    --stats-card-line: rgb(16 17 28 / 0.24);
+    --stats-card-ghost: rgb(16 17 28 / 0.12);
+  }
+
+  .statistics-tool-card::before { position: absolute; inset: 0; background: repeating-linear-gradient(115deg, transparent 0 17px, rgb(23 24 39 / 0.07) 17px 18px); content: ""; opacity: 0.55; }
+
+  .statistics-tool-card:hover,
+  .statistics-tool-card:focus-visible { z-index: 2; box-shadow: 0.8rem 0.8rem 0 var(--stats-acid); filter: saturate(1.18); transform: translateY(-0.8rem) rotate(0deg); }
+
+  .statistics-tool-card[hidden] { display: none; }
+
+  .statistics-tool-card-topline,
+  .statistics-tool-icon,
+  .statistics-tool-copy,
+  .statistics-tool-cta { position: relative; z-index: 1; }
+
+  .statistics-tool-card-topline { display: flex; justify-content: space-between; gap: 1rem; padding-bottom: 1rem; border-bottom: 1px solid var(--stats-card-line); color: var(--stats-card-body); }
+
+  .statistics-tool-card-topline span:last-child { color: var(--stats-card-ink); }
+
+  .statistics-tool-icon { display: grid; width: 4.5rem; height: 4.5rem; place-items: center; margin: 1.5rem 0 1.7rem; border: 1px solid var(--stats-card-ink); border-radius: 50%; color: var(--stats-card-ink); font-size: 1.8rem; }
+
+  .statistics-tool-copy h3 { max-width: 13ch; margin: 0; color: var(--stats-card-ink); font-size: clamp(1.25rem, 2vw, 2rem); letter-spacing: -0.07em; line-height: 0.92; }
+
+  .statistics-tool-copy p { max-width: 29ch; margin: 0.8rem 0 0; color: var(--stats-card-body); font-size: 0.92rem; line-height: 1.45; }
+
+  .statistics-tool-cta { display: flex; justify-content: space-between; gap: 1rem; align-items: center; margin-top: auto; padding-top: 1.5rem; color: var(--stats-card-ink); font-size: 0.72rem; font-weight: 900; letter-spacing: 0.1em; text-transform: uppercase; }
+
+  .statistics-tool-cta strong { font-size: 1.5rem; font-weight: 400; }
+
+  .statistics-tool-ghost { position: absolute; right: -0.07em; bottom: -0.2em; color: var(--stats-card-ghost); font: 12rem/0.75 Georgia, serif; letter-spacing: -0.12em; }
+
+  .statistics-filter-status { margin: 1.2rem 0 0 2.3rem; color: var(--stats-acid); }
+
+  .statistics-trajectory { margin: 0 calc(clamp(1.1rem, 4vw, 4.5rem) * -1); padding: clamp(3rem, 7vw, 7rem) clamp(1.1rem, 4vw, 4.5rem) clamp(5rem, 10vw, 10rem); background: var(--stats-coral); color: var(--stats-night-deep); transform: rotate(-1.2deg); }
+
+  .statistics-trajectory .statistics-kicker-small,
+  .statistics-trajectory h2 { color: var(--stats-night-deep); }
+
+  .statistics-trajectory-heading > p { margin: 0; color: rgb(23 24 39 / 0.64); font: 0.7rem ui-monospace, SFMono-Regular, Menlo, monospace; text-align: right; text-transform: uppercase; }
+
+  .statistics-section-stamp-light { color: var(--stats-night-deep); }
+
+  .statistics-trajectory-art { position: relative; width: min(100%, 1320px); margin: 0 auto; padding: 2rem 0 0; border-top: 1px solid rgb(23 24 39 / 0.35); }
+
+  .statistics-trajectory-art svg { display: block; width: 100%; height: auto; }
+
+  .statistics-trajectory-line { fill: none; stroke: var(--stats-night-deep); stroke-width: 4; }
+
+  .statistics-trajectory-line-secondary { fill: none; stroke: var(--stats-sky); stroke-width: 2; }
+
+  .statistics-trajectory-art circle { fill: var(--stats-acid); stroke: var(--stats-night-deep); stroke-width: 4; }
+
+  .statistics-trajectory-orb { position: absolute; top: 13%; right: 8%; color: var(--stats-acid); font: 12rem/0.7 Georgia, serif; opacity: 0.7; }
+
+  .statistics-trajectory-steps { position: relative; display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; margin: -1.5rem 0 0; padding: 0; list-style: none; }
+
+  .statistics-trajectory-steps li { min-height: 7rem; padding: 0 1rem; border-left: 1px solid rgb(23 24 39 / 0.4); }
+
+  .statistics-trajectory-steps span,
+  .statistics-trajectory-steps small { display: block; color: rgb(23 24 39 / 0.62); font: 0.7rem ui-monospace, SFMono-Regular, Menlo, monospace; letter-spacing: 0.1em; }
+
+  .statistics-trajectory-steps strong { display: block; margin: 1rem 0 0.7rem; font-size: 1.1rem; letter-spacing: -0.04em; }
+
+  .statistics-trajectory-steps small { color: var(--stats-night-deep); }
+
+  .statistics-context { display: block; padding: clamp(5rem, 10vw, 10rem) 0; }
+
+  .statistics-context-copy { max-width: 100%; }
+
+  .statistics-context-copy h2 { max-width: 18ch; margin-top: 0.8rem; }
+
+  .statistics-seo-copy { max-width: none; margin-top: clamp(2.5rem, 5vw, 5rem); padding: clamp(2rem, 5vw, 5rem); border: 1px solid var(--stats-line); background: var(--stats-paper); color: var(--stats-paper-ink); font-size: 1.03rem; line-height: 1.75; }
+
+  .statistics-seo-copy :global(.seo-article) { max-width: none; margin: 0; color: var(--stats-paper-ink); font-size: inherit; line-height: inherit; }
+
+  .statistics-seo-copy :global(.seo-title) { max-width: 18ch; margin: 2.7rem 0 1rem; color: var(--stats-paper-ink); font-size: clamp(1.6rem, 3vw, 3.3rem); letter-spacing: -0.08em; line-height: 0.9; }
+
+  .statistics-seo-copy :global(.seo-title .prefix) { color: var(--stats-coral); }
+
+  .statistics-seo-copy :global(.seo-title:first-child) { margin-top: 0; }
+
+  .statistics-seo-copy :global(.seo-article > p) { max-width: 74ch; margin: 0 0 1.5rem; color: var(--stats-paper-muted); }
+
+  .statistics-seo-copy :global(ul) { max-width: 74ch; margin: 1.5rem 0 2.5rem; padding: 0; list-style: none; }
+
+  .statistics-seo-copy :global(.seo-list-premium) { display: grid; grid-template-columns: 1fr; gap: 0; max-width: 74ch; margin: 2rem 0 3rem; padding: 0; }
+
+  .statistics-seo-copy :global(.seo-list-premium .list-card) { display: grid; grid-template-columns: 2.5rem 1fr; gap: 1rem; align-items: start; margin: 0; padding: 1.2rem 0; border: 0; border-top: 1px solid var(--stats-paper-line); border-radius: 0; background: transparent; box-shadow: none; color: var(--stats-paper-muted); }
+
+  .statistics-seo-copy :global(.seo-list-premium .marker-wrapper) { display: block; }
+
+  .statistics-seo-copy :global(.seo-list-premium .marker-box) { display: grid; width: 2rem; height: 2rem; place-items: center; border-radius: 50%; background: var(--stats-coral); color: var(--stats-paper-ink); }
+
+  .statistics-seo-copy :global(.seo-list-premium .marker-svg) { width: 0.9rem; height: 0.9rem; }
+
+  .statistics-seo-copy :global(.seo-list-premium .card-content) { color: var(--stats-paper-muted); }
+
+  .statistics-seo-copy :global(.seo-tip) { max-width: 74ch; margin: 2.5rem 0; border-left-color: var(--stats-coral); border-radius: 0; background: var(--stats-acid); color: var(--stats-paper-ink); }
+
+  .statistics-seo-copy :global(.seo-tip h5),
+  .statistics-seo-copy :global(.seo-tip p) { color: var(--stats-paper-ink); }
+
+  :global(.theme-dark) .statistics-seo-copy :global(.seo-tip) {
+    background: var(--stats-paper);
+    color: var(--stats-paper-ink);
+  }
+
+  :global(.theme-dark) .statistics-seo-copy :global(.seo-tip h5),
+  :global(.theme-dark) .statistics-seo-copy :global(.seo-tip p) { color: var(--stats-paper-ink); }
+
+  .statistics-colophon { display: flex; justify-content: space-between; gap: 1rem; padding: 1.2rem 0; border-top: 1px solid var(--stats-line); color: var(--stats-muted); }
+
+  .statistics-colophon span:last-child { color: var(--stats-acid); }
+
+  @media (width <= 900px) {
+    .statistics-hero { grid-template-columns: 1fr; min-height: auto; }
+
+    .statistics-orbit { width: min(100%, 40rem); min-height: auto; margin: 2rem auto 0; }
+
+    .statistics-hero-scribble { right: 10%; bottom: 2%; }
+
+    .statistics-tool-card,
+    .statistics-tool-card:nth-child(n) { grid-column: span 6; min-height: 23rem; }
+
+    .statistics-tool-card:nth-child(2),
+    .statistics-tool-card:nth-child(4),
+    .statistics-tool-card:nth-child(6),
+    .statistics-tool-card:nth-child(8) { transform: none; }
+
+  }
+
+  @media (width <= 600px) {
+    .statistics-home-inner { padding-top: 1rem; }
+
+    .statistics-hero { padding-bottom: 5rem; }
+
+    .statistics-kicker-equation { display: none; }
+
+    .statistics-title-mark { top: -0.8rem; left: -0.9rem; font-size: 10rem; }
+
+    .statistics-hero :global(h1) { max-width: 11ch; font-size: clamp(3.2rem, 14vw, 5.2rem); }
+
+    .statistics-orbit { width: 115%; margin-left: -7%; }
+
+    .statistics-orbit-label-right { right: 0; }
+
+    .statistics-orbit-caption { width: 80%; margin-top: -2.5rem; }
+
+    .statistics-trajectory-heading { grid-template-columns: 3rem 1fr; gap: 1rem; align-items: start; }
+
+    .statistics-trajectory-heading > p { grid-column: 2; margin: -1rem 0 0; text-align: left; }
+
+    .statistics-tools-grid { gap: 0.7rem; }
+
+    .statistics-tool-card,
+    .statistics-tool-card:nth-child(n) { grid-column: span 12; min-height: 19rem; transform: none; }
+
+    .statistics-tool-card:nth-child(1),
+    .statistics-tool-card:nth-child(5) { min-height: 23rem; }
+
+    .statistics-specimen-field { padding-left: 1.4rem; }
+
+    .statistics-field-axis { display: none; }
+
+    .statistics-filter-status { margin-left: 0; }
+
+    .statistics-trajectory { margin-right: -1.1rem; margin-left: -1.1rem; padding-right: 1.1rem; padding-left: 1.1rem; transform: rotate(0); }
+
+    .statistics-trajectory-art { padding-top: 1rem; }
+
+    .statistics-trajectory-orb { top: 20%; right: 0; font-size: 7rem; }
+
+    .statistics-trajectory-steps { grid-template-columns: repeat(2, 1fr); row-gap: 2rem; margin-top: 1rem; }
+
+    .statistics-trajectory-steps li:nth-child(3) { border-left: 0; }
+
+    .statistics-colophon { flex-wrap: wrap; font-size: 0.58rem; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .statistics-enter,
+    .statistics-filter,
+    .statistics-tool-card,
+    .statistics-light-atmosphere::before,
+    .statistics-light-atmosphere::after,
+    .statistics-atmosphere-orbit,
+    .statistics-atmosphere-mote,
+    .statistics-atmosphere-readout { animation: none; transition: none; }
+  }
+</style>
