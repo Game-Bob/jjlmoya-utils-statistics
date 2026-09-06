@@ -1,0 +1,206 @@
+---
+import { Icon } from 'astro-icon/components';
+import type { PercentileRankUI } from './ui';
+
+interface Props {
+  ui: PercentileRankUI;
+}
+
+const { ui } = Astro.props;
+---
+
+<div
+  class="pr-card"
+  id="pr-app"
+  data-error-data={ui.errorData}
+  data-error-target={ui.errorTarget}
+  data-invalid-notice={ui.invalidNotice}
+  data-empty-plot={ui.emptyPlot}
+  data-result-explanation={ui.resultExplanation}
+  data-below-method={ui.methodBelow}
+  data-at-or-below-method={ui.methodAtOrBelow}
+  data-midrank-method={ui.methodMidrank}
+  data-copied-label={ui.btnCopied}
+>
+  <aside class="pr-sidebar">
+    <div class="pr-heading"><Icon name="mdi:format-list-numbered" />{ui.labelTitle}</div>
+    <div class="pr-field">
+      <label class="pr-label" for="pr-data">{ui.labelData}</label>
+      <textarea id="pr-data" class="pr-textarea" rows="8" placeholder={ui.placeholderData}></textarea>
+      <p class="pr-hint">{ui.hintData}</p>
+      <p class="pr-hint" id="pr-invalid" hidden></p>
+    </div>
+    <div class="pr-field">
+      <label class="pr-label" for="pr-target">{ui.labelTarget}</label>
+      <input id="pr-target" class="pr-input" type="number" inputmode="decimal" step="any" placeholder={ui.placeholderTarget} />
+    </div>
+    <div class="pr-field">
+      <label class="pr-label" for="pr-method">{ui.labelMethod}</label>
+      <select id="pr-method" class="pr-select">
+        <option value="below">{ui.methodBelow}</option>
+        <option value="atOrBelow">{ui.methodAtOrBelow}</option>
+        <option value="midrank" selected>{ui.methodMidrank}</option>
+      </select>
+      <p class="pr-method-help">{ui.methodHelp}</p>
+    </div>
+    <div class="pr-actions">
+      <button class="pr-button" id="pr-example" type="button"><Icon name="mdi:flask-outline" /> {ui.btnExample}</button>
+      <button class="pr-button secondary" id="pr-clear" type="button"><Icon name="mdi:eraser" /> {ui.btnClear}</button>
+    </div>
+    <p class="pr-note"><Icon name="mdi:shield-check-outline" /> Your values stay in this browser. The result describes the sample you enter; it does not estimate significance or probability.</p>
+  </aside>
+
+  <div class="pr-main">
+    <p class="pr-error" id="pr-error" role="alert" hidden></p>
+    <section class="pr-hero" aria-live="polite">
+      <div class="pr-result primary">
+        <p class="pr-eyebrow">{ui.resultEyebrow}</p>
+        <p class="pr-percentile" id="pr-percentile">–<small>%</small></p>
+        <p class="pr-result-label">{ui.resultPercentile}</p>
+      </div>
+      <div class="pr-result">
+        <p class="pr-eyebrow">{ui.resultPosition}</p>
+        <p class="pr-position"><span id="pr-rank">–</span> <small>{ui.positionOf} <span id="pr-total">–</span></small></p>
+        <p class="pr-result-label" id="pr-method-result">{ui.methodMidrank}</p>
+      </div>
+    </section>
+
+    <section class="pr-detail-grid" aria-label={ui.resultEyebrow}>
+      <div class="pr-detail"><span class="pr-detail-label">{ui.labelBelow}</span><strong class="pr-detail-value" id="pr-below">–</strong></div>
+      <div class="pr-detail"><span class="pr-detail-label">{ui.labelEqual}</span><strong class="pr-detail-value" id="pr-equal">–</strong></div>
+      <div class="pr-detail"><span class="pr-detail-label">{ui.labelAbove}</span><strong class="pr-detail-value" id="pr-above">–</strong></div>
+      <div class="pr-detail"><span class="pr-detail-label">{ui.labelTieRange}</span><strong class="pr-detail-value" id="pr-tie-range">–</strong></div>
+    </section>
+
+    <section class="pr-plot-card">
+      <div class="pr-plot-heading"><span><Icon name="mdi:map-marker-radius-outline" /> {ui.labelSortedSample}</span><span>{ui.plotStart} → {ui.plotEnd}</span></div>
+      <div class="pr-plot" id="pr-plot" role="img" aria-label={ui.emptyPlot}>
+        <div class="pr-plot-axis" aria-hidden="true"></div>
+        <div class="pr-plot-empty" id="pr-plot-empty">{ui.emptyPlot}</div>
+        <span class="pr-plot-label start">{ui.plotStart}</span><span class="pr-plot-label end">{ui.plotEnd}</span>
+      </div>
+    </section>
+
+    <section class="pr-neighbor-grid" aria-label={ui.labelSortedSample}>
+      <div class="pr-neighbor"><span class="pr-neighbor-label">{ui.labelLowerNeighbor}</span><strong class="pr-neighbor-value" id="pr-lower">–</strong></div>
+      <div class="pr-neighbor"><span class="pr-neighbor-label">{ui.labelUpperNeighbor}</span><strong class="pr-neighbor-value" id="pr-upper">–</strong></div>
+    </section>
+
+    <section class="pr-report">
+      <p class="pr-report-title"><Icon name="mdi:text-box-outline" /> {ui.labelReport}</p>
+      <p class="pr-report-text" id="pr-report">{ui.emptyPlot}</p>
+      <button class="pr-button" id="pr-copy" type="button"><Icon name="mdi:content-copy" /> {ui.btnCopy}</button>
+    </section>
+  </div>
+</div>
+
+<script>
+  import { calculatePercentileRank, parseValues, type PercentileMethod } from './logic';
+
+  const app = document.getElementById('pr-app');
+  if (!app) throw new Error('pr-app not found');
+  const data = app.dataset;
+  const textarea = document.getElementById('pr-data') as HTMLTextAreaElement;
+  const targetInput = document.getElementById('pr-target') as HTMLInputElement;
+  const methodInput = document.getElementById('pr-method') as HTMLSelectElement;
+  const error = document.getElementById('pr-error')!;
+  const invalid = document.getElementById('pr-invalid')!;
+  const plot = document.getElementById('pr-plot')!;
+  const exampleButton = document.getElementById('pr-example')!;
+  const clearButton = document.getElementById('pr-clear')!;
+  const copyButton = document.getElementById('pr-copy')!;
+  const text = (id: string, value: string): void => { const element = document.getElementById(id); if (element) element.textContent = value; };
+  const format = (value: number): string => new Intl.NumberFormat(undefined, { maximumFractionDigits: 2 }).format(value);
+  const methodText = (method: PercentileMethod): string => {
+    if (method === 'below') return data.belowMethod ?? '';
+    if (method === 'atOrBelow') return data.atOrBelowMethod ?? '';
+    return data.midrankMethod ?? '';
+  };
+  const dotClass = (value: number, target: number): string => {
+    if (value < target) return 'below';
+    if (value === target) return 'equal';
+    return 'above';
+  };
+  const fillTemplate = (template: string, values: Record<string, string>): string => template.replace(/\{(\w+)\}/g, (_, key: string) => values[key] ?? '');
+
+  const saveState = (): void => { try { localStorage.setItem('percentile-rank-calculator:v1', JSON.stringify({ raw: textarea.value, target: targetInput.value, method: methodInput.value })); } catch { } };
+  const loadState = (): void => {
+    try {
+      const saved = JSON.parse(localStorage.getItem('percentile-rank-calculator:v1') ?? 'null') as { raw?: string; target?: string; method?: string } | null;
+      if (saved?.raw) textarea.value = saved.raw;
+      if (saved?.target) targetInput.value = saved.target;
+      if (saved?.method === 'below' || saved?.method === 'atOrBelow' || saved?.method === 'midrank') methodInput.value = saved.method;
+    } catch { }
+  };
+
+  const clearDots = (): void => { plot.querySelectorAll('.pr-dot, .pr-target-line').forEach((dot) => dot.remove()); };
+  const renderPlot = (result: ReturnType<typeof calculatePercentileRank>): void => {
+    clearDots();
+    const min = result.sorted[0]!;
+    const max = result.sorted[result.sorted.length - 1]!;
+    const spread = max - min;
+    const position = (value: number): number => spread === 0 ? 50 : 4 + ((value - min) / spread) * 92;
+    result.sorted.forEach((value) => {
+      const dot = document.createElement('span');
+      dot.className = `pr-dot ${dotClass(value, result.target)}`;
+      dot.style.left = `${position(value)}%`;
+      dot.setAttribute('aria-hidden', 'true');
+      plot.append(dot);
+    });
+    const line = document.createElement('span');
+    line.className = 'pr-target-line';
+    line.style.left = `${position(Math.min(max, Math.max(min, result.target)))}%`;
+    line.setAttribute('aria-hidden', 'true');
+    plot.append(line);
+    plot.setAttribute('aria-label', `Target ${format(result.target)}; ${result.below} below, ${result.equal} equal, ${result.above} above.`);
+    document.getElementById('pr-plot-empty')?.setAttribute('hidden', 'true');
+  };
+
+  const resetDisplay = (): void => {
+    ['pr-percentile', 'pr-rank', 'pr-total', 'pr-below', 'pr-equal', 'pr-above', 'pr-tie-range', 'pr-lower', 'pr-upper'].forEach((id) => text(id, '–'));
+    text('pr-method-result', methodText(methodInput.value as PercentileMethod));
+    text('pr-report', data.emptyPlot ?? '');
+    clearDots();
+    document.getElementById('pr-plot-empty')?.removeAttribute('hidden');
+    plot.setAttribute('aria-label', data.emptyPlot ?? '');
+  };
+
+  const update = (): void => {
+    saveState();
+    const parsed = parseValues(textarea.value);
+    invalid.toggleAttribute('hidden', parsed.invalidTokens === 0);
+    invalid.textContent = parsed.invalidTokens > 0 ? fillTemplate(data.invalidNotice ?? '', { n: String(parsed.invalidTokens) }) : '';
+    if (!textarea.value.trim() && !targetInput.value.trim()) { error.hidden = true; resetDisplay(); return; }
+    const target = Number(targetInput.value);
+    if (parsed.values.length < 2) { error.hidden = false; error.textContent = data.errorData ?? ''; resetDisplay(); return; }
+    if (!Number.isFinite(target)) { error.hidden = false; error.textContent = data.errorTarget ?? ''; resetDisplay(); return; }
+    error.hidden = true;
+    const method = methodInput.value as PercentileMethod;
+    const result = calculatePercentileRank(parsed.values, target, method);
+    text('pr-percentile', `${format(result.percentile)}%`);
+    text('pr-rank', result.rankStart === result.rankEnd ? String(result.rankStart) : `${result.rankStart}–${result.rankEnd}`);
+    text('pr-total', String(result.sorted.length));
+    text('pr-method-result', methodText(method));
+    text('pr-below', String(result.below));
+    text('pr-equal', String(result.equal));
+    text('pr-above', String(result.above));
+    let tieRange = '–';
+    if (result.equal === 1) tieRange = String(result.rankStart);
+    if (result.equal > 1) tieRange = `${result.rankStart}–${result.rankEnd}`;
+    text('pr-tie-range', tieRange);
+    text('pr-lower', result.lowerNeighbor === null ? '–' : format(result.lowerNeighbor));
+    text('pr-upper', result.upperNeighbor === null ? '–' : format(result.upperNeighbor));
+    text('pr-report', fillTemplate(data.resultExplanation ?? '', { position: result.rankStart === result.rankEnd ? String(result.rankStart) : `${result.rankStart}–${result.rankEnd}`, total: String(result.sorted.length), below: String(result.below), equal: String(result.equal), above: String(result.above), method: methodText(method), percentile: `${format(result.percentile)}%` }));
+    renderPlot(result);
+  };
+
+  exampleButton.addEventListener('click', () => { textarea.value = '12, 18, 21, 21, 27, 34, 41, 50, 63, 78'; targetInput.value = '41'; methodInput.value = 'midrank'; update(); });
+  clearButton.addEventListener('click', () => { textarea.value = ''; targetInput.value = ''; methodInput.value = 'midrank'; update(); textarea.focus(); });
+  textarea.addEventListener('input', update);
+  targetInput.addEventListener('input', update);
+  methodInput.addEventListener('change', update);
+  copyButton.addEventListener('click', async () => { await navigator.clipboard.writeText(document.getElementById('pr-report')?.textContent ?? ''); const label = copyButton.textContent ?? ''; copyButton.textContent = data.copiedLabel ?? ''; window.setTimeout(() => { copyButton.textContent = label; }, 1400); });
+
+  loadState();
+  update();
+</script>

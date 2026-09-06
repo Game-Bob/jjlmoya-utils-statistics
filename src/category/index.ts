@@ -7,6 +7,7 @@ import { confidenceInterval } from '../tool/confidenceInterval/entry';
 import { descriptiveStats } from '../tool/descriptiveStats/entry';
 import { normalDistribution } from '../tool/normalDistribution/entry';
 import { oneWayAnova } from '../tool/oneWayAnova/entry';
+import { percentileRank } from '../tool/percentileRank/entry';
 
 export const statisticsCategory: StatisticsCategoryEntry = {
   icon: 'mdi:chart-bar',
@@ -19,6 +20,7 @@ export const statisticsCategory: StatisticsCategoryEntry = {
     descriptiveStats,
     normalDistribution,
     oneWayAnova,
+    percentileRank,
   ],
   i18n: {
     es: () => import('./i18n/es').then((m) => m.content),
