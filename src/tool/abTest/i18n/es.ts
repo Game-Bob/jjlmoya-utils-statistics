@@ -4,7 +4,7 @@ import type { ToolLocaleContent } from '../../../types';
 import type { ABTestUI } from '../ui';
 
 const slug = 'calculadora-contraste-hipotesis-ab-test';
-const title = 'Calculadora de Contraste de Hipotesis AB Test Online';
+const title = 'Calculadora de Contraste de Hipótesis AB Test Online';
 const description =
   'Compara dos grupos (A y B) para determinar si existe una diferencia estadísticamente significativa entre sus conversiones o medias. Calcula el P-Valor al instante.';
 
@@ -93,7 +93,7 @@ export const content: ToolLocaleContent<ABTestUI> = {
   howTo: howToData,
   schemas: [faqSchema, howToSchema, appSchema],
   seo: [
-    { type: 'title', level: 2, text: 'Calculadora de Contraste de Hipotesis AB Test Online' },
+    { type: 'title', level: 2, text: 'Calculadora de Contraste de Hipótesis AB Test Online' },
     {
       type: 'paragraph',
       html: 'Tomar decisiones basadas en intuiciones es peligroso; tomarlas basadas en datos puros es el camino al éxito. La <strong>Calculadora de Contraste de Hipótesis (A/B Test)</strong> es la herramienta definitiva para analistas, marketers e investigadores que necesitan validar si la diferencia entre dos grupos es estadísticamente significativa o simplemente fruto del azar.',

@@ -4,7 +4,7 @@ import type { ToolLocaleContent } from '../../../types';
 import type { SampleSizeUI } from '../ui';
 
 const slug = 'calculadora-tamano-muestra';
-const title = 'Calculadora de Tamano de Muestra Online';
+const title = 'Calculadora de Tamaño de Muestra Online';
 const description =
   'Calcula el número exacto de personas necesarias para tu estudio. Incluye opciones para población finita o infinita, niveles de confianza y margen de error ajustables.';
 
@@ -93,7 +93,7 @@ export const content: ToolLocaleContent<SampleSizeUI> = {
   howTo: howToData,
   schemas: [faqSchema, howToSchema, appSchema],
   seo: [
-    { type: 'title', level: 2, text: 'Calculadora de Tamano de Muestra Online: Guia Definitiva' },
+    { type: 'title', level: 2, text: 'Calculadora de Tamaño de Muestra Online: Guía Definitiva' },
     {
       type: 'paragraph',
       html: 'Determinar el número adecuado de personas a encuestar es uno de los pasos más críticos en cualquier investigación o proyecto académico. La <strong>Calculadora de Tamaño de Muestra</strong> ofrece a estudiantes, investigadores y profesionales del marketing una herramienta precisa, rápida y fácil de usar para calcular la cantidad exacta de individuos necesarios para que sus resultados sean estadísticamente significativos.',

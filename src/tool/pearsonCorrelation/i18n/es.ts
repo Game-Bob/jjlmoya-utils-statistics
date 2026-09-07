@@ -4,7 +4,7 @@ import type { ToolLocaleContent } from '../../../types';
 import type { PearsonCorrelationUI } from '../ui';
 
 const slug = 'calculadora-correlacion-pearson';
-const title = 'Calculadora de Correlacion de Pearson Online';
+const title = 'Calculadora de Correlación de Pearson Online';
 const description =
   'Calcula el coeficiente r de Pearson, el coeficiente de determinación r² y la recta de regresión lineal a partir de pares de datos. Herramienta 100% privada y local.';
 
@@ -93,7 +93,7 @@ export const content: ToolLocaleContent<PearsonCorrelationUI> = {
   howTo: howToData,
   schemas: [faqSchema, howToSchema, appSchema],
   seo: [
-    { type: 'title', level: 2, text: 'Calculadora de Correlacion de Pearson Online: Guia Completa' },
+    { type: 'title', level: 2, text: 'Calculadora de Correlación de Pearson Online: Guía Completa' },
     {
       type: 'paragraph',
       html: 'El <strong>coeficiente de correlación de Pearson</strong> (r) es la herramienta estándar en estadística para medir cómo dos variables numéricas se relacionan entre sí de forma lineal. Ya sea para un trabajo académico, un análisis de mercado o una investigación científica, entender la fuerza de tus datos es vital.',
