@@ -1,605 +1,605 @@
 {
   "version": 1,
-  "generatedAt": "2026-09-07T06:32:52.231Z",
+  "generatedAt": "2026-09-07T06:45:00.839Z",
   "pages": {
     "https://www.gamebob.dev/de/werkzeuge/kategorien/statistik/ab-test-hypothesentest-rechner/": {
-      "hash": "151e3d7b40df5824f5fa70c75abe67995769b8577997a1d9165aa0c4b77e41b9",
+      "hash": "a2dd62f7f12efd5eac5d4f3313eeabe10db80cb5a4552d4adcbe19a5d7b9fad8",
       "route": "/de/werkzeuge/kategorien/statistik/ab-test-hypothesentest-rechner/"
     },
     "https://www.gamebob.dev/de/werkzeuge/kategorien/statistik/chi-quadrat-unabhaengigkeitstest-rechner/": {
-      "hash": "67c240a4f684285b770f20aaacdecfc19a88e50c502f2d58ca3d098ac5da6060",
+      "hash": "404cdac90e2a53d1b2816c36dad09d2b797eb05603e22738aed3a9749fa6ef8a",
       "route": "/de/werkzeuge/kategorien/statistik/chi-quadrat-unabhaengigkeitstest-rechner/"
     },
     "https://www.gamebob.dev/de/werkzeuge/kategorien/statistik/einfaktor-anova-rechner-varianz-zwischen-innerhalb-gruppen/": {
-      "hash": "7175164f3da061f960619571cb62348630d8588f5cf92dae67bcc16d597b0541",
+      "hash": "f7759b062f8fcbf73ecdcbc99df28be8956588003d4cf228eafdfccda81dbe57",
       "route": "/de/werkzeuge/kategorien/statistik/einfaktor-anova-rechner-varianz-zwischen-innerhalb-gruppen/"
     },
     "https://www.gamebob.dev/de/werkzeuge/kategorien/statistik/": {
-      "hash": "df51b475713580c89cfe6aac191ac33b07cf3b23429b463aa87bcb3837e41567",
+      "hash": "cb5bf9022a64fcbde2df675f9035d0628057d34f7d14546a4f4e7444f31272ed",
       "route": "/de/werkzeuge/kategorien/statistik/"
     },
     "https://www.gamebob.dev/de/werkzeuge/kategorien/statistik/konfidenzintervall-rechner/": {
-      "hash": "a046021fbd703c19490f0962c0b7799fda00cacbe3ae6107ad91e4c37baaa748",
+      "hash": "9eb3d1136a42f209bc343d09c388fcb11f39d0f3230080dd986fec3e5020e838",
       "route": "/de/werkzeuge/kategorien/statistik/konfidenzintervall-rechner/"
     },
     "https://www.gamebob.dev/de/werkzeuge/kategorien/statistik/pearson-korrelationsrechner/": {
-      "hash": "c861d92e6d6d2ae66ebe0634b2011b1d91d179a15166492c2211a939636aa081",
+      "hash": "4b5469e3a4fbaca8a72e54035bb269bc81bc448ab73588122d0c8aad5d760f81",
       "route": "/de/werkzeuge/kategorien/statistik/pearson-korrelationsrechner/"
     },
     "https://www.gamebob.dev/de/werkzeuge/kategorien/statistik/perzentilrang-rechner/": {
-      "hash": "210dbc4537f01435706a003445137ed74686d3b37e4c29d89ace6fa6677afcad",
+      "hash": "cbc9ac893bda4d08290332f53010e956ea42a4054d71b35a4b84926e2d9ffec0",
       "route": "/de/werkzeuge/kategorien/statistik/perzentilrang-rechner/"
     },
     "https://www.gamebob.dev/de/werkzeuge/kategorien/statistik/rechner-deskriptive-statistik/": {
-      "hash": "ee02299e6ceb1664ff3c01bc03491bdb030194872d45b28c12cc11ec9bb67068",
+      "hash": "a53190abd12707e4b72f354429cd974787a10cd1e00d53893216a46c47c16ff6",
       "route": "/de/werkzeuge/kategorien/statistik/rechner-deskriptive-statistik/"
     },
     "https://www.gamebob.dev/de/werkzeuge/kategorien/statistik/rechner-normalverteilung/": {
-      "hash": "7a2b3ada6db5dffb293d28fc27fee918f0842bb4271cfa627564dbf6bd5302b3",
+      "hash": "0eb63b6bf6e2a77b4306010e1641068511e74e5bd9c70a20a14fefbd9fb6d276",
       "route": "/de/werkzeuge/kategorien/statistik/rechner-normalverteilung/"
     },
     "https://www.gamebob.dev/de/werkzeuge/kategorien/statistik/stichprobenrechner/": {
-      "hash": "a9be751ee3b84fed4dc099e282a46f4be733b127418b45febe72c1307a132425",
+      "hash": "eec08eae64c3b1e526df5e5693c90333238c413c5d06ea12144a4472fbc66fd6",
       "route": "/de/werkzeuge/kategorien/statistik/stichprobenrechner/"
     },
     "https://www.gamebob.dev/en/utilities/categories/statistics/ab-test-hypothesis-calculator/": {
-      "hash": "51c9d0b802c002de0994a3b768287307cfc41b598124e2eda9cc9fdca98482cc",
+      "hash": "de26c793f8a8a7faf175a68c4b91560bdc9c916b82b750cc089bf3697d42fc62",
       "route": "/en/utilities/categories/statistics/ab-test-hypothesis-calculator/"
     },
     "https://www.gamebob.dev/en/utilities/categories/statistics/chi-square-independence-calculator/": {
-      "hash": "fa78bb2caddf7a8c3878a25893f30a5762a8f92fe06fe2c6b15275be815c6e26",
+      "hash": "7c01bc768d41a65bd782cf6a5fe147d3756fb3cfbc67ec6422c2fed7de274762",
       "route": "/en/utilities/categories/statistics/chi-square-independence-calculator/"
     },
     "https://www.gamebob.dev/en/utilities/categories/statistics/confidence-interval-calculator/": {
-      "hash": "2508ea78060a8a3d808dc55dbbe69228ca7e1f43d906c3b293725e09808b6c3d",
+      "hash": "95b2087664ceb8d2337dfb9e37331ad37f538baa2de724bd6985fd06ed8fae83",
       "route": "/en/utilities/categories/statistics/confidence-interval-calculator/"
     },
     "https://www.gamebob.dev/en/utilities/categories/statistics/descriptive-statistics-calculator/": {
-      "hash": "91ce8d7378d5b6bdc0db992e8bdb208df6c26d3d572404f6461a1506fd9a5227",
+      "hash": "9882d924ced809992d9ed950d4af82e3eeaae74fbbd20176fb0eb90e3ca72540",
       "route": "/en/utilities/categories/statistics/descriptive-statistics-calculator/"
     },
     "https://www.gamebob.dev/en/utilities/categories/statistics/": {
-      "hash": "46b8f0c8a771b139a9558159216fe20cee3a2e65cf04f84d88d05f6ab8ab81b6",
+      "hash": "803211fcd44e234ba720f35a85e9c43113b5bc39a749c2e993309be4f8f7b10f",
       "route": "/en/utilities/categories/statistics/"
     },
     "https://www.gamebob.dev/en/utilities/categories/statistics/normal-distribution-calculator/": {
-      "hash": "6b88b06709b1c4a76d3740400e9408d0052a6d955aa55276027baee6a0d47b6b",
+      "hash": "1139c1ba4cb93e5b9cd6c0be56fe29dc30c13929a337f93a70deb483b6da0833",
       "route": "/en/utilities/categories/statistics/normal-distribution-calculator/"
     },
     "https://www.gamebob.dev/en/utilities/categories/statistics/one-way-anova-between-within-groups-calculator/": {
-      "hash": "80c8b24683aa00eb1a8b55672f0443701b41c6979932c656b753879a05127bd7",
+      "hash": "6db3c0b9f0e3ce9d7c948dc4ba4919a6809898520a01018510fe00d8b92156bd",
       "route": "/en/utilities/categories/statistics/one-way-anova-between-within-groups-calculator/"
     },
     "https://www.gamebob.dev/en/utilities/categories/statistics/pearson-correlation-calculator/": {
-      "hash": "945bf2e61f7b970eb52947a65c1639dfdd19035b3bdf650484eccf8c8159cd21",
+      "hash": "49e6d1c432cb5d1069f43d0a76de548ef7748d2d2d4d040f72635f124dfadc50",
       "route": "/en/utilities/categories/statistics/pearson-correlation-calculator/"
     },
     "https://www.gamebob.dev/en/utilities/categories/statistics/percentile-rank-calculator/": {
-      "hash": "208fc4640c18c5539e30581e5b79d3d569d60f53b3580eb6283fc49cb43e2f49",
+      "hash": "93295935c937c2139e77c1e4281dd862639f19731046ffc5333071b62129d1ae",
       "route": "/en/utilities/categories/statistics/percentile-rank-calculator/"
     },
     "https://www.gamebob.dev/en/utilities/categories/statistics/sample-size-calculator/": {
-      "hash": "94472fac1cea0881f3487076aacf0b234cca224ee6f6fa1f05a85109dbcc5258",
+      "hash": "d6fe8a47a5e23fed871dcfbac91a40955391ed06b932b7f874fa54bb37199430",
       "route": "/en/utilities/categories/statistics/sample-size-calculator/"
     },
     "https://www.gamebob.dev/fr/utilitaires/categories/statistiques/calculateur-anova-un-facteur-variance-entre-dans-groupes/": {
-      "hash": "95bec3923e7546960b71f239b3d2fc93149c8349fb343ea03d2f9a00a0309519",
+      "hash": "f976e07e28ee39f1593ce96d813bee4629c05b580f434432e194ed0dfa1c8717",
       "route": "/fr/utilitaires/categories/statistiques/calculateur-anova-un-facteur-variance-entre-dans-groupes/"
     },
     "https://www.gamebob.dev/fr/utilitaires/categories/statistiques/calculateur-chi-deux-independance/": {
-      "hash": "6223765838911862e4e8f0e47ff48d68f7c3ef2e3b44d27904583152ae01b76f",
+      "hash": "87c6edb46a48cb61b057c2f3145153b39c183aa4ae229b10709c1db31dbbaec8",
       "route": "/fr/utilitaires/categories/statistiques/calculateur-chi-deux-independance/"
     },
     "https://www.gamebob.dev/fr/utilitaires/categories/statistiques/calculateur-correlation-pearson/": {
-      "hash": "e4342c13b9a502e6f939ed0727a29430cf4d63a1de692e87918ad97be7ebc353",
+      "hash": "f66665f20cc805c25b529fec159c5f45ddac93698f4f4629e4283ae9d5d957af",
       "route": "/fr/utilitaires/categories/statistiques/calculateur-correlation-pearson/"
     },
     "https://www.gamebob.dev/fr/utilitaires/categories/statistiques/calculateur-distribution-normale/": {
-      "hash": "c326f8f1b78aa443f0717c86eb921fde4808d70ee41af8aee54bfe2c5e693bdb",
+      "hash": "25bbd3874008fe5e009fb1f21d9561f4b0b190500d60c62df565c1466e36cb61",
       "route": "/fr/utilitaires/categories/statistiques/calculateur-distribution-normale/"
     },
     "https://www.gamebob.dev/fr/utilitaires/categories/statistiques/calculateur-intervalle-confiance/": {
-      "hash": "b4086858e0827f68ca20f0db51bd7343330012bdd0af312e8d0e74a19835de96",
+      "hash": "124e532c8d224ea9bd6345ba8fbc357edf8b621128789aabd8df0083fc427e43",
       "route": "/fr/utilitaires/categories/statistiques/calculateur-intervalle-confiance/"
     },
     "https://www.gamebob.dev/fr/utilitaires/categories/statistiques/calculateur-rang-percentile/": {
-      "hash": "54054291fd63ea9dba7fde45dc3d611586272ee0f2988dea8db55f2379f8fa82",
+      "hash": "5725833581b9dfe5e347ded182fa34063f8bd3040b0877395da7744db5f7c552",
       "route": "/fr/utilitaires/categories/statistiques/calculateur-rang-percentile/"
     },
     "https://www.gamebob.dev/fr/utilitaires/categories/statistiques/calculateur-statistiques-descriptives/": {
-      "hash": "b69de1c06638986a8b8d066f849800430a2b5be5243951e5e9b30674aa1000c6",
+      "hash": "d6d009d42eb37e96704c3dd431f3bd2c86d0efc6e8e74493442bf2f1d75eaa9d",
       "route": "/fr/utilitaires/categories/statistiques/calculateur-statistiques-descriptives/"
     },
     "https://www.gamebob.dev/fr/utilitaires/categories/statistiques/calculateur-taille-echantillon/": {
-      "hash": "b27d97961ae3edcdd607d2e777a76cfbbcbc42742a909b4e5b7585f9cd665eba",
+      "hash": "0b9deadb69d36b6ccb693e8a4abe79f8c0e84f836b968b50807318a75dddc5ac",
       "route": "/fr/utilitaires/categories/statistiques/calculateur-taille-echantillon/"
     },
     "https://www.gamebob.dev/fr/utilitaires/categories/statistiques/calculateur-test-ab-hypothese/": {
-      "hash": "06cff6e1c732893f8825ff12c5f9cc0f4ff00a9ceb5f60018f48f395ebe0e82b",
+      "hash": "dab4d703faa1e33e9f58fa0d823977116dc335756d65466f5b7d577669fbfb7e",
       "route": "/fr/utilitaires/categories/statistiques/calculateur-test-ab-hypothese/"
     },
     "https://www.gamebob.dev/fr/utilitaires/categories/statistiques/": {
-      "hash": "e250ef471fd9916862b61611984e04c076a8d08ee01ef06f2a8b13c62e5c35a2",
+      "hash": "6907c147db2c93c289467b92f4baf50bdc2b6c0e5a09e7473f8949943ebc8ba7",
       "route": "/fr/utilitaires/categories/statistiques/"
     },
     "https://www.gamebob.dev/id/utilitas/kategori/statistik/": {
-      "hash": "a87fcf6d235fe16da2ff56fdcd82b2e5eea8ca4064411545d0fd0e98a2132511",
+      "hash": "608ce7d67a35debacf4aafa6def43fe61b631da9d2a36a64fd5571f05188f4de",
       "route": "/id/utilitas/kategori/statistik/"
     },
     "https://www.gamebob.dev/id/utilitas/kategori/statistik/kalkulator-anova-satu-arah-varians-antar-dalam-kelompok/": {
-      "hash": "2618d05dedeea924b776172de079f334a6116ca9ff2493a71e0ce5aef23b2013",
+      "hash": "8c49e3218f98ce3551920ba10083266cfe13b1809107ebe7cd78ec2ed5d411e6",
       "route": "/id/utilitas/kategori/statistik/kalkulator-anova-satu-arah-varians-antar-dalam-kelompok/"
     },
     "https://www.gamebob.dev/id/utilitas/kategori/statistik/kalkulator-distribusi-normal/": {
-      "hash": "d63dad57c503a8ca1969f6150878e14261750b2a4d6b827163d819a4d238ea58",
+      "hash": "432270587904226e954e1d216d093d02aaa675e8cdf23f9d31ced369424af918",
       "route": "/id/utilitas/kategori/statistik/kalkulator-distribusi-normal/"
     },
     "https://www.gamebob.dev/id/utilitas/kategori/statistik/kalkulator-interval-kepercayaan/": {
-      "hash": "d7d18e9bb5b3688aa9e80aec9e6ad48b584ae5339d91c5f1ab10a5acbb8ce9db",
+      "hash": "b47bb37c7bd7ffec745c33f3f1290c84696473337f75a1a5a223f65dc4558a5b",
       "route": "/id/utilitas/kategori/statistik/kalkulator-interval-kepercayaan/"
     },
     "https://www.gamebob.dev/id/utilitas/kategori/statistik/kalkulator-korelasi-pearson/": {
-      "hash": "bdf98bec54c9d49ed0a73fc27d1d984d5532456b92480b620c5a2262d60dc8cd",
+      "hash": "eb76ca05e4e6b7c7cc05f009170ae45c2a0d74b41beec06eab3726a3662b2294",
       "route": "/id/utilitas/kategori/statistik/kalkulator-korelasi-pearson/"
     },
     "https://www.gamebob.dev/id/utilitas/kategori/statistik/kalkulator-peringkat-persentil/": {
-      "hash": "9905fc62c89562b04e378c0b4cadc10f3b57a5f36865dc170e40e1c97b358104",
+      "hash": "4e0c68190d401b156af5da76e7fba2faa09e560a1bf02f0b8c77f22113a7d139",
       "route": "/id/utilitas/kategori/statistik/kalkulator-peringkat-persentil/"
     },
     "https://www.gamebob.dev/id/utilitas/kategori/statistik/kalkulator-statistik-deskriptif/": {
-      "hash": "24d5e4e20f65728029b8d20d85f3ae05e2eb8bf60f3d000a22bbf01e3c247f7c",
+      "hash": "e8fcaea78bb439e6d51ae757f92eec70453c458ad9a6e9357657d3dfc1827a5f",
       "route": "/id/utilitas/kategori/statistik/kalkulator-statistik-deskriptif/"
     },
     "https://www.gamebob.dev/id/utilitas/kategori/statistik/kalkulator-uji-hipotesis-ab-test/": {
-      "hash": "cb27126c6924c80e5d31df6bc0035a81e7de6619987a31b546b4aa3490ece504",
+      "hash": "39c7d66db455cf294ef56c33e07b7d914ffd82f7f97997db4e5ee16ef237115d",
       "route": "/id/utilitas/kategori/statistik/kalkulator-uji-hipotesis-ab-test/"
     },
     "https://www.gamebob.dev/id/utilitas/kategori/statistik/kalkulator-uji-independensi-chi-square/": {
-      "hash": "f9c9db9e472b87a8e422025810bdea20a67c60f3d131bc3f62f36fc7df5ecf8d",
+      "hash": "130836347415383db49e295d396b8b874807d134fe6c6b44e620ce768e388c82",
       "route": "/id/utilitas/kategori/statistik/kalkulator-uji-independensi-chi-square/"
     },
     "https://www.gamebob.dev/id/utilitas/kategori/statistik/kalkulator-ukuran-sampel/": {
-      "hash": "c00f9beba26a83ce2d3fc656209d9a725eb56961c28c7d33e1100bd29a75b0fb",
+      "hash": "39530aac9e13c798622f1bb931efbf4ba097bfe3f0e1201fb6910993cab43651",
       "route": "/id/utilitas/kategori/statistik/kalkulator-ukuran-sampel/"
     },
     "https://www.gamebob.dev/it/utilita/categorie/statistica/calcolatore-anova-a-un-fattore-varianza-tra-dentro-gruppi/": {
-      "hash": "9092afbdf7cf827accae513020d50a28f9f031c21aef7148287ed6e248bbe656",
+      "hash": "097d61832df379dbb4ebaee99a3560e3a2fe3027b9a966540b2ad2aa2774d0e2",
       "route": "/it/utilita/categorie/statistica/calcolatore-anova-a-un-fattore-varianza-tra-dentro-gruppi/"
     },
     "https://www.gamebob.dev/it/utilita/categorie/statistica/calcolatore-contrasto-ipotesi-ab-test/": {
-      "hash": "e65ddf6eb72d224cd12c0b4385d66d84e26454af53e96d87034dacd7d5691059",
+      "hash": "66f310b8e35b15d11475e8f2af2d95eb925647a241331d6507eca7041a1f9b16",
       "route": "/it/utilita/categorie/statistica/calcolatore-contrasto-ipotesi-ab-test/"
     },
     "https://www.gamebob.dev/it/utilita/categorie/statistica/calcolatore-correlazione-pearson/": {
-      "hash": "1742a4d0496e623bbf6bf2348a13447d15a8725e0b35e0f5ecf0e27f1e852783",
+      "hash": "b8d40b015be2bf809e88c6cad2d12f2b15a450061f07c9fe86060cf883d4f83f",
       "route": "/it/utilita/categorie/statistica/calcolatore-correlazione-pearson/"
     },
     "https://www.gamebob.dev/it/utilita/categorie/statistica/calcolatore-dimensione-campione/": {
-      "hash": "d4098a9e0326abb857c83d8a2112820c7381a7edee745ffc0fcac8772921d0ba",
+      "hash": "c238b38fe0e4f9b97558ca28ddffcf6839b3c7ef214651d0eed9b5273e1306d9",
       "route": "/it/utilita/categorie/statistica/calcolatore-dimensione-campione/"
     },
     "https://www.gamebob.dev/it/utilita/categorie/statistica/calcolatore-distribuzione-normale/": {
-      "hash": "470ff95855bc8c886a52b06555bb8c9202e13d9b8494f31fa566ada30692169a",
+      "hash": "a49a227cb2b8aae4c4e6fe326c3724e70d3a72e75572f41ffa68f4ae1a1bd285",
       "route": "/it/utilita/categorie/statistica/calcolatore-distribuzione-normale/"
     },
     "https://www.gamebob.dev/it/utilita/categorie/statistica/calcolatore-intervallo-confidenza/": {
-      "hash": "ad89450146c66a44b38cfd8553ac859ce41af5cb612a53306d323446fcf66dc5",
+      "hash": "4d656a2218a6ce9359e788cf2f1db8d55c42a5f66e68f87aa7fd910258b425a9",
       "route": "/it/utilita/categorie/statistica/calcolatore-intervallo-confidenza/"
     },
     "https://www.gamebob.dev/it/utilita/categorie/statistica/calcolatore-rango-percentile/": {
-      "hash": "bf0f5ed00f3be2c46a9eefde3d32ab48fcc05dd14df9dcbe0bebf7f58d8f968b",
+      "hash": "22d53a8bb233b3f51a75b0150b22b7bfb9c6a68e28386196a5392128fcebc3aa",
       "route": "/it/utilita/categorie/statistica/calcolatore-rango-percentile/"
     },
     "https://www.gamebob.dev/it/utilita/categorie/statistica/calcolatore-statistica-descrittiva/": {
-      "hash": "8aa7b6c1812ab5c1b3cb69262ef3c723366bbd2a8701b6ec5ff2a6865263c9dc",
+      "hash": "e8edda2f92ff366e1e2e93a2e0f888a517c278637c599f9c316f7f0b8b5fb804",
       "route": "/it/utilita/categorie/statistica/calcolatore-statistica-descrittiva/"
     },
     "https://www.gamebob.dev/it/utilita/categorie/statistica/calcolatore-test-indipendenza-chi-quadrato/": {
-      "hash": "195fd268bf97764f375e654caec84e5b3cd7a18993db8337c9ab8c833b1dd4cb",
+      "hash": "99ac476b127cea3086a10c03ca4a1d9fa17ac8224b2a266829114fe8af02f4b7",
       "route": "/it/utilita/categorie/statistica/calcolatore-test-indipendenza-chi-quadrato/"
     },
     "https://www.gamebob.dev/it/utilita/categorie/statistica/": {
-      "hash": "16ffc8d846d0d8b8f5888bb1b5bbb0df648f3ee0ecf3cddbfe0e73e186a665e8",
+      "hash": "058081cb89004f8e6a3990b30675e55c90e6789b6b3067654adaa3e5b7f625fe",
       "route": "/it/utilita/categorie/statistica/"
     },
     "https://www.gamebob.dev/ja/utilities/categories/statistics/ab-test-hypothesis-calculator/": {
-      "hash": "7c8e34f37d86c2f3606c6a4148ffccb560376568cf3a083773fca4941a1a545f",
+      "hash": "57d1eb1f5c435edceae5e1503086525a978ae05eacf71a22c4ac8a80b26b2b35",
       "route": "/ja/utilities/categories/statistics/ab-test-hypothesis-calculator/"
     },
     "https://www.gamebob.dev/ja/utilities/categories/statistics/chi-square-independence-calculator/": {
-      "hash": "83df1a3a193e5326e87c276b0ff7d2b656a23dc88c7d5ab7fd8e6758fc466422",
+      "hash": "512e2aba41baa622468204af8c9bf628755bcbe8036dfae8d07213979e9853c5",
       "route": "/ja/utilities/categories/statistics/chi-square-independence-calculator/"
     },
     "https://www.gamebob.dev/ja/utilities/categories/statistics/confidence-interval-calculator/": {
-      "hash": "773b5970a90a3eb0d74103cedb1a15c3f15f7c71699126ec72027981b0f32591",
+      "hash": "24136713da8abf6f8ad8dfac4d3203c1caba78e29301da1ab447814a886d46dd",
       "route": "/ja/utilities/categories/statistics/confidence-interval-calculator/"
     },
     "https://www.gamebob.dev/ja/utilities/categories/statistics/descriptive-statistics-calculator/": {
-      "hash": "bdaf8bd60ea934acd5eb68e777debb76e8916bd0c56298937ea3175799310e6e",
+      "hash": "62eefac3655b265609ff1d9c159fa420202c58cf1395783839901cad94314e7b",
       "route": "/ja/utilities/categories/statistics/descriptive-statistics-calculator/"
     },
     "https://www.gamebob.dev/ja/utilities/categories/statistics/": {
-      "hash": "a81f997f17f4d55a7d4841b84e1c611de78ecb9410fe6190d7839c6d46c05559",
+      "hash": "0a1a3742a4eae5e0183a6088b8ee9b7a6f90aecb5572e06792a895494d0782f4",
       "route": "/ja/utilities/categories/statistics/"
     },
     "https://www.gamebob.dev/ja/utilities/categories/statistics/normal-distribution-calculator/": {
-      "hash": "4a6bbbe34aa4fa7d5ebbb3411e43f0677b353c5de9b325a27671c15ff3f93187",
+      "hash": "de8d93da69bcc7321911ed88665c3df98483aa54eb999f8c7208a10179d5afc0",
       "route": "/ja/utilities/categories/statistics/normal-distribution-calculator/"
     },
     "https://www.gamebob.dev/ja/utilities/categories/statistics/one-way-anova-between-within-groups-calculator/": {
-      "hash": "e1546a72eb311e1184ca73913178958d33b6e71dbfca0613b0c5db421f11d617",
+      "hash": "6a63dc8fe669eff7a92a4a062448bc02a2eda03cc96b9e9fa7056c6466ecc6af",
       "route": "/ja/utilities/categories/statistics/one-way-anova-between-within-groups-calculator/"
     },
     "https://www.gamebob.dev/ja/utilities/categories/statistics/pearson-correlation-calculator/": {
-      "hash": "4020bb5f7048fc7f37686f816d4b2abd518bc53c91e5e6503df8ea18efba0134",
+      "hash": "2e0a570c2a93556e187a341bb5690744e97e45fc5c276c82d2af8f9415178275",
       "route": "/ja/utilities/categories/statistics/pearson-correlation-calculator/"
     },
     "https://www.gamebob.dev/ja/utilities/categories/statistics/percentile-rank-calculator/": {
-      "hash": "ab17fa88ae317f61ee3bfa8cbc27d65be19a14db13810d980010d9582ef5eaeb",
+      "hash": "3abca8c350cfefca2c3c86f0fedd592338724631ee7f6bacd8e8b0450f47babe",
       "route": "/ja/utilities/categories/statistics/percentile-rank-calculator/"
     },
     "https://www.gamebob.dev/ja/utilities/categories/statistics/sample-size-calculator/": {
-      "hash": "88c143e9f18dd21e644345fbd4eb3b058dc31c7cd49a2a00875c1370a39e77e7",
+      "hash": "2dca65c58664e5867df18ff5443bdff532ce2abe4754d3696f4de15111925060",
       "route": "/ja/utilities/categories/statistics/sample-size-calculator/"
     },
     "https://www.gamebob.dev/ko/utilities/categories/statistics/ab-test-hypothesis-calculator/": {
-      "hash": "f4d568ab82cbe4d6e98ebd46e77fee8c05c6055655ca67657bcd1bf9aa59da2a",
+      "hash": "3469d405d03a05d9f1fe2b443470da62702fd29b8159acd21a1b5908d6f6c299",
       "route": "/ko/utilities/categories/statistics/ab-test-hypothesis-calculator/"
     },
     "https://www.gamebob.dev/ko/utilities/categories/statistics/chi-square-independence-calculator/": {
-      "hash": "cd80b7b708312a977df826d3843eea215b1ce2ebc4ee9f892f917c87174afa91",
+      "hash": "f97f6226e2a86870387dafe290f4212e5994588079fb20f66fec4020c7a94eba",
       "route": "/ko/utilities/categories/statistics/chi-square-independence-calculator/"
     },
     "https://www.gamebob.dev/ko/utilities/categories/statistics/confidence-interval-calculator/": {
-      "hash": "0f042942c9ca1e2c2969c0dae4805de028e9aa777a0109c15cdfbc4d92e2ee63",
+      "hash": "a1fc26146630f0d05382580a40428d48db125a39e4919cd05ea3ec93caa1b763",
       "route": "/ko/utilities/categories/statistics/confidence-interval-calculator/"
     },
     "https://www.gamebob.dev/ko/utilities/categories/statistics/descriptive-statistics-calculator/": {
-      "hash": "23315cf1abc6a8441568715810faa44eed380603ca800619bd5f459a26bda675",
+      "hash": "b993ae93f87c3467aa9b23c12c87218373c6996e56d32273b12f6810016930ee",
       "route": "/ko/utilities/categories/statistics/descriptive-statistics-calculator/"
     },
     "https://www.gamebob.dev/ko/utilities/categories/statistics/": {
-      "hash": "b3ed0937016e26f0aaa20479b2fe73d2acac0647c00c039aa7293a0b16dafebf",
+      "hash": "5f35d0337c8c6128de75f0d1f958ddeda6728b722a8895482f31f4bf186bb914",
       "route": "/ko/utilities/categories/statistics/"
     },
     "https://www.gamebob.dev/ko/utilities/categories/statistics/normal-distribution-calculator/": {
-      "hash": "a1092a439f181a2a37a80585e52f913c4ef2bdaf5bb1f57c4224f6f5c92d93d7",
+      "hash": "120ae23bff0bf7eef0fc366d96d409950216aef0f1f56dc697a9bcc85348c236",
       "route": "/ko/utilities/categories/statistics/normal-distribution-calculator/"
     },
     "https://www.gamebob.dev/ko/utilities/categories/statistics/one-way-anova-between-within-groups-calculator/": {
-      "hash": "8a3b7042900b7ced7b4a8a0757329306e995af2140ccf85821d1c94faf8832eb",
+      "hash": "242abe4f68b655fdfa7b19a4e72876777afc596e9ee9a7e57e663a5672b5831d",
       "route": "/ko/utilities/categories/statistics/one-way-anova-between-within-groups-calculator/"
     },
     "https://www.gamebob.dev/ko/utilities/categories/statistics/pearson-correlation-calculator/": {
-      "hash": "a0f6aafc56845b9219f30a06ab3d6da7be1c60de5d8c669b1770125dc9b36940",
+      "hash": "126f2dd6a8b13f6edc5d44e0c57d796d7426a9255b4003bcd860107ee95ff2a3",
       "route": "/ko/utilities/categories/statistics/pearson-correlation-calculator/"
     },
     "https://www.gamebob.dev/ko/utilities/categories/statistics/percentile-rank-calculator/": {
-      "hash": "8b318234ae022eb5406357c47fe695ddca763fb7efde6a31e10ed84c08a54834",
+      "hash": "bfe10e71a370883a94c5baf0c01defbcf6cc5993a6a3b15ee6947fcbd814fd95",
       "route": "/ko/utilities/categories/statistics/percentile-rank-calculator/"
     },
     "https://www.gamebob.dev/ko/utilities/categories/statistics/sample-size-calculator/": {
-      "hash": "a1c15116723caf0eaab5867d4f562ef0376628377bf994ecce7ad9063a017222",
+      "hash": "3ee821b06f37df9bbb1f56595ed49e28d7cd30ce531cad3c22c969610ea385c3",
       "route": "/ko/utilities/categories/statistics/sample-size-calculator/"
     },
     "https://www.gamebob.dev/nl/hulpmiddelen/categorieen/statistiek/ab-test-hypothesetest-calculator/": {
-      "hash": "c387d6ae37ef1f6c7f314264afbb3eb9bf9f84cc48979094e91ac4cc72af0a7a",
+      "hash": "13107b45b0346f22a241fed03ec87fe4ae9e02a1bf243527c70ca28cf9778769",
       "route": "/nl/hulpmiddelen/categorieen/statistiek/ab-test-hypothesetest-calculator/"
     },
     "https://www.gamebob.dev/nl/hulpmiddelen/categorieen/statistiek/beschrijvende-statistiek-calculator/": {
-      "hash": "43a36adae13c2a5ef6037a9d8b201687bbf54f454510ff14d59eaeac5129f5b1",
+      "hash": "3dbd68688323239a158046f5a53d17e2e2364cfe2b0bf603853a1707a52520a8",
       "route": "/nl/hulpmiddelen/categorieen/statistiek/beschrijvende-statistiek-calculator/"
     },
     "https://www.gamebob.dev/nl/hulpmiddelen/categorieen/statistiek/betrouwbaarheidsinterval-calculator/": {
-      "hash": "58b10eeacca7f7b0c817574a0267db4fe2077b0abf00ec82a5d18aa8b685ad24",
+      "hash": "7343fef1c56ef43069565a9db7bd9b746b7f6e3ee42c11927875442483ac6c08",
       "route": "/nl/hulpmiddelen/categorieen/statistiek/betrouwbaarheidsinterval-calculator/"
     },
     "https://www.gamebob.dev/nl/hulpmiddelen/categorieen/statistiek/chi-kwadraat-onafhankelijkheidstoets-calculator/": {
-      "hash": "26adcadcb78e1d3402dc5ebb784fffdc961bd2f9bd08e272d8523a5eafff3039",
+      "hash": "e110f76d6d0a7fe4d1ea9682c2f1b030af0f58c54994665deeb6f4a5432afc23",
       "route": "/nl/hulpmiddelen/categorieen/statistiek/chi-kwadraat-onafhankelijkheidstoets-calculator/"
     },
     "https://www.gamebob.dev/nl/hulpmiddelen/categorieen/statistiek/": {
-      "hash": "4ee03193457bd9b6500c8242c301aea0b1fdef71fa13f3c0545e3fe670cbac0c",
+      "hash": "a1285193eb4c50430919c6bae06b41f3c81e8b507d29d98c1485e99e8537dfe3",
       "route": "/nl/hulpmiddelen/categorieen/statistiek/"
     },
     "https://www.gamebob.dev/nl/hulpmiddelen/categorieen/statistiek/normale-verdeling-calculator/": {
-      "hash": "6396da89344be8c03394e0f9b0721761afe975e167af7eacc15569f31d33aac2",
+      "hash": "0fac3a963876023d979937cc947577b1b63460f3544e88dea165cd436f2b88da",
       "route": "/nl/hulpmiddelen/categorieen/statistiek/normale-verdeling-calculator/"
     },
     "https://www.gamebob.dev/nl/hulpmiddelen/categorieen/statistiek/one-way-anova-calculator-variantie-tussen-binnen-groepen/": {
-      "hash": "48c9ba14741a173c43c5478bb5fab5380dda32ccc1fd36964123fbe09f39bc26",
+      "hash": "f4217d07bd262189687bc7216485662ac1e5904f7f5b716929d75f4491bb16bd",
       "route": "/nl/hulpmiddelen/categorieen/statistiek/one-way-anova-calculator-variantie-tussen-binnen-groepen/"
     },
     "https://www.gamebob.dev/nl/hulpmiddelen/categorieen/statistiek/pearson-correlatie-calculator/": {
-      "hash": "3e3e8e866c474adcab27f71dcdc6259be605dc20e6a5d77aa86480cc8fa49407",
+      "hash": "38e40d8fbf0ae443dcf3d41779fbebe7c98e1df973d079e5479083b2121f8597",
       "route": "/nl/hulpmiddelen/categorieen/statistiek/pearson-correlatie-calculator/"
     },
     "https://www.gamebob.dev/nl/hulpmiddelen/categorieen/statistiek/percentielrang-calculator/": {
-      "hash": "de486a77add093318fd0b8e350b2eb440d94e7ed7ee03e5f77eb6ed578951d7f",
+      "hash": "76169ed32bfa6a5355b6250ed100707b751526e8a73c961441a9dbcbdd8127f2",
       "route": "/nl/hulpmiddelen/categorieen/statistiek/percentielrang-calculator/"
     },
     "https://www.gamebob.dev/nl/hulpmiddelen/categorieen/statistiek/steekproefcalculator/": {
-      "hash": "6790355e980777720c63ec7c535526067e54c72ee63f87c9cbb230719fca4fb4",
+      "hash": "8c74b0e3d0329099e414c8803387c2982e9fe03e6a95bee1a63c20678af9a0d0",
       "route": "/nl/hulpmiddelen/categorieen/statistiek/steekproefcalculator/"
     },
     "https://www.gamebob.dev/pl/narzedzia/kategorie/statystyka/": {
-      "hash": "44ed896f823f81a1a84469ba95a8c18bf8adf258fc687caf6b4c867e9b3339c8",
+      "hash": "395bb9f7abf3be167afe7c1b7f17930638ab2dda6c73c9bf6252217ce6a92728",
       "route": "/pl/narzedzia/kategorie/statystyka/"
     },
     "https://www.gamebob.dev/pl/narzedzia/kategorie/statystyka/kalkulator-anova-jednoczynnikowa-wariancja-miedzy-wewnatrz-grup/": {
-      "hash": "d3278628c999d6bfb5298e5dd8be609cf6c47629c747f49e9fd9cf932b30540d",
+      "hash": "ab9b049b40acf2691efb58037c87869afc5f3c919aaf207863bfceade0f917dd",
       "route": "/pl/narzedzia/kategorie/statystyka/kalkulator-anova-jednoczynnikowa-wariancja-miedzy-wewnatrz-grup/"
     },
     "https://www.gamebob.dev/pl/narzedzia/kategorie/statystyka/kalkulator-korelacji-pearsona/": {
-      "hash": "d4be6a9fcef3e411ae67a3ba06e2e25435d3fd49edd272cefa2f25222dd5c515",
+      "hash": "dd55f2ea759e4dec49625627b037270c4ee22e6b1d880087782e1a2e7759c67d",
       "route": "/pl/narzedzia/kategorie/statystyka/kalkulator-korelacji-pearsona/"
     },
     "https://www.gamebob.dev/pl/narzedzia/kategorie/statystyka/kalkulator-przedzialu-ufnosci/": {
-      "hash": "f37932a1308136c70c082613dfa0ac8d501bc3a28350f60a74c1aa76a5ef3120",
+      "hash": "618dc26d62db3ca46b6090cb07ed643a97f4784c9a2a4d1ea8b24b7751c5fdec",
       "route": "/pl/narzedzia/kategorie/statystyka/kalkulator-przedzialu-ufnosci/"
     },
     "https://www.gamebob.dev/pl/narzedzia/kategorie/statystyka/kalkulator-rangi-percentylowego/": {
-      "hash": "480fb695ad11fccf5052685e3eddfec2c1d549b8a7636bc48a0cb0b518d80af0",
+      "hash": "378d4a712d1632ca44682b9f0c752a861d25b841492976d157a80e8f197837c7",
       "route": "/pl/narzedzia/kategorie/statystyka/kalkulator-rangi-percentylowego/"
     },
     "https://www.gamebob.dev/pl/narzedzia/kategorie/statystyka/kalkulator-rozklladu-normalnego/": {
-      "hash": "09c9c41c80c2e5dbbd6ba195baa38513665f7953940ae950923fc53e2f8ef226",
+      "hash": "2dffe3f6f603802fbfc1afeafa1563c3bd62f3ba536c65e1605d8f0c237d19a6",
       "route": "/pl/narzedzia/kategorie/statystyka/kalkulator-rozklladu-normalnego/"
     },
     "https://www.gamebob.dev/pl/narzedzia/kategorie/statystyka/kalkulator-statystyki-opisowej/": {
-      "hash": "996c6d5d09c41a64d5e2a5873852bda8d06075003fa34e0e3d33a8b1ce81d758",
+      "hash": "5aef6e42967dbdf9b920ab2751819a86b94b4fb3e51d5ea7f2ade5091abe3530",
       "route": "/pl/narzedzia/kategorie/statystyka/kalkulator-statystyki-opisowej/"
     },
     "https://www.gamebob.dev/pl/narzedzia/kategorie/statystyka/kalkulator-testowania-hipotez-ab/": {
-      "hash": "9ad0a06e644792d114f3a78201bb27575dd154896b25b8160792f686d4d62ee2",
+      "hash": "7e4252c3f43b4741a403a06d7512a43ce348898732cf44db521c30a519c3c46a",
       "route": "/pl/narzedzia/kategorie/statystyka/kalkulator-testowania-hipotez-ab/"
     },
     "https://www.gamebob.dev/pl/narzedzia/kategorie/statystyka/kalkulator-testu-niezaleznosci-chi-kwadrat/": {
-      "hash": "ff447f7278393992813b1899f7ce3878c5a396fcdf9ea55f9bf3aafc9101053c",
+      "hash": "b48eee54c648c514f45c8778d86dc38c9eb56db72f0f10913399c0db77568d73",
       "route": "/pl/narzedzia/kategorie/statystyka/kalkulator-testu-niezaleznosci-chi-kwadrat/"
     },
     "https://www.gamebob.dev/pl/narzedzia/kategorie/statystyka/kalkulator-wielkosci-proby/": {
-      "hash": "0540994d42e246eac5b323775df6f17b7ed36f9de5d6aafbdeacbc23b825c100",
+      "hash": "dbe9cfcf1600f4fab2b1768d5014f4e2f5d4ca7d936cd941123e75079e5128d2",
       "route": "/pl/narzedzia/kategorie/statystyka/kalkulator-wielkosci-proby/"
     },
     "https://www.gamebob.dev/pt/utilidades/categorias/estatistica/calculadora-anova-um-fator-variancia-entre-dentro-grupos/": {
-      "hash": "d7fe20b3bc315e373088ba1c4c0a43739fd82c200d7dc61d0914ed06c9497d19",
+      "hash": "8eab3c802d9da6a432137872fc926b0f3f803cae7a66148021c1948efad579c2",
       "route": "/pt/utilidades/categorias/estatistica/calculadora-anova-um-fator-variancia-entre-dentro-grupos/"
     },
     "https://www.gamebob.dev/pt/utilidades/categorias/estatistica/calculadora-contraste-hipoteses-ab-test/": {
-      "hash": "61820f52707497c779297e144fe077631d0068d605631270310ac7b2ee74bb3c",
+      "hash": "472e327d08c6429e8361e465f67c5062f1bc59c76977bf49c09d6ff4e6e29f92",
       "route": "/pt/utilidades/categorias/estatistica/calculadora-contraste-hipoteses-ab-test/"
     },
     "https://www.gamebob.dev/pt/utilidades/categorias/estatistica/calculadora-correlacao-pearson/": {
-      "hash": "24c1394c0d5c4205c4e7cd8468efbecccd0b94f1f8339780b4ab06bede329d40",
+      "hash": "7b20f5c12a0867c59f181b06106f289434673a67401f356605345b0b500cd5e3",
       "route": "/pt/utilidades/categorias/estatistica/calculadora-correlacao-pearson/"
     },
     "https://www.gamebob.dev/pt/utilidades/categorias/estatistica/calculadora-distribuicao-normal/": {
-      "hash": "c6987b9a79e35ebee3db84db347d959cd6319cbf8e9cebda08207616444facaa",
+      "hash": "ea94f1d39f4309f05f331df63bc8e9f48a7cfcb19f4e841de326fe51cbe23810",
       "route": "/pt/utilidades/categorias/estatistica/calculadora-distribuicao-normal/"
     },
     "https://www.gamebob.dev/pt/utilidades/categorias/estatistica/calculadora-estatistica-descritiva/": {
-      "hash": "d65cef8aa399a1400eb7de50af436ba49455df80ef5bbb031a754ba1e562c7fe",
+      "hash": "6436403fccfe4b028945cb79a69782ebe7219fbfbface52fc271e6aedc97bc2e",
       "route": "/pt/utilidades/categorias/estatistica/calculadora-estatistica-descritiva/"
     },
     "https://www.gamebob.dev/pt/utilidades/categorias/estatistica/calculadora-intervalo-confianca/": {
-      "hash": "808453adaee07e37138cf00bdfd0e38a6dbc0debfddbe9d94fd76bbf921bf9c3",
+      "hash": "74e7d6e33b83a161914167d115a79f756b92a64eef75277f2402b69e09384ce2",
       "route": "/pt/utilidades/categorias/estatistica/calculadora-intervalo-confianca/"
     },
     "https://www.gamebob.dev/pt/utilidades/categorias/estatistica/calculadora-posto-percentil/": {
-      "hash": "ef4523e33a0d88b9b150e260b16f8dee353055585677ca0d5f259163a8a814e6",
+      "hash": "039d1e732fbf0008a1e77fe06f75683c25ebfb69ed02a31a4316065c4912eb80",
       "route": "/pt/utilidades/categorias/estatistica/calculadora-posto-percentil/"
     },
     "https://www.gamebob.dev/pt/utilidades/categorias/estatistica/calculadora-tamanho-amostra/": {
-      "hash": "d79143c275f7a62d803d33c00b425c292a432a9b43830b9f0b42e1c5c84bbeeb",
+      "hash": "484d1b9e4b08fa012b02745fcbf88614eb48462d80e36584c52b935578bf0573",
       "route": "/pt/utilidades/categorias/estatistica/calculadora-tamanho-amostra/"
     },
     "https://www.gamebob.dev/pt/utilidades/categorias/estatistica/calculadora-teste-independencia-qui-quadrado/": {
-      "hash": "65e10a0b01b6130ecc83a8836bb04c19ec00c2da7ac47821cf0387c234434191",
+      "hash": "1387393cbdbfceff328033035abfd255bcb00cd8412d5bbf93c3d7bc2cc58e71",
       "route": "/pt/utilidades/categorias/estatistica/calculadora-teste-independencia-qui-quadrado/"
     },
     "https://www.gamebob.dev/pt/utilidades/categorias/estatistica/": {
-      "hash": "69259c53726dc6d6ccf1c40c16e4f82d74e9b1d0fc8507c56ef096438018dd8f",
+      "hash": "fc3cb973dff60a53bcf8e3e9139c954af077d15f4d74eb5049b53df3eca840b8",
       "route": "/pt/utilidades/categorias/estatistica/"
     },
     "https://www.gamebob.dev/ru/instrumenty/kategorii/statistika/": {
-      "hash": "339d1167d10b19741cfa77e5fe2fbc1be251cf32f266b0576bf1b9c640580dbe",
+      "hash": "82010e37efed2e390535f3cade6e836bdd2c9444a8aed9b7e37c506a20946a65",
       "route": "/ru/instrumenty/kategorii/statistika/"
     },
     "https://www.gamebob.dev/ru/instrumenty/kategorii/statistika/kalkulyator-ab-testa-proverka-gipotez/": {
-      "hash": "35f474263c40c31d595a84f67fe7a0ff226b7e9922fa588b477523930b0626e8",
+      "hash": "5664c1b8a15b70cca50381b16d3defe3c499db84c337879be2f0b67c2d037f0f",
       "route": "/ru/instrumenty/kategorii/statistika/kalkulyator-ab-testa-proverka-gipotez/"
     },
     "https://www.gamebob.dev/ru/instrumenty/kategorii/statistika/kalkulyator-doveritelnogo-intervala/": {
-      "hash": "3fb5144a95a13e244ff7551c0292fc14f8d6c020e34e470cf0edd71d9cd0483d",
+      "hash": "9e24ca66d72601e5aa7b3d7da877b2c07c3e429a434362fd0aeaba856b47f966",
       "route": "/ru/instrumenty/kategorii/statistika/kalkulyator-doveritelnogo-intervala/"
     },
     "https://www.gamebob.dev/ru/instrumenty/kategorii/statistika/kalkulyator-korrelyacii-pirsona/": {
-      "hash": "41f42b11649358c40e803952b774b5b74be12c1920e387910be0a2895ee93663",
+      "hash": "d07cfb3b4535dbbfb397e4551aacf694bb5db8984073636bd662ca717562a639",
       "route": "/ru/instrumenty/kategorii/statistika/kalkulyator-korrelyacii-pirsona/"
     },
     "https://www.gamebob.dev/ru/instrumenty/kategorii/statistika/kalkulyator-normalnogo-raspredeleniya/": {
-      "hash": "d6a390fb1e1e56ad7c25b8b25fcc7896729494e6f027ed337854f316ba9605c0",
+      "hash": "3ae7d72b1503d0c18c61b4d4b12906856a3c1b98d6365e684f0b368209c1b67b",
       "route": "/ru/instrumenty/kategorii/statistika/kalkulyator-normalnogo-raspredeleniya/"
     },
     "https://www.gamebob.dev/ru/instrumenty/kategorii/statistika/kalkulyator-odnofaktornogo-anova-dispersiya-mezhdu-vnutri-grupp/": {
-      "hash": "e7e8d93fd51ab9b4be51cbe0a163d9152bb168f25e776d226fb5a782da164a44",
+      "hash": "db94b79635805f57a2b35c9af45277bef71c319d6e0a68e1d35421c3eae5d42d",
       "route": "/ru/instrumenty/kategorii/statistika/kalkulyator-odnofaktornogo-anova-dispersiya-mezhdu-vnutri-grupp/"
     },
     "https://www.gamebob.dev/ru/instrumenty/kategorii/statistika/kalkulyator-opisatelnoj-statistiki/": {
-      "hash": "1852effd3c63dfcfdf58014dec7c57912f0a9378151dd392b58837bfc0c20b61",
+      "hash": "fb66c509ad804fb54156b02bebf424bc6aa444d6baea28e2bf2535da8685be82",
       "route": "/ru/instrumenty/kategorii/statistika/kalkulyator-opisatelnoj-statistiki/"
     },
     "https://www.gamebob.dev/ru/instrumenty/kategorii/statistika/kalkulyator-percentilnogo-ranga/": {
-      "hash": "fd55d3e4a727102834153963f56e6383c4c69b8b7772cd5a55051828b20ba832",
+      "hash": "d6489a9b50aa2f5d77e2c04027b033818fc11c2070bb8574fd3c5a33698cdd7d",
       "route": "/ru/instrumenty/kategorii/statistika/kalkulyator-percentilnogo-ranga/"
     },
     "https://www.gamebob.dev/ru/instrumenty/kategorii/statistika/kalkulyator-razmera-vyborki/": {
-      "hash": "ba5194f1aab0bc14a423721753b4c1a2023e9c96ed521da9cf677fd39a074c3e",
+      "hash": "75f1c651dd143fb92255521836fa70fd738403b41138d503932ea190d6e9d0ba",
       "route": "/ru/instrumenty/kategorii/statistika/kalkulyator-razmera-vyborki/"
     },
     "https://www.gamebob.dev/ru/instrumenty/kategorii/statistika/kalkulyator-testa-hi-kvadrat-na-nezavisimost/": {
-      "hash": "1ff2e05f65bfd03d32139793cae9512c8e9e1d543e6c1860280ac09849e441c7",
+      "hash": "45d6b14e4716dce7519d58377b8b5e893b4e5de2fff17639bf457f79e60a3bf0",
       "route": "/ru/instrumenty/kategorii/statistika/kalkulyator-testa-hi-kvadrat-na-nezavisimost/"
     },
     "https://www.gamebob.dev/sv/verktyg/kategorier/statistik/ab-test-kalkylator-hypotestest/": {
-      "hash": "66538a14b9599e5b47e2368ab2c4095825aa0a20ec2158a3ff26a7c79d8bcd0a",
+      "hash": "a2bd92e2f14edac77fc1bbed1ff092eab25743ebc5ea319edc77cbc2571fde79",
       "route": "/sv/verktyg/kategorier/statistik/ab-test-kalkylator-hypotestest/"
     },
     "https://www.gamebob.dev/sv/verktyg/kategorier/statistik/chi-tva-test-oberoende-kalkylator/": {
-      "hash": "91f6d8597f1a13f3b8181ff6da1c7fa0a665e59f2438351c09d4b502518cb487",
+      "hash": "d12a560e8f6b17c7f75d6a9faf559e11b118b51d563c3cb8555ecbd3d5902723",
       "route": "/sv/verktyg/kategorier/statistik/chi-tva-test-oberoende-kalkylator/"
     },
     "https://www.gamebob.dev/sv/verktyg/kategorier/statistik/enkelriktad-anova-kalkylator-varians-mellan-inom-grupper/": {
-      "hash": "9271476301fcc1bab81e299ad235af0f51c95940a7122d0756cced6bba157551",
+      "hash": "8cc60ccd3aa0d3f90c18fea2accf8051468d85700b64b2b3ff58ad155d64e39d",
       "route": "/sv/verktyg/kategorier/statistik/enkelriktad-anova-kalkylator-varians-mellan-inom-grupper/"
     },
     "https://www.gamebob.dev/sv/verktyg/kategorier/statistik/": {
-      "hash": "07ae892a31e72be33b11eb79885c32fe89d4b6cc02d222a7a7a0b5fb19fd61cf",
+      "hash": "8b0ab02e76e5c1265e1e367fc738cc428f166575d3ed057e281c3ff8e9b77cce",
       "route": "/sv/verktyg/kategorier/statistik/"
     },
     "https://www.gamebob.dev/sv/verktyg/kategorier/statistik/kalkylator-beskrivande-statistik/": {
-      "hash": "46f61b7a14fa627c372eeb7b33712717f95fb8d10829bb770e7cd4d32023a38e",
+      "hash": "3ae75d2d7e2223893e123decca04e28aa3ea95fdc6b150e17feeeae2dd4c8c09",
       "route": "/sv/verktyg/kategorier/statistik/kalkylator-beskrivande-statistik/"
     },
     "https://www.gamebob.dev/sv/verktyg/kategorier/statistik/kalkylator-normalfordelning/": {
-      "hash": "4b73d7cd5c57c1f460d40d97c8c38e38dcfbb6695e66092177efb09385b56653",
+      "hash": "788c896f798631d7be00bc491cef51d6097adf174bef4e4224686d43c1487f04",
       "route": "/sv/verktyg/kategorier/statistik/kalkylator-normalfordelning/"
     },
     "https://www.gamebob.dev/sv/verktyg/kategorier/statistik/kalkylator-pearson-korrelation/": {
-      "hash": "f40285dab48956344255829f73c4095f7f802bd19ea718b1c653377d8dd9cf57",
+      "hash": "2128db6858a986c6de9a9ba13a0f7d74892bab872a5d54c722ae2e5fd4a8a69c",
       "route": "/sv/verktyg/kategorier/statistik/kalkylator-pearson-korrelation/"
     },
     "https://www.gamebob.dev/sv/verktyg/kategorier/statistik/kalkylator-urvalsstorlek/": {
-      "hash": "7818ca54a315cf1f6db396eb84f41efd00ab11fa3e9c73703ebeee97ae642a30",
+      "hash": "86096a640e263927fec68716450bfb58de7f37dd8e8ea57b8683c0150066a7f3",
       "route": "/sv/verktyg/kategorier/statistik/kalkylator-urvalsstorlek/"
     },
     "https://www.gamebob.dev/sv/verktyg/kategorier/statistik/konfidensintervall-kalkylator/": {
-      "hash": "bf59ef3d2e59c13e06e406c1095203ac050c46d12a710eae27074f46cafba03f",
+      "hash": "c562b77934ebb64a1e38d6bc8e06cf58f3e19b86bdccb0b97518a0020dcd0965",
       "route": "/sv/verktyg/kategorier/statistik/konfidensintervall-kalkylator/"
     },
     "https://www.gamebob.dev/sv/verktyg/kategorier/statistik/percentilrank-kalkylator/": {
-      "hash": "9ce52f0c4357a00556df2c996c79409b26e6ea80bc6813f0862390f4a4dc0ef8",
+      "hash": "885a9fec99b16655915ee0b613447a288ce20c09abe40b47b21f54d5e6596479",
       "route": "/sv/verktyg/kategorier/statistik/percentilrank-kalkylator/"
     },
     "https://www.gamebob.dev/tr/araclar/kategoriler/istatistik/ab-test-hipotez-testi-hesaplama/": {
-      "hash": "347d993d7332c2052cece263e4a9b5329de445ddf90eca3b801292044de6a219",
+      "hash": "d7b2c9c2055ddf98b2d25897a09186ac67a79ddd90aa62ea96e222d800075569",
       "route": "/tr/araclar/kategoriler/istatistik/ab-test-hipotez-testi-hesaplama/"
     },
     "https://www.gamebob.dev/tr/araclar/kategoriler/istatistik/betimsel-istatistik-hesaplama/": {
-      "hash": "7435fcdbb363f84738e40962a3af0a92c259503aee8aff03fd0404c9b65ad46f",
+      "hash": "4b00a563a43b4cdb776ceacce75b47f5c29bb839a5b3744129542ef72ea1af48",
       "route": "/tr/araclar/kategoriler/istatistik/betimsel-istatistik-hesaplama/"
     },
     "https://www.gamebob.dev/tr/araclar/kategoriler/istatistik/guven-araligi-hesaplama/": {
-      "hash": "7c8228b56960f0a3bff08e133699392b05107250599eaa21d4ba2444ee44a1af",
+      "hash": "2c889dfcd975a7da7d94da95fe01f83605e03ca625c4ed1046ab3c55ffde4b5d",
       "route": "/tr/araclar/kategoriler/istatistik/guven-araligi-hesaplama/"
     },
     "https://www.gamebob.dev/tr/araclar/kategoriler/istatistik/": {
-      "hash": "ea236afb1fdecd77ad2a0e35c7f3c7c2a15ec6c0c61e6682f64082e257486afb",
+      "hash": "257589050291c6e3cf8a894aaa5dcdd09573e8d6404ff7eafed8c9439ad589dd",
       "route": "/tr/araclar/kategoriler/istatistik/"
     },
     "https://www.gamebob.dev/tr/araclar/kategoriler/istatistik/ki-kare-bagimsizlik-testi-hesaplama/": {
-      "hash": "134431c5a4a2f29bba9c4df3afef324235421005f669b8ef1afb3eb781631fac",
+      "hash": "931613239756ed404b284f04f5c82c89e6477e50369d0a4a698ed32b03b5f92a",
       "route": "/tr/araclar/kategoriler/istatistik/ki-kare-bagimsizlik-testi-hesaplama/"
     },
     "https://www.gamebob.dev/tr/araclar/kategoriler/istatistik/normal-dagilim-hesaplama/": {
-      "hash": "1789b910f47e9a9d45e881957c158847c1f2133887e3c53352634f698b9f172b",
+      "hash": "e40312d459171c8e7e68ec4da67c7afdd2f9ea5bce93909e6d768a9b31f3cb27",
       "route": "/tr/araclar/kategoriler/istatistik/normal-dagilim-hesaplama/"
     },
     "https://www.gamebob.dev/tr/araclar/kategoriler/istatistik/orneklem-buyuklugu-hesaplama/": {
-      "hash": "f5ab994c18542afb4c7b02cf9eb0904fa23b3b2407ac40348364b7a1351a8fce",
+      "hash": "9cbbdca8e4cda31bc102c11cac74afa90ae1cd3aa85f71c48082fe0f5ba4b0ea",
       "route": "/tr/araclar/kategoriler/istatistik/orneklem-buyuklugu-hesaplama/"
     },
     "https://www.gamebob.dev/tr/araclar/kategoriler/istatistik/pearson-korelasyon-hesaplama/": {
-      "hash": "41988179207e662f9e9a8ab72b41c6e09ff4620c3de419e1e70c8136fb44c9e8",
+      "hash": "c75e0858fe12f3ed00b6e3fdb6436140c236d92a0871b7dff8589fdfda674412",
       "route": "/tr/araclar/kategoriler/istatistik/pearson-korelasyon-hesaplama/"
     },
     "https://www.gamebob.dev/tr/araclar/kategoriler/istatistik/tek-yonlu-anova-hesaplama-gruplar-arasi-ici-varyans/": {
-      "hash": "ae4da3d409392e2a5af6c66e2915979f62120ea6eb2bad1d82a65ea8ea63526a",
+      "hash": "14b81892650d111e36602d5ee384624a6f855967921f403ea74aec5fb2d5b019",
       "route": "/tr/araclar/kategoriler/istatistik/tek-yonlu-anova-hesaplama-gruplar-arasi-ici-varyans/"
     },
     "https://www.gamebob.dev/tr/araclar/kategoriler/istatistik/yuzdelik-dilim-sirasi-hesaplama/": {
-      "hash": "50e2c48770e1cf9a1c41532b316f768571e823d64129d884e147ea2c18085853",
+      "hash": "5ed517a06c7f141c00709212ce35c0b8fecdaa2d13aa247a08095e481a4ec81a",
       "route": "/tr/araclar/kategoriler/istatistik/yuzdelik-dilim-sirasi-hesaplama/"
     },
     "https://www.jjlmoya.es/utilidades/calculadora-anova-un-factor-varianza-entre-dentro-grupos/": {
-      "hash": "1db78a1775d3bf8f1142a907bff626f33c328119efd1f0d81935f679208e8497",
+      "hash": "fc50e829f9a0f7a6c8818991a13dec01795d14d2de2d6280d8e4dac197d08d7f",
       "route": "/utilidades/calculadora-anova-un-factor-varianza-entre-dentro-grupos/"
     },
     "https://www.jjlmoya.es/utilidades/calculadora-chi-cuadrado-independencia/": {
-      "hash": "50b022d4440e1024eccfbcc11533c286dca29a37fbe0d2cf421035f8148c7c65",
+      "hash": "5183c3b2f6c99e0514571315ef2b0a81b86b09c970393f94f2ef7b91cd97fc64",
       "route": "/utilidades/calculadora-chi-cuadrado-independencia/"
     },
     "https://www.jjlmoya.es/utilidades/calculadora-contraste-hipotesis-ab-test/": {
-      "hash": "bc36a8f7ff16e6c6d2be20bb60c29d50b4cc045886902fc83a6cf9d30d7fae78",
+      "hash": "62c0a7115e23d63359e5b13ad1cc634e7701a7652c83b4fb63b5f6d58105bd95",
       "route": "/utilidades/calculadora-contraste-hipotesis-ab-test/"
     },
     "https://www.jjlmoya.es/utilidades/calculadora-correlacion-pearson/": {
-      "hash": "c8cbbf0f68acf2d3aa683b0f080c254315bca0884bbf9e1e8e244aad442355f4",
+      "hash": "dfe75095440c7b83bae8ef2b360e35eeaea61a6b8900637f8bd79cbd7f682975",
       "route": "/utilidades/calculadora-correlacion-pearson/"
     },
     "https://www.jjlmoya.es/utilidades/calculadora-distribucion-normal/": {
-      "hash": "58a3a83ab9581b3a0434b4ca6ef3443c6f4758e389e2c545fe816f8374d6a13c",
+      "hash": "9ea392ca13e6ef7ea56b51af0c6bccdf06922f04cdce5230eafd9dab8fe0e5d0",
       "route": "/utilidades/calculadora-distribucion-normal/"
     },
     "https://www.jjlmoya.es/utilidades/calculadora-estadistica-descriptiva/": {
-      "hash": "83397438f2d5164dae8f6f4304390451fa19c6b66f14cfd28421855e86d802e0",
+      "hash": "8b0694152bd3d731350e518e70b6ed44d87bdf79fb949120ee7767531fc0ffa1",
       "route": "/utilidades/calculadora-estadistica-descriptiva/"
     },
     "https://www.jjlmoya.es/utilidades/calculadora-intervalo-confianza/": {
-      "hash": "bb2b2ee3a620e0484c5c18fb11dedda653a6ef6e662f5d4cdc49e951331d5742",
+      "hash": "e244fb61b8685e67c74d4735a65dfff5a08b7a20e5a6d7c0af3c29b17de3d65b",
       "route": "/utilidades/calculadora-intervalo-confianza/"
     },
     "https://www.jjlmoya.es/utilidades/calculadora-rango-percentil/": {
-      "hash": "04b5d31b8ed4f51404888a685538979c61d8d441b5512dbcdccf10a88835b34b",
+      "hash": "8227f8a9c6841aa312260a41629ef6b523231f7ce3504b56b56319ef98e1cee8",
       "route": "/utilidades/calculadora-rango-percentil/"
     },
     "https://www.jjlmoya.es/utilidades/calculadora-tamano-muestra/": {
-      "hash": "067b919671256ebad53140b3412a510074955d2c766e41157b442d244f878691",
+      "hash": "3834cb15880b73758fff962f4ac153c12789f2c42f37f1e51b93688472694afe",
       "route": "/utilidades/calculadora-tamano-muestra/"
     },
     "https://www.jjlmoya.es/utilidades/categorias/estadistica/": {
-      "hash": "764b15e02af8d6d94b096a3778369e3956ab6017dc6f7bf5e2124be553d32ae1",
+      "hash": "1905860f0a5336f490d063812cbeb233a2e39b346af4a731e77284f360ffc4da",
       "route": "/utilidades/categorias/estadistica/"
     },
     "https://www.gamebob.dev/zh/utilities/categories/statistics/ab-test-hypothesis-calculator/": {
-      "hash": "23b094da8e240996913e8cf7f0cc75e8db74a9b77c548312047a6b359f6116d6",
+      "hash": "77858de7b76c382222b3220c5b9a3b007374f1d718d70f4b825cc797dd826903",
       "route": "/zh/utilities/categories/statistics/ab-test-hypothesis-calculator/"
     },
     "https://www.gamebob.dev/zh/utilities/categories/statistics/chi-square-independence-calculator/": {
-      "hash": "ac661280e6f58c05ebad8a58b3e451d2a93c167d84900e57438f5d918a3beff6",
+      "hash": "28e4f770af18584c604ba6eca6de72d5194b9a90df98735bc7830d3a2cdd0453",
       "route": "/zh/utilities/categories/statistics/chi-square-independence-calculator/"
     },
     "https://www.gamebob.dev/zh/utilities/categories/statistics/confidence-interval-calculator/": {
-      "hash": "1d36e2d56776982dd3e6cfa265ea1f6389de089e08422113622113ce392f9ce2",
+      "hash": "2ba0a023bbc334201d49bc400e01de45601e12f2dbf112b18426193138f58a16",
       "route": "/zh/utilities/categories/statistics/confidence-interval-calculator/"
     },
     "https://www.gamebob.dev/zh/utilities/categories/statistics/descriptive-statistics-calculator/": {
-      "hash": "b5f2d4e6d4f81b989e3f4403670dda1399f0bbea377af6d704dde321116451c8",
+      "hash": "e742a5defe468eeb75a85f8506e9ecad813ef63c6b13b23a9a92edab0f0ad278",
       "route": "/zh/utilities/categories/statistics/descriptive-statistics-calculator/"
     },
     "https://www.gamebob.dev/zh/utilities/categories/statistics/": {
-      "hash": "5826c721754255298078c381f861954a9cdb59f339b640d4fd30d299cacaf147",
+      "hash": "7b055d8ce56e000d599dc6144e24bdeb3d0c8243df66193cb52f418589f1d1b0",
       "route": "/zh/utilities/categories/statistics/"
     },
     "https://www.gamebob.dev/zh/utilities/categories/statistics/normal-distribution-calculator/": {
-      "hash": "1b8d259f8d47de61b5bd6eeeeecbf9b2c4976a68d5dc97010d5525a2b965e970",
+      "hash": "d2e3d19bbd449609aec511efef3d792a069efabde39dd392602f7b0c07c8eef4",
       "route": "/zh/utilities/categories/statistics/normal-distribution-calculator/"
     },
     "https://www.gamebob.dev/zh/utilities/categories/statistics/one-way-anova-between-within-groups-calculator/": {
-      "hash": "04c5d75403ee83b152df825bc73bfa65e00bff33d96cc2ef5398df484465e7dc",
+      "hash": "2db2a84ad17aad52501014ca4cca5dce53459bbf9803e42469efc1f3a1db3ed3",
       "route": "/zh/utilities/categories/statistics/one-way-anova-between-within-groups-calculator/"
     },
     "https://www.gamebob.dev/zh/utilities/categories/statistics/pearson-correlation-calculator/": {
-      "hash": "6f8c28477b7d24acc212b30361f7e124ca67ed51ad887467fb5d9a35ffb5f261",
+      "hash": "6095f4ae1024e5ea139e218f785b31f850d5386ef4bee12a2e1942e9e8a7230b",
       "route": "/zh/utilities/categories/statistics/pearson-correlation-calculator/"
     },
     "https://www.gamebob.dev/zh/utilities/categories/statistics/percentile-rank-calculator/": {
-      "hash": "20de46312f4209a56779a02d7c015c88a9b4bd5e9d0ee873c078dcafc0bb6b5b",
+      "hash": "dccccf76d9163400c54e5c05df7abb99dd22dec6465e44957d23ac3700bf866d",
       "route": "/zh/utilities/categories/statistics/percentile-rank-calculator/"
     },
     "https://www.gamebob.dev/zh/utilities/categories/statistics/sample-size-calculator/": {
-      "hash": "989235aad9bc1d595ff1e7c8e6d514e0e4f0025f80682b9ab2f0cc139a570edd",
+      "hash": "708959680c70a690ef9342681c7cb4f7ef28edd6a483789744f520aa32d88e42",
       "route": "/zh/utilities/categories/statistics/sample-size-calculator/"
     }
   }
