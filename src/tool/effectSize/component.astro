@@ -1,0 +1,68 @@
+---
+import type { EffectSizeUI } from './ui';
+import './two-group-effect-size-calculator.css';
+
+interface Props {
+  ui: EffectSizeUI;
+}
+
+const { ui } = Astro.props;
+---
+
+<div class="effect-size-tool" data-effect-size-root>
+  <section class="effect-size-workbench" aria-label={ui.resultTitle}>
+    <div class="effect-size-controls">
+      <div class="effect-size-controls-heading"><span class="effect-size-kicker">{ui.resultTitle}</span></div>
+      <div class="effect-size-inputs">
+        <div class="effect-size-column effect-size-column-a">
+          <div class="effect-size-column-heading"><span class="effect-size-swatch" aria-hidden="true"></span><h2>{ui.groupA}</h2></div>
+          <label>{ui.mean}<input name="mean-a" type="number" inputmode="decimal" value="72" step="any" /></label>
+          <span class="effect-size-help">{ui.meanHelp}</span>
+          <label>{ui.standardDeviation}<input name="sd-a" type="number" inputmode="decimal" value="9" min="0.0001" step="any" /></label>
+          <span class="effect-size-help">{ui.standardDeviationHelp}</span>
+          <label>{ui.sampleSize}<input name="n-a" type="number" inputmode="numeric" value="32" min="2" step="1" /></label>
+          <span class="effect-size-help">{ui.sampleSizeHelp}</span>
+        </div>
+        <div class="effect-size-bridge" aria-hidden="true"><span></span><b>vs</b><span></span></div>
+        <div class="effect-size-column effect-size-column-b">
+          <div class="effect-size-column-heading"><span class="effect-size-swatch" aria-hidden="true"></span><h2>{ui.groupB}</h2></div>
+          <label>{ui.mean}<input name="mean-b" type="number" inputmode="decimal" value="65" step="any" /></label>
+          <span class="effect-size-help">{ui.meanHelp}</span>
+          <label>{ui.standardDeviation}<input name="sd-b" type="number" inputmode="decimal" value="10" min="0.0001" step="any" /></label>
+          <span class="effect-size-help">{ui.standardDeviationHelp}</span>
+          <label>{ui.sampleSize}<input name="n-b" type="number" inputmode="numeric" value="30" min="2" step="1" /></label>
+          <span class="effect-size-help">{ui.sampleSizeHelp}</span>
+        </div>
+      </div>
+      <div class="effect-size-actions"><button type="button" data-effect-action="example">{ui.example}</button><button type="button" class="effect-size-button-quiet" data-effect-action="clear">{ui.clear}</button></div>
+      <p class="effect-size-status" data-effect-status aria-live="polite"></p>
+    </div>
+    <div class="effect-size-result-panel">
+      <div class="effect-size-scene" data-effect-scene data-state="ready" aria-labelledby="effect-size-scene-title">
+        <div class="effect-size-scene-heading"><div><span class="effect-size-kicker">{ui.chartTitle}</span><h2 id="effect-size-scene-title" data-effect-scene-title>{ui.chartTitle}</h2></div><span class="effect-size-scene-difference" data-effect-scene-difference></span></div>
+        <div class="effect-size-track" role="img" aria-label={ui.chartTitle}><span class="effect-size-zero" aria-hidden="true"></span><span class="effect-size-band" aria-hidden="true"></span><span class="effect-size-marker effect-size-marker-b" aria-hidden="true"></span><span class="effect-size-marker effect-size-marker-a" aria-hidden="true"></span></div>
+        <div class="effect-size-scene-labels"><span data-effect-scene-b>{ui.chartB}</span><span data-effect-scene-a>{ui.chartA}</span></div>
+        <p data-effect-scene-band></p>
+        <p class="effect-size-scene-empty" data-effect-scene-empty>{ui.chartEmpty}</p>
+      </div>
+      <div class="effect-size-output" data-effect-output data-state="ready">
+        <div class="effect-size-output-heading"><div><span class="effect-size-kicker">{ui.resultTitle}</span><strong data-effect-magnitude></strong></div><span class="effect-size-tone" data-effect-uncertainty></span></div>
+        <div class="effect-size-main-result"><span>{ui.hedgesG}</span><strong data-effect-g></strong><small>{ui.confidenceInterval}: <span data-effect-g-ci></span></small></div>
+        <div class="effect-size-metrics"><dl><dt>{ui.difference}</dt><dd data-effect-difference></dd></dl><dl><dt>{ui.pooledStandardDeviation}</dt><dd data-effect-pooled-sd></dd></dl><dl><dt>{ui.degreesOfFreedom}</dt><dd data-effect-df></dd></dl><dl><dt>{ui.cohensD}</dt><dd data-effect-d></dd></dl><dl><dt>{ui.correction}</dt><dd data-effect-correction></dd></dl><dl><dt>{ui.direction}</dt><dd data-effect-direction></dd></dl></div>
+        <div class="effect-size-secondary"><span>{ui.cohensD} {ui.confidenceInterval}: <b data-effect-d-ci></b></span><span>{ui.uncertainty}: <b data-effect-uncertainty></b></span></div>
+        <button type="button" data-effect-action="copy">{ui.copySummary}</button>
+      </div>
+    </div>
+  </section>
+</div>
+
+<script>
+  import { mountEffectSize } from './controller';
+  import type { EffectSizeUI } from './ui';
+  const root = document.querySelector<HTMLElement>('[data-effect-size-root]');
+  const uiScript = document.querySelector<HTMLScriptElement>('[data-effect-ui]');
+  const ui = JSON.parse(uiScript?.textContent ?? '{}') as EffectSizeUI;
+  if (root) mountEffectSize(root, ui);
+</script>
+
+<script is:inline type="application/json" data-effect-ui set:html={JSON.stringify(ui)}></script>

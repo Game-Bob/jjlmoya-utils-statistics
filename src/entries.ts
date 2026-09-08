@@ -17,4 +17,5 @@ import { pearsonCorrelation } from './tool/pearsonCorrelation/entry';
 import { sampleSize } from './tool/sampleSize/entry';
 import { oneWayAnova } from './tool/oneWayAnova/entry';
 import { percentileRank } from './tool/percentileRank/entry';
-export const ALL_ENTRIES = [abTest, chiSquare, confidenceInterval, descriptiveStats, normalDistribution, pearsonCorrelation, sampleSize, oneWayAnova, percentileRank];
+import { effectSize } from './tool/effectSize/entry';
+export const ALL_ENTRIES = [abTest, chiSquare, confidenceInterval, descriptiveStats, normalDistribution, pearsonCorrelation, sampleSize, oneWayAnova, percentileRank, effectSize];
